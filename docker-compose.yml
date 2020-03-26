@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.15.5-alpine
+    container_name: hooshcup_nginx
+    volumes:
+      - ./:/app/
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/logs/:/var/log/nginx/
+    ports:
+      - ${NGINX_EXPOSED_PORT:-0}:80
+    working_dir: /app/
+    restart: always
+    depends_on:
+      - php
+
+  php:
+    build: docker/php/fpm
+    container_name: hooshcup_php
+    restart: always
+    working_dir: /app/
+    volumes:
+      - ./:/app/
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+    depends_on:
+      - redis
+      - mariadb
+
+  php_queue_worker:
+    build: docker/php/cli
+    restart: always
+    working_dir: /app/
+    command: ["php", "artisan", "-vvv", "queue:work", "NAME", "--sleep=1", "--daemon", "--tries=3"]
+    volumes:
+      - ./:/app/
+    depends_on:
+      - php
+
+  redis:
+    image: redis:5.0-alpine3.8
+    container_name: hooshcup_redis
+    restart: always
+    ports:
+      - ${REDIS_EXPOSED_PORT:-0}:6379
+
+  mariadb:
+    image: mariadb:10.2.14
+    container_name: hooshcup_db
+    restart: always
+    environment:
+      - MYSQL_DATABASE=app
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - ${DB_EXPOSED_PORT:-0}:3306
+    volumes:
+      - ./docker/mariadb/main:/var/lib/mysql

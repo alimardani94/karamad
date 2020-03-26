@@ -1,0 +1,23 @@
+#localVideoContainer {
+    position: relative;
+    overflow: hidden;
+    background-color: #0e2135;
+}
+
+/* Make the image responsive */
+#localVideoContainer video {
+    width: 100%;
+    height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+#localVideoContainer #localVideoToolBar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2147483647;
+}
+
+video {
+    background-color: #0e2135;
+}
