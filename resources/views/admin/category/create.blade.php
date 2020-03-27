@@ -42,11 +42,11 @@
                                     <div class="form-group">
                                         <label for="parent">والد</label>
                                         <select type="text" class="form-control select2" id="parent" name="parent">
-                                            <option value="">دسته اصلی</option>
+                                            <option value="">بدون والد (دسته اصلی)</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}"
                                                     {{old('parent') == $category->id ? 'selected':''}}>
-                                                    {{ $category->title }}
+                                                    {{ $category->name }}
                                                 </option>
                                             @endforeach
                                         </select>

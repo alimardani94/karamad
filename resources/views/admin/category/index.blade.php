@@ -37,13 +37,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                @foreach($categories as $category)
+                            @foreach($categories as $category)
+                                <tr>
                                     <td>{{$category->name}}</td>
-                                    <td>{{$category->parent_id}}</td>
+                                    <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
                                     <td></td>
-                                @endforeach
-                            </tr>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

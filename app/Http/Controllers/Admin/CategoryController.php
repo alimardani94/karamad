@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Rules\CheckCategoryParent;
+use App\Rules\UniqueCategory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Storage;
@@ -44,8 +46,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'parent' => 'nullable|exists:categories,id',
+            'name' => ['required', new UniqueCategory($request->get('parent'))],
+            'parent' => ['nullable','exists:categories,id', new CheckCategoryParent()],
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'required|max:1024',
         ]);
@@ -54,7 +56,7 @@ class CategoryController extends Controller
 
         $category = new Category();
         $category->name = $request->get('name');
-        $category->parent_id = $request->get('parent');
+        $category->parent_id = $request->get('parent') ?? 0;
         $category->image = $path;
         $category->description = $request->get('description');
         $category->save();
