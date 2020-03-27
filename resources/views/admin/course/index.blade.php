@@ -45,7 +45,11 @@
                                     <td>{{substr($course->summary,0,200)}}</td>
                                     <td>{{$course->instructor->name}}</td>
                                     <td>{{$course->category->name}}</td>
-                                    <td></td>
+                                    <td>
+                                        <button type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</button>
+                                        <button type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره</button>
+                                        <button type="button" class="btn btn-block btn-danger btn-xs">حذف دوره</button>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
