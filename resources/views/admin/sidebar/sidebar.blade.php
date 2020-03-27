@@ -49,6 +49,27 @@
     </ul>
 </li>
 
+<li class="treeview @yield('course')">
+    <a href="#">
+        <i class="fa fa-users"></i>
+        <span>دوره ها</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('course1')">
+            <a href="{{route('admin.courses.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست دوره ها
+            </a>
+        </li>
+        <li class="@yield('course2')">
+            <a href="{{route('admin.courses.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن دوره
+            </a>
+        </li>
+    </ul>
+</li>
 
 <li class="treeview @yield('user')">
     <a href="#">

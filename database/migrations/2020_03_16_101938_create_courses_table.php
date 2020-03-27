@@ -20,15 +20,12 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->text('summary');
             $table->longText('description')->nullable();
-            $table->string('slug');
             $table->string('image')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->tinyInteger('downloadable')->default(0);
             $table->unsignedBigInteger('price')->default(0);
-            $table->unsignedInteger('discount')->default(0);
+            $table->unsignedBigInteger('discount')->default(0);
             $table->integer('sell_count')->default(0);
             $table->integer('seen_count')->default(0);
-            $table->tinyInteger('confirmed')->default(0);
 
             $table->timestamps();
         });

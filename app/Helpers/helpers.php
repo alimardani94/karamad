@@ -50,5 +50,10 @@ function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss', $fixNumbers = fal
 
 function parse_number(string $string): int
 {
-    return  preg_replace('/[^0-9]/', '', $string);
+    return preg_replace('/[^0-9]/', '', $string);
+}
+
+function preventXSS($content)
+{
+    return preg_replace('/(script.*?(?:\/|&#47;|&#x0002F;)script)/ius', '', $content);
 }

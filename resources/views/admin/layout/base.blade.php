@@ -212,6 +212,6 @@
     })
 </script>
 
-@yield('script')
+@yield('js')
 </body>
 </html>

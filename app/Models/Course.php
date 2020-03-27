@@ -50,5 +50,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Course extends Model
 {
-    //
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function instructor()
+    {
+        return $this->belongsTo(Instructor::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

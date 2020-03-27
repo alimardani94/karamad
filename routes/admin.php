@@ -7,4 +7,5 @@ Route::get('/', 'HomeController@home')->name('home');
 Route::resources([
     'instructors' => 'InstructorController',
     'categories' => 'CategoryController',
+    'courses' => 'CourseController',
 ]);
