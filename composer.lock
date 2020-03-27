@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9ed61dc8c43adb765432d49ee55bdb1",
+    "content-hash": "24948fcf09a726ace3376bc66d6498b4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1103,6 +1103,45 @@
                 "storage"
             ],
             "time": "2020-03-08T18:53:20+00:00"
+        },
+        {
+            "name": "miladrahimi/php-enum",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miladrahimi/php-enum.git",
+                "reference": "a2c60eee49f7df46fe5deecd422ca0eb92f6a8a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miladrahimi/php-enum/zipball/a2c60eee49f7df46fe5deecd422ca0eb92f6a8a4",
+                "reference": "a2c60eee49f7df46fe5deecd422ca0eb92f6a8a4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MiladRahimi\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milad Rahimi",
+                    "email": "info@miladrahimi.com"
+                }
+            ],
+            "description": "A PHP Abstract Enum Class",
+            "time": "2019-12-30T16:51:10+00:00"
         },
         {
             "name": "monolog/monolog",

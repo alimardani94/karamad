@@ -19,6 +19,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereUserId($value)
  * @mixin \Eloquent
+ * @property int $type
+ * @property string|null $name
+ * @property string|null $surname
+ * @property string $title
+ * @property string|null $about
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereAbout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereSurname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereType($value)
  */
 class Instructor extends Model
 {

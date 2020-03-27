@@ -1,6 +1,8 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
+@section('instructor', 'active menu-open')
+@section('instructor2', 'active')
 
 @section('header')
     <section class="content-header">

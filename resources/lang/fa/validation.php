@@ -30,7 +30,7 @@ return [
         'array' => 'The :attribute must have between :min and :max items.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
-    'confirmed' => 'The :attribute confirmation does not match.',
+    'confirmed' => 'فیلد :attribute و بازنویسی آن یکسان نیستند.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -39,9 +39,9 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'The :attribute must be a valid email address.',
-    'ends_with' => 'The :attribute must end with one of the following: :values.',
-    'exists' => 'The selected :attribute is invalid.',
+    'email' => 'فرمت فیلد :attribute نادرست است.',
+    'ends_with' => 'The :attribute must end with one of the following: :values',
+    'exists' => 'فیلد :attribute نادرست است.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
@@ -77,9 +77,9 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
+        'numeric' => 'فیلد :attribute نمی‌تواند از :max بیشتر باشد.',
         'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'string' => 'فیلد :attribute نمی‌تواند بیشتر از :max نویسه باشد.',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => 'The :attribute must be at least :min.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => 'فیلد :attribute نمی‌تواند کمتر از :min نویسه باشد.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',
@@ -96,7 +96,7 @@ return [
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => 'فیلد :attribute خالی است.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
@@ -110,12 +110,12 @@ return [
         'string' => 'The :attribute must be :size characters.',
         'array' => 'The :attribute must contain :size items.',
     ],
-    'starts_with' => 'The :attribute must start with one of the following: :values.',
+    'starts_with' => 'The :attribute must start with one of the following: :values',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'این :attribute پیش از این ثبت شده است.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute format is invalid.',
+    'url' => 'فیلد :attribute باید یک آدرس اینترنتی معتبر باشد.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*
@@ -146,6 +146,21 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'نام',
+        'surname' => 'نام خانوادگی',
+        'email' => 'ایمیل',
+        'password' => 'گذرواژه',
+        'url' => 'آدرس اینترنتی',
+        'thumbnail' => 'بندانگشتی',
+        'category' => 'دسته',
+        'title' => 'عنوان',
+        'content' => 'محتوا',
+        'type' => 'نوع',
+        'button' => 'دکمه',
+        'image' => 'تصویر',
+        'link' => 'لینک',
+        'description' => 'توصیحات',
+    ],
 
 ];

@@ -6,7 +6,13 @@
     <title>@lang('general.hooshcup') | مدیریت | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="success" content="{{ session('success') }}">
+    <meta name="error" content="{{ session('error') }}">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <meta name="errors" content="{{ $error }}">
+        @endforeach
+    @endif
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/bootstrap-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-pro-5.12.0-web-ulabs/css/all.css') }}">
@@ -14,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/AdminLTE.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/toastr-2.1.1/toastr.min.css')}}">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
@@ -36,7 +43,7 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li> <a href="{{route('home')}}">نمایش سایت</a> </li>
+                    <li><a href="{{route('home')}}">نمایش سایت</a></li>
 
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -156,7 +163,8 @@
             @yield('content')
         </section>
     </div>
-    <footer class="main-footer">توسعه داده شده با <a href="https://alimardani.me" target="_blank"><i class="far fa-heart red"></i></a>
+    <footer class="main-footer">توسعه داده شده با <a href="https://alimardani.me" target="_blank"><i
+                class="far fa-heart red"></i></a>
     </footer>
     <div class="control-sidebar-bg"></div>
 </div>
@@ -167,6 +175,42 @@
 <script src="{{ asset('assets/admin/adminLTE/components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{ asset('assets/admin/adminLTE/js/adminlte.min.js')}}"></script>
 <script src="{{ asset('assets/admin/adminLTE/js/demo.js')}}"></script>
+<script src="{{asset('assets/vendor/toastr-2.1.1/toastr.min.js')}}"></script>
+<script>
+    let toastPosition = 'toast-bottom-left';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        toastPosition = 'toast-top-center';
+    }
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": toastPosition,
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    let success = $('meta[name=success]').attr("content");
+    let error = $('meta[name=error]').attr("content");
+    let errors = $('meta[name=errors]');
+
+    if (success !== '') {
+        toastr.success(success);
+    }
+    if (error !== '') {
+        toastr.error(error);
+    }
+
+    $.each(errors, function () {
+        toastr.error($(this).attr('content'));
+    })
+</script>
 
 @yield('script')
 </body>
