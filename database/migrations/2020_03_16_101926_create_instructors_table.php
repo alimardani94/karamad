@@ -18,7 +18,6 @@ class CreateInstructorsTable extends Migration
             $table->unsignedMediumInteger('type')->index();
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->string('name')->nullable();
-            $table->string('surname')->nullable();
             $table->string('title');
             $table->text('about')->nullable();
 

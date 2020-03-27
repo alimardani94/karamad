@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Instructor;
+
+use App\Enums\Enum;
 
 class InstructorType extends Enum
 {

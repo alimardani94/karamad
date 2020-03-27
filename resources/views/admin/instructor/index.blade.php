@@ -24,29 +24,28 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مدرسان</h3>
-                        <a href="{{route('admin.instructors.create')}}" class="btn btn-primary btn-flat pull-left">افزودن مدرس جدید</a>
+                        <a href="{{route('admin.instructors.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                            مدرس جدید</a>
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>موتور رندر</th>
-                                <th>مرورگر</th>
-                                <th>سیستم عامل</th>
-                                <th>ورژن</th>
-                                <th>امتیاز</th>
+                                <th>نام</th>
+                                <th>توضیحات</th>
+                                <th>نوع</th>
+                                <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                            </tr>
+                            @foreach($instructors as $instructor)
+                                <tr>
+                                    <td>{{$instructor->name}}</td>
+                                    <td>{{substr($instructor->about,0,200)}}</td>
+                                    <td>{{$instructor->type}}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

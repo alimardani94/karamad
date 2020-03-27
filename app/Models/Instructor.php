@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Instructor\InstructorType;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -32,5 +33,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Instructor extends Model
 {
-    //
+    protected $fillable = [
+        'id', 'name', 'about', 'user_id', 'title',
+    ];
+
+    public function getTypeAttribute($value)
+    {
+        return InstructorType::translatedKeyOf($value);
+    }
 }

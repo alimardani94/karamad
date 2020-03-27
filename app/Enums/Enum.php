@@ -23,8 +23,11 @@ abstract class Enum extends MiladEnum
     public static function translatedAll()
     {
         $all = static::all();
+        $preFix = str_replace('App\\', '', get_called_class());
+        $preFix = str_replace('\\', '/', $preFix);
+
         foreach ($all as $key => $value) {
-            $transKey = 'Enums/' . str_replace('App\Enums\\', '', get_called_class()) . '.' . $key;
+            $transKey = $preFix . '.' . $key;
             $all[trans($transKey)] = $all[$key];
             unset($all[$key]);
         }
@@ -34,6 +37,9 @@ abstract class Enum extends MiladEnum
 
     public static function translatedKeyOf($value, $default = null)
     {
-        return static::keyOf($value) ? trans('Enums/' . str_replace('App\Enums\\', '', get_called_class()) . '.' . static::keyOf($value)) : $default;
+        $preFix = str_replace('App\\', '', get_called_class());
+        $preFix = str_replace('\\', '/', $preFix);
+
+        return static::keyOf($value) ? trans($preFix . '.' . static::keyOf($value)) : $default;
     }
 }

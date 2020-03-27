@@ -22,32 +22,26 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form>
+                    <form method="post" action="{{route('admin.instructors.store')}}">
+                        @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">نام</label>
-                                        <input type="text" class="form-control" id="name" placeholder="نام">
+                                        <input type="text" class="form-control" id="name" name="name"
+                                               value="{{old('name')}}" placeholder="نام">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="surname">نام خانوادگی</label>
-                                        <input type="text" class="form-control" id="surname" placeholder="نام خانوادگی">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title">
                                             لقب / سمت / شغل ( برای مثال استاد دانشگاه)
                                         </label>
-                                        <input type="text" class="form-control" id="title" placeholder="عنوان">
+                                        <input type="text" class="form-control" id="title" name="title"
+                                               value="{{old('title')}}" placeholder="عنوان">
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +49,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="about">توضیحات </label>
-                                    <textarea id="about" class="form-control"></textarea>
+                                    <textarea id="about" name="about" class="form-control">{{old('about')}}</textarea>
                                 </div>
                             </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
@@ -15,7 +16,11 @@ class InstructorController extends Controller
      */
     public function index()
     {
-       return view('admin.instructor.index');
+        $instructors = Instructor::all();
+
+        return view('admin.instructor.index', [
+            'instructors' => $instructors
+        ]);
     }
 
     /**
@@ -31,18 +36,31 @@ class InstructorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'about' => 'required|max:1024',
+        ]);
+
+        $category = new Instructor();
+        $category->type = InstructorType::NotUser;
+        $category->name = $request->get('name');
+        $category->title = $request->get('title');
+        $category->about = $request->get('about');
+        $category->save();
+
+        return back()->with('success', trans('instructors.created'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,7 +71,7 @@ class InstructorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -64,8 +82,8 @@ class InstructorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -76,7 +94,7 @@ class InstructorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
