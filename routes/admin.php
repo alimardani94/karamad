@@ -8,4 +8,5 @@ Route::resources([
     'instructors' => 'InstructorController',
     'categories' => 'CategoryController',
     'courses' => 'CourseController',
+    'syllabuses' => 'SyllabusController',
 ]);

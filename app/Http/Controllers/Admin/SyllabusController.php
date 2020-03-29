@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Course;
 use App\Rules\CheckCategoryParent;
 use App\Rules\UniqueCategory;
 use Illuminate\Http\Request;
@@ -26,9 +27,15 @@ class SyllabusController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->get('course')) {
+            $course = Course::findOrFail($request->get('course'));
+        }
 
+        return view('admin.syllabus.create', [
+            'course' => $course ?? null,
+        ]);
     }
 
     /**
@@ -39,6 +46,10 @@ class SyllabusController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+        ]);
+
 
     }
 

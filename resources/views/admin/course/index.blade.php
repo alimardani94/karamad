@@ -46,9 +46,11 @@
                                     <td>{{$course->instructor->name}}</td>
                                     <td>{{$course->category->name}}</td>
                                     <td>
-                                        <button type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</button>
-                                        <button type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره</button>
-                                        <button type="button" class="btn btn-block btn-danger btn-xs">حذف دوره</button>
+                                        <a href="{{route('admin.syllabuses.create', ['course' => $course->id])}}"
+                                           type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
+                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
+                                        </a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف دوره</a>
                                     </td>
                                 </tr>
                             @endforeach
