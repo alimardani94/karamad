@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Syllabus\SyllabusType;
 use App\Models\Category;
 use App\Models\Course;
 use App\Rules\CheckCategoryParent;
@@ -31,10 +32,16 @@ class SyllabusController extends Controller
     {
         if ($request->get('course')) {
             $course = Course::findOrFail($request->get('course'));
+        }else {
+            $courses = Course::all();
         }
+
+        $types = SyllabusType::translatedAll();
 
         return view('admin.syllabus.create', [
             'course' => $course ?? null,
+            'courses' => $courses ?? [],
+            'types' => $types,
         ]);
     }
 
