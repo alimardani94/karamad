@@ -31,4 +31,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@home')->name('home');
 
+    Route::resources([
+        'courses' => 'CourseController',
+    ]);
 });
