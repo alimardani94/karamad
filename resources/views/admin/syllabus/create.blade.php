@@ -33,8 +33,7 @@
                         <div class="box-body">
                             @if(!$course)
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="course">انتخاب دوره</label>
                                             <select type="text" class="form-control select2" id="course"
@@ -49,6 +48,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                             @else
                                 <label>
                                     <input name="course" value="{{$course->id}}" hidden>

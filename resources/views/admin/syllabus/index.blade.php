@@ -32,13 +32,19 @@
                             <thead>
                             <tr>
                                 <th>عنوان</th>
+                                <th>دوره</th>
+                                <th>نوع</th>
+                                <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(syllabuses as $syllabus)
+                            @foreach($syllabuses as $syllabus)
                                 <tr>
                                     <td>{{$syllabus->title}}</td>
+                                    <td>{{$syllabus->course->title}}</td>
+                                    <td>{{$syllabus->type()}}</td>
+                                    <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
                                         <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
                                         </a>

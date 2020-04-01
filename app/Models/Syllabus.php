@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Syllabus\SyllabusType;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -42,10 +43,26 @@ class Syllabus extends Model
      */
     protected $table = 'syllabuses';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'course_id', 'type', 'title', 'file_disk', 'text', 'video', 'audio' , 'confirmed',
+        'course_id', 'type', 'title', 'file_disk', 'text', 'video', 'audio', 'confirmed',
     ];
 
+    public function type()
+    {
+        return SyllabusType::translatedKeyOf($this->type);
+    }
+
+    public function fileDisk()
+    {
+        return SyllabusType::translatedKeyOf($this->file_disk);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function course()
     {
         return $this->belongsTo(Course::class);

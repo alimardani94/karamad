@@ -7,7 +7,7 @@
 
 <li class="treeview @yield('category')">
     <a href="#">
-        <i class="fa fa-users"></i>
+        <i class="fa fa-th"></i>
         <span>دسته بندی ها</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
@@ -29,7 +29,7 @@
 
 <li class="treeview @yield('instructor')">
     <a href="#">
-        <i class="fa fa-users"></i>
+        <i class="fa fa-graduation-cap"></i>
         <span>مدرسان</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
@@ -51,7 +51,7 @@
 
 <li class="treeview @yield('course')">
     <a href="#">
-        <i class="fa fa-users"></i>
+        <i class="fa fa-book"></i>
         <span>دوره ها</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
@@ -66,6 +66,28 @@
             <a href="{{route('admin.courses.create')}}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دوره
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="treeview @yield('syllabus')">
+    <a href="#">
+        <i class="fa fa-file"></i>
+        <span>جلسات</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('syllabus1')">
+            <a href="{{route('admin.syllabuses.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست جلسات
+            </a>
+        </li>
+        <li class="@yield('syllabus2')">
+            <a href="{{route('admin.syllabuses.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن جلسه
             </a>
         </li>
     </ul>

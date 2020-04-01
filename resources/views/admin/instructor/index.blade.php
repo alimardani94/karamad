@@ -34,6 +34,7 @@
                                 <th>نام</th>
                                 <th>توضیحات</th>
                                 <th>نوع</th>
+                                <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -43,6 +44,7 @@
                                     <td>{{$instructor->name}}</td>
                                     <td>{{substr($instructor->about,0,200)}}</td>
                                     <td>{{$instructor->type}}</td>
+                                    <td>{{jDate($instructor->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td></td>
                                 </tr>
                             @endforeach

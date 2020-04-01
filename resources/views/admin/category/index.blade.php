@@ -33,6 +33,7 @@
                             <tr>
                                 <th>نام</th>
                                 <th>والد</th>
+                                <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -41,7 +42,12 @@
                                 <tr>
                                     <td>{{$category->name}}</td>
                                     <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
-                                    <td></td>
+                                    <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>
+                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش دسته بندی
+                                        </a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف دسته بندی</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

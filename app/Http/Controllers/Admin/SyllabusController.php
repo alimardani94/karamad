@@ -19,16 +19,26 @@ class SyllabusController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->get('course')) {
+            $syllabuses = Syllabus::where('course_id', $request->get('course'))->get();
+        } else {
+            $syllabuses = Syllabus::all();
+        }
 
+        return view('admin.syllabus.index', [
+            'syllabuses' => $syllabuses
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(Request $request)
