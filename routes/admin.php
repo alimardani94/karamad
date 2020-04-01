@@ -9,4 +9,5 @@ Route::resources([
     'categories' => 'CategoryController',
     'courses' => 'CourseController',
     'syllabuses' => 'SyllabusController',
+    'users' => 'UserController',
 ]);

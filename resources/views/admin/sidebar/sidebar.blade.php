@@ -100,12 +100,11 @@
         <i class="fa fa-angle-left pull-left"></i>
     </a>
     <ul class="treeview-menu">
-        <li>
-            <a href="">
+        <li class="@yield('user1')">
+            <a href="{{route('admin.users.index')}}">
                 <i class="fa fa-circle-o"></i>
                 لیست کاربران
             </a>
         </li>
-
     </ul>
 </li>
