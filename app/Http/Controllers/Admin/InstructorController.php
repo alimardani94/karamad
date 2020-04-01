@@ -54,7 +54,7 @@ class InstructorController extends Controller
         $category->about = $request->get('about');
         $category->save();
 
-        return back()->with('success', trans('instructors.created'));
+        return redirect()->route('admin.instructors.index')->with('success', trans('instructors.created'));
     }
 
     /**

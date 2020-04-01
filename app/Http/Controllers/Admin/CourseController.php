@@ -76,7 +76,7 @@ class CourseController extends Controller
 
         $category->save();
 
-        return back()->with('success', trans('courses.created'));
+        return redirect()->route('admin.courses.index')->with('success', trans('courses.created'));
     }
 
     /**

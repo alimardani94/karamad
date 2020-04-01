@@ -51,7 +51,7 @@
                                 </div>
                             @else
                                 <label>
-                                    <input name="course" value="{{$course}}" hidden>
+                                    <input name="course" value="{{$course->id}}" hidden>
                                 </label>
                             @endif
                             <div class="row">
@@ -115,8 +115,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
-                                        <label for="video_file">انتخاب ویدیو</label>
                                         <div class="form-group">
+                                            <label for="video_file">انتخاب ویدیو</label>
                                             <label class="form-control">
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="video/*"
@@ -153,8 +153,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
-                                        <label for="audio_file">انتخاب فایل صوتی</label>
                                         <div class="form-group">
+                                            <label for="audio_file">انتخاب فایل صوتی</label>
                                             <label class="form-control">
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
@@ -264,7 +264,6 @@
             },
         });
 
-
         $(document).ready(function () {
             tinyMCE.init({
                 selector: 'textarea#text',
@@ -278,11 +277,11 @@
 
             $('#type').on('change', function () {
                 if (this.value === '1') {
-                    activeVideo()
+                    activeVideo();
                 } else if (this.value === '2') {
-                    activeAudio()
+                    activeAudio();
                 } else if (this.value === '3') {
-                    activeText()
+                    activeText();
                 }
             }).trigger('change');
 
@@ -311,9 +310,9 @@
                 let valid = form.valid();
                 if (!valid) {
                     validator.focusInvalid();
-                    return false
+                    return false;
                 }
-                return true
+                return true;
             })
 
         });

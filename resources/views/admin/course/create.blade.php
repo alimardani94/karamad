@@ -91,8 +91,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="thumbnail">تصویر بند انگشتی</label>
-                                        <input type="file" id="thumbnail" name="thumbnail" accept="image/*"
-                                               value="{{old('thumbnail')}}">
+                                        <label class="form-control">
+                                            <span> انتخاب کنید ... </span>
+                                            <input type="file" class="custom-file-input" accept="image/*"
+                                                   id="thumbnail" name="thumbnail" value="{{old('thumbnail')}}"
+                                                   hidden>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +105,12 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">تصویر</label>
-                                        <input type="file" id="image" name="image" accept="image/*"
-                                               value="{{old('image')}}">
+                                        <label class="form-control">
+                                            <span> انتخاب کنید ... </span>
+                                            <input type="file" class="custom-file-input" accept="image/*"
+                                                   id="image" name="image" value="{{old('image')}}"
+                                                   hidden>
+                                        </label>
                                     </div>
                                 </div>
                             </div>

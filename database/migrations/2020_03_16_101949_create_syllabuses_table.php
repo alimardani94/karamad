@@ -18,6 +18,7 @@ class CreateSyllabusesTable extends Migration
             $table->unsignedBigInteger('course_id')->index();
             $table->unsignedMediumInteger('type')->index();
             $table->string('title');
+            $table->unsignedMediumInteger('file_disk')->nullable()->index();
             $table->longText('text')->nullable();
             $table->string('video')->nullable();
             $table->string('audio')->nullable();

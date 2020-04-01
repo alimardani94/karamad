@@ -32,9 +32,10 @@
                             <thead>
                             <tr>
                                 <th>عنوان</th>
-                                <th>خلاصه</th>
                                 <th>مدرس</th>
                                 <th>دسته</th>
+                                <th>تعداد جلسات</th>
+                                <th>خلاصه</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
@@ -42,9 +43,10 @@
                             @foreach($courses as $course)
                                 <tr>
                                     <td>{{$course->title}}</td>
-                                    <td>{{substr($course->summary,0,200)}}</td>
                                     <td>{{$course->instructor->name}}</td>
                                     <td>{{$course->category->name}}</td>
+                                    <td>{{$course->syllabuses()->count()}}</td>
+                                    <td>{{substr($course->summary,0,200)}}</td>
                                     <td>
                                         <a href="{{route('admin.syllabuses.create', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>

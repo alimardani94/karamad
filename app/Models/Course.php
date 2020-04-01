@@ -47,6 +47,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereSummary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereTitle($value)
+ * @property-read \App\Models\Category $category
+ * @property-read \App\Models\Instructor $instructor
  */
 class Course extends Model
 {
@@ -62,4 +64,10 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function syllabuses()
+    {
+        return $this->hasMany(Syllabus::class);
+    }
+
 }

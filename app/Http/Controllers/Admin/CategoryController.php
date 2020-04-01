@@ -61,7 +61,7 @@ class CategoryController extends Controller
         $category->description = $request->get('description');
         $category->save();
 
-        return back()->with('success', trans('categories.created'));
+        return redirect()->route('admin.categories.index')->with('success', trans('categories.created'));
     }
 
     /**

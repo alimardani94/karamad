@@ -6,10 +6,12 @@ use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Syllabus;
 use App\Rules\CheckCategoryParent;
 use App\Rules\UniqueCategory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Validation\Rule;
 use Storage;
 
 class SyllabusController extends Controller
@@ -33,7 +35,7 @@ class SyllabusController extends Controller
     {
         if ($request->get('course')) {
             $course = Course::findOrFail($request->get('course'));
-        }else {
+        } else {
             $courses = Course::all();
         }
 
@@ -59,13 +61,67 @@ class SyllabusController extends Controller
             'title' => 'required',
             'course' => 'required',
             'type' => 'required',
-            'video' => 'required_if:type,1 | mimes:mp4,mov,ogg,qt | max:20000',
-            'audio' => 'required_if:type,2 | mimes:mp3,mpga,wav | max:10000',
-            'text' => 'required_if:type,3 | string',
+            'video_file_disk' => 'required_if:type,' . SyllabusType::Video,
+            'video_file' => [
+                'nullable', 'mimes:mp4,mov,ogg,qt', 'max:20000',
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Video and
+                    (int)$request->get('video_file_disk') == FileDisk::Local),
+            ],
+            'video_url' => [
+                'nullable', 'url',
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Video and
+                    (int)$request->get('video_file_disk') == FileDisk::URL),
+            ],
+            'audio_file_disk' => 'required_if:type,' . SyllabusType::Audio,
+            'audio_file' => [
+                'nullable', 'mimes:mp3,mpga,wav', 'max:10000',
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Audio and
+                    (int)$request->get('audio_file_disk') == FileDisk::Local),
+            ],
+            'audio_url' => [
+                'nullable', 'url',
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Audio and
+                    (int)$request->get('audio_file_disk') == FileDisk::URL),
+            ],
+            'text' => ['required_if:type,3', 'nullable', 'string'],
         ]);
 
-        dd($request);
+        $video = null;
+        $audio = null;
 
+        switch ((int)$request->get('type')) {
+            case SyllabusType::Video:
+                $file_disk = (int)$request->get('video_file_disk');
+
+                if ($file_disk === FileDisk::URL) {
+                    $video = $request->get('video_url');
+                } elseif ($file_disk === FileDisk::Local) {
+                    $video = $request->file('video_file')->store('syllabuses/videos');
+                }
+                break;
+            case SyllabusType::Audio:
+                $file_disk = (int)$request->get('audio_file_disk');
+                if ($file_disk === FileDisk::URL) {
+                    $audio = $request->get('audio_url');
+                } elseif ($file_disk === FileDisk::Local) {
+                    $audio = $request->file('audio_file')->store('syllabuses/audios');
+                }
+                break;
+            default:
+                $file_disk = null;
+        }
+
+        $syllabus = new Syllabus();
+        $syllabus->course_id = $request->get('course');
+        $syllabus->type = $request->get('type');
+        $syllabus->title = $request->get('title');
+        $syllabus->file_disk = $file_disk;
+        $syllabus->text = $request->get('text');
+        $syllabus->audio = $audio;
+        $syllabus->video = $video;
+        $syllabus->save();
+
+        return redirect()->route('admin.courses.index')->with('success', trans('syllabuses.created'));
     }
 
     /**

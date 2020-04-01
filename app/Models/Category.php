@@ -27,6 +27,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $description
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereImage($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $children
+ * @property-read int|null $children_count
+ * @property-read \App\Models\Category $parent
  */
 class Category extends Model
 {
