@@ -3,7 +3,6 @@
 @section('title', 'صفحه اصلی')
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.theme.default.min.css')}}">
     <style>
 
         @media (min-width: 769px) {
