@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/AdminLTE.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{asset('assets/vendor/toastr-2.1.1/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <style>
@@ -180,6 +182,7 @@
 <script src="{{ asset('assets/admin/adminLTE/js/adminlte.min.js')}}"></script>
 <script src="{{ asset('assets/admin/adminLTE/js/demo.js')}}"></script>
 <script src="{{asset('assets/vendor/toastr-2.1.1/toastr.min.js')}}"></script>
+<script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
 <script>
     let toastPosition = 'toast-bottom-left';
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

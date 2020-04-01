@@ -5,7 +5,6 @@
 @section('category2', 'active')
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
 @endsection
 
 @section('header')
@@ -87,5 +86,4 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
 @endsection
