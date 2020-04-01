@@ -5,6 +5,7 @@
 @section('syllabus2', 'active')
 
 @section('style')
+
 @endsection
 
 @section('header')
@@ -30,113 +31,147 @@
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
-
-                            <section>
-                                <div id="form_wizard">
-                                    <ul class="nav nav-tabs nav-justified steps">
-                                        <li>
-                                            <a href="#tab1" data-toggle="tab" class="step">
-                                                <span class="number"> 1 </span> <span class="desc"> کلیات </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab2" data-toggle="tab" class="step">
-                                                <span class="number"> 2 </span> <span class="desc"> افزودن جلسه </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#tab2" data-toggle="tab" class="step">
-                                                <span class="number"> 3 </span> <span class="desc"> مشخصات </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                    <div id="bar" class="progress">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                                             aria-valuemax="100" style="width: 0%;"></div>
-                                    </div>
-
-                                    <div class="tab-content">
-                                        <div class="tab-pane" id="tab1">
-                                            @if(!$course)
-                                                <div class="row">
-                                                    <div class="col-md-3"></div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="course">انتخاب دوره</label>
-                                                            <select type="text" class="form-control select2" id="course"
-                                                                    name="course">
-                                                                @foreach($courses as $course)
-                                                                    <option value="{{ $course->id }}"
-                                                                        {{old('course') == $course->id ? 'selected':''}}>
-                                                                        {{ $course->title }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <label>
-                                                    <input name="course" value="{{$course}}" hidden>
-                                                </label>
-                                            @endif
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="title">عنوان</label>
-                                                        <input type="text" class="form-control" id="title"
-                                                               placeholder="عنوان"
-                                                               value="{{old('title')}}" name="title">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="type">نوع چلسه</label>
-                                                        <select type="text" class="form-control select2" id="type"
-                                                                name="type">
-                                                            @foreach($types as $value=>$key)
-                                                                <option value="{{ $key }}"
-                                                                    {{old('type') == $key ? 'selected':''}}>
-                                                                    {{ $value }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="description">توضیحات </label>
-                                                    <textarea id="description" name="description"
-                                                              class="form-control">{{old('description')}}</textarea>
-                                                </div>
-                                            </div>
+                            @if(!$course)
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="course">انتخاب دوره</label>
+                                            <select type="text" class="form-control select2" id="course"
+                                                    name="course">
+                                                @foreach($courses as $course)
+                                                    <option value="{{ $course->id }}"
+                                                        {{old('course') == $course->id ? 'selected':''}}>
+                                                        {{ $course->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="tab-pane" id="tab2">
-                                            <div id="video" style="">
-
-                                            </div>
-                                            <div id="audio">
-                                                3
-                                            </div>
-                                            <div id="text">
-                                                5
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="tab3">
-                                            3
-                                        </div>
-                                        <ul class="pager wizard">
-                                            <li class="previous first" style="display:none;"><a href="#">ابتدا</a></li>
-                                            <li class="previous"><a href="#">قبلی</a></li>
-                                            <li class="next last" style="display:none;"><a href="#">انتها</a></li>
-                                            <li class="next"><a href="#">بعدی</a></li>
-                                        </ul>
                                     </div>
                                 </div>
-                            </section>
+                            @else
+                                <label>
+                                    <input name="course" value="{{$course}}" hidden>
+                                </label>
+                            @endif
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">عنوان</label>
+                                        <input type="text" class="form-control" id="title"
+                                               placeholder="عنوان" value="{{old('title')}}"
+                                               name="title">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="type">نوع چلسه</label>
+                                        <select type="text" class="form-control select2" id="type"
+                                                name="type">
+                                            @foreach($types as $value=>$key)
+                                                <option value="{{ $key }}"
+                                                    {{old('type') == $key ? 'selected':''}}>
+                                                    {{ $value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="description">توضیحات </label>
+                                    <div class="form-group">
+                                    <textarea id="description" name="description"
+                                              class="form-control">{{old('description')}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <hr>
+
+                            <div id="typeBox1">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="video_file_disk">نوع فایل</label>
+                                            <select type="text" class="form-control select2" id="video_file_disk"
+                                                    name="video_file_disk">
+                                                @foreach($fileDisks as $value=>$key)
+                                                    <option value="{{ $key }}"
+                                                        {{old('video_file_disk') == $key ? 'selected':''}}>
+                                                        {{ $value }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 file_disk_type">
+                                        <div class="form-group">
+                                            <label for="video_url">آدرس ویدیو</label>
+                                            <input type="text" class="form-control" placeholder="آدرس"
+                                                   data-fileDisk="{{\App\Enums\FileDisk::URL}}"
+                                                   id="video_url" name="video_url" value="{{old('video_url')}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 file_disk_type" style="display: none">
+                                        <label for="video_file">انتخاب ویدیو</label>
+                                        <div class="form-group">
+                                            <label class="form-control">
+                                                <span> انتخاب کنید ... </span>
+                                                <input type="file" class="custom-file-input" accept="video/*"
+                                                       data-fileDisk="{{\App\Enums\FileDisk::Local}}"
+                                                       id="video_file" name="video_file" value="{{old('video_file')}}"
+                                                       hidden>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="typeBox2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="audio_file_disk">نوع فایل</label>
+                                            <select type="text" class="form-control select2" id="audio_file_disk"
+                                                    name="audio_file_disk">
+                                                @foreach($fileDisks as $value=>$key)
+                                                    <option value="{{ $key }}"
+                                                        {{old('audio_file_disk') == $key ? 'selected':''}}>
+                                                        {{ $value }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 file_disk_type">
+                                        <div class="form-group">
+                                            <label for="audio_url">آدرس فایل صوتی</label>
+                                            <input type="text" class="form-control" placeholder="آدرس"
+                                                   data-fileDisk="{{\App\Enums\FileDisk::URL}}"
+                                                   id="audio_url" name="audio_url" value="{{old('audio_url')}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 file_disk_type" style="display: none">
+                                        <label for="audio_file">انتخاب فایل صوتی</label>
+                                        <div class="form-group">
+                                            <label class="form-control">
+                                                <span> انتخاب کنید ... </span>
+                                                <input type="file" class="custom-file-input" accept="audio/*"
+                                                       data-fileDisk="{{\App\Enums\FileDisk::Local}}"
+                                                       name="audio_file" id="audio_file" value="{{old('audio_file')}}"
+                                                       hidden>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="typeBox3">
+                                <label for="text">متن</label>
+                                <div class="form-group">
+                                    <textarea name="text" id="text"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">افزودن جلسه</button>
@@ -151,58 +186,136 @@
 @section('js')
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('assets/vendor/jquery-validation/jquery.validate.js')}}"></script>
-    <script src="{{ asset('assets/vendor/jquery bootstrap wizard/jquery.bootstrap.wizard.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.js')}}"></script>
+    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
 
     <script>
+        function activeVideo() {
+            $('#typeBox1').show();
+            $('#typeBox2').hide();
+            $('#typeBox3').hide();
+            $('#typeBox1 input').prop('disabled', false);
+            $('#typeBox2 input').prop('disabled', true);
+            $('#typeBox3 textarea').prop('disabled', true);
+        }
+
+        function activeAudio() {
+            $('#typeBox1').hide();
+            $('#typeBox2').show();
+            $('#typeBox3').hide();
+            $('#typeBox1 input').prop('disabled', true);
+            $('#typeBox2 input').prop('disabled', false);
+            $('#typeBox3 textarea').prop('disabled', true);
+        }
+
+        function activeText() {
+            $('#typeBox1').hide();
+            $('#typeBox2').hide();
+            $('#typeBox3').show();
+            $('#typeBox1 input').prop('disabled', true);
+            $('#typeBox2 input').prop('disabled', true);
+            $('#typeBox3 textarea').prop('disabled', false);
+        }
+
         let form = $('#create_syllabus');
         let customRules = {
             title: "required",
             type: "required",
+            video_url: "syllabusType",
+            video_file: "syllabusType",
+            audio_url: "syllabusType",
+            audio_file: "syllabusType",
+            text: "required"
         };
-
         let customMessages = {
             title: "عنوان الزامی است",
             type: "نوع جلسه الزامی است",
+            video_url: "آدرس ویدیو الزامی است",
+            video_file: "ویدیو الزامی است",
+            audio_url: "آدرس فایل صوتی الزامی است",
+            audio_file: "فایل صوتی الزامی است",
+            text: "متن الزامی است",
         };
 
-        var validator = form.validate({
+        $.validator.addMethod("syllabusType", function (value, element) {
+            let elemFileDisk = $(element).attr('data-fileDisk') ?? '';
+
+            switch ($('#type').val()) {
+                case '1':
+                    return !($('#video_file_disk').val() === elemFileDisk && value === '');
+                case '2':
+                    return !($('#audio_file_disk').val() === elemFileDisk && value === '');
+            }
+            return true;
+        });
+
+        let validator = form.validate({
+            ignore: '',
             doNotHideMessage: true,
             errorElement: "span",
             errorClass: "help-block help-block-error",
             rules: customRules,
             messages: customMessages,
+            errorPlacement: function (error, element) {
+                if (element.attr('type') === 'file') {
+                    error.insertAfter(element.parent('label'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
         });
 
+
         $(document).ready(function () {
-            $('#form_wizard').bootstrapWizard({
-                onTabClick: function (tab, navigation, index) {
-                    // return false;
-                    return true;
-                },
-                onNext: function (tab, navigation, index) {
-                    var valid = form.valid();
-                    if (!valid) {
-                        validator.focusInvalid();
-                        return false;
-                    }
-                },
-                onTabShow: function (tab, navigation, index) {
-                    //update progress-bar
-                    var total = navigation.find('li').length;
-                    var current = index + 1;
-                    var percent = (current / total) * 100;
-                    var progressBar = $('#bar');
+            tinyMCE.init({
+                selector: 'textarea#text',
+                plugins: 'advlist autolink link lists preview table code pagebreak',
+                menubar: false,
+                language: 'fa',
+                height: 300,
+                relative_urls: false,
+                toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+            });
 
-                    progressBar.find(".progress-bar").css({
-                        width: percent + "%"
-                    });
+            $('#type').on('change', function () {
+                if (this.value === '1') {
+                    activeVideo()
+                } else if (this.value === '2') {
+                    activeAudio()
+                } else if (this.value === '3') {
+                    activeText()
+                }
+            }).trigger('change');
 
-
+            $('#video_file_disk').on('change', function () {
+                if (this.value === '1') {
+                    $('#video_url').closest('.file_disk_type').show();
+                    $('#video_file').closest('.file_disk_type').hide();
+                } else if (this.value === '2') {
+                    $('#video_url').closest('.file_disk_type').hide();
+                    $('#video_file').closest('.file_disk_type').show();
                 }
             });
 
-           
+            $('#audio_file_disk').on('change', function () {
+                if (this.value === '1') {
+                    $('#audio_url').closest('.file_disk_type').show();
+                    $('#audio_file').closest('.file_disk_type').hide();
+                } else if (this.value === '2') {
+                    $('#audio_url').closest('.file_disk_type').hide();
+                    $('#audio_file').closest('.file_disk_type').show();
+                }
+            });
+
+            form.on('submit', function (e) {
+                tinyMCE.triggerSave();
+                let valid = form.valid();
+                if (!valid) {
+                    validator.focusInvalid();
+                    return false
+                }
+                return true
+            })
+
         });
     </script>
 @endsection

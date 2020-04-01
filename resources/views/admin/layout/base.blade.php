@@ -23,7 +23,11 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/toastr-2.1.1/toastr.min.css')}}">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+    </style>
     @yield('style')
 </head>
 
@@ -210,6 +214,16 @@
     $.each(errors, function () {
         toastr.error($(this).attr('content'));
     })
+
+    $('body').on('change', '.custom-file-input', function () {
+        let name = $(this).val().split('\\').pop();
+        let label = $(this).parent().find('span');
+
+        label.text(" انتخاب کنید ... ");
+        if(name) {
+            label.text(name + " انتخاب شد ");
+        }
+    });
 </script>
 
 @yield('js')

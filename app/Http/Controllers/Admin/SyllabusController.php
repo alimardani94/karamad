@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use App\Models\Category;
 use App\Models\Course;
@@ -42,6 +43,7 @@ class SyllabusController extends Controller
             'course' => $course ?? null,
             'courses' => $courses ?? [],
             'types' => $types,
+            'fileDisks' => FileDisk::translatedAll(),
         ]);
     }
 
@@ -55,8 +57,14 @@ class SyllabusController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'course' => 'required',
+            'type' => 'required',
+            'video' => 'required_if:type,1 | mimes:mp4,mov,ogg,qt | max:20000',
+            'audio' => 'required_if:type,2 | mimes:mp3,mpga,wav | max:10000',
+            'text' => 'required_if:type,3 | string',
         ]);
 
+        dd($request);
 
     }
 
