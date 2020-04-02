@@ -152,5 +152,24 @@
         </div>
 
     </nav>
+
+
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}'
+         style="background-image: url({{asset('assets/img/header1.jpg')}}); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div class="mask rgba-black-light">
+            <div class="container h-100 d-flex justify-content-center align-items-center">
+                <div class="row pt-5 mt-3">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown"
+                                data-wow-delay="0.3s">
+                                <strong>هوشکاپ</strong>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 

@@ -33,5 +33,6 @@ Route::group(['namespace' => 'Front'], function () {
 
     Route::resources([
         'courses' => 'CourseController',
+        'syllabuses' => 'SyllabusController',
     ]);
 });
