@@ -1,16 +1,21 @@
 @extends('front/layout/base')
 
 @section('title', $course->title)
+
+@section('header')
+    @include('header.header1', ['headerBG' => asset('media/'.$course->image)])
+@stop
+
 @section('style')
     <style>
+
     </style>
 @endsection
+
 @section('content')
     <section>
         <div class="container-fluid grey lighten-4">
-            <hr class="my-5">
             <div class="container">
-
                 <div class="row mt-5 pt-3">
                     <div class="col-lg-9 col-12 mt-1 ">
                         <section class="pb-5 text-lg-left">
@@ -21,19 +26,12 @@
 
                                     <div class="card">
 
-                                        <div class="view overlay">
-                                            <img src="{{asset('media/'.$course->image)}}" class="img-fluid" alt="">
-                                            <a>
-                                                <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                                            </a>
-                                        </div>
-
                                         <div class="card-body">
                                             <h4 class="card-title">
                                                 <strong>{{$course->title}}</strong>
                                             </h4>
                                             <hr>
-                                            <p>{{$course->summary}}</p>
+                                            <div>{!! $course->description !!}</div>
                                         </div>
 
                                     </div>
@@ -42,7 +40,7 @@
 
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <strong> سرفصل‌های {{asset($course->title)}}</strong>
+                                                <strong> سرفصل‌های {{$course->title}}</strong>
                                             </h4>
                                             <hr>
 

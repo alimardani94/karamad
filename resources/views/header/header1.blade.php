@@ -3,12 +3,12 @@
 
         <a class="navbar-brand" href="{{route('home')}}">هوش کاپ</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-                aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+        <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown mega-dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown"
@@ -128,16 +128,26 @@
                 </li>
             </ul>
 
+            <ul class="navbar-nav mr-auto mb-4">
+                <li class="nav-item">
+                    <form class="search-form" role="search">
+                        <div class="form-group md-form my-0 waves-light waves-effect waves-light">
+                            <input type="text" class="form-control" placeholder="جستجو">
+                        </div>
+                    </form>
+                </li>
+            </ul>
+
             <ul class="navbar-nav nav-flex-icons mr-auto">
                 @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle waves-effect" href="#" id="userDropdown"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i> <span
-                                class="clearfix d-none d-sm-inline-block">{{auth()->user()->full_name}}</span>
+                            <i class="fas fa-user"></i>
+                            <span class="clearfix d-none d-inline-block">{{auth()->user()->full_name}}</span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="{{route('dashboard.home')}}">داشبورد</a>
                             <a class="dropdown-item" href="{{route('auth.sign-out')}}">خروج</a>
                         </div>
@@ -155,7 +165,8 @@
 
 
     <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url({{asset('assets/img/header1.jpg')}}); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+         style="background-image: url({{$headerBG}}); background-repeat: no-repeat;
+             background-size: cover; background-position: center center;">
         <div class="mask rgba-black-light">
             <div class="container h-100 d-flex justify-content-center align-items-center">
                 <div class="row pt-5 mt-3">
@@ -163,7 +174,7 @@
                         <div class="text-center">
                             <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown"
                                 data-wow-delay="0.3s">
-                                <strong>هوشکاپ</strong>
+                                <strong>{{$headerTitle ?? trans('general.hooshcup')}}</strong>
                             </h1>
                         </div>
                     </div>

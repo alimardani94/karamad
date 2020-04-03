@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@lang('general.hooshcup') | @yield('title')</title>
-    <link rel="shortcut icon"  href="{{asset('assets/img/logo.jpg')}}">
+    <link rel="shortcut icon"  href="{{asset('assets/img/icon.png')}}">
 
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/MDB-Pro_4.11.0/css/mdb.min.css')}}" rel="stylesheet">

@@ -1,6 +1,11 @@
 @extends('front/layout/base')
 
 @section('title', 'صفحه اصلی')
+
+@section('header')
+    @include('header.header1', ['headerBG' => asset('assets/img/header/header1.jpg')])
+@stop
+
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
     <style>
@@ -21,7 +26,7 @@
         }
 
         .header-intro {
-            background-image: linear-gradient(white, white, #c1f7ff, #b1dcfb, #c1f7ff, white);
+            background-image: linear-gradient(#eef5fb, #f0fdff, #c1f7ff, #b1dcfb, #c1f7ff, whitesmoke);
         }
 
         /* carousel style */
@@ -39,26 +44,32 @@
         .carousel-box .custom-nav .owl-prev,
         .carousel-box .custom-nav .owl-next {
             position: absolute;
-            height: 100px;
+            height: 50px;
+            width: 50px;
             color: inherit;
             background: none;
-            border: none;
             z-index: 100;
-            opacity: 0.1;
+            opacity: 0;
+            border: 1px solid lightgray;
+            border-radius: 50%;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #ffffffb5;
         }
 
         .carousel-box .custom-nav .owl-prev i,
         .carousel-box .custom-nav .owl-next i {
-            font-size: 2.5rem;
-            color: #cecece;
+            font-size: 2.3rem;
+            color: #510600;
+            margin-top: 3px;
         }
 
         .carousel-box .custom-nav .owl-prev {
-            left: 0;
+            left: 10px;
         }
 
         .carousel-box .custom-nav .owl-next {
-            right: 0;
+            right: 10px;
         }
 
         .carousel-box:hover .custom-nav .owl-prev,
@@ -67,10 +78,23 @@
         }
 
         .carousel-box:hover .custom-nav .disabled {
-            opacity: 0.2;
+            opacity: 0;
         }
 
         /* end carousel style */
+
+
+        /* cards style*/
+        .courses-box .card-img-top {
+            height: 145px;
+        }
+
+        .courses-box .card-body .course-summary{
+            height: 160px;
+            overflow: hidden;
+            font-size: 15px;
+        }
+        /* end cards style*/
 
 
     </style>
@@ -112,31 +136,26 @@
                 <div class="col-md-12">
                     <h6 class="font-weight-bold mt-5 mb-3">دوره های جدید</h6>
 
-                    <div class="carousel-box">
+                    <div class="carousel-box courses-box">
                         <div class="owl-carousel mt-4">
                             @foreach($courses as $course)
-                                <div class="card m-2">
+                                <div class="card m-1">
                                     <div class="view overlay">
                                         <img src="{{asset('media/' .$course->thumbnail)}}" class="card-img-top"
                                              alt="{{$course->title}}">
-                                        <a>
+                                        <a href="{{route('courses.show', ['course' => $course->id])}}">
                                             <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                         </a>
                                     </div>
-                                    <div class="card-body mx-1">
+                                    <div class="card-body">
                                         <a href="" class="teal-text text-center text-uppercase font-small"></a>
-                                        <h6 class="mb-3 mt-3">
-                                            <a href="" class="teal-text text-center text-uppercase font-small">
-                                                <strong>{{$course->category->name}}</strong>
-                                            </a>
-                                            <a class="dark-grey-text font-small">
-                                                - {{jDate($course->created_at, 'yyyy/MM/dd')}}</a>
-                                        </h6>
-                                        <h4 class="card-title">
-                                            <strong>{{$course->title}}</strong>
-                                        </h4>
+                                        <h5 class="card-title">
+                                           <a href="{{route('courses.show', ['course' => $course->id])}}">
+                                               <strong class="black-text">{{$course->title}}</strong>
+                                           </a>
+                                        </h5>
                                         <hr>
-                                        <p class="dark-grey-text mb-4">
+                                        <p class="dark-grey-text mb-4 course-summary">
                                             {{$course->summary}}
                                         </p>
                                         <p class="text-left mb-0 font-small">
@@ -166,11 +185,10 @@
         $('.owl-carousel').owlCarousel({
             animateOut: 'slideOutDown',
             animateIn: 'flipInX',
-            autoHeight: true,
-            stagePadding: 30,
+            stagePadding: 1,
             rtl: true,
             loop: false,
-            margin: 10,
+            margin: 2,
             nav: true,
             navText: [
                 '<i class="fa fa-angle-left" aria-hidden="true"></i>',

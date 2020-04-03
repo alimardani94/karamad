@@ -1,16 +1,20 @@
 @extends('front/layout/base')
 
 @section('title', $syllabus->title)
+
+@section('header')
+    @include('header.header1', ['headerBG' => asset('assets/img/header/header1.jpg')])
+@stop
+
 @section('style')
     <style>
     </style>
 @endsection
+
 @section('content')
     <section>
         <div class="container-fluid grey lighten-4">
-            <hr class="my-5">
             <div class="container">
-
                 <div class="row mt-5 pt-3">
                     <div class="col-lg-9 col-12 mt-1 ">
                         <section class="pb-5 text-lg-left">
