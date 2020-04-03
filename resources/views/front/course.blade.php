@@ -3,12 +3,17 @@
 @section('title', $course->title)
 
 @section('header')
-    @include('header.header1', ['headerBG' => asset('media/'.$course->image)])
+    @include('header.header1', [
+    'headerBG' => asset('media/'.$course->image),
+    'headerTitle' => $course->title
+    ])
 @stop
 
 @section('style')
     <style>
-
+        #course_description p{
+            max-width: 100% !important;
+        }
     </style>
 @endsection
 
@@ -31,7 +36,7 @@
                                                 <strong>{{$course->title}}</strong>
                                             </h4>
                                             <hr>
-                                            <div>{!! $course->description !!}</div>
+                                            <div id="course_description">{!! $course->description !!}</div>
                                         </div>
 
                                     </div>
@@ -82,10 +87,12 @@
                     <div class="col-lg-3 col-12 mt-1">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title dark-grey-text text-center grey lighten-4 py-2">
-                                    <strong>{{$course->instructor->name}}</strong>
-                                </h5>
-
+                                <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
+                                    <strong>مدرس </strong>
+                                </h6>
+                                <h6 class="card-title text-center ">
+                                    {{$course->instructor->name}}
+                                </h6>
                                 <p class="mt-3 dark-grey-text font-small text-center">
                                     {{$course->instructor->about}}
                                 </p>

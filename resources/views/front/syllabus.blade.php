@@ -3,7 +3,10 @@
 @section('title', $syllabus->title)
 
 @section('header')
-    @include('header.header1', ['headerBG' => asset('assets/img/header/header1.jpg')])
+    @include('header.header1', [
+    'headerBG' => asset('assets/img/header/header1.jpg'),
+    'headerTitle' => $syllabus->title,
+    ])
 @stop
 
 @section('style')
