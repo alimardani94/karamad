@@ -68,8 +68,10 @@
                                             <button class="btn blue-gradient btn-lg">ورود</button>
                                             <hr class="mt-4">
                                             <div>
-                                                <span>هنوز ثبت نام نکرده ام</span>
+                                                <span class="ml-1">هنوز ثبت نام نکرده ام</span>
                                                 <a href="{{route('auth.sign-up')}}">ثبت نام</a>
+                                                <a>/</a>
+                                                <a href="{{route('auth.instructor.sign-up')}}">ثبت نام مدرسان</a>
                                             </div>
                                             <div class="inline-ul text-center d-flex justify-content-center">
                                                 <hr class="mt-1">
@@ -137,7 +139,6 @@
                     url: form.attr('action'),
                     data: form.serialize(),
                     success: function (data) {
-                        toastr.success(data.message);
                         window.location = data.link;
                     },
                     error: function (data) {

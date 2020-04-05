@@ -42,7 +42,7 @@ class SignInController extends Controller
 
         if (Auth::attempt($credential)) {
             return new JsonResponse([
-                'message' => trans('auth.user_registered_successfully'),
+                'message' => trans('auth.success'),
                 'link' => route('dashboard.home'),
             ]);
         }

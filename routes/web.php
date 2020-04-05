@@ -25,7 +25,15 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         'uses' => 'SignOutController@handle',
         'as' => 'auth.sign-out',
     ]);
-
+    Route::get('instructor/sign-up', [
+        'uses' => 'Instructor\SignUpController@show',
+        'as' => 'auth.instructor.sign-up',
+        'middleware' => 'guest',
+    ]);
+    Route::post('instructor/sign-up', [
+        'uses' => 'Instructor\SignUpController@request',
+        'middleware' => 'guest',
+    ]);
 });
 
 Route::group(['namespace' => 'Front'], function () {
