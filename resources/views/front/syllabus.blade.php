@@ -11,6 +11,9 @@
 
 @section('style')
     <style>
+        #syllabus_text img, #syllabus_text p {
+            max-width: 100%;
+        }
     </style>
 @endsection
 
@@ -28,7 +31,6 @@
 
                                     <div class="card">
 
-
                                         <div class="card-body">
                                             <h4 class="card-title">
                                                 <strong>{{$syllabus->title}}</strong>
@@ -36,21 +38,21 @@
                                             <hr>
                                             <div class="view">
                                                 @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
-                                                    <video controls class="img-fluid">
-                                                        <source src="{{asset('media/'.$syllabus->video)}}"
+                                                    <video controls class="img-fluid" width="100%">
+                                                        <source src="{{$syllabus->video}}"
                                                                 type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                     <div class="m-5 text-center">
                                                         <audio controls>
-                                                            <source src="{{asset('media/'.$syllabus->audio)}}"
+                                                            <source src="{{$syllabus->audio}}"
                                                                     type="audio/mp3">
                                                             Your browser does not support the audio element.
                                                         </audio>
                                                     </div>
                                                 @else
-                                                    <div>
+                                                    <div id="syllabus_text">
                                                         {!! $syllabus->text !!}}
                                                     </div>
                                                 @endif

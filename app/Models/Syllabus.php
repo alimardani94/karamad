@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,6 +59,16 @@ class Syllabus extends Model
     public function fileDisk()
     {
         return SyllabusType::translatedKeyOf($this->file_disk);
+    }
+
+    public function getVideoAttribute($value)
+    {
+        return ($this->file_disk == FileDisk::URL) ? $value : asset('media/' . $value);
+    }
+
+    public function getAudioAttribute($value)
+    {
+        return ($this->file_disk == FileDisk::URL) ? $value : asset('media/' . $value);
     }
 
     /**
