@@ -57,3 +57,7 @@ function preventXSS($content)
 {
     return preg_replace('/(script.*?(?:\/|&#47;|&#x0002F;)script)/ius', '', $content);
 }
+
+function userImage($src) {
+   dd(file_exists($src));
+}
