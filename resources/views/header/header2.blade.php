@@ -1,5 +1,5 @@
-<header id="header1">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
+<header id="header2">
+    <nav class="navbar navbar-expand-lg navbar-light stylish-color-light white">
 
         <a class="navbar-brand" href="{{route('home')}}">هوش کاپ</a>
 
@@ -160,27 +160,6 @@
                 @endguest
             </ul>
         </div>
-
     </nav>
 
-
-    <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url({{$headerBG}}); background-repeat: no-repeat;
-             background-size: cover; background-position: center center;">
-        <div class="mask rgba-black-light">
-            <div class="container h-100 d-flex justify-content-center align-items-center">
-                <div class="row pt-5 mt-3">
-                    <div class="col-md-12">
-                        <div class="text-center">
-                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown"
-                                data-wow-delay="0.3s">
-                                <strong>{{$headerTitle ?? trans('general.hooshcup')}}</strong>
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </header>
-

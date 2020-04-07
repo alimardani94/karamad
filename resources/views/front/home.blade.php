@@ -10,22 +10,22 @@
     <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
     <style>
 
-        @media (min-width: 769px) {
-            .navbar:not(.top-nav-collapse) {
-                box-shadow: none;
-            }
+        /*@media (min-width: 769px) {*/
+        /*    .navbar:not(.top-nav-collapse) {*/
+        /*        box-shadow: none;*/
+        /*    }*/
 
-            .navbar:not(.top-nav-collapse) {
-                background: 0 0;
-            }
+        /*    .navbar:not(.top-nav-collapse) {*/
+        /*        background: 0 0;*/
+        /*    }*/
 
-            .navbar {
-                background-color: #5991fb;
-                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
-            }
-        }
+        /*    .navbar {*/
+        /*        background-color: #5991fb;*/
+        /*        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);*/
+        /*    }*/
+        /*}*/
 
-        .header-intro {
+        .search-section {
             background-image: linear-gradient(whitesmoke, #c1f7ff, whitesmoke);
         }
 
@@ -147,7 +147,7 @@
     </section>
 
 
-    <section class="view header-intro rgba-gradient py-5">
+    <section class="view search-section rgba-gradient py-5">
         <div class="container h-100 d-flex justify-content-center align-items-center pt-3">
             <div class="row flex-center pt-5 mt-3">
                 <div class="col-md-12 col-lg-7 text-center text-md-left margins">

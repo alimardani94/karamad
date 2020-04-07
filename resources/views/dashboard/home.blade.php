@@ -1,10 +1,11 @@
 @extends('front/layout/base')
 
-@section('title', 'صفحه اصلی')
-@section('style')
-    <style>
-    </style>
-@endsection
+@section('title', 'داشبورد')
+
+@section('header')
+    @include('header.header2')
+@stop
+
 @section('content')
     <section>
         <div>

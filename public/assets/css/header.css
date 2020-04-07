@@ -1,7 +1,6 @@
 html,
 body,
-header,
-.jarallax {
+#header1 .jarallax {
     height: 600px;
     min-height: 600px;
 }
@@ -9,8 +8,7 @@ header,
 @media (max-width: 740px) {
     html,
     body,
-    header,
-    .jarallax {
+    #header1 .jarallax {
         height: 85%;
         min-height: 60%;
     }
@@ -19,8 +17,7 @@ header,
 @media (min-width: 800px) and (max-width: 850px) {
     html,
     body,
-    header,
-    .jarallax {
+    #header1 .jarallax {
         height: 60%;
         min-height: 50%;
     }
@@ -29,8 +26,7 @@ header,
 @media (min-width: 1020px) and (max-width: 1500px) {
     html,
     body,
-    header,
-    .jarallax {
+    #header1 .jarallax {
         height: 360px;
         min-height: 140px;
     }
