@@ -34,11 +34,21 @@ use Illuminate\Database\Eloquent\Model;
 class Instructor extends Model
 {
     protected $fillable = [
-        'id', 'name', 'about', 'user_id', 'title',
+        'id', 'name', 'about', 'user_id', 'title', 'type',
     ];
 
-    public function getTypeAttribute($value)
+    public function type()
     {
-        return InstructorType::translatedKeyOf($value);
+        return InstructorType::translatedKeyOf($this->type);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return ($this->type == InstructorType::User) ? $this->user->full_name : $value;
     }
 }

@@ -30,7 +30,7 @@
                             <thead>
                             <tr>
                                 <th>نام</th>
-                                <th>والد</th>
+                                <th></th>
                                 <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
@@ -38,8 +38,8 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{ $user->parent ? $user->parent->name : 'ندارد (دسته اصلی)' }}</td>
+                                    <td>{{$user->full_name}}</td>
+                                    <td></td>
                                     <td>{{jDate($user->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
                                         <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش کاربر
