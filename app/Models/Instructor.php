@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereSurname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Instructor whereType($value)
+ * @property-read \App\Models\User|null $user
  */
 class Instructor extends Model
 {

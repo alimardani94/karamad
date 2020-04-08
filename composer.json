@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "miladrahimi/php-enum": "^1.0",
-        "ext-intl": "*"
+        "ext-intl": "*",
+      "ext-openssl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

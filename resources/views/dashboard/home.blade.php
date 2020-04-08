@@ -106,7 +106,17 @@
                                             <div class="card-title">کلاس آنلاین</div>
                                             <div class="card-body">
 
-                                                <
+                                                <form id="createOnlineCourse" action="{{route('dashboard.onlineCourses.store')}}" method="post">
+                                                    @csrf
+                                                    <div class="md-form">
+                                                        <input type="text" id="title" name="title" class="form-control">
+                                                        <label for="email">عنوان کلاس</label>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <button class="btn blue-gradient btn-lg">ایجاد کلاس</button>
+                                                    </div>
+                                                </form>
+
                                             </div>
                                         </div>
 

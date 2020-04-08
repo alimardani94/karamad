@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereVideo($value)
+ * @property-read \App\Models\Course $course
  */
 class Syllabus extends Model
 {

@@ -49,6 +49,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereTitle($value)
  * @property-read \App\Models\Category $category
  * @property-read \App\Models\Instructor $instructor
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Syllabus[] $syllabuses
+ * @property-read int|null $syllabuses_count
  */
 class Course extends Model
 {

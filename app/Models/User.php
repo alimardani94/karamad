@@ -37,6 +37,7 @@ use Illuminate\Notifications\Notifiable;
  * @mixin \Eloquent
  * @property-read \App\Models\Admin $admin
  * @property-read string $full_name
+ * @property-read \App\Models\Instructor $instructor
  */
 class User extends Authenticatable
 {
@@ -84,6 +85,14 @@ class User extends Authenticatable
     public function admin()
     {
         return $this->hasOne(Admin::Class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function instructor()
+    {
+        return $this->hasOne(Instructor::Class);
     }
 
     /**
