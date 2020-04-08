@@ -77,28 +77,16 @@
                                 </h5>
 
                                 <div class="mt-3 dark-grey-text font-small text-center">
-                                    @foreach($syllabus->course->syllabuses as $syllabus)
-                                        <div class="d-flex align-items-center">
-                                            @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
+                                    <ul class="list-group mx-0 px-0">
+                                        @foreach($syllabus->course->syllabuses as $syllabus)
+                                            <li class="list-group-item text-black">
                                                 <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                   class="btn-floating btn-sm btn-success">
-                                                    <i class="fas fa-video"></i>
+                                                class="black-text">
+                                                    {{$syllabus->title}}
                                                 </a>
-                                            @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
-                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                   class="btn-floating btn-sm btn-primary">
-                                                    <i class="fas fa-volume-up"></i>
-                                                </a>
-                                            @else
-                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                   class="btn-floating btn-sm btn-default">
-                                                    <i class="fas fa-text"></i>
-                                                </a>
-                                            @endif
-                                            <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                               class=" mx-2">{{$syllabus->title}}</a>
-                                        </div>
-                                    @endforeach
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>

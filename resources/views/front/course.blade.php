@@ -11,7 +11,7 @@
 
 @section('style')
     <style>
-        #course_description p{
+        #course_description p {
             max-width: 100% !important;
         }
     </style>
@@ -50,31 +50,47 @@
                                             <hr>
 
                                             @foreach($course->syllabuses as $syllabus)
-                                                <div class="d-flex align-items-center">
-                                                    @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
-                                                        <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                           class="btn-floating btn-sm btn-success">
-                                                            <i class="fas fa-video"></i>
-                                                        </a>
-                                                    @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
-                                                        <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                           class="btn-floating btn-sm btn-primary">
-                                                            <i class="fas fa-volume-up"></i>
-                                                        </a>
-                                                    @else
-                                                        <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                           class="btn-floating btn-sm btn-default">
-                                                            <i class="fas fa-text"></i>
-                                                        </a>
-                                                    @endif
-                                                    <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                       class=" mx-2">{{$syllabus->title}}</a>
-                                                </div>
 
-                                                @if(!$loop->last)
-                                                    <hr class="my-1">
-                                                @endif
+                                                <ul class="list-group list-group-flush m-0 pr-0">
+                                                    <ul class="list-group mr-0 pr-0">
+                                                        @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
+                                                            <li class="list-group-item px-0">
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="text-white btn-floating btn-tw btn-sm">
+                                                                    <i class="fas fa-video"></i>
+                                                                </a>
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="black-text">
+                                                                    {{$syllabus->title}}
+                                                                </a>
+                                                            </li>
+                                                        @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
+                                                            <li class="list-group-item px-0">
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="text-white btn-floating btn-fb btn-sm">
+                                                                    <i class="fas fa-volume-up"></i>
+                                                                </a>
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="black-text">
+                                                                    {{$syllabus->title}}
+                                                                </a>
+                                                            </li>
+                                                        @else
+                                                            <li class="list-group-item px-0">
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="text-white btn-floating btn-slack btn-sm">
+                                                                    <i class="fas fa-text"></i>
+                                                                </a>
+                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                   class="black-text">
+                                                                    {{$syllabus->title}}
+                                                                </a>
+                                                            </li>
+                                                        @endif
+                                                    </ul>
+                                                </ul>
                                             @endforeach
+
                                         </div>
 
                                     </div>

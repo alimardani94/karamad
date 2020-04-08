@@ -19,11 +19,20 @@ class OnlineCourseController extends Controller
         $keyGenerator = app(Generator::class);
 
         $onlineCourse = new OnlineCourse();
-        $onlineCourse->title= $request->get('title');
+        $onlineCourse->title = $request->get('title');
         $onlineCourse->key = $keyGenerator->key();
         $onlineCourse->instructor_id = Auth::user()->instructor->id;
         $onlineCourse->save();
 
         return back()->with('success', trans('online_courses.created'));
+    }
+
+    public function show($key)
+    {
+        $onlineCourse = OnlineCourse::where('key', $key)->firstOrFail();
+
+        return view('front.online_course.instructor', [
+            'onlineCourse' => $onlineCourse,
+        ]);
     }
 }
