@@ -7,6 +7,12 @@
 @stop
 
 @section('style')
+    <style>
+        video {
+            max-width: 100%;
+        }
+
+    </style>
 @endsection
 @section('content')
     <div class="container">
@@ -14,13 +20,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div id="localVideoContainer" class="z-depth-1">
-                        <video id="localVideo" autoplay playsinline></video>
-                        <div id="localVideoToolBar" class="col-md-3 col-xl-1 m-4 wow fadeInRight">
-                            <a type="button" class="btn-floating btn-ins"><i class="fal fa-video"></i></a>
-                            <a type="button" class="btn-floating btn-ins"><i class="far fa-microphone"></i></a>
-                            <a type="button" class="btn-floating btn-ins"><i class="fal fa-record-vinyl"></i></a>
-                            <a type="button" class="btn-floating btn-ins"><i class="fal fa-compress-wide"></i></a>
-                        </div>
+                        <video id="localVideo" autoplay muted playsinline></video>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -38,26 +38,29 @@
         </section>
 
         <section class="section mt-5 pb-3 wow fadeIn">
-            <div class="row">
-                <div class="col-md-3">
-                    <video style="width: 100%" class="z-depth-1"></video>
-                </div>
-                <div class="col-md-3">
-                    <video style="width: 100%" class="z-depth-1"></video>
-                </div>
-                <div class="col-md-3">
-                    <video style="width: 100%" class="z-depth-1"></video>
-                </div>
-                <div class="col-md-3">
-                    <video style="width: 100%" class="z-depth-1"></video>
-                </div>
-            </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <video id="remoteVideo" class="z-depth-1" autoplay playsinline></video>
+                            </div>
+                            <div class="col-md-3">
+                                <video id="remoteVideo2" class="z-depth-1" autoplay playsinline></video>
+                            </div>
+                            <div class="col-md-3">
+                                <video id="remoteVideo3" class="z-depth-1" autoplay playsinline></video>
+                            </div>
+                            <div class="col-md-3">
+                                <video id="remoteVideo4" class="z-depth-1" autoplay playsinline></video>
+                            </div>
+                        </div>
         </section>
 
     </div>
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="{{asset('assets/js/stream.js')}}"></script>
 
 @endsection
+
