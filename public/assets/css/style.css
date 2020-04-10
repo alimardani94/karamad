@@ -21,6 +21,10 @@ html, body {
     right: 0;
 }
 
+.md-form label.active {
+    transform-origin: right;
+}
+
 .md-form .prefix ~ input, .md-form .prefix ~ textarea {
     width: calc(100% - 2.5rem);
     margin-right: 2.5rem;

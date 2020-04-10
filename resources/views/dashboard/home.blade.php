@@ -45,7 +45,7 @@
                     @csrf
                     <div class="md-form">
                         <input type="text" id="title" name="title" class="form-control">
-                        <label for="email">عنوان کلاس</label>
+                        <label for="title">عنوان کلاس</label>
                     </div>
                     <div class="text-center">
                         <button class="btn blue-gradient btn-lg">ایجاد کلاس</button>

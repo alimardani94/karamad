@@ -8,6 +8,13 @@ var pc;
 var remoteStream;
 var turnReady;
 
+const startButton = document.getElementById('startButton');
+const hangupButton = document.getElementById('hangupButton');
+
+startButton.addEventListener('click', startAction);
+hangupButton.addEventListener('click', hangupAction);
+
+
 var pcConfig = {
     'iceServers': [{
         'urls': 'stun:stun.l.google.com:19302'
@@ -22,7 +29,7 @@ var sdpConstraints = {
 
 /////////////////////////////////////////////
 
-var room = 'foo';
+var room = courseKey;
 // Could prompt for room name:
 // room = prompt('Enter room name:');
 
@@ -33,27 +40,27 @@ if (room !== '') {
     console.log('Attempted to create or  join room', room);
 }
 
-socket.on('created', function(room) {
+socket.on('created', function (room) {
     console.log('Created room ' + room);
     isInitiator = true;
 });
 
-socket.on('full', function(room) {
+socket.on('full', function (room) {
     console.log('Room ' + room + ' is full');
 });
 
-socket.on('join', function (room){
+socket.on('join', function (room) {
     console.log('Another peer made a request to join room ' + room);
     console.log('This peer is the initiator of room ' + room + '!');
     isChannelReady = true;
 });
 
-socket.on('joined', function(room) {
+socket.on('joined', function (room) {
     console.log('joined: ' + room);
     isChannelReady = true;
 });
 
-socket.on('log', function(array) {
+socket.on('log', function (array) {
     console.log.apply(console, array);
 });
 
@@ -65,7 +72,7 @@ function sendMessage(message) {
 }
 
 // This client receives a message
-socket.on('message', function(message) {
+socket.on('message', function (message) {
     console.log('Client received message:', message);
     if (message === 'got user media') {
         maybeStart();
@@ -93,14 +100,23 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
-navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: true
-})
-    .then(gotStream)
-    .catch(function(e) {
+function startAction() {
+    startButton.disabled = true;
+
+    navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: true
+    }).then(gotStream).catch(function (e) {
         alert('getUserMedia() error: ' + e.name);
     });
+}
+
+function hangupAction() {
+    pc.close();
+    pc = null;
+    localStream = null;
+    hangupButton.disabled = true;
+}
 
 function gotStream(stream) {
     console.log('Adding local stream.');
@@ -138,7 +154,7 @@ function maybeStart() {
     }
 }
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     sendMessage('bye');
 };
 
@@ -212,7 +228,7 @@ function requestTurn(turnURL) {
         console.log('Getting TURN server from ', turnURL);
         // No TURN server. Get one from computeengineondemand.appspot.com:
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 var turnServer = JSON.parse(xhr.responseText);
                 console.log('Got TURN server: ', turnServer);

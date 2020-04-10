@@ -111,7 +111,8 @@
                                                 <div class="md-form">
                                                     <input type="password" id="password"
                                                            name="password" class="form-control"
-                                                           aria-describedby="passwordHelpBlock">
+                                                           aria-describedby="passwordHelpBlock"
+                                                           autocomplete="off">
                                                     <label for="password">گذرواژه</label>
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted mb-4">
