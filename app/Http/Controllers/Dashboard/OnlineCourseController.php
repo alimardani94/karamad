@@ -31,7 +31,7 @@ class OnlineCourseController extends Controller
     {
         $onlineCourse = OnlineCourse::where('key', $key)->firstOrFail();
 
-        return view('front.online_course.instructor', [
+        return view('dashboard.online_course.instructor', [
             'onlineCourse' => $onlineCourse,
         ]);
     }

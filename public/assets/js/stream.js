@@ -10,6 +10,7 @@ var turnReady;
 
 const startButton = document.getElementById('startButton');
 const hangupButton = document.getElementById('hangupButton');
+hangupButton.disabled = true;
 
 startButton.addEventListener('click', startAction);
 hangupButton.addEventListener('click', hangupAction);
