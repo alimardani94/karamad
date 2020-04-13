@@ -69,11 +69,17 @@ socket.on('log', function (array) {
 
 function sendMessage(message) {
     console.log('Client sending message: ', message);
-    socket.emit('message', message);
+    let clientMsg = {
+        'message': message,
+        'room': room
+    };
+
+    socket.emit('message', clientMsg);
 }
 
 // This client receives a message
 socket.on('message', function (message) {
+    console.log(1111111111111, message)
     console.log('Client received message:', message);
     if (message === 'got user media') {
         maybeStart();
@@ -103,6 +109,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 function startAction() {
     startButton.disabled = true;
+    hangupButton.disabled = false;
 
     navigator.mediaDevices.getUserMedia({
         audio: false,
@@ -113,9 +120,7 @@ function startAction() {
 }
 
 function hangupAction() {
-    pc.close();
-    pc = null;
-    localStream = null;
+    hangup();
     hangupButton.disabled = true;
 }
 
