@@ -54,7 +54,16 @@
 
                 <ul>
                     @foreach($onlineCourses as $course)
-                        <li><a href="{{route('dashboard.onlineCourses.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a></li>
+
+                        <li>
+                            <span class="mx-4">instructor</span>
+                            <a href="{{route('dashboard.onlineCourses.instructor.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
+                        </li>
+                        <li>
+                            <span class="mx-4">student</span>
+                            <a href="{{route('dashboard.onlineCourses.student.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
+                        </li>
+                        <br>
                     @endforeach
                 </ul>
 

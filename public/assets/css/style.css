@@ -36,6 +36,10 @@ html, body {
     margin-left: 0;
 }
 
+.md-form {
+    margin-top: 2rem;
+}
+
 .form-check-input[type=checkbox] + label, label.btn input[type=checkbox] + label {
     padding-right: 28px;
 }

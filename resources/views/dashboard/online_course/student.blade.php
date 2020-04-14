@@ -11,6 +11,7 @@
         video {
             max-width: 100%;
         }
+
     </style>
 @endsection
 @section('content')
@@ -19,7 +20,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div id="localVideoContainer">
-                        <video id="remoteVideo" poster="{{asset('assets/img/black-video-poster.jpg')}}"
+                        <video id="localVideo" poster="{{asset('assets/img/black-video-poster.jpg')}}"
                                class="z-depth-1" autoplay muted playsinline>
                         </video>
                     </div>
@@ -45,9 +46,18 @@
         <section class="section mt-5 pb-3 wow fadeIn">
             <div class="row">
                 <div class="col-md-3">
-                    <video id="localVideo" class="z-depth-1" autoplay playsinline></video>
+                    <video id="remoteVideo" class="z-depth-1" autoplay playsinline></video>
                 </div>
-               </div>
+                <div class="col-md-3">
+                    <video id="remoteVideo2" class="z-depth-1" autoplay playsinline></video>
+                </div>
+                <div class="col-md-3">
+                    <video id="remoteVideo3" class="z-depth-1" autoplay playsinline></video>
+                </div>
+                <div class="col-md-3">
+                    <video id="remoteVideo4" class="z-depth-1" autoplay playsinline></video>
+                </div>
+            </div>
         </section>
 
     </div>
@@ -61,6 +71,8 @@
         const userToken = '{{$authUser->token ?? ''}}';
     </script>
     <script src="{{asset('assets/js/stream.js')}}"></script>
-
+   <script>
+       startAction();
+   </script>
 @endsection
 

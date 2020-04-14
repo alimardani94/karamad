@@ -79,7 +79,6 @@ function sendMessage(message) {
 
 // This client receives a message
 socket.on('message', function (message) {
-    console.log(1111111111111, message)
     console.log('Client received message:', message);
     if (message === 'got user media') {
         maybeStart();

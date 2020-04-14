@@ -27,11 +27,20 @@ class OnlineCourseController extends Controller
         return back()->with('success', trans('online_courses.created'));
     }
 
-    public function show($key)
+    public function instructurShow($key)
     {
         $onlineCourse = OnlineCourse::where('key', $key)->firstOrFail();
 
         return view('dashboard.online_course.instructor', [
+            'onlineCourse' => $onlineCourse,
+        ]);
+    }
+
+    public function studentShow($key)
+    {
+        $onlineCourse = OnlineCourse::where('key', $key)->firstOrFail();
+
+        return view('dashboard.online_course.student', [
             'onlineCourse' => $onlineCourse,
         ]);
     }

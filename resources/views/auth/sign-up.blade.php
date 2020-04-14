@@ -99,7 +99,8 @@
                                                 </div>
 
                                                 <div class="md-form mt-0">
-                                                    <input type="text" id="email" name="email" class="form-control">
+                                                    <input type="text" id="email" name="email"
+                                                           class="form-control" autocomplete="off">
                                                     <label for="email">ایمیل</label>
                                                 </div>
 
