@@ -44,19 +44,8 @@
         </section>
 
         <section class="section mt-5 pb-3 wow fadeIn">
-            <div class="row">
-                <div class="col-md-3">
-                    <video id="remoteVideo" class="z-depth-1" autoplay playsinline></video>
-                </div>
-                <div class="col-md-3">
-                    <video id="remoteVideo2" class="z-depth-1" autoplay playsinline></video>
-                </div>
-                <div class="col-md-3">
-                    <video id="remoteVideo3" class="z-depth-1" autoplay playsinline></video>
-                </div>
-                <div class="col-md-3">
-                    <video id="remoteVideo4" class="z-depth-1" autoplay playsinline></video>
-                </div>
+            <div class="row" id="remoteVideoBox">
+
             </div>
         </section>
 

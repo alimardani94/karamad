@@ -101,7 +101,7 @@ socket.on('message', function (message) {
             sdpMLineIndex: msg.label,
             candidate: msg.candidate
         });
-        peerConnections[id].addIceCandidate(candidate);
+        peerConnections[msg.peerConnectionId].addIceCandidate(candidate);
     } else if (msg === 'bye' && isStarted) {
         handleRemoteHangup(id);
     }
@@ -110,7 +110,7 @@ socket.on('message', function (message) {
 ////////////////////////////////////////////////////
 
 var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
+var remoteVideoBox = document.querySelector('#remoteVideoBox');
 
 function startAction() {
     startButton.disabled = true;
@@ -174,9 +174,16 @@ window.onbeforeunload = function () {
 function createPeerConnection(id) {
     try {
         peerConnections[id] = new RTCPeerConnection(null);
-        peerConnections[id].onicecandidate = handleIceCandidate;
-        peerConnections[id].onaddstream = handleRemoteStreamAdded;
-        peerConnections[id].onremovestream = handleRemoteStreamRemoved;
+        peerConnections[id].onicecandidate = function(event) {
+            handleIceCandidate(event, id)
+        };
+        peerConnections[id].onaddstream = function (event) {
+            handleRemoteStreamAdded(event, id)
+        };
+        peerConnections[id].onremovestream = function (event) {
+            handleRemoteStreamRemoved(event, id)
+        };
+
         console.log('Created RTCPeerConnnection');
     } catch (e) {
         console.log('Failed to create PeerConnection, exception: ' + e.message);
@@ -185,14 +192,15 @@ function createPeerConnection(id) {
     }
 }
 
-function handleIceCandidate(event) {
+function handleIceCandidate(event, id) {
     console.log('icecandidate event: ', event);
     if (event.candidate) {
         sendMessage({
             type: 'candidate',
             label: event.candidate.sdpMLineIndex,
             id: event.candidate.sdpMid,
-            candidate: event.candidate.candidate
+            candidate: event.candidate.candidate,
+            peerConnectionId: id
         });
     } else {
         console.log('End of candidates.');
@@ -258,14 +266,18 @@ function requestTurn(turnURL) {
     }
 }
 
-function handleRemoteStreamAdded(event) {
+function handleRemoteStreamAdded(event, id) {
     console.log('Remote stream added.');
     remoteStream = event.stream;
-    remoteVideo.srcObject = remoteStream;
+
+    let videoBox = '<div class="col-md-3"><video id="remoteVideo' + id + '" class="z-depth-1" autoplay playsinline></video></div>';
+    remoteVideoBox.innerHTML += videoBox;
+
+    document.querySelector('#remoteVideo' + id).srcObject = remoteStream;
 }
 
-function handleRemoteStreamRemoved(event) {
-    console.log('Remote stream removed. Event: ', event);
+function handleRemoteStreamRemoved(event, id) {
+    console.log('Remote stream removed. Event: ', event, id);
 }
 
 function hangup() {
