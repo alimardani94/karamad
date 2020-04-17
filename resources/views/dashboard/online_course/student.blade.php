@@ -68,9 +68,9 @@
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         const courseKey = '{{$onlineCourse->key}}';
-        const userToken = '{{$authUser->token ?? ''}}';
+        const userId = '{{$authUser->id ?? ''}}';
     </script>
-    <script src="{{asset('assets/js/stream.js')}}"></script>
+    <script src="{{asset('assets/js/stream2.js')}}"></script>
    <script>
        startAction();
    </script>
