@@ -102,4 +102,13 @@ class User extends Authenticatable
     {
         return $this->admin != null;
     }
+
+
+    /**
+     * @return bool
+     */
+    public function isInstructor()
+    {
+        return $this->instructor != null;
+    }
 }

@@ -11,11 +11,19 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $onlineCourses = OnlineCourse::orderBy('id', 'desc')
-            ->where('instructor_id', Auth::user()->instructor->id)->paginate(6);
+        $user = Auth::user();
+        $isInstructor = $user->isInstructor();
+
+        if ($isInstructor) {
+            $onlineCourses = OnlineCourse::orderBy('id', 'desc')
+                ->where('instructor_id', Auth::user()->instructor->id)->paginate(6);
+        }else {
+            $onlineCourses = OnlineCourse::orderBy('id', 'desc')->paginate(6);
+        }
 
         return view('dashboard.home', [
-            'onlineCourses' => $onlineCourses,
+            'onlineCourses' => $onlineCourses ?? [],
+            'isInstructor' => $isInstructor,
         ]);
     }
 }

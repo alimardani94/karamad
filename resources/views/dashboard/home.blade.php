@@ -40,18 +40,18 @@
              aria-labelledby="v-pills-online-courses-tab">
             <div class="card-title">کلاس آنلاین</div>
             <div class="card-body">
-
-                <form id="createOnlineCourse" action="{{route('dashboard.onlineCourses.store')}}" method="post">
-                    @csrf
-                    <div class="md-form">
-                        <input type="text" id="title" name="title" class="form-control">
-                        <label for="title">عنوان کلاس</label>
-                    </div>
-                    <div class="text-center">
-                        <button class="btn blue-gradient btn-lg">ایجاد کلاس</button>
-                    </div>
-                </form>
-
+                @if($isInstructor)
+                    <form id="createOnlineCourse" action="{{route('dashboard.onlineCourses.store')}}" method="post">
+                        @csrf
+                        <div class="md-form">
+                            <input type="text" id="title" name="title" class="form-control">
+                            <label for="title">عنوان کلاس</label>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn blue-gradient btn-lg">ایجاد کلاس</button>
+                        </div>
+                    </form>
+                @endif
                 <ul>
                     @foreach($onlineCourses as $course)
 

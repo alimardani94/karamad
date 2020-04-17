@@ -4,7 +4,7 @@ var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
 var localStream;
-var pc;
+var peerConnections = [];
 var remoteStream;
 var turnReady;
 
@@ -14,7 +14,6 @@ hangupButton.disabled = true;
 
 startButton.addEventListener('click', startAction);
 hangupButton.addEventListener('click', hangupAction);
-
 
 var pcConfig = {
     'iceServers': [{
@@ -88,23 +87,23 @@ socket.on('message', function (message) {
     console.log('Client received message:', msg);
 
     if (msg === 'got user media') {
-        maybeStart();
+        maybeStart(id);
     } else if (msg.type === 'offer') {
         if (!isInitiator && !isStarted) {
-            maybeStart();
+            maybeStart(id);
         }
-        pc.setRemoteDescription(new RTCSessionDescription(msg));
-        doAnswer();
+        peerConnections[id].setRemoteDescription(new RTCSessionDescription(msg));
+        doAnswer(id);
     } else if (msg.type === 'answer' && isStarted) {
-        pc.setRemoteDescription(new RTCSessionDescription(msg));
+        peerConnections[id].setRemoteDescription(new RTCSessionDescription(msg));
     } else if (msg.type === 'candidate' && isStarted) {
         var candidate = new RTCIceCandidate({
             sdpMLineIndex: msg.label,
             candidate: msg.candidate
         });
-        pc.addIceCandidate(candidate);
+        peerConnections[id].addIceCandidate(candidate);
     } else if (msg === 'bye' && isStarted) {
-        handleRemoteHangup();
+        handleRemoteHangup(id);
     }
 });
 
@@ -136,7 +135,7 @@ function gotStream(stream) {
     localVideo.srcObject = stream;
     sendMessage('got user media');
     if (isInitiator) {
-        maybeStart();
+        maybeStart(authId);
     }
 }
 
@@ -152,16 +151,16 @@ if (location.hostname !== 'localhost') {
     );
 }
 
-function maybeStart() {
+function maybeStart(id) {
     console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
     if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
         console.log('>>>>>> creating peer connection');
-        createPeerConnection();
-        pc.addStream(localStream);
+        createPeerConnection(id);
+        peerConnections[id].addStream(localStream);
         isStarted = true;
         console.log('isInitiator', isInitiator);
         if (isInitiator) {
-            doCall();
+            doCall(id);
         }
     }
 }
@@ -172,12 +171,12 @@ window.onbeforeunload = function () {
 
 /////////////////////////////////////////////////////////
 
-function createPeerConnection() {
+function createPeerConnection(id) {
     try {
-        pc = new RTCPeerConnection(null);
-        pc.onicecandidate = handleIceCandidate;
-        pc.onaddstream = handleRemoteStreamAdded;
-        pc.onremovestream = handleRemoteStreamRemoved;
+        peerConnections[id] = new RTCPeerConnection(null);
+        peerConnections[id].onicecandidate = handleIceCandidate;
+        peerConnections[id].onaddstream = handleRemoteStreamAdded;
+        peerConnections[id].onremovestream = handleRemoteStreamRemoved;
         console.log('Created RTCPeerConnnection');
     } catch (e) {
         console.log('Failed to create PeerConnection, exception: ' + e.message);
@@ -204,23 +203,26 @@ function handleCreateOfferError(event) {
     console.log('createOffer() error: ', event);
 }
 
-function doCall() {
+function doCall(id) {
     console.log('Sending offer to peer');
-    pc.createOffer(setLocalAndSendMessage, handleCreateOfferError);
+
+    peerConnections[id].createOffer().then(function (offer) {
+        return peerConnections[id].setLocalDescription(offer);
+    }).then(function () {
+        console.log('setLocalAndSendMessage sending message', peerConnections[id].localDescription);
+        sendMessage(peerConnections[id].localDescription);
+    }).catch(onCreateSessionDescriptionError);
 }
 
-function doAnswer() {
+function doAnswer(id) {
     console.log('Sending answer to peer.');
-    pc.createAnswer().then(
-        setLocalAndSendMessage,
-        onCreateSessionDescriptionError
-    );
-}
 
-function setLocalAndSendMessage(sessionDescription) {
-    pc.setLocalDescription(sessionDescription);
-    console.log('setLocalAndSendMessage sending message', sessionDescription);
-    sendMessage(sessionDescription);
+    peerConnections[id].createAnswer().then(function (answer) {
+        return peerConnections[id].setLocalDescription(answer);
+    }).then(function () {
+        console.log('setLocalAndSendMessage sending message', peerConnections[id].localDescription);
+        sendMessage(peerConnections[id].localDescription);
+    }).catch(onCreateSessionDescriptionError);
 }
 
 function onCreateSessionDescriptionError(error) {
@@ -268,18 +270,22 @@ function handleRemoteStreamRemoved(event) {
 
 function hangup() {
     console.log('Hanging up.');
-    stop();
+    console.log(peerConnections);
+
+    peerConnections.forEach(function (item, index) {
+        stop(index);
+    });
     sendMessage('bye');
 }
 
-function handleRemoteHangup() {
+function handleRemoteHangup(id) {
     console.log('Session terminated.');
-    stop();
+    stop(id);
     isInitiator = false;
 }
 
-function stop() {
+function stop(id) {
     isStarted = false;
-    pc.close();
-    pc = null;
+    peerConnections[id].close();
+    peerConnections[id] = null;
 }
