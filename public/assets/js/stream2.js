@@ -2,7 +2,7 @@
 
 var isChannelReady = false;
 var isInitiator = false;
-var isStarted = false;
+var isStarted = [];
 var localStream;
 var peerConnections = [];
 var remoteStream;
@@ -89,20 +89,20 @@ socket.on('message', function (message) {
     if (msg === 'got user media') {
         maybeStart(id);
     } else if (msg.type === 'offer') {
-        if (!isInitiator && !isStarted) {
+        if (!isInitiator && !isStarted[id]) {
             maybeStart(id);
         }
         peerConnections[id].setRemoteDescription(new RTCSessionDescription(msg));
         doAnswer(id);
-    } else if (msg.type === 'answer' && isStarted) {
+    } else if (msg.type === 'answer' && isStarted[id]) {
         peerConnections[id].setRemoteDescription(new RTCSessionDescription(msg));
-    } else if (msg.type === 'candidate' && isStarted) {
+    } else if (msg.type === 'candidate' && isStarted[id]) {
         var candidate = new RTCIceCandidate({
             sdpMLineIndex: msg.label,
             candidate: msg.candidate
         });
-        peerConnections[msg.peerConnectionId].addIceCandidate(candidate);
-    } else if (msg === 'bye' && isStarted) {
+        peerConnections[id].addIceCandidate(candidate);
+    } else if (msg === 'bye' && isStarted[id]) {
         handleRemoteHangup(id);
     }
 });
@@ -152,12 +152,13 @@ if (location.hostname !== 'localhost') {
 }
 
 function maybeStart(id) {
-    console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
-    if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
+    console.log('>>>>>>> maybeStart() ', isStarted[id], localStream, isChannelReady);
+    isStarted[id] = false;
+    if (!isStarted[id] && typeof localStream !== 'undefined' && isChannelReady) {
         console.log('>>>>>> creating peer connection');
         createPeerConnection(id);
         peerConnections[id].addStream(localStream);
-        isStarted = true;
+        isStarted[id] = true;
         console.log('isInitiator', isInitiator);
         if (isInitiator) {
             doCall(id);
@@ -297,7 +298,7 @@ function handleRemoteHangup(id) {
 }
 
 function stop(id) {
-    isStarted = false;
+    isStarted[id] = false;
     peerConnections[id].close();
     peerConnections[id] = null;
 }
