@@ -109,7 +109,7 @@
                     <div class="carousel-box courses-box">
                         <div class="owl-carousel mt-4">
                             @foreach($courses as $course)
-                                <div class="card m-1">
+                                <div class="card m-1 h-100">
                                     <div class="view overlay">
                                         <img src="{{asset('media/' .$course->thumbnail)}}" class="card-img-top"
                                              alt="{{$course->title}}">

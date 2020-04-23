@@ -271,7 +271,7 @@ function handleRemoteStreamAdded(event, id) {
     console.log('Remote stream added.');
     remoteStream = event.stream;
 
-    let videoBox = '<div class="col-md-3"><video id="remoteVideo' + id + '" class="z-depth-1" autoplay playsinline></video></div>';
+    let videoBox = '<div class="col-md-3 remoteVideoContainer"><video id="remoteVideo' + id + '" class="z-depth-1" autoplay playsinline></video></div>';
     remoteVideoBox.innerHTML += videoBox;
 
     document.querySelector('#remoteVideo' + id).srcObject = remoteStream;
@@ -301,4 +301,5 @@ function stop(id) {
     isStarted[id] = false;
     peerConnections[id].close();
     peerConnections[id] = null;
+    $('#remoteVideo' + id).parent('.remoteVideoContainer').remove();
 }

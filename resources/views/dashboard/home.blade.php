@@ -17,16 +17,16 @@
                 1
             </div>
         </div>
+        @if($authUser->isInstructor())
+            <div class="tab-pane fade" id="v-pills-add-course" role="tabpanel"
+                 aria-labelledby="v-pills-add-course-tab">
+                <div class="card-title">افزودن دوره</div>
+                <div class="card-body">
 
-        <div class="tab-pane fade" id="v-pills-add-course" role="tabpanel"
-             aria-labelledby="v-pills-add-course-tab">
-            <div class="card-title">افزودن دوره</div>
-            <div class="card-body">
-
-                3
+                    3
+                </div>
             </div>
-        </div>
-
+        @endif
         <div class="tab-pane fade" id="v-pills-courses" role="tabpanel"
              aria-labelledby="v-pills-courses-tab">
             <div class="card-title">دوره های من</div>
@@ -54,16 +54,15 @@
                 @endif
                 <ul>
                     @foreach($onlineCourses as $course)
-
-                        <li>
-                            <span class="mx-4">instructor</span>
-                            <a href="{{route('dashboard.onlineCourses.instructor.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
-                        </li>
-                        <li>
-                            <span class="mx-4">student</span>
-                            <a href="{{route('dashboard.onlineCourses.student.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
-                        </li>
-                        <br>
+                        @if($isInstructor)
+                            <li>
+                                <a href="{{route('dashboard.onlineCourses.instructor.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{route('dashboard.onlineCourses.student.show', ['onlineCourse'=> $course->key])}}">{{$course->title}}</a>
+                            </li>
+                        @endif
                     @endforeach
                 </ul>
 

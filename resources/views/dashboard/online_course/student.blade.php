@@ -19,9 +19,9 @@
         <section class="section mt-5 pb-3 wow fadeIn">
             <div class="row">
                 <div class="col-md-9">
-                    <div id="localVideoContainer">
+                    <div id="localVideoContainer w-100">
                         <video id="localVideo" poster="{{asset('assets/img/black-video-poster.jpg')}}"
-                               class="z-depth-1" autoplay muted playsinline>
+                               class="z-depth-1  w-100" autoplay muted playsinline>
                         </video>
                     </div>
                 </div>
@@ -60,8 +60,8 @@
         const userId = '{{$authUser->id ?? ''}}';
     </script>
     <script src="{{asset('assets/js/stream2.js')}}"></script>
-   <script>
-       startAction();
-   </script>
+    <script>
+        startAction();
+    </script>
 @endsection
 

@@ -49,11 +49,13 @@
                                    aria-controls="v-pills-home" aria-selected="true">
                                     داشبورد
                                 </a>
-                                <a class="nav-link" id="v-pills-add-course-tab" data-toggle="pill"
-                                   href="#v-pills-add-course" role="tab"
-                                   aria-controls="v-pills-add-course" aria-selected="false">
-                                    افزودن دوره
-                                </a>
+                                @if($authUser->isInstructor())
+                                    <a class="nav-link" id="v-pills-add-course-tab" data-toggle="pill"
+                                       href="#v-pills-add-course" role="tab"
+                                       aria-controls="v-pills-add-course" aria-selected="false">
+                                        افزودن دوره
+                                    </a>
+                                @endif
                                 <a class="nav-link" id="v-pills-courses-tab" data-toggle="pill"
                                    href="#v-pills-courses" role="tab"
                                    aria-controls="v-pills-courses" aria-selected="false">
@@ -98,6 +100,19 @@
 <script type="text/javascript" src="{{asset('assets/vendor/MDB-Pro_4.11.0/js/mdb.min.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('assets/js/main.js')}}"></script>
+<script>
+    $(function () {
+        let hash = window.location.hash;
+        hash && $('div.nav a[href="' + hash + '"]').tab('show');
+
+        $('.nav-pills a').click(function (e) {
+            $(this).tab('show');
+            let scrollmem = $('body').scrollTop() || $('html').scrollTop();
+            window.location.hash = this.hash;
+            $('html,body').scrollTop(scrollmem);
+        });
+    });
+</script>
 @yield('js')
 
 </body>
