@@ -93,6 +93,34 @@
     </ul>
 </li>
 
+<li class="treeview @yield('post')">
+    <a href="#">
+        <i class="fa fa-bold"></i>
+        <span>مجله</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('post1')">
+            <a href="{{route('admin.posts.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست مجلات
+            </a>
+        </li>
+        <li class="@yield('post2')">
+            <a href="{{route('admin.posts.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن مجله
+            </a>
+        </li>
+        <li class="@yield('post3')">
+            <a href="{{route('admin.tags.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن برچسب
+            </a>
+        </li>
+    </ul>
+</li>
+
 <li class="treeview @yield('user')">
     <a href="#">
         <i class="fa fa-users"></i>

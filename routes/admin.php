@@ -10,4 +10,6 @@ Route::resources([
     'courses' => 'CourseController',
     'syllabuses' => 'SyllabusController',
     'users' => 'UserController',
+    'posts' => 'PostController',
+    'tags' => 'TagController',
 ]);

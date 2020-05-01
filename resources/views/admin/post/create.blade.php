@@ -1,0 +1,98 @@
+@extends('admin.layout.base')
+
+@section('title', 'خانه')
+@section('post', 'active menu-open')
+@section('post2', 'active')
+
+@section('style')
+@endsection
+
+@section('header')
+    <section class="content-header">
+        <h1>
+            افزودن مجله جدید
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="#">مجله ها</a></li>
+            <li class="active">افزودن مجله</li>
+        </ol>
+    </section>
+@endsection
+
+@section('content')
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <form method="post" action="{{route('admin.posts.store')}}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="box-header"></div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">عنوان</label>
+                                        <input type="text" class="form-control" id="title" placeholder="عنوان"
+                                               value="{{old('title')}}" name="title">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tags">برچسب ها</label>
+                                        <select type="text" class="form-control select2" id="tags" name="tags[]" multiple>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}"
+                                                    {{in_array($tag->id, old('tags', [])) ? 'selected':''}}>
+                                                    {{ $tag->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">تصویر</label>
+                                        <label class="form-control">
+                                            <span> انتخاب کنید ... </span>
+                                            <input type="file" class="custom-file-input" accept="image/*"
+                                                   id="image" name="image" value="{{old('image')}}"
+                                                   hidden>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="content">محتوا </label>
+                                    <textarea id="content" name="content"
+                                              style="width: 100%; height: 200px; border: 1px solid #dddddd; padding: 10px;"
+                                              class="form-control">{!! old('content') !!}</textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">افزودن مجله جدید</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+
+@section('js')
+    <script type="text/javascript" src="{{ asset('assets/admin/adminLTE/components/ckeditor/ckeditor.js')}}"></script>
+
+    <script>
+        CKEDITOR.config.contentsLangDirection = 'rtl';
+        CKEDITOR.config.language = 'fa';
+        CKEDITOR.replace('content');
+    </script>
+@endsection
