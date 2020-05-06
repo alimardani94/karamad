@@ -28,7 +28,7 @@
     @yield('content')
 </main>
 
-@include('footer.footer')
+@yield('footer')
 
 <script type="text/javascript" src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/vendor/popper/popper.min.js')}}"></script>

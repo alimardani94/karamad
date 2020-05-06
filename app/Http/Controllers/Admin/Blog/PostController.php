@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Post;
-use App\Tag;
+use App\Models\Blog\Post;
+use App\Models\Blog\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -47,7 +47,7 @@ class PostController extends Controller
             'title' => ['required', 'unique:posts'],
             'tags' => 'required|array',
             'tags.*' => 'exists:tags,id',
-            'content' => 'required|max:1024',
+            'content' => 'required',
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg|max:4096',
         ]);
 
@@ -67,7 +67,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Blog\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -78,7 +78,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Blog\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -90,7 +90,7 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Models\Blog\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -101,7 +101,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Models\Blog\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

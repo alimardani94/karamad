@@ -124,6 +124,9 @@
                     <a class="nav-link" href="#">کلاس های آنلاین</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('posts.index') }}">مجله</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">درباره ما</a>
                 </li>
             </ul>

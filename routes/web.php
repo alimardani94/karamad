@@ -43,4 +43,10 @@ Route::group(['namespace' => 'Front'], function () {
         'courses' => 'CourseController',
         'syllabuses' => 'SyllabusController',
     ]);
+
+    Route::group(['namespace' => 'Blog'], function () {
+        Route::resources([
+            'posts' => 'PostController',
+        ]);
+    });
 });

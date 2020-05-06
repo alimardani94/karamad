@@ -10,6 +10,11 @@ Route::resources([
     'courses' => 'CourseController',
     'syllabuses' => 'SyllabusController',
     'users' => 'UserController',
-    'posts' => 'PostController',
-    'tags' => 'TagController',
 ]);
+
+Route::group(['namespace' => 'Blog'], function () {
+    Route::resources([
+        'posts' => 'PostController',
+        'tags' => 'TagController',
+    ]);
+});

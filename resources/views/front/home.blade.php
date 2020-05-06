@@ -211,3 +211,7 @@
         })
     </script>
 @endsection
+
+@section('footer')
+    @include('footer.footer1')
+@stop
