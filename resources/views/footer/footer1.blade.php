@@ -7,8 +7,11 @@
 
                 <!--Grid column-->
                 <div class="col-12 col-md-5 text-left mb-md-0">
-                    <h6 class="mb-0 white-text text-center text-md-left"><strong>Get connected with us on social
-                            networks!</strong></h6>
+                    <h6 class="mb-0 white-text text-center text-md-left">
+                        <strong>
+                            ما را در شبکه های اجتماعی دنبال کنید
+                        </strong>
+                    </h6>
                 </div>
                 <!--Grid column-->
 
@@ -38,46 +41,44 @@
 
             <!--First column-->
             <div class="col-md-3 col-lg-4 col-xl-3 mb-4 dark-grey-text">
-                <h6 class="text-uppercase font-weight-bold"><strong>Company name</strong></h6>
+                <h6 class="text-uppercase font-weight-bold"><strong>هوشکاپ</strong></h6>
                 <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet,
-                    consectetur
-                    adipisicing elit.</p>
+                <p>
+                    با هوشکاپ به گنجینه ای عظیم از کلاس های آموزشی دست یابید، هوشکاپ پیشرو در خدمات آموزشی و برگزاری
+                    کلاس های آنلاین با پایین ترین هزینه و به صورت ۲۴ ساعته
+                </p>
             </div>
             <!--/.First column-->
 
             <!--Second column-->
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                <h6 class="text-uppercase font-weight-bold"><strong>Products</strong></h6>
+                <h6 class="text-uppercase font-weight-bold"><strong>خدمات ما</strong></h6>
                 <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p><a href="#!" class="dark-grey-text">MDBootstrap</a></p>
-                <p><a href="#!" class="dark-grey-text">MDWordPress</a></p>
-                <p><a href="#!" class="dark-grey-text">BrandFlow</a></p>
-                <p><a href="#!" class="dark-grey-text">Bootstrap Angular</a></p>
+                <p><a href="#!" class="dark-grey-text">کلاس های ویدیویی</a></p>
+                <p><a href="#!" class="dark-grey-text">کلاس های صوتی</a></p>
+                <p><a href="#!" class="dark-grey-text">کلاس های متنی</a></p>
+                <p><a href="#!" class="dark-grey-text">کلاس های آنلاین</a></p>
             </div>
             <!--/.Second column-->
 
             <!--Third column-->
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 dark-grey-text">
-                <h6 class="text-uppercase font-weight-bold"><strong>Useful links</strong></h6>
+                <h6 class="text-uppercase font-weight-bold"><strong>لینک ها</strong></h6>
                 <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p><a href="#!" class="dark-grey-text">Your Account</a></p>
-                <p><a href="#!" class="dark-grey-text">Become an Affiliate</a></p>
-                <p><a href="#!" class="dark-grey-text">Shipping Rates</a></p>
-                <p><a href="#!" class="dark-grey-text">Help</a></p>
+                <p><a href="#!" class="dark-grey-text">حساب کاربری</a></p>
+                <p><a href="#!" class="dark-grey-text">درباره ما</a></p>
+                <p><a href="#!" class="dark-grey-text">تماس با ما</a></p>
+                <p><a href="#!" class="dark-grey-text">مقالات</a></p>
             </div>
-            <!--/.Third column-->
 
-            <!--Fourth column-->
             <div class="col-md-4 col-lg-3 col-xl-3 dark-grey-text">
-                <h6 class="text-uppercase font-weight-bold"><strong>Contact</strong></h6>
+                <h6 class="text-uppercase font-weight-bold"><strong>تماس با ما</strong></h6>
                 <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
+                <p><i class="fas fa-home mr-3"></i> تهران پلاک ۱۳</p>
+                <p><i class="fas fa-envelope mr-3"></i> info@hooshcup.ir</p>
                 <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
                 <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
             </div>
-            <!--/.Fourth column-->
 
         </div>
     </div>
@@ -86,7 +87,7 @@
     <!-- Copyright-->
     <div class="footer-copyright py-3 text-center">
         <div class="container-fluid">
-            © 2019 Copyright: <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+            Copyright ©2020 <a href=" {{env('APP_URL')}} " target="_blank"> HooshCup.ir </a>
         </div>
     </div>
     <!--/.Copyright -->
