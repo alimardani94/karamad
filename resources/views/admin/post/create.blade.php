@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tags">برچسب ها</label>
-                                        <select type="text" class="form-control select2" id="tags" name="tags[]" multiple>
+                                        <select type="text" class="form-control select2" id="tags" name="tags[]" multiple="multiple"  style="width: 100%;">
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"
                                                     {{in_array($tag->id, old('tags', [])) ? 'selected':''}}>
@@ -70,11 +70,30 @@
                                 <div class="col-md-12">
                                     <label for="content">محتوا </label>
                                     <textarea id="content" name="content"
-                                              style="width: 100%; height: 200px; border: 1px solid #dddddd; padding: 10px;"
+                                              style="width: 100%; height: 210px; border: 1px solid #dddddd; padding: 10px;"
                                               class="form-control">{!! old('content') !!}</textarea>
                                 </div>
                             </div>
 
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="meta_keywords">کلمات کلیدی</label>
+                                        <input type="text" class="form-control" id="meta_keywords" placeholder="HTML, CSS, JavaScript"
+                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
+                                    <textarea id="meta_description" name="meta_description" minlength="135" maxlength="160"
+                                              class="form-control">{{old('meta_description')}}</textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">افزودن مجله جدید</button>

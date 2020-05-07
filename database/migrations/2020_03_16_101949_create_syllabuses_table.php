@@ -23,7 +23,8 @@ class CreateSyllabusesTable extends Migration
             $table->string('video')->nullable();
             $table->string('audio')->nullable();
             $table->tinyInteger('confirmed')->default(0);
-
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
         });
     }

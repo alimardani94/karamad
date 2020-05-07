@@ -49,6 +49,8 @@ class PostController extends Controller
             'tags.*' => 'exists:tags,id',
             'content' => 'required',
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg|max:4096',
+            'meta_keywords' => 'nullable|string',
+            'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
         $path = $request->file('image')->store('posts');
@@ -57,6 +59,8 @@ class PostController extends Controller
         $post->title = $request->get('title');
         $post->content = preventXSS($request->get('content'));
         $post->image = $path;
+        $post->meta_keywords = $request->get('meta_keywords');
+        $post->meta_description = $request->get('meta_description');
         $post->save();
 
         $post->tags()->attach($request->get('tags'));

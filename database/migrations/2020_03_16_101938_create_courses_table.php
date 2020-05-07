@@ -26,7 +26,8 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('discount')->default(0);
             $table->integer('sell_count')->default(0);
             $table->integer('seen_count')->default(0);
-
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_description')->nullable();
             $table->timestamps();
         });
     }
