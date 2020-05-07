@@ -33,7 +33,7 @@
                     <div class="card-up aqua-gradient"></div>
 
                     <div class="avatar mx-auto white">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2831%29.jpg"
+                        <img src="{{$authUser->image}}"
                              class="rounded-circle img-fluid">
                     </div>
 
@@ -92,7 +92,7 @@
     </div>
 </main>
 
-@include('footer.footer')
+@yield('footer')
 
 <script type="text/javascript" src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/vendor/popper/popper.min.js')}}"></script>

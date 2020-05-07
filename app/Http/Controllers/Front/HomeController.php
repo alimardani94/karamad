@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $courses = Course::orderBy('id', 'desc')->limit(6)->get();
+        $courses = Course::orderBy('id', 'desc')->whereHas('syllabuses')->limit(6)->get();
 
         return view('front.home', [
             'courses' => $courses,
