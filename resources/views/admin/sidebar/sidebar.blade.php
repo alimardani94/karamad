@@ -121,9 +121,31 @@
     </ul>
 </li>
 
+<li class="treeview @yield('admin')">
+    <a href="#">
+        <i class="fa fa-user-secret"></i>
+        <span>مدیران</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('admin1')">
+            <a href="{{route('admin.admins.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست مدیران
+            </a>
+        </li>
+        <li class="@yield('admin2')">
+            <a href="{{route('admin.admins.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن مدیر
+            </a>
+        </li>
+    </ul>
+</li>
+
 <li class="treeview @yield('user')">
     <a href="#">
-        <i class="fa fa-users"></i>
+        <i class="fa fa-user"></i>
         <span>کاربران</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>

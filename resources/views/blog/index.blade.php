@@ -46,19 +46,16 @@
                                                 </h4>
                                                 <hr>
                                                 <!-- Text -->
-                                                <p class="dark-grey-text mb-4"> Disrupt vero ea id fugiat, lo-fi lomo
-                                                    post-ironic irony kitsch
-                                                    Banksy.
-                                                    Tumblr kale stumptown beer elit seitan tote bag Banksy, elit small
-                                                    batch fregan sed.
+                                                <p class="dark-grey-text mb-4">
+                                                    {{$post->meta_description}}
                                                 </p>
                                                 <p class="font-small font-weight-bold blue-grey-text mb-1">
                                                     <i class="far fa-clock-o"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }} </p>
                                                 <p class="font-small dark-grey-text mb-0 font-weight-bold">Anna Smith</p>
                                                 <p class="text-right mb-0 text-uppercase dark-grey-text font-weight-bold">
-                                                    <a href="{{route('posts.show', ['post' => $post->id])}}">
+                                                    <a  class="btn btn-flat btn-lg" href="{{route('posts.show', ['post' => $post->id])}}">
                                                         بیشتر
-                                                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
                                                     </a>
                                                 </p>
                                             </div>
@@ -73,49 +70,12 @@
                                 </div>
                             @endforeach
                         </section>
-                        <!-- Section: Blog v.3 -->
 
-                        <!-- Pagination dark grey -->
                         <nav class="mb-5 pb-2">
-                            <ul class="pagination pg-darkgrey flex-center">
-                                <!-- Arrow left -->
-                                <li class="page-item">
-                                    <a class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-
-                                <!-- Numbers -->
-                                <li class="page-item active">
-                                    <a class="page-link">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link">5</a>
-                                </li>
-
-                                <!-- Arrow right -->
-                                <li class="page-item">
-                                    <a class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            {{$posts->links()}}
                         </nav>
-                        <!-- Pagination dark grey -->
 
                     </div>
-                    <!-- Main listing -->
 
                     <!-- Sidebar -->
                     <div class="col-lg-3 col-12 mt-1">

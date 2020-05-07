@@ -26,11 +26,7 @@
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <style>
-        [hidden] {
-            display: none !important;
-        }
-    </style>
+    <link href="{{asset('assets/admin/dist/style.css')}}" rel="stylesheet">
     @yield('style')
 </head>
 
@@ -65,7 +61,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="{{asset('assets/img/avatars/avatar.png')}}" class="img-circle"
+                                                <img src="{{asset('assets/img/avatars/avatar4.png')}}" class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -110,13 +106,13 @@
 
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{asset('assets/img/avatars/avatar.png')}}" class="user-image" alt="User Image">
+                            <img src="{{ $authUser->image }}" class="user-image" alt="{{ $authUser->full_name }}">
                             <span class="hidden-xs">{{ $authUser->full_name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="user-header">
-                                <img src="{{asset('assets/img/avatars/avatar.png')}}" class="img-circle"
-                                     alt="User Image">
+                                <img src="{{ $authUser->image }}" class="img-circle"
+                                     alt="{{ $authUser->full_name }}">
                                 <p>
                                     {{ $authUser->full_name }}
                                 </p>
@@ -124,7 +120,7 @@
 
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">پروفایل</a>
+                                    <a href="{{route('admin.profiles.index')}}" class="btn btn-default btn-flat">پروفایل</a>
                                 </div>
                                 <div class="pull-left">
                                     <a href="{{route('auth.sign-out')}}" class="btn btn-default btn-flat">خروج</a>
@@ -145,7 +141,7 @@
         <section class="sidebar">
             <div class="user-panel">
                 <div class="pull-right image">
-                    <img alt="" src="{{asset('assets/img/avatars/avatar.png')}}" class="img-circle">
+                    <img alt="{{ $authUser->full_name  }}" src="{{ $authUser->image }}" class="img-circle">
                 </div>
                 <div class="pull-left info">
                     <p>{{$authUser->full_name}}</p>
@@ -224,7 +220,7 @@
         let label = $(this).parent().find('span');
 
         label.text(" انتخاب کنید ... ");
-        if(name) {
+        if (name) {
             label.text(name + " انتخاب شد ");
         }
     });

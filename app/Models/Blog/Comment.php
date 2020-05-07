@@ -25,6 +25,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereUserId($value)
  * @mixin \Eloquent
+ * @property string $body
+ * @property int $commentable_type
+ * @property int $commentable_id
+ * @property int|null $parent_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereCommentableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereCommentableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Comment whereParentId($value)
  */
 class Comment extends Model
 {

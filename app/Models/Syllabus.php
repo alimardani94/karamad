@@ -37,6 +37,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereVideo($value)
  * @property-read \App\Models\Course $course
+ * @property string|null $meta_keywords
+ * @property string|null $meta_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereMetaKeywords($value)
  */
 class Syllabus extends Model
 {

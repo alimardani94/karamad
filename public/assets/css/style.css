@@ -173,6 +173,6 @@ html, body {
     text-align: right;
 }
 
-ul {
+ul.list-group {
     padding-inline-start: 0;
 }

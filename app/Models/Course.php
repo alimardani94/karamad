@@ -51,6 +51,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Instructor $instructor
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Syllabus[] $syllabuses
  * @property-read int|null $syllabuses_count
+ * @property string|null $meta_keywords
+ * @property string|null $meta_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course whereMetaKeywords($value)
  */
 class Course extends Model
 {

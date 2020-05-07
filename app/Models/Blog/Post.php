@@ -26,6 +26,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $meta_keywords
+ * @property string|null $meta_description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
  */
 class Post extends Model
 {

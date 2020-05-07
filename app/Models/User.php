@@ -38,6 +38,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \App\Models\Admin $admin
  * @property-read string $full_name
  * @property-read \App\Models\Instructor $instructor
+ * @property string $image
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereImage($value)
  */
 class User extends Authenticatable
 {
@@ -110,5 +112,22 @@ class User extends Authenticatable
     public function isInstructor()
     {
         return $this->instructor != null;
+    }
+
+    /**
+     * Get the user's image.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getImageAttribute($value)
+    {
+        if($value) {
+            return $value;
+        } elseif ($this->isAdmin()) {
+            return asset('assets/img/avatars/avatar5.png');
+        }else {
+            return asset('assets/img/avatars/avatar.png');
+        }
     }
 }

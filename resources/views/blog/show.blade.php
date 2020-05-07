@@ -7,7 +7,11 @@
 @stop
 
 @section('style')
-
+    <style>
+        #content p, #content img {
+            max-width: 100%;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -28,9 +32,9 @@
                             <div class="row">
                                 <div class="col-md-12 col-xl-12 d-flex justify-content-center">
                                     <p class="font-small dark-grey-text mb-1">
-                                        <strong>Author:</strong> Jimmy Brown</p>
+                                        <strong>نویسنده: </strong> Jimmy Brown</p>
                                     <p class="font-small grey-text mb-0 ml-3">
-                                        <i class="far fa-clock-o dark-grey-text"></i>{{ jDate($post->created_at, 'dd MMMM yyyy') }}</p>
+                                        <i class="far fa-clock-o dark-grey-text"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }} </p>
                                 </div>
                             </div>
 
@@ -39,42 +43,30 @@
                                 <div class="col-md-12 col-xl-12">
                                     <form>
 
-                                        <div class="row mt-3">
-
+                                        <div id="content" class="row mt-3">
                                             {!! $post->content !!}
-
                                         </div>
 
-
-                                        <!-- Grid row -->
-
-                                        <!-- Grid row -->
                                         <div class="row my-5">
 
-                                            <!-- Grid column -->
                                             <div class="col-md-12 text-center">
 
                                                 <h4 class="text-center font-weight-bold dark-grey-text mt-3 mb-3">
-                                                    <strong>Share this post: </strong>
+                                                    <strong>به اشتراک بگزارید</strong>
                                                 </h4>
 
                                                 <button type="button" class="btn btn-fb btn-sm">
                                                     <i class="fab fa-facebook-f left"></i> Facebook
                                                 </button>
-                                                <!-- Twitter -->
                                                 <button type="button" class="btn btn-tw btn-sm">
                                                     <i class="fab fa-twitter left"></i> Twitter
                                                 </button>
-                                                <!-- Google + -->
                                                 <button type="button" class="btn btn-gplus btn-sm">
                                                     <i class="fab fa-google-plus-g left"></i> Google +
                                                 </button>
-
                                             </div>
-                                            <!-- Grid column -->
 
                                         </div>
-                                        <!-- Grid row -->
 
                                         <hr class="mt-5">
 
@@ -84,7 +76,7 @@
                                             <!-- Main wrapper -->
                                             <div class="comments-list text-center text-md-left">
                                                 <div class="text-center my-5">
-                                                    <h3 class="font-weight-bold">Comments
+                                                    <h3 class="font-weight-bold">دیدگاه
                                                         <span class="badge indigo">3</span>
                                                     </h3>
                                                 </div>
@@ -202,7 +194,7 @@
                                         <hr>
                                         <!-- Section: Leave a reply (Not Logged In User) -->
                                         <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
-                                            <h3 class="font-weight-bold text-center my-5">Leave a reply</h3>
+                                            <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
 
                                             <!-- Grid row -->
                                             <div class="row">
@@ -269,7 +261,7 @@
                                                     </div>
 
                                                     <div class="text-right">
-                                                        <button class="btn btn-grey btn-sm">Submit</button>
+                                                        <button class="btn btn-grey btn-sm">ارسال</button>
                                                     </div>
 
                                                 </div>
