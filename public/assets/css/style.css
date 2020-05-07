@@ -172,3 +172,7 @@ html, body {
 .dropdown-menu {
     text-align: right;
 }
+
+ul {
+    padding-inline-start: 0;
+}
