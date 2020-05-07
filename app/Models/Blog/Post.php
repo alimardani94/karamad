@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -32,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
  * @property int $writer_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereWriterId($value)
+ * @property int $author_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereAuthorId($value)
  */
 class Post extends Model
 {
@@ -43,5 +46,10 @@ class Post extends Model
     public function tagsArray()
     {
         return $this->tags()->pluck('name')->toArray();
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(User::class);
     }
 }

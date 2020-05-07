@@ -33,6 +33,7 @@
                             <tr>
                                 <th>عنوان</th>
                                 <th>برچسب ها</th>
+                                <th>نویسنده</th>
                                 <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
@@ -46,6 +47,7 @@
                                             <li>{{$tag}}</li>
                                         @endforeach
                                     </td>
+                                    <td>{{ $post->author->full_name }}</td>
                                     <td>{{jDate($post->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
                                         <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش مجله

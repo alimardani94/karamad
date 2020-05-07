@@ -3,7 +3,7 @@
 @section('title', $post->title)
 
 @section('header')
-    @include('header.header1', ['headerBG' => asset('assets/img/slider/3.jpg')])
+    @include('header.header1', ['headerBG' => asset( 'media/' . $post->image)])
 @stop
 
 @section('style')
@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-xl-12 d-flex justify-content-center">
                                     <p class="font-small dark-grey-text mb-1">
-                                        <strong>نویسنده: </strong> Jimmy Brown</p>
+                                        <strong>نویسنده: </strong> {{$post->author->full_name}}</p>
                                     <p class="font-small grey-text mb-0 ml-3">
                                         <i class="far fa-clock-o dark-grey-text"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }} </p>
                                 </div>
@@ -209,7 +209,7 @@
                                                         </div>
                                                         <input type="text"
                                                                class="form-control mt-0 black-border rgba-white-strong"
-                                                               placeholder="Name" aria-describedby="basic-addon9">
+                                                               placeholder="نام" aria-describedby="basic-addon9">
                                                     </div>
 
                                                 </div>
@@ -225,7 +225,7 @@
                                                         </div>
                                                         <input type="text"
                                                                class="form-control mt-0 black-border rgba-white-strong"
-                                                               placeholder="Email" aria-describedby="basic-addon9">
+                                                               placeholder="ایمیل" aria-describedby="basic-addon9">
                                                     </div>
 
                                                 </div>
@@ -241,7 +241,7 @@
                                                         </div>
                                                         <input type="text"
                                                                class="form-control mt-0 black-border rgba-white-strong"
-                                                               placeholder="Website" aria-describedby="basic-addon9">
+                                                               placeholder="وبسایت" aria-describedby="basic-addon9">
                                                     </div>
 
                                                 </div>
@@ -257,7 +257,7 @@
                                                     <div class="form-group basic-textarea">
 
                               <textarea class="form-control" id="exampleFormControlTextarea6" rows="5"
-                                        placeholder="Write something here..."></textarea>
+                                        placeholder="دیدگاه من ..."></textarea>
                                                     </div>
 
                                                     <div class="text-right">
@@ -267,16 +267,14 @@
                                                 </div>
 
                                             </div>
-                                            <!-- Grid row -->
 
                                         </section>
-                                        <!-- Section: Leave a reply (Not Logged In User) -->
 
                                         <!-- Posts -->
                                         <section class="text-left mt-4">
 
                                             <h4 class="font-weight-bold mt-5 mb-5 text-center">
-                                                <strong>Latest news</strong>
+                                                <strong>پست های مرتبط</strong>
                                             </h4>
 
                                             <!-- Carousel Wrapper -->
@@ -321,7 +319,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -366,7 +364,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -409,7 +407,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -463,7 +461,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -508,7 +506,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -551,7 +549,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -604,7 +602,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -649,7 +647,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
@@ -692,7 +690,7 @@
                                                                     <div class="card-body">
                                                                         <!-- Title -->
                                                                         <h4 class="card-title">
-                                                                            <strong>Card title</strong>
+                                                                            <strong>تیتر</strong>
                                                                         </h4>
                                                                         <hr>
 
