@@ -22,7 +22,7 @@
                         <div class="box-header"></div>
                         <div class="box-body">
                             <div class="row" style="display: flex;justify-content: center">
-                                <img id="image_view" src="{{ asset('media/' . $user->image) }}" class="img-circle" alt="profile image"
+                                <img id="image_view" src="{{ $user->image }}" class="img-circle" alt="profile image"
                                      width="100" style=""/>
                             </div>
                             <div class="row" style="display: flex;justify-content: center">
@@ -92,7 +92,7 @@
 
                 reader.onload = function (e) {
                     $('#image_view').attr('src', e.target.result);
-                }
+                };
 
                 reader.readAsDataURL(input.files[0]);
             }

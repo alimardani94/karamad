@@ -123,7 +123,7 @@ class User extends Authenticatable
     public function getImageAttribute($value)
     {
         if($value) {
-            return $value;
+            return asset('media/' . $value);
         } elseif ($this->isAdmin()) {
             return asset('assets/img/avatars/avatar5.png');
         }else {

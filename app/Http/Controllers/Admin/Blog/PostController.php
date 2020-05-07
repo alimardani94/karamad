@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Post;
 use App\Models\Blog\Tag;
+use Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -59,6 +60,7 @@ class PostController extends Controller
         $post->title = $request->get('title');
         $post->content = preventXSS($request->get('content'));
         $post->image = $path;
+        $post->writer_id = Auth::id();
         $post->meta_keywords = $request->get('meta_keywords');
         $post->meta_description = $request->get('meta_description');
         $post->save();

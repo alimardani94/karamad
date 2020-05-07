@@ -30,6 +30,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $meta_description
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
+ * @property int $writer_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereWriterId($value)
  */
 class Post extends Model
 {

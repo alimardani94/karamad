@@ -61,7 +61,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="{{asset('assets/img/avatars/avatar4.png')}}" class="img-circle"
+                                                <img src="{{asset('assets/img/avatars/avatar.png')}}" class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
