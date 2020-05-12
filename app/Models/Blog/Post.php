@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereWriterId($value)
  * @property int $author_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereAuthorId($value)
+ * @property-read \App\Models\User $author
  */
 class Post extends Model
 {

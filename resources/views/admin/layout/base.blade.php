@@ -180,6 +180,7 @@
 <script src="{{ asset('assets/admin/adminLTE/js/demo.js')}}"></script>
 <script src="{{asset('assets/vendor/toastr-2.1.1/toastr.min.js')}}"></script>
 <script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
+<script src="{{asset('assets/vendor/sweetalert2/sweetalert2.all.js')}}"></script>
 <script>
     let toastPosition = 'toast-bottom-left';
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -222,6 +223,12 @@
         label.text(" انتخاب کنید ... ");
         if (name) {
             label.text(name + " انتخاب شد ");
+        }
+    });
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 

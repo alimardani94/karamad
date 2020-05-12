@@ -44,9 +44,13 @@
                                     <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
                                     <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش دسته بندی
+                                        <a type="button" class="btn btn-block btn-primary btn-xs">
+                                            ویرایش دسته بندی
                                         </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف دسته بندی</a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs"
+                                           onclick="removeCategory({{$category->id}})">
+                                            حذف دسته بندی
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,4 +61,40 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removeCategory(id) {
+            let url = "{{route('admin.categories.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا دسته بندی حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'دسته بندی با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            toastr.error();
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection

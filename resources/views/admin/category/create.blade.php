@@ -42,7 +42,7 @@
                                         <label for="parent">والد</label>
                                         <select type="text" class="form-control select2" id="parent" name="parent">
                                             <option value="">بدون والد (دسته اصلی)</option>
-                                            @foreach($categories as $category)
+                                            @foreach($mainCategories as $category)
                                                 <option value="{{ $category->id }}"
                                                     {{old('parent') == $category->id ? 'selected':''}}>
                                                     {{ $category->name }}
@@ -60,8 +60,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="image" name="image" value="{{old('image')}}"
-                                                   hidden>
+                                                   id="image" name="image" hidden>
                                         </label>
                                     </div>
                                 </div>
@@ -70,7 +69,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="description">توضیحات </label>
-                                    <textarea id="description" name="description" class="form-control">{{old('description')}}</textarea>
+                                    <textarea id="description" name="description"
+                                              class="form-control">{{old('description')}}</textarea>
                                 </div>
                             </div>
 

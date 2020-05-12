@@ -507,9 +507,16 @@
     margin-left: auto !important;
 }
 
+label.form-control {
+    overflow: hidden;
+}
 
 [hidden] {
     display: none !important;
+}
+
+.select2-container {
+    width: 100% !important;
 }
 
 .select2-container--default .select2-selection--single,

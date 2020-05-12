@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Rules\CheckCategoryParent;
 use App\Rules\UniqueCategory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Storage;
@@ -33,7 +34,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view('admin.category.create', [
-            'categories' => Category::whereParentId(0)->get(),
+            'mainCategories' => Category::whereParentId(0)->get(),
         ]);
     }
 
@@ -47,7 +48,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => ['required', new UniqueCategory($request->get('parent'))],
-            'parent' => ['nullable','exists:categories,id', new CheckCategoryParent()],
+            'parent' => ['nullable', 'exists:categories,id', new CheckCategoryParent()],
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'required|max:1024',
         ]);
@@ -83,7 +84,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.category.create', [
+            'mainCategories' => Category::whereParentId(0)->get(),
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -102,10 +107,13 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+
+        return new JsonResponse(['message' => trans('categories.deleted')]);
     }
 }
