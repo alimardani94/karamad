@@ -45,7 +45,18 @@
                                     <td>{{substr($instructor->about,0,200)}}</td>
                                     <td>{{$instructor->type()}}</td>
                                     <td>{{jDate($instructor->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
-                                    <td></td>
+                                    <td>
+                                        @if($instructor->type = \App\Enums\Instructor\InstructorType::NotUser)
+                                            <a href="{{ route('admin.instructors.edit', ['instructor' => $instructor->id])}}"
+                                               type="button" class="btn btn-block btn-primary btn-xs">
+                                                ویرایش مدرس
+                                            </a>
+                                            <a type="button" class="btn btn-block btn-danger btn-xs"
+                                               onclick="removeInstructor({{$instructor->id}})">
+                                                حذف مدرس
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -55,4 +66,40 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removeInstructor(id) {
+            let url = "{{route('admin.instructors.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا مدرس حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'مدرس با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            toastr.error();
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
 use App\Models\Instructor;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class InstructorController extends Controller
@@ -47,12 +48,12 @@ class InstructorController extends Controller
             'about' => 'required|max:1024',
         ]);
 
-        $category = new Instructor();
-        $category->type = InstructorType::NotUser;
-        $category->name = $request->get('name');
-        $category->title = $request->get('title');
-        $category->about = $request->get('about');
-        $category->save();
+        $instructor = new Instructor();
+        $instructor->type = InstructorType::NotUser;
+        $instructor->name = $request->get('name');
+        $instructor->title = $request->get('title');
+        $instructor->about = $request->get('about');
+        $instructor->save();
 
         return redirect()->route('admin.instructors.index')->with('success', trans('instructors.created'));
     }
@@ -72,11 +73,15 @@ class InstructorController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $instructor = Instructor::findOrFail($id);
+
+        return view('admin.instructor.edit', [
+            'instructor' => $instructor,
+        ]);
     }
 
     /**
@@ -84,21 +89,36 @@ class InstructorController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'about' => 'required|max:1024',
+        ]);
+
+        $instructor = Instructor::findOrFail($id);
+        $instructor->name = $request->get('name');
+        $instructor->title = $request->get('title');
+        $instructor->about = $request->get('about');
+        $instructor->save();
+
+        return redirect()->route('admin.instructors.index')->with('success', trans('instructors.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        Instructor::whereId($id)->where('type', InstructorType::NotUser)->delete();
+
+        return new JsonResponse(['message' => trans('categories.deleted')]);
     }
 }
