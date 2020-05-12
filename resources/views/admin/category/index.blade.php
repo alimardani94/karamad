@@ -44,7 +44,8 @@
                                     <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
                                     <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">
+                                        <a href="{{ route('admin.categories.edit', ['category' => $category->id])}}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">
                                             ویرایش دسته بندی
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"

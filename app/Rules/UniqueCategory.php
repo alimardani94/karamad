@@ -14,13 +14,20 @@ class UniqueCategory implements Rule
     private $parent;
 
     /**
+     * @var int
+     */
+    private $categoryId;
+
+    /**
      * Create a new rule instance.
      *
      * @param $parent
+     * @param int $categoryId
      */
-    public function __construct($parent)
+    public function __construct($parent, int $categoryId = null)
     {
         $this->parent = $parent ?? 0;
+        $this->categoryId = $categoryId;
     }
 
     /**
@@ -32,9 +39,7 @@ class UniqueCategory implements Rule
      */
     public function passes($attribute, $value)
     {
-        $duplicate = Category::whereName($value)->whereParentId($this->parent)->exists();
-
-        return !$duplicate;
+        return !Category::whereName($value)->whereParentId($this->parent)->where('id', '<>', $this->categoryId)->exists();
     }
 
     /**

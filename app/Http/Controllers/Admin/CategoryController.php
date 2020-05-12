@@ -80,13 +80,14 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('admin.category.create', [
-            'mainCategories' => Category::whereParentId(0)->get(),
+
+        return view('admin.category.edit', [
+            'mainCategories' => Category::whereParentId(0)->where('id', '<>', $id)->get(),
             'category' => $category,
         ]);
     }
@@ -96,11 +97,31 @@ class CategoryController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => ['required', new UniqueCategory($request->get('parent'), $id)],
+            'parent' => ['nullable', 'exists:categories,id', new CheckCategoryParent()],
+            'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
+            'description' => 'required|max:1024',
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        $path = $category->image;
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('categories');
+        }
+
+        $category->name = $request->get('name');
+        $category->parent_id = $request->get('parent') ?? 0;
+        $category->image = $path;
+        $category->description = $request->get('description');
+        $category->save();
+
+        return redirect()->route('admin.categories.index')->with('success', trans('categories.updated'));
     }
 
     /**
@@ -113,6 +134,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::findOrFail($id)->delete();
+
+        // update children of deleted category
+        Category::where('parent_id', $id)->update(['parent_id' => 0]);
 
         return new JsonResponse(['message' => trans('categories.deleted')]);
     }
