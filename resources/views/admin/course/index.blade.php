@@ -44,8 +44,8 @@
                             @foreach($courses as $course)
                                 <tr>
                                     <td>{{$course->title}}</td>
-                                    <td>{{$course->instructor->name}}</td>
-                                    <td>{{$course->category->name}}</td>
+                                    <td>{{$course->instructor->name ?? ''}}</td>
+                                    <td>{{$course->category->name ?? ''}}</td>
                                     <td>{{$course->syllabuses()->count()}}</td>
                                     <td>{{substr($course->summary,0,200)}}</td>
                                     <td>{{jDate($course->created_at, 'dd MMMM yyyy - HH:mm')}}</td>

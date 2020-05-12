@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Course;
 use App\Rules\CheckCategoryParent;
 use App\Rules\UniqueCategory;
 use Illuminate\Http\JsonResponse;
@@ -137,6 +138,7 @@ class CategoryController extends Controller
 
         // update children of deleted category
         Category::where('parent_id', $id)->update(['parent_id' => 0]);
+        Course::where('category_id', $id)->update(['category_id' => 0]);
 
         return new JsonResponse(['message' => trans('categories.deleted')]);
     }
