@@ -54,9 +54,11 @@
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
                                         <a href="{{route('admin.syllabuses.index', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-info btn-xs">لیست جلسات</a>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
+                                        <a href="{{ route('admin.courses.edit', ['course' => $course->id])}}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
                                         </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف دوره</a>
+                                        <a onclick="removeCourse({{$course->id}})" type="button"
+                                           class="btn btn-block btn-danger btn-xs">حذف دوره</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,4 +69,45 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removeCourse(id) {
+            let url = "{{route('admin.courses.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا دوره حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'دوره با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            console.log(e, e.responseJSON.message)
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection

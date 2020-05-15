@@ -91,7 +91,11 @@
                             window.location.reload();
                         },
                         error: function (e) {
-                            toastr.error();
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
                         }
                     });
                 }

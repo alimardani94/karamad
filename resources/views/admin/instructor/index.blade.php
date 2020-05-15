@@ -95,7 +95,12 @@
                             window.location.reload();
                         },
                         error: function (e) {
-                            toastr.error();
+                            console.log(e, e.responseJSON.message)
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
                         }
                     });
                 }

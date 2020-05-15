@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Instructor;
+use App\Models\Syllabus;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -117,10 +119,17 @@ class CourseController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        if(Syllabus::whereCourseId($id)->exists()) {
+            return new JsonResponse(['message' => 'این دوره دارای جلسه بوده و برای جذف ان ابتدا جلسات آن را حذف کنید'], 400);
+        }
+
+        Course::findOrFail($id)->delete();
+
+        return new JsonResponse(['message' => trans('categories.deleted')]);
     }
 }
