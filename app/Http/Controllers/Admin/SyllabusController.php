@@ -128,7 +128,7 @@ class SyllabusController extends Controller
         }
 
         $attachments = [];
-        foreach ($request->file('attachments_files') as $i => $attach) {
+        foreach ($request->file('attachments_files', []) as $i => $attach) {
             $attachments[$i]['path'] = $request->get('attachments_titles')[$i];
             $attachments[$i]['path'] = $attach->store('syllabuses/attachments');
         }

@@ -76,7 +76,10 @@
                             </div>
 
                             <hr>
-
+                            <h5>
+                                SEO
+                                <small>برای بهتر دیده شدن این بخش را کامل کنید</small>
+                            </h5>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">

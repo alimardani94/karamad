@@ -48,9 +48,9 @@ function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss', $fixNumbers = fal
     return $fixNumbers ? fixNumbers($result) : $result;
 }
 
-function parse_number(string $string): int
+function parse_number(string $string)
 {
-    return preg_replace('/[^0-9]/', '', $string);
+    return preg_replace('/[^0-9]/', '', fixNumbers($string));
 }
 
 function preventXSS($content)

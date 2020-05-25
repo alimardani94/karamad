@@ -152,7 +152,7 @@ return [
         'email' => 'ایمیل',
         'password' => 'گذرواژه',
         'url' => 'آدرس اینترنتی',
-        'thumbnail' => 'بندانگشتی',
+        'thumbnail' => 'تصویر بندانگشتی',
         'category' => 'دسته',
         'title' => 'عنوان',
         'content' => 'محتوا',

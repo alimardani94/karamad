@@ -50,6 +50,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'price' => parse_number($request->get('price') ?? '0'),
+            'discount' => parse_number($request->get('discount') ?? '0'),
+        ]);
+
         $request->validate([
             'title' => 'required',
             'category' => ['required','exists:categories,id'],
@@ -65,18 +70,20 @@ class CourseController extends Controller
         $imagePath = $request->file('image')->store('courses/images');
         $thumbnailPath = $request->file('thumbnail')->store('courses/thumbnails');
 
-        $category = new Course();
-        $category->title = $request->get('title');
-        $category->category_id = $request->get('category');
-        $category->instructor_id = $request->get('instructor');
-        $category->summary = $request->get('summary');
-        $category->description = preventXSS($request->get('description'));
-        $category->thumbnail = $thumbnailPath;
-        $category->image = $imagePath;
-        $category->price = $request->get('price') ?? 0;
-        $category->discount = $request->get('discount') ?? 0;
+        $course = new Course();
+        $course->title = $request->get('title');
+        $course->category_id = $request->get('category');
+        $course->instructor_id = $request->get('instructor');
+        $course->summary = $request->get('summary');
+        $course->description = preventXSS($request->get('description'));
+        $course->thumbnail = $thumbnailPath;
+        $course->image = $imagePath;
+        $course->price = $request->get('price');
+        $course->discount = $request->get('discount');
+        $course->meta_keywords = $request->get('meta_keywords');
+        $course->meta_description = $request->get('meta_description');
 
-        $category->save();
+        $course->save();
 
         return redirect()->route('admin.courses.index')->with('success', trans('courses.created'));
     }
@@ -100,7 +107,15 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $instructors = Instructor::all();
+        $categories = Category::where('parent_id', '<>', 0)->get();
+
+        return view('admin.course.edit', [
+            'course' => $course,
+            'instructors' => $instructors,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -112,7 +127,51 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::findOrFail($id);
+
+        $request->merge([
+            'price' => parse_number($request->get('price') ?? '0'),
+            'discount' => parse_number($request->get('discount') ?? '0'),
+        ]);
+
+        $request->validate([
+            'title' => 'required',
+            'category' => ['required','exists:categories,id'],
+            'instructor' => ['required','exists:instructors,id'],
+            'summary' => 'required',
+            'description' => 'required',
+            'thumbnail' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
+            'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
+            'price' => 'nullable|numeric',
+            'discount' => 'nullable|numeric',
+        ]);
+
+        $imagePath = $course->image;
+        $thumbnailPath = $course->thumbnail;
+
+        if ($request->file('image')) {
+            $imagePath = $request->file('image')->store('courses/images');
+        }
+
+        if ($request->file('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('courses/thumbnails');
+        }
+
+        $course->title = $request->get('title');
+        $course->category_id = $request->get('category');
+        $course->instructor_id = $request->get('instructor');
+        $course->summary = $request->get('summary');
+        $course->description = preventXSS($request->get('description'));
+        $course->thumbnail = $thumbnailPath;
+        $course->image = $imagePath;
+        $course->price = $request->get('price');
+        $course->discount = $request->get('discount');
+        $course->meta_keywords = $request->get('meta_keywords');
+        $course->meta_description = $request->get('meta_description');
+
+        $course->save();
+
+        return redirect()->route('admin.courses.index')->with('success', trans('courses.created'));
     }
 
     /**
