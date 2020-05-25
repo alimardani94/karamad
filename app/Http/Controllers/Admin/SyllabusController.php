@@ -74,7 +74,7 @@ class SyllabusController extends Controller
             'type' => 'required',
             'video_file_disk' => 'required_if:type,' . SyllabusType::Video,
             'video_file' => [
-                'nullable', 'mimes:mp4,mov,ogg,qt', 'max:20000',
+                'nullable', 'mimes:mp4,mov,ogg,qt', 'max:200000',
                 Rule::requiredIf((int)$request->get('type') == SyllabusType::Video and
                     (int)$request->get('video_file_disk') == FileDisk::Local),
             ],
@@ -85,7 +85,7 @@ class SyllabusController extends Controller
             ],
             'audio_file_disk' => 'required_if:type,' . SyllabusType::Audio,
             'audio_file' => [
-                'nullable', 'mimes:mp3,mpga,wav', 'max:10000',
+                'nullable', 'mimes:mp3,mpga,wav', 'max:50000',
                 Rule::requiredIf((int)$request->get('type') == SyllabusType::Audio and
                     (int)$request->get('audio_file_disk') == FileDisk::Local),
             ],
@@ -98,7 +98,7 @@ class SyllabusController extends Controller
             'attachments_titles.*' => ['nullable', 'string'],
             'attachments_files.*' => [
                 'nullable', 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar', 'max:100000',
-                new SyllabusAttachment($request->get('attachments_titles')),
+                new SyllabusAttachment($request->get('attachments_titles', [])),
             ],
         ]);
 
@@ -142,6 +142,7 @@ class SyllabusController extends Controller
         $syllabus->audio = $audio;
         $syllabus->video = $video;
         $syllabus->attachments = json_encode($attachments);
+        $syllabus->meta_description = $request->get('title');
         $syllabus->save();
 
         return redirect()->route('admin.courses.index')->with('success', trans('syllabuses.created'));

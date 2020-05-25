@@ -80,10 +80,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="description">توضیحات </label>
+                                    <label for="summery">خلاصه </label>
                                     <div class="form-group">
-                                    <textarea id="description" name="description"
-                                              class="form-control">{{old('description')}}</textarea>
+                                    <textarea id="summery" name="summery"
+                                              class="form-control">{{old('summery')}}</textarea>
                                     </div>
                                 </div>
                             </div>
