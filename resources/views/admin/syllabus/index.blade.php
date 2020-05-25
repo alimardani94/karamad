@@ -46,9 +46,11 @@
                                     <td>{{$syllabus->type()}}</td>
                                     <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
+                                        <a href="{{ route('admin.syllabuses.edit', ['syllabus' => $syllabus->id])}}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
                                         </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف جلسه</a>
+                                        <a onclick="removeSyllabus({{$syllabus->id}})" type="button"
+                                           class="btn btn-block btn-danger btn-xs">حذف دوره</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -59,4 +61,45 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removeSyllabus(id) {
+            let url = "{{route('admin.syllabuses.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا جلسه حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'جلسه با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            console.log(e, e.responseJSON.message)
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection

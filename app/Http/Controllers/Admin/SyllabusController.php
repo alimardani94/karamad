@@ -10,6 +10,7 @@ use App\Models\Syllabus;
 use App\Rules\CheckCategoryParent;
 use App\Rules\SyllabusAttachment;
 use App\Rules\UniqueCategory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
@@ -156,7 +157,19 @@ class SyllabusController extends Controller
      */
     public function show($id)
     {
-        //
+        $syllabus = Syllabus::findOrFail($id);
+
+        $courses = Course::all();
+
+
+        $types = SyllabusType::translatedAll();
+
+        return view('admin.syllabus.create', [
+            'syllabus' => $syllabus,
+            'courses' => $courses,
+            'types' => $types,
+            'fileDisks' => FileDisk::translatedAll(),
+        ]);
     }
 
     /**
@@ -186,10 +199,13 @@ class SyllabusController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        //
+        Syllabus::findOrFail($id)->delete();
+
+        return new JsonResponse(['message' => trans('syllabuses.deleted')]);
     }
 }
