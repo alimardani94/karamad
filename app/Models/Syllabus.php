@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $meta_description
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereMetaDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereMetaKeywords($value)
+ * @property string|null $attachments
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereAttachments($value)
  */
 class Syllabus extends Model
 {

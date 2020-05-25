@@ -172,15 +172,44 @@
                                     <textarea name="text" id="text"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">افزودن جلسه</button>
+
+                            <hr>
+
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-1" id="add_attachment_btn">افزودن
+                                ضمیمه</a>
+                            <div id="attachments_box" class="mb-4"></div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">افزودن جلسه</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="attachment_sample" class="d-none">
+        <div class="row attachments_row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="attachments_titles">عنوان</label>
+                    <input type="text" class="form-control" id="attachments_titles"
+                           placeholder="عنوان">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="attachments_files">انتخاب فایل</label>
+                    <label class="form-control">
+                        <span> انتخاب کنید ... </span>
+                        <input type="file" class="custom-file-input"
+                               id="attachments_files" hidden>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
@@ -313,6 +342,15 @@
                     return false;
                 }
                 return true;
+            })
+
+            $('#add_attachment_btn').on('click', function () {
+                let number = $('#attachments_box .attachments_row').length;
+                console.log(number, 'attachments_34r');
+                let html = $('#attachment_sample .attachments_row').clone().removeClass('d-none');
+                html.find('#attachments_titles').attr('name', 'attachments_titles[' + number + ']')
+                html.find('#attachments_files').attr('name', 'attachments_files[' + number + ']')
+                html.appendTo('#attachments_box');
             })
 
         });

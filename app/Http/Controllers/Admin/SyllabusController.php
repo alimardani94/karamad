@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Syllabus;
 use App\Rules\CheckCategoryParent;
+use App\Rules\SyllabusAttachment;
 use App\Rules\UniqueCategory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -94,6 +95,11 @@ class SyllabusController extends Controller
                     (int)$request->get('audio_file_disk') == FileDisk::URL),
             ],
             'text' => ['required_if:type,3', 'nullable', 'string'],
+            'attachments_titles.*' => ['nullable', 'string'],
+            'attachments_files.*' => [
+                'nullable', 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar', 'max:100000',
+                new SyllabusAttachment($request->get('attachments_titles')),
+            ],
         ]);
 
         $video = null;
@@ -121,6 +127,12 @@ class SyllabusController extends Controller
                 $file_disk = null;
         }
 
+        $attachments = [];
+        foreach ($request->file('attachments_files') as $i => $attach) {
+            $attachments[$i]['path'] = $request->get('attachments_titles')[$i];
+            $attachments[$i]['path'] = $attach->store('syllabuses/attachments');
+        }
+
         $syllabus = new Syllabus();
         $syllabus->course_id = $request->get('course');
         $syllabus->type = $request->get('type');
@@ -129,6 +141,7 @@ class SyllabusController extends Controller
         $syllabus->text = $request->get('text');
         $syllabus->audio = $audio;
         $syllabus->video = $video;
+        $syllabus->attachments = json_encode($attachments);
         $syllabus->save();
 
         return redirect()->route('admin.courses.index')->with('success', trans('syllabuses.created'));
