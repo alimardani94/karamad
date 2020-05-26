@@ -41,40 +41,36 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form id="create_syllabus" method="post" action="{{route('admin.syllabuses.store')}}"
+                    <form id="create_syllabus" method="post"
+                          action="{{route('admin.syllabuses.update', [ 'syllabus' => $syllabus->id ])}}"
                           enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
-                            @if(!$course)
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="course">انتخاب دوره</label>
-                                            <select type="text" class="form-control select2" id="course"
-                                                    name="course">
-                                                @foreach($courses as $course)
-                                                    <option value="{{ $course->id }}"
-                                                        {{old('course') == $course->id ? 'selected':''}}>
-                                                        {{ $course->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="course">انتخاب دوره</label>
+                                        <select type="text" class="form-control select2" id="course"
+                                                name="course">
+                                            @foreach($courses as $course)
+                                                <option value="{{ $course->id }}"
+                                                    {{ old('course', $syllabus->course_id) == $course->id ? 'selected':''}}>
+                                                    {{ $course->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <hr>
-                            @else
-                                <label>
-                                    <input name="course" value="{{$course->id}}" hidden>
-                                </label>
-                            @endif
+                            </div>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title"
-                                               placeholder="عنوان" value="{{old('title')}}"
+                                               placeholder="عنوان" value="{{old('title', $syllabus->title)}}"
                                                name="title">
                                     </div>
                                 </div>
@@ -85,7 +81,7 @@
                                                 name="type">
                                             @foreach($types as $value=>$key)
                                                 <option value="{{ $key }}"
-                                                    {{old('type') == $key ? 'selected':''}}>
+                                                    {{old('type', $syllabus->type) == $key ? 'selected':''}}>
                                                     {{ $value }}
                                                 </option>
                                             @endforeach
@@ -103,7 +99,7 @@
                                                     name="video_file_disk">
                                                 @foreach($fileDisks as $value=>$key)
                                                     <option value="{{ $key }}"
-                                                        {{old('video_file_disk') == $key ? 'selected':''}}>
+                                                        {{old('video_file_disk', $syllabus->file_disk) == $key ? 'selected':''}}>
                                                         {{ $value }}
                                                     </option>
                                                 @endforeach
@@ -115,18 +111,18 @@
                                             <label for="video_url">آدرس ویدیو</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="video_url" name="video_url" value="{{old('video_url')}}">
+                                                   id="video_url" name="video_url"
+                                                   value="{{old('video_url', $syllabus->video)}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
                                         <div class="form-group">
                                             <label for="video_file">انتخاب ویدیو</label>
                                             <label class="form-control">
-                                                <span> انتخاب کنید ... </span>
+                                                <span>{{ $syllabus->video ?? 'انتخاب کنید ...' }}</span>
                                                 <input type="file" class="custom-file-input" accept="video/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       id="video_file" name="video_file" value="{{old('video_file')}}"
-                                                       hidden>
+                                                       id="video_file" name="video_file" hidden>
                                             </label>
                                         </div>
                                     </div>
@@ -141,7 +137,7 @@
                                                     name="audio_file_disk">
                                                 @foreach($fileDisks as $value=>$key)
                                                     <option value="{{ $key }}"
-                                                        {{old('audio_file_disk') == $key ? 'selected':''}}>
+                                                        {{old('audio_file_disk', $syllabus->file_disk) == $key ? 'selected':''}}>
                                                         {{ $value }}
                                                     </option>
                                                 @endforeach
@@ -153,14 +149,14 @@
                                             <label for="audio_url">آدرس فایل صوتی</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="audio_url" name="audio_url" value="{{old('audio_url')}}">
+                                                   id="audio_url" name="audio_url" value="{{old('audio_url', $syllabus->audio)}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
                                         <div class="form-group">
                                             <label for="audio_file">انتخاب فایل صوتی</label>
                                             <label class="form-control">
-                                                <span> انتخاب کنید ... </span>
+                                                <span>{{ $syllabus->audio ?? 'انتخاب کنید ...' }}</span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
                                                        name="audio_file" id="audio_file" value="{{old('audio_file')}}"
@@ -173,7 +169,7 @@
                             <div id="typeBox3">
                                 <label for="text">متن</label>
                                 <div class="form-group">
-                                    <textarea name="text" id="text"></textarea>
+                                    <textarea name="text" id="text">{{old('text', $syllabus->text)}}</textarea>
                                 </div>
                             </div>
 
@@ -181,7 +177,35 @@
 
                             <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-3" id="add_attachment_btn">افزودن
                                 ضمیمه</a>
-                            <div id="attachments_box"></div>
+                            <div id="attachments_box">
+                                @foreach( $syllabus->attachments() as $index=>$attachment)
+                                    @dd($attachment)
+                                    <div class="row attachments_row" data-id="{{$index}}">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label for="attachments_titles">عنوان</label>
+                                                <input type="text" class="form-control" id="attachments_titles"
+                                                       name="attachments_titles[{{$index}}]" value="{{ $attachment->title}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="attachments_files">انتخاب فایل</label>
+                                                <label class="form-control">
+                                                    <span>{{ $attachment->path}}</span>
+                                                    <input type="file" class="custom-file-input"
+                                                           id="attachments_files" hidden name="attachments_files[{{$index}}]">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="remove_attachment_container">
+                                                <a href="javascript:void(0);" class="btn btn-danger remove_attachment_btn">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
 
                             <hr>
                             <h5>
@@ -380,7 +404,6 @@
 
             $('#add_attachment_btn').on('click', function () {
                 let number = parseInt($('#attachments_box .attachments_row:last').attr('data-id') ?? 0) + 1;
-                console.log(number, 'attachments_34r');
                 let html = $('#attachment_sample .attachments_row').clone().removeClass('d-none').attr('data-id', number);
                 html.find('#attachments_titles').attr('name', 'attachments_titles[' + number + ']')
                 html.find('#attachments_files').attr('name', 'attachments_files[' + number + ']')

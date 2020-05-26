@@ -143,7 +143,8 @@ class SyllabusController extends Controller
         $syllabus->audio = $audio;
         $syllabus->video = $video;
         $syllabus->attachments = json_encode($attachments);
-        $syllabus->meta_description = $request->get('title');
+        $syllabus->meta_keywords = $request->get('meta_keywords');
+        $syllabus->meta_description = $request->get('meta_description');
         $syllabus->save();
 
         return redirect()->route('admin.courses.index')->with('success', trans('syllabuses.created'));
@@ -157,19 +158,7 @@ class SyllabusController extends Controller
      */
     public function show($id)
     {
-        $syllabus = Syllabus::findOrFail($id);
-
-        $courses = Course::all();
-
-
-        $types = SyllabusType::translatedAll();
-
-        return view('admin.syllabus.create', [
-            'syllabus' => $syllabus,
-            'courses' => $courses,
-            'types' => $types,
-            'fileDisks' => FileDisk::translatedAll(),
-        ]);
+        //
     }
 
     /**
@@ -180,7 +169,16 @@ class SyllabusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $syllabus = Syllabus::findOrFail($id);
+        $courses = Course::all();
+        $types = SyllabusType::translatedAll();
+
+        return view('admin.syllabus.edit', [
+            'syllabus' => $syllabus,
+            'courses' => $courses,
+            'types' => $types,
+            'fileDisks' => FileDisk::translatedAll(),
+        ]);
     }
 
     /**

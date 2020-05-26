@@ -85,4 +85,9 @@ class Syllabus extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function attachments()
+    {
+        return json_decode($this->attachments);
+    }
 }
