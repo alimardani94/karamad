@@ -112,14 +112,14 @@
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
                                                    id="video_url" name="video_url"
-                                                   value="{{old('video_url', $syllabus->video)}}">
+                                                   value="{{old('video_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->video : '')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
                                         <div class="form-group">
                                             <label for="video_file">انتخاب ویدیو</label>
                                             <label class="form-control">
-                                                <span>{{ $syllabus->video ?? 'انتخاب کنید ...' }}</span>
+                                                <span>{{ ($syllabus->video and $syllabus->file_disk == \App\Enums\FileDisk::Local) ? $syllabus->video : 'انتخاب کنید ...' }}</span>
                                                 <input type="file" class="custom-file-input" accept="video/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
                                                        id="video_file" name="video_file" hidden>
@@ -149,14 +149,15 @@
                                             <label for="audio_url">آدرس فایل صوتی</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="audio_url" name="audio_url" value="{{old('audio_url', $syllabus->audio)}}">
+                                                   id="audio_url" name="audio_url"
+                                                   value="{{old('audio_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->audio : '')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
                                         <div class="form-group">
                                             <label for="audio_file">انتخاب فایل صوتی</label>
                                             <label class="form-control">
-                                                <span>{{ $syllabus->audio ?? 'انتخاب کنید ...' }}</span>
+                                                <span>{{ ($syllabus->audio and $syllabus->file_disk == \App\Enums\FileDisk::Local) ? $syllabus->audio :'انتخاب کنید ...' }}</span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
                                                        name="audio_file" id="audio_file" value="{{old('audio_file')}}"
@@ -179,13 +180,13 @@
                                 ضمیمه</a>
                             <div id="attachments_box">
                                 @foreach( $syllabus->attachments() as $index=>$attachment)
-                                    @dd($attachment)
                                     <div class="row attachments_row" data-id="{{$index}}">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label for="attachments_titles">عنوان</label>
-                                                <input type="text" class="form-control" id="attachments_titles"
-                                                       name="attachments_titles[{{$index}}]" value="{{ $attachment->title}}">
+                                                <input type="text" class="form-control"
+                                                       name="attachments_titles[{{$index}}]"
+                                                       value="{{ $attachment->title}}" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -193,14 +194,15 @@
                                                 <label for="attachments_files">انتخاب فایل</label>
                                                 <label class="form-control">
                                                     <span>{{ $attachment->path}}</span>
-                                                    <input type="file" class="custom-file-input"
-                                                           id="attachments_files" hidden name="attachments_files[{{$index}}]">
+                                                    <input type="file" class="custom-file-input" hidden
+                                                           name="attachments_files[{{$index}}]">
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
                                             <div class="remove_attachment_container">
-                                                <a href="javascript:void(0);" class="btn btn-danger remove_attachment_btn">x</a>
+                                                <a href="javascript:void(0);"
+                                                   class="btn btn-danger remove_attachment_btn">x</a>
                                             </div>
                                         </div>
                                     </div>
@@ -234,7 +236,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">افزودن جلسه</button>
+                            <button type="submit" class="btn btn-primary">ویرایش جلسه</button>
                         </div>
                     </form>
                 </div>
@@ -307,10 +309,6 @@
         let customRules = {
             title: "required",
             type: "required",
-            video_url: "syllabusType",
-            video_file: "syllabusType",
-            audio_url: "syllabusType",
-            audio_file: "syllabusType",
             text: "required"
         };
         let customMessages = {
@@ -322,18 +320,6 @@
             audio_file: "فایل صوتی الزامی است",
             text: "متن الزامی است",
         };
-
-        $.validator.addMethod("syllabusType", function (value, element) {
-            let elemFileDisk = $(element).attr('data-fileDisk') ?? '';
-
-            switch ($('#type').val()) {
-                case '1':
-                    return !($('#video_file_disk').val() === elemFileDisk && value === '');
-                case '2':
-                    return !($('#audio_file_disk').val() === elemFileDisk && value === '');
-            }
-            return true;
-        });
 
         let validator = form.validate({
             ignore: '',
@@ -380,7 +366,7 @@
                     $('#video_url').closest('.file_disk_type').hide();
                     $('#video_file').closest('.file_disk_type').show();
                 }
-            });
+            }).trigger('change');
 
             $('#audio_file_disk').on('change', function () {
                 if (this.value === '1') {
@@ -390,11 +376,12 @@
                     $('#audio_url').closest('.file_disk_type').hide();
                     $('#audio_file').closest('.file_disk_type').show();
                 }
-            });
+            }).trigger('change');
 
             form.on('submit', function (e) {
                 tinyMCE.triggerSave();
                 let valid = form.valid();
+
                 if (!valid) {
                     validator.focusInvalid();
                     return false;
@@ -406,7 +393,9 @@
                 let number = parseInt($('#attachments_box .attachments_row:last').attr('data-id') ?? 0) + 1;
                 let html = $('#attachment_sample .attachments_row').clone().removeClass('d-none').attr('data-id', number);
                 html.find('#attachments_titles').attr('name', 'attachments_titles[' + number + ']')
+                    .attr('id', 'attachments_titles' + number)
                 html.find('#attachments_files').attr('name', 'attachments_files[' + number + ']')
+                    .attr('id', 'attachments_files' + number)
                 html.appendTo('#attachments_box');
             })
 

@@ -47,10 +47,10 @@
                                     <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
                                         <a href="{{ route('admin.syllabuses.edit', ['syllabus' => $syllabus->id])}}"
-                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
+                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
                                         </a>
                                         <a onclick="removeSyllabus({{$syllabus->id}})" type="button"
-                                           class="btn btn-block btn-danger btn-xs">حذف دوره</a>
+                                           class="btn btn-block btn-danger btn-xs">حذف جلسه</a>
                                     </td>
                                 </tr>
                             @endforeach

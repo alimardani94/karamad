@@ -70,12 +70,12 @@ class Syllabus extends Model
 
     public function getVideoAttribute($value)
     {
-        return ($this->file_disk == FileDisk::URL) ? $value : asset('media/' . $value);
+        return ($this->file_disk == FileDisk::URL or !$value) ? $value : asset('media/' . $value);
     }
 
     public function getAudioAttribute($value)
     {
-        return ($this->file_disk == FileDisk::URL) ? $value : asset('media/' . $value);
+        return ($this->file_disk == FileDisk::URL or !$value) ? $value : asset('media/' . $value);
     }
 
     /**
@@ -86,8 +86,8 @@ class Syllabus extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function attachments()
+    public function attachments($assoc = false)
     {
-        return json_decode($this->attachments);
+        return json_decode($this->attachments, $assoc) ?? [];
     }
 }
