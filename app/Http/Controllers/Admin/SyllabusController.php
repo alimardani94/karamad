@@ -10,10 +10,13 @@ use App\Models\Syllabus;
 use App\Rules\CheckCategoryParent;
 use App\Rules\SyllabusAttachment;
 use App\Rules\UniqueCategory;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Storage;
 
 class SyllabusController extends Controller
@@ -22,7 +25,7 @@ class SyllabusController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index(Request $request)
     {
@@ -41,7 +44,7 @@ class SyllabusController extends Controller
      * Show the form for creating a new resource.
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function create(Request $request)
     {
@@ -64,8 +67,8 @@ class SyllabusController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -166,7 +169,7 @@ class SyllabusController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function edit($id)
     {

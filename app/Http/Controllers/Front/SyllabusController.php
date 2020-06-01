@@ -14,7 +14,7 @@ class SyllabusController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function show($id)
     {
