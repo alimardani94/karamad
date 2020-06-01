@@ -43,9 +43,10 @@
                                     <td>{{$admin->user->full_name}}</td>
                                     <td>{{jDate($admin->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش مدیر
+                                        <a href="{{ route('admin.admins.edit', ['admin' => $admin->id])}}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مدیر
                                         </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف مدیر</a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs"
+                                           onclick="removeAdmin({{$admin->id}})">حذف مدیر</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -56,4 +57,44 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removeAdmin(id) {
+            let url = "{{route('admin.admins.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا مدیر حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'مدیر با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection

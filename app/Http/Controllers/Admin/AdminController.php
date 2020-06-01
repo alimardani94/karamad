@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
 use App\Rules\Mobile;
+use Exception;
 use Hash;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
@@ -38,8 +43,8 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -69,7 +74,6 @@ class AdminController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -80,34 +84,68 @@ class AdminController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function edit($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+
+        return view('admin.admin.edit', [
+            'admin' => $admin,
+            'user' => $admin->user,
+        ]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        /**
+         * @var User $user
+         */
+        $user = $admin->user;
+
+        $request->validate([
+            'name' => ['required', 'string'],
+            'surname' => ['required', 'string'],
+            'cell' => ['required', 'string', new Mobile(), 'unique:users,cell,' . $user->id],
+            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+        ]);
+
+        $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
+        $user->cell = fixNumbers($request->get('cell'));
+        $user->email = $request->get('email');
+        $user->password = Hash::make($user->cell);
+        $user->save();
+
+
+        return redirect()->route('admin.admins.index')->with('success', trans('admins.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
+     * @throws Exception
      */
     public function destroy($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        $user = $admin->user;
+
+        $user->delete();
+        $admin->delete();
+
+        return new JsonResponse(['message' => trans('admins.deleted')]);
     }
 
 }

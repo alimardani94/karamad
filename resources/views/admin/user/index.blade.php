@@ -30,22 +30,18 @@
                             <thead>
                             <tr>
                                 <th>نام</th>
-                                <th></th>
+                                <th>تلفن</th>
+                                <th>ایمیل</th>
                                 <th>تاریخ ایجاد</th>
-                                <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->full_name}}</td>
-                                    <td></td>
+                                    <td>{{$user->cell}}</td>
+                                    <td>{{$user->email}}</td>
                                     <td>{{jDate($user->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
-                                    <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش کاربر
-                                        </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف کاربر</a>
-                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
