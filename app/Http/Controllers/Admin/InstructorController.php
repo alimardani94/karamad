@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
 use App\Models\Instructor;
+use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class InstructorController extends Controller
 {
@@ -37,8 +41,8 @@ class InstructorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -62,7 +66,6 @@ class InstructorController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -87,9 +90,9 @@ class InstructorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -113,7 +116,7 @@ class InstructorController extends Controller
      *
      * @param int $id
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy($id)
     {

@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Rules\Mobile;
 use Auth;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /**
+     * @return Factory|View
+     */
     public function profile()
     {
         $user = Auth::user();
@@ -18,6 +23,10 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function update(Request $request)
     {
         $user = Auth::user();

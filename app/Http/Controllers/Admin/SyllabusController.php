@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
-use App\Models\Category;
 use App\Models\Course;
 use App\Models\Syllabus;
-use App\Rules\CheckCategoryParent;
 use App\Rules\SyllabusAttachment;
-use App\Rules\UniqueCategory;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
-use Storage;
 
 class SyllabusController extends Controller
 {
@@ -158,7 +155,6 @@ class SyllabusController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -188,9 +184,9 @@ class SyllabusController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -293,7 +289,7 @@ class SyllabusController extends Controller
      *
      * @param int $id
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy($id)
     {

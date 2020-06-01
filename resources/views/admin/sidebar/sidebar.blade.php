@@ -96,7 +96,7 @@
 <li class="treeview @yield('post')">
     <a href="#">
         <i class="fa fa-bold"></i>
-        <span>مجله</span>
+        <span>مقاله</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
     <ul class="treeview-menu">
@@ -109,7 +109,7 @@
         <li class="@yield('post2')">
             <a href="{{route('admin.posts.create')}}">
                 <i class="fa fa-circle-o"></i>
-                افزودن مجله
+                افزودن مقاله
             </a>
         </li>
         <li class="@yield('post3')">

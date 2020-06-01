@@ -6,10 +6,13 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Rules\CheckCategoryParent;
 use App\Rules\UniqueCategory;
+use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Storage;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -42,8 +45,8 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -70,7 +73,6 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -81,7 +83,7 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     *  @return Factory|View
+     * @return Factory|View
      */
     public function edit($id)
     {
@@ -96,9 +98,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -130,7 +132,7 @@ class CategoryController extends Controller
      *
      * @param int $id
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy($id)
     {

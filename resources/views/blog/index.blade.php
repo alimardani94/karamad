@@ -1,6 +1,6 @@
 @extends('front/layout/base')
 
-@section('title', 'مجله')
+@section('title', 'مقاله')
 
 @section('header')
     @include('header.header1', ['headerBG' => asset('assets/img/slider/3.jpg')])

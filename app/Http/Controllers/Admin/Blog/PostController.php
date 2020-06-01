@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog\Post;
 use App\Models\Blog\Tag;
 use Auth;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
@@ -39,8 +45,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -73,8 +79,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blog\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
      */
     public function show(Post $post)
     {
@@ -84,34 +89,66 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blog\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return Application|Factory|View
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.post.edit', [
+            'post' => $post,
+            'tags' => Tag::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Post $post
+     * @return RedirectResponse
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'unique:posts,title,' . $post->id],
+            'tags' => 'required|array',
+            'tags.*' => 'exists:tags,id',
+            'content' => 'required',
+            'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg|max:4096',
+            'meta_keywords' => 'nullable|string',
+            'meta_description' => 'nullable|string|min:135|max:160',
+        ]);
+
+        $path = $post->image;
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('posts');
+        }
+
+        $post->title = $request->get('title');
+        $post->content = preventXSS($request->get('content'));
+        $post->image = $path;
+        $post->author_id = Auth::id();
+        $post->meta_keywords = $request->get('meta_keywords');
+        $post->meta_description = $request->get('meta_description');
+        $post->save();
+
+        $post->tags()->sync($request->get('tags'));
+
+        return redirect()->route('admin.posts.index')->with('success', trans('posts.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blog\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return JsonResponse
+     * @throws Exception
      */
     public function destroy(Post $post)
     {
-        //
+        $post->tags()->detach();
+        $post->delete();
+
+        return new JsonResponse(['message' => trans('categories.deleted')]);
     }
 }

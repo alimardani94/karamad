@@ -7,12 +7,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            مجله ها <small>لیست</small>
+            مقاله ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
-            <li><a href="#">مجله ها</a></li>
-            <li class="active">لیست مجله ها</li>
+            <li><a href="#">مقاله ها</a></li>
+            <li class="active">لیست مقاله ها</li>
         </ol>
     </section>
 @endsection
@@ -23,9 +23,9 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">لیست مجله ها</h3>
+                        <h3 class="box-title">لیست مقاله ها</h3>
                         <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
-                            مجله جدید</a>
+                            مقاله جدید</a>
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
@@ -50,9 +50,10 @@
                                     <td>{{ $post->author->full_name }}</td>
                                     <td>{{jDate($post->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a type="button" class="btn btn-block btn-primary btn-xs">ویرایش مجله
+                                        <a href="{{ route('admin.posts.edit', ['post' => $post->id])}}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مقاله
                                         </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs">حذف مجله</a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs"
+                                           onclick="removePost({{$post->id}})">حذف مقاله</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -63,4 +64,44 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script>
+        function removePost(id) {
+            let url = "{{route('admin.posts.destroy', '')}}/" + id
+            Swal.fire({
+                title: 'آیا مقاله حذف شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        success: function (response) {
+                            Swal.fire(
+                                'مقاله با موفقیت حذف شد',
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection
