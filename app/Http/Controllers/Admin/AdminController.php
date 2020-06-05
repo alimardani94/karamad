@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
 use App\Rules\Mobile;
+use Auth;
 use Exception;
 use Hash;
 use Illuminate\Contracts\View\Factory;
@@ -141,6 +142,10 @@ class AdminController extends Controller
     {
         $admin = Admin::findOrFail($id);
         $user = $admin->user;
+
+        if($user->id == Auth::id()) {
+            return new JsonResponse(['message' => trans('admins.you_cant_delete_yourself')], 403);
+        }
 
         $user->delete();
         $admin->delete();
