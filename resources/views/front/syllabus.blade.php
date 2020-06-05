@@ -116,6 +116,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card mt-5">
+                            <div class="card-body">
+                                <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
+                                    <strong>مدرس </strong>
+                                </h6>
+                                <h6 class="card-title text-center ">
+                                    {{$syllabus->course->instructor->name}}
+                                </h6>
+                                <p class="mt-3 dark-grey-text font-small text-center">
+                                    {{$syllabus->course->instructor->about}}
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
