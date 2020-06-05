@@ -101,6 +101,9 @@ class SyllabusController extends Controller
                 'nullable', 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar', 'max:100000',
                 new SyllabusAttachment($request->get('attachments_titles', [])),
             ],
+            'questions_titles.*' => [
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Test)
+            ]
         ]);
 
         $video = null;

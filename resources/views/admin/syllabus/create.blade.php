@@ -20,6 +20,20 @@
             width: 100%;
         }
 
+        .questions_row {
+            border: solid 1px lightgrey;
+            margin: 2px 10px;
+            padding: 5px;
+        }
+
+        .remove_question_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 100%;
+        }
+
     </style>
 @endsection
 
@@ -176,6 +190,13 @@
                                     <textarea name="text" id="text"></textarea>
                                 </div>
                             </div>
+                            <div id="typeBox4">
+                                <a href="javascript:void(0);" class="btn btn-primary btn-block btn-sm mb-3"
+                                   id="add_question_btn">
+                                    افزودن سوال
+                                </a>
+                                <div id="questions_box"></div>
+                            </div>
 
                             <hr>
 
@@ -244,6 +265,52 @@
             </div>
         </div>
     </div>
+
+    <div id="question_sample" class="d-none">
+        <div class="questions_row">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="questions_titles">عنوان</label>
+                        <input type="text" class="form-control" id="questions_titles"
+                               placeholder="عنوان">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="remove_question_container">
+                        <a href="javascript:void(0);" class="btn btn-danger remove_question_btn">x</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="questions_choice_1">گزینه 1</label>
+                        <input type="text" class="form-control" id="questions_choice_1" placeholder="گزینه 1" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="questions_choice_2">گزینه 2</label>
+                        <input type="text" class="form-control" id="questions_choice_2" placeholder="گزینه 2" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="questions_choice_3">گزینه 3</label>
+                        <input type="text" class="form-control" id="questions_choice_3" placeholder="گزینه 3" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="questions_choice_4">گزینه 4</label>
+                        <input type="text" class="form-control" id="questions_choice_4" placeholder="گزینه 4" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
@@ -256,27 +323,44 @@
             $('#typeBox1').show();
             $('#typeBox2').hide();
             $('#typeBox3').hide();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', false);
             $('#typeBox2 input').prop('disabled', true);
             $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', true);
         }
 
         function activeAudio() {
             $('#typeBox1').hide();
             $('#typeBox2').show();
             $('#typeBox3').hide();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', true);
             $('#typeBox2 input').prop('disabled', false);
             $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', true);
         }
 
         function activeText() {
             $('#typeBox1').hide();
             $('#typeBox2').hide();
             $('#typeBox3').show();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', true);
             $('#typeBox2 input').prop('disabled', true);
             $('#typeBox3 textarea').prop('disabled', false);
+            $('#typeBox4 input').prop('disabled', true);
+        }
+
+        function activeExam() {
+            $('#typeBox1').hide();
+            $('#typeBox2').hide();
+            $('#typeBox3').hide();
+            $('#typeBox4').show();
+            $('#typeBox1 input').prop('disabled', true);
+            $('#typeBox2 input').prop('disabled', true);
+            $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', false);
         }
 
         let form = $('#create_syllabus');
@@ -345,6 +429,8 @@
                     activeAudio();
                 } else if (this.value === '3') {
                     activeText();
+                } else if (this.value === '4') {
+                    activeExam();
                 }
             }).trigger('change');
 
@@ -380,7 +466,6 @@
 
             $('#add_attachment_btn').on('click', function () {
                 let number = parseInt($('#attachments_box .attachments_row:last').attr('data-id') ?? 0) + 1;
-                console.log(number, 'attachments_34r');
                 let html = $('#attachment_sample .attachments_row').clone().removeClass('d-none').attr('data-id', number);
                 html.find('#attachments_titles').attr('name', 'attachments_titles[' + number + ']')
                 html.find('#attachments_files').attr('name', 'attachments_files[' + number + ']')
@@ -389,6 +474,22 @@
 
             $('body').on('click', '.remove_attachment_btn', function (e) {
                 $(this).parents('.attachments_row').remove();
+            })
+
+            $('#add_question_btn').on('click', function () {
+                let number = parseInt($('#questions_box .questions_row:last').attr('data-id') ?? 0) + 1;
+                console.log(number, 'questions_34r');
+                let html = $('#question_sample .questions_row').clone().removeClass('d-none').attr('data-id', number);
+                html.find('#questions_titles').attr('name', 'questions_titles[' + number + ']')
+                html.find('#questions_choice_1').attr('name', 'questions_choice_1[' + number + ']')
+                html.find('#questions_choice_2').attr('name', 'questions_choice_2[' + number + ']')
+                html.find('#questions_choice_3').attr('name', 'questions_choice_3[' + number + ']')
+                html.find('#questions_choice_4').attr('name', 'questions_choice_4[' + number + ']')
+                html.appendTo('#questions_box');
+            })
+
+            $('body').on('click', '.remove_question_btn', function (e) {
+                $(this).parents('.questions_row').remove();
             })
 
         });
