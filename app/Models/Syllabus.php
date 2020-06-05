@@ -88,6 +88,52 @@ class Syllabus extends Model
 
     public function attachments($assoc = false)
     {
-        return json_decode($this->attachments, $assoc) ?? [];
+        $rawAttachments = json_decode($this->attachments);
+        $attachments = [];
+
+        foreach ($rawAttachments as $index => $attachment) {
+            $attachments[$index]['title'] = $attachment->title;
+            $attachments[$index]['path'] = asset('media/' . $attachment->path);
+            $extension = pathinfo($attachment->path, PATHINFO_EXTENSION);
+            switch ($extension) {
+                case('png'):
+                case('jpeg'):
+                case('jpg'):
+                    $attachments[$index]['color'] = 'blue';
+                    $attachments[$index]['icon'] = 'fal fa-file-image';
+                    break;
+                case('pdf'):
+                    $attachments[$index]['color'] = 'red';
+                    $attachments[$index]['icon'] = 'fal fa-file-pdf';
+                    break;
+                case('doc'):
+                    $attachments[$index]['color'] = 'blue';
+                    $attachments[$index]['icon'] = 'fal fa-file-word';
+                    break;
+                case('zip'):
+                case('rar'):
+                    $attachments[$index]['color'] = 'green';
+                    $attachments[$index]['icon'] = 'fal fa-file-archive';
+                    break;
+                case('mp3'):
+                case('mpga'):
+                    $attachments[$index]['color'] = 'deep-orange';
+                    $attachments[$index]['icon'] = 'fal fa-file-music';
+                    break;
+                case('mp4'):
+                case('avi'):
+                case('mov'):
+                    $attachments[$index]['color'] = 'purple';
+                    $attachments[$index]['icon'] = 'fal fa-file-video';
+                    break;
+                default:
+                    $attachments[$index]['color'] = 'indigo';
+                    $attachments[$index]['icon'] = 'fal fa-file-alt';
+                    break;
+            }
+        }
+        $attachments = json_encode($attachments);
+
+        return json_decode($attachments, $assoc) ?? [];
     }
 }

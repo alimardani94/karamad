@@ -57,10 +57,36 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                            <hr>
-                                            <p>{{$syllabus->summary}}</p>
-                                        </div>
 
+                                            @if($syllabus->attachments)
+                                                <hr>
+                                                <h4>پیوست ها</h4>
+                                                <div class="row wow fadeIn" data-wow-delay="0.4s"
+                                                     style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
+                                                    @foreach($syllabus->attachments() as $attachment)
+                                                        <div class="col-md-3 mb-5">
+                                                            <div class="card card-body  {{$attachment->color}}
+                                                                lighten-3 hoverable text-center">
+                                                                <i class="{{$attachment->icon}} fa-3x mb-4 mt-3
+                                                                white-text text-center"
+                                                                   aria-hidden="true"></i>
+                                                                <h5 class="feature-title font-weight-bold white-text
+                                                                text-uppercase text-center">
+                                                                    <a target="_blank" class="white-text text-center"
+                                                                       href="{{$attachment->path}}">
+                                                                        {{$attachment->title}}
+                                                                    </a>
+                                                                </h5>
+                                                                <a target="_blank" class="white-text text-center"
+                                                                   href="{{$attachment->path}}">
+                                                                    دانلود
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
 
                                 </div>
@@ -81,7 +107,7 @@
                                         @foreach($syllabus->course->syllabuses as $syllabus)
                                             <li class="list-group-item text-black">
                                                 <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
-                                                class="black-text">
+                                                   class="black-text">
                                                     {{$syllabus->title}}
                                                 </a>
                                             </li>
