@@ -17,11 +17,16 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::paginate(10);
+        if ($request->get('exam')) {
+            $questions = Question::where('exam_id', $request->get('exam'))->paginate(10);
+        } else {
+            $questions = Question::paginate(10);
+        }
 
         return view('admin.question.index', [
             'questions' => $questions,
@@ -118,15 +123,25 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|max:1024',
-            'description' => 'nullable|max:1024',
+            'title' => 'required',
+            'a' => 'required',
+            'b' => 'required',
+            'c' => 'required',
+            'd' => 'required',
+            'answer' => ['required', 'in:a,b,c,d'],
         ]);
 
         $question = Question::findOrFail($id);
-        $question->title = $request->get('title');
+        $question->title = preventXSS($request->get('title'));
+        $question->a = preventXSS($request->get('a'));
+        $question->b = preventXSS($request->get('b'));
+        $question->c = preventXSS($request->get('c'));
+        $question->d = preventXSS($request->get('d'));
+        $question->answer = $request->get('answer');
         $question->save();
 
-        return redirect()->route('admin.questions.index')->with('success', trans('questions.updated'));
+        return redirect()->route('admin.questions.index', ['exam' => $question->exam_id])
+            ->with('success', trans('questions.updated'));
     }
 
     /**

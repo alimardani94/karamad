@@ -10,17 +10,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            @if(request()->get('exam'))
-                <span>افزودن سوال شماره</span>
-                <strong>{{$number}}</strong>
-            @else
-                افزودن سوال
-            @endif
+            <span>ویرایش سوال</span>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">سوال ها</a></li>
-            <li class="active">افزودن سوال</li>
+            <li class="active">ویرایش سوال</li>
         </ol>
     </section>
 @endsection
@@ -30,39 +25,17 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.questions.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('admin.questions.update', ['question' => $question->id])}}"
+                          enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
-                            @if(!$exam)
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="exam">انتخاب آزمون</label>
-                                            <select type="text" class="form-control select2" id="exam"
-                                                    name="exam">
-                                                @foreach($exams as $exam)
-                                                    <option value="{{ $exam->id }}"
-                                                        {{old('exam') == $exam->id ? 'selected':''}}>
-                                                        {{ $exam->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                            @else
-                                <label>
-                                    <input name="exam" value="{{$exam->id}}" hidden>
-                                </label>
-                            @endif
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="title">سوال</label>
                                     <textarea id="title" name="title"
-                                              class="form-control">{!! old('title') !!}</textarea>
+                                              class="form-control">{!! old('title', $question->title) !!}</textarea>
                                 </div>
                             </div>
                             <hr>
@@ -73,13 +46,13 @@
                                         <label for="answer">گزینه صحیح</label>
                                         <select type="text" class="form-control select2" id="answer" name="answer">
                                             <option disabled selected>انتخاب کنید</option>
-                                            <option value="a" {{ old('answer') == 'a' ? 'selected' : ''}}>گزینه 1
+                                            <option value="a" {{$question->answer == 'a' ? 'selected' : ''}}>گزینه 1
                                             </option>
-                                            <option value="b" {{ old('answer') == 'b' ? 'selected' : ''}}>گزینه 2
+                                            <option value="b" {{$question->answer == 'b' ? 'selected' : ''}}>گزینه 2
                                             </option>
-                                            <option value="c" {{ old('answer') == 'c' ? 'selected' : ''}}>گزینه 3
+                                            <option value="c" {{$question->answer == 'c' ? 'selected' : ''}}>گزینه 3
                                             </option>
-                                            <option value="d" {{ old('answer') == 'd' ? 'selected' : ''}}>گزینه 4
+                                            <option value="d" {{$question->answer == 'd' ? 'selected' : ''}}>گزینه 4
                                             </option>
                                         </select>
                                     </div>
@@ -89,34 +62,34 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="answer_a">گزینه ۱</label>
-                                    <textarea id="answer_a" name="a" class="form-control">{!! old('a') !!}</textarea>
+                                    <textarea id="answer_a" name="a" class="form-control">{!! old('a', $question->a) !!}</textarea>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="answer_b">گزینه ۲</label>
-                                    <textarea id="answer_b" name="b" class="form-control">{!! old('b') !!}</textarea>
+                                    <textarea id="answer_b" name="b" class="form-control">{!! old('b', $question->b) !!}</textarea>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="answer_c">گزینه ۳</label>
-                                    <textarea id="answer_c" name="c" class="form-control">{!! old('c') !!}</textarea>
+                                    <textarea id="answer_c" name="c" class="form-control">{!! old('c', $question->c) !!}</textarea>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="answer_d">گزینه ۴</label>
-                                    <textarea id="answer_d" name="d" class="form-control">{!! old('d') !!}</textarea>
+                                    <textarea id="answer_d" name="d" class="form-control">{!! old('d', $question->d) !!}</textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">افزودن سوال جدید</button>
+                            <button type="submit" class="btn btn-primary">ویرایش سوال</button>
                         </div>
                     </form>
                 </div>

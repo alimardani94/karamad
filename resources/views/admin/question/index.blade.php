@@ -24,8 +24,14 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست سوالات</h3>
-                        <a href="{{route('admin.questions.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
-                            سوال جدید</a>
+                        @if(request()->get('exam'))
+                            <a href="{{route('admin.questions.create', ['exam' => request()->get('exam')])}}"
+                               class="btn btn-primary btn-flat pull-left">افزودن
+                                سوال جدید</a>
+                        @else
+                            <a href="{{route('admin.questions.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                                سوال جدید</a>
+                        @endif
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
