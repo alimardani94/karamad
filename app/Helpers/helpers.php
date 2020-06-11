@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 
-function jDate(Carbon $datetime, $format = 'yyyy/MM/dd - HH:mm:ss', $fixNumbers = false): string
+function jDate(Carbon $datetime, $format = 'yyyy/MM/dd HH:mm:ss', $fixNumbers = false): string
 {
     $formatter = new IntlDateFormatter(
         "fa_IR@calendar=persian",
@@ -25,14 +25,15 @@ function fixNumbers(string $string): string
     return str_replace($arabic, $num, $convertedPersianNums);
 }
 
-function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss', $fixNumbers = false): string
+function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss'): Carbon
 {
     $fmt = new IntlDateFormatter(
         'fa_IR@calendar=persian',
         IntlDateFormatter::SHORT, //date format
         IntlDateFormatter::NONE, //time format
         'Asia/Tehran',
-        IntlDateFormatter::TRADITIONAL
+        IntlDateFormatter::TRADITIONAL,
+        $format
     );
     $time = $fmt->parse($jDate);
 
@@ -41,11 +42,10 @@ function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss', $fixNumbers = fal
         IntlDateFormatter::FULL,
         'Asia/Tehran',
         IntlDateFormatter::TRADITIONAL,
-        $format
+        'yyyy-MM-dd HH:mm:ss'
     );
-    $result = $formatter->format($time);
 
-    return $fixNumbers ? fixNumbers($result) : $result;
+    return Carbon::parse($formatter->format($time));
 }
 
 function parse_number(string $string)
@@ -56,8 +56,4 @@ function parse_number(string $string)
 function preventXSS($content)
 {
     return preg_replace('/(script.*?(?:\/|&#47;|&#x0002F;)script)/ius', '', $content);
-}
-
-function userImage($src) {
-   dd(file_exists($src));
 }

@@ -18,6 +18,8 @@ class CreateExamsTable extends Migration
             $table->unsignedBigInteger('creator_id')->index();
             $table->string('title')->index();
             $table->text('description')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->time('time')->nullable();
             $table->timestamps();
         });
     }

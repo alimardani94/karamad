@@ -62,8 +62,8 @@ class CourseController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'category' => ['required','exists:categories,id'],
-            'instructor' => ['required','exists:instructors,id'],
+            'category' => ['required', 'exists:categories,id'],
+            'instructor' => ['required', 'exists:instructors,id'],
             'summary' => 'required',
             'description' => 'required',
             'thumbnail' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
@@ -140,8 +140,8 @@ class CourseController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'category' => ['required','exists:categories,id'],
-            'instructor' => ['required','exists:instructors,id'],
+            'category' => ['required', 'exists:categories,id'],
+            'instructor' => ['required', 'exists:instructors,id'],
             'summary' => 'required',
             'description' => 'required',
             'thumbnail' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
@@ -187,7 +187,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        if(Syllabus::whereCourseId($id)->exists()) {
+        if (Syllabus::whereCourseId($id)->exists()) {
             return new JsonResponse(['message' => 'این دوره دارای جلسه بوده و برای جذف ان ابتدا جلسات آن را حذف کنید'], 400);
         }
 

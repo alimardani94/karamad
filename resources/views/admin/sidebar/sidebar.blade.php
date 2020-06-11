@@ -93,6 +93,51 @@
     </ul>
 </li>
 
+<li class="treeview @yield('exam')">
+    <a href="#">
+        <i class="fa fa-check"></i>
+        <span>آزمون ها</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('exam1')">
+            <a href="{{route('admin.exams.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست آزمون ها
+            </a>
+        </li>
+        <li class="@yield('exam2')">
+            <a href="{{route('admin.exams.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن آزمون
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="treeview @yield('question')">
+    <a href="#">
+        <i class="fa fa-question"></i>
+        <span>سوالات</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('question1')">
+            <a href="{{route('admin.questions.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست سوالات
+            </a>
+        </li>
+        <li class="@yield('question2')">
+            <a href="{{route('admin.questions.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن سوال
+            </a>
+        </li>
+    </ul>
+</li>
+
+
 <li class="treeview @yield('post')">
     <a href="#">
         <i class="fa fa-bold"></i>

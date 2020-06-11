@@ -11,6 +11,8 @@ Route::resources([
     'categories' => 'CategoryController',
     'courses' => 'CourseController',
     'syllabuses' => 'SyllabusController',
+    'exams' => 'ExamController',
+    'questions' => 'QuestionController',
     'users' => 'UserController',
     'admins' => 'AdminController',
 ]);
