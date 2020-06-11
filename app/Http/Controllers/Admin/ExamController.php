@@ -105,9 +105,14 @@ class ExamController extends Controller
         $request->validate([
             'title' => 'required|max:1024',
             'description' => 'nullable|max:1024',
+            'start' => 'nullable|string',
+            'time' => 'nullable|string',
         ]);
 
         $exam = Exam::findOrFail($id);
+        $exam->title = $request->get('title');
+        $exam->start = gDate($request->get('start'));
+        $exam->time = fixNumbers($request->get('time'));
         $exam->title = $request->get('title');
         $exam->description = $request->get('description');
         $exam->save();
@@ -124,7 +129,9 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        exam::findOrFail($id)->delete();
+        $exam = exam::findOrFail($id);
+        $exam->questions()->delete();
+        $exam->delete();
 
         return new JsonResponse(['message' => trans('exams.deleted')]);
     }
