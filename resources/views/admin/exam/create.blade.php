@@ -45,14 +45,16 @@
                                     <div class="form-group">
                                         <label for="start_time">ساعت شروع</label>
                                         <input type="text" class="form-control" id="start_time" placeholder="ساعت شروع"
-                                               value="{{old('start_time')}}" name="start_time" autocomplete="false" readonly>
+                                               value="{{old('start_time')}}" name="start_time" autocomplete="false"
+                                               style="direction: ltr" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="time">زمان امتحان</label>
                                         <input type="text" class="form-control" id="time" placeholder="زمان امتحان"
-                                               value="{{old('time')}}" name="time" autocomplete="false" readonly>
+                                               value="{{old('time', '02:30:00')}}" name="time" autocomplete="false"
+                                               style="direction: ltr" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +84,7 @@
     <script>
         $(document).ready(function() {
             $("#start_time").pDatepicker({
-                initialValue: false,
+                initialValue: true,
                 format: 'YYYY/MM/DD HH:mm:ss',
                 timePicker: {
                     enabled: true,
@@ -92,7 +94,7 @@
 
             $("#time").pDatepicker({
                 onlyTimePicker : true,
-                initialValue: false,
+                initialValue: true,
                 format: 'HH:mm:ss',
             });
         });
