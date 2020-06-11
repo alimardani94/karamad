@@ -10,7 +10,8 @@
 @section('header')
     <section class="content-header">
         <h1>
-            افزودن سوال جدید
+            <span>افزودن سوال شماره</span>
+            <strong>{{$number}}</strong>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
@@ -33,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exam">انتخاب دوره</label>
+                                            <label for="exam">انتخاب آزمون</label>
                                             <select type="text" class="form-control select2" id="exam"
                                                     name="exam">
                                                 @foreach($exams as $exam)
@@ -93,7 +94,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="answer_c">گزینه ۳</label>
-                                    <textarea id="answer_c" name="a" class="form-control">{{old('c')}}</textarea>
+                                    <textarea id="answer_c" name="c" class="form-control">{{old('c')}}</textarea>
                                 </div>
                             </div>
                             <br>
@@ -103,7 +104,6 @@
                                     <textarea id="answer_d" name="d" class="form-control">{{old('d')}}</textarea>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="box-footer">

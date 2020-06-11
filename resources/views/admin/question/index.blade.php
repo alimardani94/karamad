@@ -1,18 +1,18 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('exam', 'active menu-open')
-@section('exam1', 'active')
+@section('question', 'active menu-open')
+@section('question1', 'active')
 
 @section('header')
     <section class="content-header">
         <h1>
-            آزمون ها <small>لیست</small>
+            سوالات <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
-            <li><a href="#">آزمون ها</a></li>
-            <li class="active">لیست آزمون ها</li>
+            <li><a href="#">سوالات</a></li>
+            <li class="active">لیست سوالات</li>
         </ol>
     </section>
 @endsection
@@ -23,41 +23,38 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">لیست آزمون ها</h3>
-                        <a href="{{route('admin.exams.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
-                            آزمون جدید</a>
+                        <h3 class="box-title">لیست سوالات</h3>
+                        <a href="{{route('admin.questions.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                            سوال جدید</a>
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>نام</th>
-                                <th>توضیحات</th>
-                                <th>تعداد سوالات</th>
-                                <th>تاریخ ایجاد</th>
+                                <th>سوال</th>
+                                <th>گزینه ۱</th>
+                                <th>گزینه ۲</th>
+                                <th>گزینه ۳</th>
+                                <th>گزینه ۴</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($exams as $exam)
+                            @foreach($questions as $question)
                                 <tr>
-                                    <td>{{$exam->title}}</td>
-                                    <td>{{$exam->description}}</td>
-                                    <td>{{$exam->questions_count}}</td>
-                                    <td>{{jDate($exam->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{!! $question->title !!}</td>
+                                    <td style="{{ ($question->answer == 'a') ? 'color:green' : ''}}">{!! $question->a !!}</td>
+                                    <td style="{{ ($question->answer == 'b') ? 'color:green' : ''}}">{!! $question->b !!}</td>
+                                    <td style="{{ ($question->answer == 'c') ? 'color:green' : ''}}">{!! $question->c !!}</td>
+                                    <td style="{{ ($question->answer == 'd') ? 'color:green' : ''}}">{!! $question->d !!}</td>
                                     <td>
-                                        <a href="{{route('admin.questions.create', ['exam' => $exam->id])}}"
-                                           type="button" class="btn btn-block btn-default btn-xs">افزودن سوال</a>
-                                        <a href="{{route('admin.questions.index', ['exam' => $exam->id])}}"
-                                           type="button" class="btn btn-block btn-info btn-xs">لیست سوالات</a>
-
-                                        <a href="{{ route('admin.exams.edit', ['exam' => $exam->id])}}"
+                                        <a href="{{ route('admin.questions.edit', ['question' => $question->id])}}"
                                            type="button" class="btn btn-block btn-primary btn-xs">
-                                            ویرایش آزمون
+                                            ویرایش سوال
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removeExam({{$exam->id}})">
-                                            حذف آزمون
+                                           onclick="removeQuestion({{$question->id}})">
+                                            حذف سوال
                                         </a>
                                     </td>
                                 </tr>
@@ -73,10 +70,10 @@
 
 @section('js')
     <script>
-        function removeExam(id) {
-            let url = "{{route('admin.exams.destroy', '')}}/" + id
+        function removeQuestion(id) {
+            let url = "{{route('admin.questions.destroy', '')}}/" + id
             Swal.fire({
-                title: 'آیا آزمون حذف شود؟',
+                title: 'آیا سوال حذف شود؟',
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
@@ -91,7 +88,7 @@
                         url: url,
                         success: function (response) {
                             Swal.fire(
-                                'آزمون با موفقیت حذف شد',
+                                'سوال با موفقیت حذف شد',
                                 '',
                                 'success'
                             )

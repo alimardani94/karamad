@@ -22,7 +22,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::paginate(10);
+        $exams = Exam::withCount('questions')->paginate(10);
 
         return view('admin.exam.index', [
             'exams' => $exams,
@@ -51,6 +51,8 @@ class ExamController extends Controller
         $request->validate([
             'title' => 'required|max:1024',
             'description' => 'nullable|max:1024',
+            'start_time' => 'nullable|string',
+            'time' => 'nullable|string',
         ]);
 
         $exam = new Exam();

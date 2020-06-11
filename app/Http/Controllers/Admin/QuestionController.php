@@ -38,11 +38,14 @@ class QuestionController extends Controller
     {
         if ($request->get('exam')) {
             $exam = Exam::findOrFail($request->get('exam'));
+            $number = Question::whereExamId($exam->id)->count() + 1;
         } else {
             $exams = Exam::all();
+            $number = 1;
         }
 
         return view('admin.question.create', [
+            'number' => $number,
             'exam' => $exam ?? null,
             'exams' => $exams ?? [],
         ]);
@@ -57,16 +60,27 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:1024',
-            'description' => 'nullable|max:1024',
+            'title' => 'required',
+            'exam' => ['required', 'exists:exams,id'],
+            'a' => 'required',
+            'b' => 'required',
+            'c' => 'required',
+            'd' => 'required',
+            'answer' => ['required', 'in:a,b,c,d'],
         ]);
 
         $question = new Question();
         $question->exam_id = $request->get('exam');
-        $question->title = $request->get('title');
+        $question->title = preventXSS($request->get('title'));
+        $question->a = preventXSS($request->get('a'));
+        $question->b = preventXSS($request->get('b'));
+        $question->c = preventXSS($request->get('c'));
+        $question->d = preventXSS($request->get('d'));
+        $question->answer = $request->get('answer');
+
         $question->save();
 
-        return redirect()->route('admin.questions.index', ['question' => $question])->with('success', trans('questions.created'));
+        return redirect()->route('admin.questions.create', ['exam' => $question->exam_id])->with('success', trans('questions.created'));
     }
 
     /**
