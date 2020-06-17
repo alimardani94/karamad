@@ -273,7 +273,7 @@
                     <div class="form-group">
                         <label for="questions_titles">عنوان</label>
                         <input type="text" class="form-control" id="questions_titles"
-                               placeholder="عنوان">
+                               placeholder="عنوان" required>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -285,26 +285,42 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="questions_choice_1">گزینه 1</label>
-                        <input type="text" class="form-control" id="questions_choice_1" placeholder="گزینه 1" required>
+                        <label for="answer">پاسخ</label>
+                        <select type="text" class="form-control" id="answer" name="answer" required>
+                            <option disabled selected>انتخاب کنید</option>
+                            <option value="a" {{ old('answer') == 'a' ? 'selected' : ''}}>گزینه 1
+                            </option>
+                            <option value="b" {{ old('answer') == 'b' ? 'selected' : ''}}>گزینه 2
+                            </option>
+                            <option value="c" {{ old('answer') == 'c' ? 'selected' : ''}}>گزینه 3
+                            </option>
+                            <option value="d" {{ old('answer') == 'd' ? 'selected' : ''}}>گزینه 4
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="questions_choice_2">گزینه 2</label>
-                        <input type="text" class="form-control" id="questions_choice_2" placeholder="گزینه 2" required>
+                        <label for="answer_a">گزینه 1</label>
+                        <input type="text" class="form-control" id="answer_a" placeholder="گزینه 1" required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="questions_choice_3">گزینه 3</label>
-                        <input type="text" class="form-control" id="questions_choice_3" placeholder="گزینه 3" required>
+                        <label for="answer_b">گزینه 2</label>
+                        <input type="text" class="form-control" id="answer_b" placeholder="گزینه 2" required>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="questions_choice_4">گزینه 4</label>
-                        <input type="text" class="form-control" id="questions_choice_4" placeholder="گزینه 4" required>
+                        <label for="answer_c">گزینه 3</label>
+                        <input type="text" class="form-control" id="answer_c" placeholder="گزینه 3" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer_d">گزینه 4</label>
+                        <input type="text" class="form-control" id="answer_d" placeholder="گزینه 4" required>
                     </div>
                 </div>
             </div>
@@ -316,6 +332,7 @@
 @section('js')
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('assets/vendor/jquery-validation/jquery.validate.js')}}"></script>
+    <script src="{{asset('assets/vendor/jquery-validation/localization/messages_fa.min.js')}}"></script>
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
 
     <script>
@@ -371,7 +388,7 @@
             video_file: "syllabusType",
             audio_url: "syllabusType",
             audio_file: "syllabusType",
-            text: "required"
+            text: "required",
         };
         let customMessages = {
             title: "عنوان الزامی است",
@@ -461,6 +478,12 @@
                     validator.focusInvalid();
                     return false;
                 }
+
+                if ($('#type').val() === '4' && $('#questions_box .questions_row').length === 0) {
+                    toastr.error('حداقل یک سوال اضافه کنید')
+                    return false;
+                }
+
                 return true;
             })
 
@@ -478,13 +501,13 @@
 
             $('#add_question_btn').on('click', function () {
                 let number = parseInt($('#questions_box .questions_row:last').attr('data-id') ?? 0) + 1;
-                console.log(number, 'questions_34r');
                 let html = $('#question_sample .questions_row').clone().removeClass('d-none').attr('data-id', number);
                 html.find('#questions_titles').attr('name', 'questions_titles[' + number + ']')
-                html.find('#questions_choice_1').attr('name', 'questions_choice_1[' + number + ']')
-                html.find('#questions_choice_2').attr('name', 'questions_choice_2[' + number + ']')
-                html.find('#questions_choice_3').attr('name', 'questions_choice_3[' + number + ']')
-                html.find('#questions_choice_4').attr('name', 'questions_choice_4[' + number + ']')
+                html.find('#answer').attr('name', 'answer[' + number + ']')
+                html.find('#answer_a').attr('name', 'answer_a[' + number + ']')
+                html.find('#answer_b').attr('name', 'answer_b[' + number + ']')
+                html.find('#answer_c').attr('name', 'answer_c[' + number + ']')
+                html.find('#answer_d').attr('name', 'answer_d[' + number + ']')
                 html.appendTo('#questions_box');
             })
 

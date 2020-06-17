@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use App\Models\Course;
+use App\Models\Exam;
+use App\Models\Question;
 use App\Models\Syllabus;
 use App\Rules\SyllabusAttachment;
+use Auth;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -102,12 +105,23 @@ class SyllabusController extends Controller
                 new SyllabusAttachment($request->get('attachments_titles', [])),
             ],
             'questions_titles.*' => [
-                Rule::requiredIf((int)$request->get('type') == SyllabusType::Test)
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Exam)
+            ],
+            'questions_choice_1.*' => [
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Exam)
+            ],
+            'questions_choice_2.*' => [
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Exam)
+            ],
+            'questions_choice_3.*' => [
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Exam)
+            ],
+            'questions_choice_4.*' => [
+                Rule::requiredIf((int)$request->get('type') == SyllabusType::Exam)
             ]
         ]);
 
-        $video = null;
-        $audio = null;
+        $video = $audio = $file_disk = null;
 
         switch ((int)$request->get('type')) {
             case SyllabusType::Video:
@@ -125,6 +139,25 @@ class SyllabusController extends Controller
                     $audio = $request->get('audio_url');
                 } elseif ($file_disk === FileDisk::Local) {
                     $audio = $request->file('audio_file')->store('syllabuses/audios');
+                }
+                break;
+            case SyllabusType::Exam:
+                $exam = new Exam();
+                $exam->creator_id = Auth::id();
+                $exam->title = $request->get('title');
+                $exam->save();
+
+                foreach ($request->get('questions_titles') as $index => $question) {
+                    $question = new Question();
+                    $question->exam_id = $exam->id;
+                    $question->title = preventXSS($question);
+                    $question->a = preventXSS($request->get('answer_a')[$index]);
+                    $question->b = preventXSS($request->get('answer_b')[$index]);
+                    $question->c = preventXSS($request->get('answer_c')[$index]);
+                    $question->d = preventXSS($request->get('answer_d')[$index]);
+                    $question->answer = $request->get('answer')[$index];
+
+                    $question->save();
                 }
                 break;
             default:
@@ -145,6 +178,7 @@ class SyllabusController extends Controller
         $syllabus->text = $request->get('text');
         $syllabus->audio = $audio;
         $syllabus->video = $video;
+        $syllabus->exam_id = $exam->id ?? null;
         $syllabus->attachments = json_encode($attachments);
         $syllabus->meta_keywords = $request->get('meta_keywords');
         $syllabus->meta_description = $request->get('meta_description');
