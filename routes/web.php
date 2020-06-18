@@ -49,4 +49,10 @@ Route::group(['namespace' => 'Front'], function () {
             'posts' => 'PostController',
         ]);
     });
+
+    Route::group(['namespace' => 'Shop'], function () {
+        Route::resources([
+            'shop' => 'ShopController',
+        ]);
+    });
 });
