@@ -141,7 +141,7 @@
                                                 @endif
                                             </div>
 
-                                            @if(count($syllabus->attachments()))
+                                            @if($syllabus->attachments())
                                                 <hr>
                                                 <h4>پیوست ها</h4>
                                                 <div class="row wow fadeIn" data-wow-delay="0.4s"

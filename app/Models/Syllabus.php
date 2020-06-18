@@ -106,9 +106,9 @@ class Syllabus extends Model
         return $this->hasMany(Question::class, 'exam_id', 'exam_id');
     }
 
-    public function attachments($assoc = false)
+    public function attachments($assoc = false, $default = null)
     {
-        $rawAttachments = json_decode($this->attachments);
+        $rawAttachments = json_decode($this->attachments) ?? [];
         $attachments = [];
 
         foreach ($rawAttachments as $index => $attachment) {
@@ -152,8 +152,11 @@ class Syllabus extends Model
                     break;
             }
         }
-        $attachments = json_encode($attachments);
 
-        return json_decode($attachments, $assoc) ?? [];
+        if (count($attachments)) {
+            return json_decode(json_encode($attachments), $assoc);
+        }
+
+        return $default;
     }
 }
