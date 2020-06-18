@@ -147,10 +147,10 @@ class SyllabusController extends Controller
                 $exam->title = $request->get('title');
                 $exam->save();
 
-                foreach ($request->get('questions_titles') as $index => $question) {
+                foreach ($request->get('questions_titles') as $index => $questionTitle) {
                     $question = new Question();
                     $question->exam_id = $exam->id;
-                    $question->title = preventXSS($question);
+                    $question->title = preventXSS($questionTitle);
                     $question->a = preventXSS($request->get('answer_a')[$index]);
                     $question->b = preventXSS($request->get('answer_b')[$index]);
                     $question->c = preventXSS($request->get('answer_c')[$index]);
@@ -160,8 +160,6 @@ class SyllabusController extends Controller
                     $question->save();
                 }
                 break;
-            default:
-                $file_disk = null;
         }
 
         $attachments = [];
@@ -260,8 +258,7 @@ class SyllabusController extends Controller
             ],
         ]);
 
-        $video = null;
-        $audio = null;
+        $video = $audio = $file_disk = null;
 
         switch ((int)$request->get('type')) {
             case SyllabusType::Video:
@@ -288,8 +285,28 @@ class SyllabusController extends Controller
                     }
                 }
                 break;
-            default:
-                $file_disk = null;
+            case SyllabusType::Exam:
+                $exam  = $syllabus->exam;
+                if(!$exam) {
+                    $exam = new Exam();
+                }
+                $exam->title = $request->get('title');
+                $exam->save();
+                $exam->questions()->delete();
+
+                foreach ($request->get('questions_titles') as $index => $questionTitle) {
+                    $question = new Question();
+                    $question->exam_id = $exam->id;
+                    $question->title = preventXSS($questionTitle);
+                    $question->a = preventXSS($request->get('answer_a')[$index]);
+                    $question->b = preventXSS($request->get('answer_b')[$index]);
+                    $question->c = preventXSS($request->get('answer_c')[$index]);
+                    $question->d = preventXSS($request->get('answer_d')[$index]);
+                    $question->answer = $request->get('answer')[$index];
+
+                    $question->save();
+                }
+                break;
         }
 
         $attachments = [];
@@ -312,6 +329,7 @@ class SyllabusController extends Controller
         $syllabus->text = $request->get('text');
         $syllabus->audio = $audio;
         $syllabus->video = $video;
+        $syllabus->exam_id = $exam->id ?? null;
         $syllabus->attachments = json_encode($attachments);
         $syllabus->meta_keywords = $request->get('meta_keywords');
         $syllabus->meta_description = $request->get('meta_description');

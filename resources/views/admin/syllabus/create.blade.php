@@ -191,11 +191,11 @@
                                 </div>
                             </div>
                             <div id="typeBox4">
+                                <div id="questions_box"></div>
                                 <a href="javascript:void(0);" class="btn btn-primary btn-block btn-sm mb-3"
                                    id="add_question_btn">
                                     افزودن سوال
                                 </a>
-                                <div id="questions_box"></div>
                             </div>
 
                             <hr>
@@ -272,8 +272,7 @@
                 <div class="col-md-11">
                     <div class="form-group">
                         <label for="questions_titles">عنوان</label>
-                        <input type="text" class="form-control" id="questions_titles"
-                               placeholder="عنوان" required>
+                        <textarea id="questions_titles" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -288,13 +287,13 @@
                         <label for="answer">پاسخ</label>
                         <select type="text" class="form-control" id="answer" name="answer" required>
                             <option disabled selected>انتخاب کنید</option>
-                            <option value="a" {{ old('answer') == 'a' ? 'selected' : ''}}>گزینه 1
+                            <option value="a">گزینه 1
                             </option>
-                            <option value="b" {{ old('answer') == 'b' ? 'selected' : ''}}>گزینه 2
+                            <option value="b">گزینه 2
                             </option>
-                            <option value="c" {{ old('answer') == 'c' ? 'selected' : ''}}>گزینه 3
+                            <option value="c">گزینه 3
                             </option>
-                            <option value="d" {{ old('answer') == 'd' ? 'selected' : ''}}>گزینه 4
+                            <option value="d">گزینه 4
                             </option>
                         </select>
                     </div>
@@ -302,25 +301,25 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="answer_a">گزینه 1</label>
-                        <input type="text" class="form-control" id="answer_a" placeholder="گزینه 1" required>
+                        <textarea id="answer_a" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="answer_b">گزینه 2</label>
-                        <input type="text" class="form-control" id="answer_b" placeholder="گزینه 2" required>
+                        <textarea id="answer_b" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="answer_c">گزینه 3</label>
-                        <input type="text" class="form-control" id="answer_c" placeholder="گزینه 3" required>
+                        <textarea id="answer_c" required></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="answer_d">گزینه 4</label>
-                        <input type="text" class="form-control" id="answer_d" placeholder="گزینه 4" required>
+                        <textarea id="answer_d" required></textarea>
                     </div>
                 </div>
             </div>
@@ -502,13 +501,59 @@
             $('#add_question_btn').on('click', function () {
                 let number = parseInt($('#questions_box .questions_row:last').attr('data-id') ?? 0) + 1;
                 let html = $('#question_sample .questions_row').clone().removeClass('d-none').attr('data-id', number);
-                html.find('#questions_titles').attr('name', 'questions_titles[' + number + ']')
-                html.find('#answer').attr('name', 'answer[' + number + ']')
-                html.find('#answer_a').attr('name', 'answer_a[' + number + ']')
-                html.find('#answer_b').attr('name', 'answer_b[' + number + ']')
-                html.find('#answer_c').attr('name', 'answer_c[' + number + ']')
-                html.find('#answer_d').attr('name', 'answer_d[' + number + ']')
+                html.find('#questions_titles').attr('id', 'questions_titles_' + number).attr('name', 'questions_titles[' + number + ']')
+                html.find('#answer').attr('id', 'answer_' + number).attr('name', 'answer[' + number + ']')
+                html.find('#answer_a').attr('id', 'answer_a_' + number).attr('name', 'answer_a[' + number + ']')
+                html.find('#answer_b').attr('id', 'answer_b_' + number).attr('name', 'answer_b[' + number + ']')
+                html.find('#answer_c').attr('id', 'answer_c_' + number).attr('name', 'answer_c[' + number + ']')
+                html.find('#answer_d').attr('id', 'answer_d_' + number).attr('name', 'answer_d[' + number + ']')
                 html.appendTo('#questions_box');
+
+                tinymce.init({
+                    selector: 'textarea#questions_titles_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 100,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_a_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_b_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_c_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_d_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
             })
 
             $('body').on('click', '.remove_question_btn', function (e) {

@@ -20,6 +20,20 @@
             width: 100%;
         }
 
+        .questions_row {
+            border: solid 1px lightgrey;
+            margin: 2px 10px;
+            padding: 5px;
+        }
+
+        .remove_question_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            width: 100%;
+        }
+
     </style>
 @endsection
 
@@ -173,7 +187,95 @@
                                     <textarea name="text" id="text">{{old('text', $syllabus->text)}}</textarea>
                                 </div>
                             </div>
+                            <div id="typeBox4">
+                                <div id="questions_box">
 
+                                    @foreach($syllabus->questions as $index => $question)
+                                        <div class="questions_row" data-id="{{$index + 1}}">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <div class="form-group">
+                                                        <label for="questions_titles_{{$index + 1}}">عنوان</label>
+                                                        <textarea id="questions_titles_{{$index + 1}}"
+                                                                  name="questions_titles[{{$index + 1}}]"
+                                                                  required>{!! $question->title !!}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <div class="remove_question_container">
+                                                        <a href="javascript:void(0);"
+                                                           class="btn btn-danger remove_question_btn">x</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="answer_{{$index + 1}}">پاسخ</label>
+                                                        <select type="text" class="form-control"
+                                                                id="answer_{{$index + 1}}" name="answer[{{$index + 1}}]" required>
+                                                            <option disabled selected>انتخاب کنید</option>
+                                                            <option
+                                                                value="a" {{ $question->answer == 'a' ? 'selected' : ''}}>
+                                                                گزینه 1
+                                                            </option>
+                                                            <option
+                                                                value="b" {{ $question->answer == 'b' ? 'selected' : ''}}>
+                                                                گزینه 2
+                                                            </option>
+                                                            <option
+                                                                value="c" {{ $question->answer == 'c' ? 'selected' : ''}}>
+                                                                گزینه 3
+                                                            </option>
+                                                            <option
+                                                                value="d" {{ $question->answer == 'd' ? 'selected' : ''}}>
+                                                                گزینه 4
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="answer_a_{{$index + 1}}">گزینه 1</label>
+                                                        <textarea id="answer_a_{{$index + 1}}"
+                                                                  name="answer_a[{{$index + 1}}]"
+                                                                  required>{!! $question->a !!}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="answer_b_{{$index + 1}}">گزینه 2</label>
+                                                        <textarea id="answer_b_{{$index + 1}}"
+                                                                  name="answer_b[{{$index + 1}}]"
+                                                                  required>{!! $question->b !!}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="answer_c_{{$index + 1}}">گزینه 3</label>
+                                                        <textarea id="answer_c_{{$index + 1}}"
+                                                                  name="answer_c[{{$index + 1}}]"
+                                                                  required>{!! $question->c !!}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="answer_d_{{$index + 1}}">گزینه 4</label>
+                                                        <textarea id="answer_d_{{$index + 1}}"
+                                                                  name="answer_d[{{$index + 1}}]"
+                                                                  required>{!! $question->d !!}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <a href="javascript:void(0);" class="btn btn-primary btn-block btn-sm mb-3"
+                                   id="add_question_btn">
+                                    افزودن سوال
+                                </a>
+                            </div>
                             <hr>
 
                             <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-3" id="add_attachment_btn">افزودن
@@ -270,6 +372,67 @@
             </div>
         </div>
     </div>
+
+    <div id="question_sample" class="d-none">
+        <div class="questions_row">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="questions_titles">عنوان</label>
+                        <textarea id="questions_titles" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="remove_question_container">
+                        <a href="javascript:void(0);" class="btn btn-danger remove_question_btn">x</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer">پاسخ</label>
+                        <select type="text" class="form-control" id="answer" name="answer" required>
+                            <option disabled selected>انتخاب کنید</option>
+                            <option value="a">گزینه 1
+                            </option>
+                            <option value="b">گزینه 2
+                            </option>
+                            <option value="c">گزینه 3
+                            </option>
+                            <option value="d">گزینه 4
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer_a">گزینه 1</label>
+                        <textarea id="answer_a" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer_b">گزینه 2</label>
+                        <textarea id="answer_b" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer_c">گزینه 3</label>
+                        <textarea id="answer_c" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="answer_d">گزینه 4</label>
+                        <textarea id="answer_d" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('js')
@@ -278,6 +441,8 @@
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
 
     <script>
+        let questionsCount = {{$syllabus->questions->count()}};
+
         function activeVideo() {
             $('#typeBox1').show();
             $('#typeBox2').hide();
@@ -303,6 +468,17 @@
             $('#typeBox1 input').prop('disabled', true);
             $('#typeBox2 input').prop('disabled', true);
             $('#typeBox3 textarea').prop('disabled', false);
+        }
+
+        function activeExam() {
+            $('#typeBox1').hide();
+            $('#typeBox2').hide();
+            $('#typeBox3').hide();
+            $('#typeBox4').show();
+            $('#typeBox1 input').prop('disabled', true);
+            $('#typeBox2 input').prop('disabled', true);
+            $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', false);
         }
 
         let form = $('#create_syllabus');
@@ -355,6 +531,8 @@
                     activeAudio();
                 } else if (this.value === '3') {
                     activeText();
+                } else if (this.value === '4') {
+                    activeExam();
                 }
             }).trigger('change');
 
@@ -386,6 +564,12 @@
                     validator.focusInvalid();
                     return false;
                 }
+
+                if ($('#type').val() === '4' && $('#questions_box .questions_row').length === 0) {
+                    toastr.error('حداقل یک سوال اضافه کنید');
+                    return false;
+                }
+
                 return true;
             })
 
@@ -398,6 +582,113 @@
                     .attr('id', 'attachments_files' + number)
                 html.appendTo('#attachments_box');
             })
+
+            $('#add_question_btn').on('click', function () {
+                let number = parseInt($('#questions_box .questions_row:last').attr('data-id') ?? 0) + 1;
+                let html = $('#question_sample .questions_row').clone().removeClass('d-none').attr('data-id', number);
+                html.find('#questions_titles').attr('id', 'questions_titles_' + number).attr('name', 'questions_titles[' + number + ']')
+                html.find('#answer').attr('id', 'answer_' + number).attr('name', 'answer[' + number + ']')
+                html.find('#answer_a').attr('id', 'answer_a_' + number).attr('name', 'answer_a[' + number + ']')
+                html.find('#answer_b').attr('id', 'answer_b_' + number).attr('name', 'answer_b[' + number + ']')
+                html.find('#answer_c').attr('id', 'answer_c_' + number).attr('name', 'answer_c[' + number + ']')
+                html.find('#answer_d').attr('id', 'answer_d_' + number).attr('name', 'answer_d[' + number + ']')
+                html.appendTo('#questions_box');
+
+                tinymce.init({
+                    selector: 'textarea#questions_titles_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 100,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_a_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_b_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_c_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_d_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+            })
+
+            let i;
+            for (i = 1; i <= questionsCount; i++) {
+                tinymce.init({
+                    selector: 'textarea#questions_titles_' + i,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 100,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_a_' + i,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_b_' + i,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_c_' + i,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_d_' + i,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+            }
 
             $('body').on('click', '.remove_attachment_btn', function (e) {
                 $(this).parents('.attachments_row').remove();

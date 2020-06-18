@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -86,6 +88,22 @@ class Syllabus extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'exam_id', 'exam_id');
     }
 
     public function attachments($assoc = false)
