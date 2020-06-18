@@ -70,8 +70,6 @@
                                             <div>
                                                 <span class="ml-1">هنوز ثبت نام نکرده ام</span>
                                                 <a href="{{route('auth.sign-up')}}">ثبت نام</a>
-                                                <a>/</a>
-                                                <a href="{{route('auth.instructor.sign-up')}}">ثبت نام مدرسان</a>
                                             </div>
                                             <div class="inline-ul text-center d-flex justify-content-center">
                                                 <hr class="mt-1">
