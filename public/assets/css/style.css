@@ -50,7 +50,7 @@ html, body {
 }
 
 .form-check-input[type=checkbox]:checked + label:before, label.btn input[type=checkbox]:checked + label:before {
-    right: -5px;
+    right: 0;
     transform-origin: unset;
 }
 
@@ -175,4 +175,14 @@ html, body {
 
 ul.list-group {
     padding-inline-start: 0;
+}
+
+.form-check-input[type="radio"]:not(:checked)+label, .form-check-input[type="radio"]:checked+label, label.btn input[type="radio"]:not(:checked)+label, label.btn input[type="radio"]:checked+label {
+    padding-left: unset;
+    padding-right: 34px;
+}
+
+.form-check-input[type="radio"]+label:before, .form-check-input[type="radio"]+label:after, label.btn input[type="radio"]+label:before, label.btn input[type="radio"]+label:after {
+    right: 0;
+    left: unset;
 }
