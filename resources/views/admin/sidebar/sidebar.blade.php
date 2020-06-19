@@ -93,6 +93,8 @@
     </ul>
 </li>
 
+<hr style="margin: 0">
+
 <li class="treeview @yield('exam')">
     <a href="#">
         <i class="fa fa-check"></i>
@@ -137,6 +139,7 @@
     </ul>
 </li>
 
+<hr style="margin: 0">
 
 <li class="treeview @yield('post')">
     <a href="#">
@@ -165,6 +168,54 @@
         </li>
     </ul>
 </li>
+
+<hr style="margin: 0">
+<li class="header">فروشگاه</li>
+<li class="treeview @yield('product')">
+    <a href="#">
+        <i class="fa fa-suitcase"></i>
+        <span>محصول</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('product1')">
+            <a href="{{route('admin.products.index')}}">
+                <i class="fa fa-circle-o"></i>
+                لیست محصولات
+            </a>
+        </li>
+        <li class="@yield('product2')">
+            <a href="{{route('admin.products.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن محصول
+            </a>
+        </li>
+        <li class="@yield('product3')">
+            <a href="{{route('admin.tags.create')}}">
+                <i class="fa fa-circle-o"></i>
+                افزودن برچسب محصول
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="treeview @yield('product')">
+    <a href="#">
+        <i class="fa fa-shopping-cart"></i>
+        <span>فروش</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('product1')">
+            <a href="{{route('admin.products.index')}}">
+                <i class="fa fa-circle-o"></i>
+                درخواست ها
+            </a>
+        </li>
+    </ul>
+</li>
+
+<hr style="margin: 0">
 
 <li class="treeview @yield('admin')">
     <a href="#">

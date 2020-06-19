@@ -23,3 +23,11 @@ Route::group(['namespace' => 'Blog'], function () {
         'tags' => 'TagController',
     ]);
 });
+
+Route::group(['namespace' => 'Shop'], function () {
+    Route::resources([
+        'products' => 'ProductController',
+        'tags' => 'TagController',
+    ]);
+});
+
