@@ -31,3 +31,6 @@ Route::group(['namespace' => 'Shop'], function () {
     ]);
 });
 
+Route::get('/upload/image', 'uploadContoller@home')->name('upload.image');
+
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Shop\Product;
 use App\Models\Shop\Tag;
 use Auth;
@@ -39,6 +40,7 @@ class ProductController extends Controller
     {
         return view('admin.product.create', [
             'tags' => Tag::all(),
+            'categories' => Category::all(),
         ]);
     }
 
