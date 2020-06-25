@@ -47,6 +47,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereAttachments($value)
  * @property int|null $exam_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Syllabus whereExamId($value)
+ * @property-read \App\Models\Exam|null $exam
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Question[] $questions
+ * @property-read int|null $questions_count
  */
 class Syllabus extends Model
 {

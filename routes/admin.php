@@ -31,6 +31,6 @@ Route::group(['namespace' => 'Shop'], function () {
     ]);
 });
 
-Route::get('/upload/image', 'uploadContoller@home')->name('upload.image');
+Route::post('/upload/image', 'uploadController@dropzone')->name('upload.dropzone');
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
+use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Shop\Product;
@@ -13,6 +14,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -41,6 +43,7 @@ class ProductController extends Controller
         return view('admin.product.create', [
             'tags' => Tag::all(),
             'categories' => Category::all(),
+            'types' => ProductType::translatedAll(),
         ]);
     }
 
@@ -53,11 +56,24 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'unique:products'],
-            'tags' => 'required|array',
+            'name' => ['required', 'unique:products'],
+            'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'content' => 'required',
-            'image' => 'required|mimes:jpeg,bmp,png,gif,svg|max:4096',
+            'category' => ['required', 'exists:categories,id'],
+            'type' => ['required'],
+            'file' => [
+                Rule::requiredIf((int)$request->get('type') == ProductType::Digital),
+                'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar,pdf'
+            ],
+            'quantity' => [Rule::requiredIf((int)$request->get('type') == ProductType::Physical)],
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric',
+            'attachment' => [
+                'nullable', 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar', 'max:100000',
+            ],
+            'images' => 'required|array',
+            'features' => 'nullable|array',
+            'description' => 'required|string',
             'meta_keywords' => 'nullable|string',
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
@@ -65,7 +81,7 @@ class ProductController extends Controller
         $path = $request->file('image')->store('products');
 
         $product = new Product();
-        $product->title = $request->get('title');
+        $product->name = $request->get('name');
         $product->content = preventXSS($request->get('content'));
         $product->image = $path;
         $product->author_id = Auth::id();
