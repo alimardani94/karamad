@@ -5,21 +5,22 @@
     </a>
 </li>
 
-<li class="treeview @yield('category')">
+<li class="header">دوره</li>
+<li class="treeview @yield('course.category')">
     <a href="#">
         <i class="fa fa-th"></i>
         <span>دسته بندی ها</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
     <ul class="treeview-menu">
-        <li class="@yield('category1')">
-            <a href="{{route('admin.categories.index')}}">
+        <li class="@yield('course.category1')">
+            <a href="{{ route('admin.categories.index', ['type' =>  \App\Enums\CategoryType::Course]) }}">
                 <i class="fa fa-circle-o"></i>
                 لیست دسته بندی ها
             </a>
         </li>
-        <li class="@yield('category2')">
-            <a href="{{route('admin.categories.create')}}">
+        <li class="@yield('course.category2')">
+            <a href="{{ route('admin.categories.create', ['type' =>  \App\Enums\CategoryType::Course]) }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دسته بندی
             </a>
@@ -35,13 +36,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('instructor1')">
-            <a href="{{route('admin.instructors.index')}}">
+            <a href="{{ route('admin.instructors.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست مدرسان
             </a>
         </li>
         <li class="@yield('instructor2')">
-            <a href="{{route('admin.instructors.create')}}">
+            <a href="{{ route('admin.instructors.create')}}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مدرس
             </a>
@@ -57,13 +58,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('course1')">
-            <a href="{{route('admin.courses.index')}}">
+            <a href="{{ route('admin.courses.index')}}">
                 <i class="fa fa-circle-o"></i>
                 لیست دوره ها
             </a>
         </li>
         <li class="@yield('course2')">
-            <a href="{{route('admin.courses.create')}}">
+            <a href="{{ route('admin.courses.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دوره
             </a>
@@ -79,7 +80,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('syllabus1')">
-            <a href="{{route('admin.syllabuses.index')}}">
+            <a href="{{ route('admin.syllabuses.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست جلسات
             </a>
@@ -93,8 +94,7 @@
     </ul>
 </li>
 
-<hr style="margin: 0">
-
+<li class="header">آزمون</li>
 <li class="treeview @yield('exam')">
     <a href="#">
         <i class="fa fa-check"></i>
@@ -103,13 +103,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('exam1')">
-            <a href="{{route('admin.exams.index')}}">
+            <a href="{{ route('admin.exams.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست آزمون ها
             </a>
         </li>
         <li class="@yield('exam2')">
-            <a href="{{route('admin.exams.create')}}">
+            <a href="{{ route('admin.exams.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن آزمون
             </a>
@@ -125,7 +125,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('question1')">
-            <a href="{{route('admin.questions.index')}}">
+            <a href="{{ route('admin.questions.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست سوالات
             </a>
@@ -139,8 +139,7 @@
     </ul>
 </li>
 
-<hr style="margin: 0">
-
+<li class="header">مقاله</li>
 <li class="treeview @yield('post')">
     <a href="#">
         <i class="fa fa-bold"></i>
@@ -149,28 +148,43 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('post1')">
-            <a href="{{route('admin.posts.index')}}">
+            <a href="{{ route('admin.posts.index') }}">
                 <i class="fa fa-circle-o"></i>
-                لیست مجلات
+                لیست مقالات
             </a>
         </li>
         <li class="@yield('post2')">
-            <a href="{{route('admin.posts.create')}}">
+            <a href="{{ route('admin.posts.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مقاله
-            </a>
-        </li>
-        <li class="@yield('post3')">
-            <a href="{{route('admin.tags.create')}}">
-                <i class="fa fa-circle-o"></i>
-                افزودن برچسب
             </a>
         </li>
     </ul>
 </li>
 
-<hr style="margin: 0">
 <li class="header">فروشگاه</li>
+<li class="treeview @yield('shop.category')">
+    <a href="#">
+        <i class="fa fa-th"></i>
+        <span>دسته بندی ها</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('shop.category1')">
+            <a href="{{ route('admin.categories.index', ['type' =>  \App\Enums\CategoryType::Shop]) }}">
+                <i class="fa fa-circle-o"></i>
+                لیست دسته بندی ها
+            </a>
+        </li>
+        <li class="@yield('shop.category2')">
+            <a href="{{ route('admin.categories.create', ['type' =>  \App\Enums\CategoryType::Shop]) }}">
+                <i class="fa fa-circle-o"></i>
+                افزودن دسته بندی محصول
+            </a>
+        </li>
+    </ul>
+</li>
+
 <li class="treeview @yield('product')">
     <a href="#">
         <i class="fa fa-suitcase"></i>
@@ -179,21 +193,15 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('product1')">
-            <a href="{{route('admin.products.index')}}">
+            <a href="{{ route('admin.products.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست محصولات
             </a>
         </li>
         <li class="@yield('product2')">
-            <a href="{{route('admin.products.create')}}">
+            <a href="{{ route('admin.products.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن محصول
-            </a>
-        </li>
-        <li class="@yield('product3')">
-            <a href="{{route('admin.tags.create')}}">
-                <i class="fa fa-circle-o"></i>
-                افزودن برچسب محصول
             </a>
         </li>
     </ul>
@@ -215,8 +223,22 @@
     </ul>
 </li>
 
-<hr style="margin: 0">
-
+<li class="header">مدیریت</li>
+<li class="treeview @yield('post')">
+    <a href="#">
+        <i class="fa fa-tag"></i>
+        <span>برچسب</span>
+        <i class="fa fa-angle-left pull-left"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="@yield('post3')">
+            <a href="{{ route('admin.tags.create') }}">
+                <i class="fa fa-circle-o"></i>
+                افزودن برچسب
+            </a>
+        </li>
+    </ul>
+</li>
 <li class="treeview @yield('admin')">
     <a href="#">
         <i class="fa fa-user-secret"></i>

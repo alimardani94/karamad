@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Post;
-use App\Models\Blog\Tag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -35,7 +35,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blog\Post  $post
+     * @param \App\Models\Blog\Post $post
      * @return Factory|View
      */
     public function show(Post $post)

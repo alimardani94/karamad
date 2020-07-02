@@ -32,6 +32,9 @@
                             <thead>
                             <tr>
                                 <th>عنوان</th>
+                                <th>نوع</th>
+                                <th>قیمت</th>
+                                <th>موجودی</th>
                                 <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
@@ -39,7 +42,10 @@
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{$product->title}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->type()}}</td>
+                                    <td>{{$product->price}}</td>
+                                    <td>{{$product->quantity}}</td>
 
                                     <td>{{jDate($product->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>

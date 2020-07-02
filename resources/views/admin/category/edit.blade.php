@@ -1,8 +1,10 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('category', 'active menu-open')
-@section('category1', 'active')
+@php($categoryType = strtolower(\App\Enums\CategoryType::keyOf(request()->get('type'))))
+
+@section( $categoryType . '.category', 'active menu-open')
+@section( $categoryType .'.category1', 'active')
 
 @section('style')
 @endsection

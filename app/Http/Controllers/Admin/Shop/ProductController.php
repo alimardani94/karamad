@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
+use App\Enums\CategoryType;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Shop\Product;
-use App\Models\Shop\Tag;
+use App\Models\Tag;
 use Auth;
 use Exception;
+use File;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -40,9 +42,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $categories = Category::where('parent_id', '<>', 0)
+            ->where('type', CategoryType::Shop)->get();
+
         return view('admin.product.create', [
             'tags' => Tag::all(),
-            'categories' => Category::all(),
+            'categories' => $categories,
             'types' => ProductType::translatedAll(),
         ]);
     }
@@ -78,13 +83,30 @@ class ProductController extends Controller
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
-        $path = $request->file('image')->store('products');
+        foreach ($request->get('images') as $tempPath) {
+            $newPath = str_replace('temp', 'products', $tempPath);
+            chmod('media/' . $tempPath, 0777);
+
+            File::move('media/' . $tempPath, 'media/' . $newPath);
+
+            dd($tempPath, file_exists('media/' . $tempPath), $newPath);
+        }
+
+
+        if ($request->file('attachment')) {
+            $attachPath = $request->file('attachment')->store('products/attachment');
+        }
 
         $product = new Product();
         $product->name = $request->get('name');
-        $product->content = preventXSS($request->get('content'));
-        $product->image = $path;
-        $product->author_id = Auth::id();
+        $product->category_id = $request->get('category');
+        $product->type = $request->get('type');
+        $product->quantity = $request->get('quantity');
+        $product->price = $request->get('price');
+        $product->features = json_encode($request->get('features'));
+        $product->description = preventXSS($request->get('description'));
+        $product->images = json_encode($request->get('images'));
+        $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');
         $product->meta_description = $request->get('meta_description');
         $product->save();
@@ -152,7 +174,7 @@ class ProductController extends Controller
 
         $product->tags()->sync($request->get('tags'));
 
-        return redirect()->route('admin.products.index')->with('success', trans('products.updated'));
+        return redirect()->route('admin.shop.products.index')->with('success', trans('products.updated'));
     }
 
     /**

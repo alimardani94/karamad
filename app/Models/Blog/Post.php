@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,35 +14,33 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $title
  * @property string $content
  * @property string|null $image
+ * @property int $author_id
+ * @property string|null $meta_keywords
+ * @property string|null $meta_description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog\Tag[] $tags
+ * @property-read \App\Models\User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string|null $meta_keywords
- * @property string|null $meta_description
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
- * @property int $writer_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereWriterId($value)
- * @property int $author_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereAuthorId($value)
- * @property-read \App\Models\User $author
  */
 class Post extends Model
 {
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function tagsArray()

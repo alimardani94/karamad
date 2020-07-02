@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Course;
 
 use App\Http\Controllers\Controller;
-use App\Models\Syllabus;
+use App\Models\Course\Syllabus;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 

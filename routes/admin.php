@@ -7,27 +7,36 @@ Route::get('/profile', 'ProfileController@profile')->name('profiles.index');
 Route::post('/profile', 'ProfileController@update')->name('profiles.update');
 
 Route::resources([
-    'instructors' => 'InstructorController',
-    'categories' => 'CategoryController',
-    'courses' => 'CourseController',
-    'syllabuses' => 'SyllabusController',
-    'exams' => 'ExamController',
-    'questions' => 'QuestionController',
     'users' => 'UserController',
     'admins' => 'AdminController',
+    'tags' => 'TagController',
+    'categories' => 'CategoryController',
 ]);
 
-Route::group(['namespace' => 'Blog'], function () {
+Route::group(['namespace' => 'Course', 'prefix' => 'course'], function () {
     Route::resources([
-        'posts' => 'PostController',
-        'tags' => 'TagController',
+        'instructors' => 'InstructorController',
+        'courses' => 'CourseController',
+        'syllabuses' => 'SyllabusController',
     ]);
 });
 
-Route::group(['namespace' => 'Shop'], function () {
+Route::group(['namespace' => 'Exam', 'prefix' => 'exam'], function () {
+    Route::resources([
+        'exams' => 'ExamController',
+        'questions' => 'QuestionController',
+    ]);
+});
+
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
+    Route::resources([
+        'posts' => 'PostController',
+    ]);
+});
+
+Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
     Route::resources([
         'products' => 'ProductController',
-        'tags' => 'TagController',
     ]);
 });
 

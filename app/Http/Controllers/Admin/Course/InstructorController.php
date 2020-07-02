@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Course;
 
 use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
-use App\Models\Instructor;
+use App\Models\Course\Instructor;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -59,7 +59,7 @@ class InstructorController extends Controller
         $instructor->about = $request->get('about');
         $instructor->save();
 
-        return redirect()->route('admin.instructors.index')->with('success', trans('instructors.created'));
+        return redirect()-> route('admin.instructors.index')->with('success', trans('instructors.created'));
     }
 
     /**
@@ -108,7 +108,7 @@ class InstructorController extends Controller
         $instructor->about = $request->get('about');
         $instructor->save();
 
-        return redirect()->route('admin.instructors.index')->with('success', trans('instructors.updated'));
+        return redirect()-> route('admin.instructors.index')->with('success', trans('instructors.updated'));
     }
 
     /**

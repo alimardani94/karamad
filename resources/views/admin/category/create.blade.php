@@ -1,8 +1,11 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('category', 'active menu-open')
-@section('category2', 'active')
+
+@php($categoryType = strtolower(\App\Enums\CategoryType::keyOf(request()->get('type'))))
+
+@section( $categoryType . '.category', 'active menu-open')
+@section( $categoryType .'.category2', 'active')
 
 @section('style')
 @endsection
@@ -25,8 +28,10 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.categories.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{route('admin.categories.store')}}"
+                          enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="type" value="{{ request()->get('type') }}">
                         <div class="box-header"></div>
                         <div class="box-body">
                             <div class="row">

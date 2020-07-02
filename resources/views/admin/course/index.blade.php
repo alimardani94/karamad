@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست دوره ها</h3>
-                        <a href="{{route('admin.courses.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.courses.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
                             دوره جدید</a>
                     </div>
                     <div class="box-body">
@@ -54,7 +54,7 @@
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
                                         <a href="{{route('admin.syllabuses.index', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-info btn-xs">لیست جلسات</a>
-                                        <a href="{{ route('admin.courses.edit', ['course' => $course->id])}}"
+                                        <a href="{{  route('admin.courses.edit', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
                                         </a>
                                         <a onclick="removeCourse({{$course->id}})" type="button"
@@ -74,7 +74,7 @@
 @section('js')
     <script>
         function removeCourse(id) {
-            let url = "{{route('admin.courses.destroy', '')}}/" + id
+            let url = "{{ route('admin.courses.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا دوره حذف شود؟',
                 text: "",

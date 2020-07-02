@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Course;
 
+use App\Enums\CategoryType;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Course;
-use App\Models\Instructor;
-use App\Models\Syllabus;
+use App\Models\Course\Course;
+use App\Models\Course\Instructor;
+use App\Models\Course\Syllabus;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -39,7 +40,8 @@ class CourseController extends Controller
     public function create()
     {
         $instructors = Instructor::all();
-        $categories = Category::where('parent_id', '<>', 0)->get();
+        $categories = Category::where('parent_id', '<>', 0)
+            ->where('type', CategoryType::Course)->get();
 
         return view('admin.course.create', [
             'instructors' => $instructors,
@@ -61,7 +63,7 @@ class CourseController extends Controller
         ]);
 
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:courses',
             'category' => ['required', 'exists:categories,id'],
             'instructor' => ['required', 'exists:instructors,id'],
             'summary' => 'required',

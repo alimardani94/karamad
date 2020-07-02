@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Course\Instructor;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,7 +38,7 @@ use Illuminate\Notifications\Notifiable;
  * @mixin \Eloquent
  * @property-read \App\Models\Admin $admin
  * @property-read string $full_name
- * @property-read \App\Models\Instructor $instructor
+ * @property-read \App\Models\Course\Instructor $instructor
  * @property string $image
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereImage($value)
  */

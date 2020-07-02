@@ -1,8 +1,8 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('exam', 'active menu-open')
-@section('exam2', 'active')
+@section('question', 'active menu-open')
+@section('question2', 'active')
 
 @section('style')
 @endsection

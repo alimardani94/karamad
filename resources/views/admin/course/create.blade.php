@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.courses.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.courses.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">

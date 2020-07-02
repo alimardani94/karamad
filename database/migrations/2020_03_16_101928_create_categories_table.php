@@ -15,11 +15,14 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('parent_id')->default(0)->index();
+            $table->unsignedBigInteger('parent_id')->default(0);
+            $table->unsignedSmallInteger('type');
             $table->string('name');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->index(['parent_id', 'type']);
         });
     }
 

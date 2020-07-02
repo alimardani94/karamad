@@ -1,8 +1,10 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('category', 'active menu-open')
-@section('category1', 'active')
+@php($categoryType = strtolower(\App\Enums\CategoryType::keyOf(request()->get('type'))))
+
+@section( $categoryType . '.category', 'active menu-open')
+@section( $categoryType .'.category1', 'active')
 
 @section('header')
     <section class="content-header">
@@ -24,7 +26,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست دسته بندی ها</h3>
-                        <a href="{{route('admin.categories.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{route('admin.categories.create', ['type' => request()->get('type')])}}"
+                           class="btn btn-primary btn-flat pull-left">افزودن
                             دسته بندی جدید</a>
                     </div>
                     <div class="box-body">
