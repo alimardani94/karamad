@@ -69,4 +69,14 @@ class Product extends Model
     {
         return ProductType::translatedKeyOf($this->type);
     }
+
+    public function getImagesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function getImageAttribute($value)
+    {
+        return $this->images[0] ?? '';
+    }
 }

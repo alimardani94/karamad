@@ -83,13 +83,13 @@ class ProductController extends Controller
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
+        $images = [];
         foreach ($request->get('images') as $tempPath) {
             $newPath = str_replace('temp', 'products', $tempPath);
             chmod('media/' . $tempPath, 0777);
 
             File::move('media/' . $tempPath, 'media/' . $newPath);
-
-            dd($tempPath, file_exists('media/' . $tempPath), $newPath);
+            $images[] = $newPath;
         }
 
 
@@ -105,7 +105,7 @@ class ProductController extends Controller
         $product->price = $request->get('price');
         $product->features = json_encode($request->get('features'));
         $product->description = preventXSS($request->get('description'));
-        $product->images = json_encode($request->get('images'));
+        $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');
         $product->meta_description = $request->get('meta_description');
