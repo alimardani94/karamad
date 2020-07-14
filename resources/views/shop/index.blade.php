@@ -25,7 +25,7 @@
                                     <div class="view overlay">
                                         <img src="{{ asset('media/' . $product->image) }}"
                                              class="img-fluid" alt="{{ $product->name }}">
-                                        <a>
+                                        <a href="{{ route('shop.product', ['id' => $product->id]) }}">
                                             <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                         </a>
                                     </div>
@@ -35,7 +35,7 @@
                                     <div class="card-body">
 
                                         <h5 class="card-title mb-1">
-                                            <strong><a href="" class="dark-grey-text">{{ $product->name }}</a></strong>
+                                            <strong><a href="{{ route('shop.product', ['id' => $product->id]) }}" class="dark-grey-text">{{ $product->name }}</a></strong>
                                         </h5>
                                         <span class="badge badge-danger mb-2">bestseller</span>
 

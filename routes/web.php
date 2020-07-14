@@ -50,9 +50,8 @@ Route::group(['namespace' => 'Front'], function () {
         ]);
     });
 
-    Route::group(['namespace' => 'Shop'], function () {
-        Route::resources([
-            'shop' => 'ShopController',
-        ]);
+    Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
+        Route::get('/', 'ShopController@index')->name('shop.index');
+        Route::get('/product/{id}', 'ShopController@product')->name('shop.product');
     });
 });
