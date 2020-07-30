@@ -35,7 +35,8 @@
                                     <div class="card-body">
 
                                         <h5 class="card-title mb-1">
-                                            <strong><a href="{{ route('shop.product', ['id' => $product->id]) }}" class="dark-grey-text">{{ $product->name }}</a></strong>
+                                            <strong><a href="{{ route('shop.product', ['id' => $product->id]) }}"
+                                                       class="dark-grey-text">{{ $product->name }}</a></strong>
                                         </h5>
                                         <span class="badge badge-danger mb-2">bestseller</span>
 
@@ -48,17 +49,18 @@
                                         </ul>
 
                                         <div class="card-footer pb-0">
-                                            <div class="row mb-0">
-                                                <span class="float-left">
-                                                    <strong>{{ number_format($product->price) }}</strong>  تومان
-                                                </span>
+                                            <div class="mb-0">
+                                                <div class="float-right">
+                                                    <strong>{{ number_format($product->price) }}</strong> تومان
+                                                </div>
 
-                                                <span class="float-left">
-                                                    <a class="" data-toggle="tooltip" data-placement="top" title=""
+                                                <div class="float-left">
+                                                    <a href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}"
+                                                       data-toggle="tooltip" data-placement="top" title=""
                                                        data-original-title="Add to Cart">
                                                         <i class="fas fa-shopping-cart ml-3"></i>
                                                     </a>
-                                                </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

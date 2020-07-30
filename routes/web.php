@@ -39,10 +39,12 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@home')->name('home');
 
-    Route::resources([
-        'courses' => 'CourseController',
-        'syllabuses' => 'SyllabusController',
-    ]);
+    Route::group(['namespace' => 'Course'], function () {
+        Route::resources([
+            'courses' => 'CourseController',
+            'syllabuses' => 'SyllabusController',
+        ]);
+    });
 
     Route::group(['namespace' => 'Blog'], function () {
         Route::resources([
@@ -53,5 +55,8 @@ Route::group(['namespace' => 'Front'], function () {
     Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
         Route::get('/', 'ShopController@index')->name('shop.index');
         Route::get('/product/{id}', 'ShopController@product')->name('shop.product');
+        Route::get('/cart', 'CartController@show')->name('shop.cart.show');
+        Route::get('/cart/{product}/{count}', 'CartController@add')->name('shop.cart.add');
+        Route::get('/checkout', 'ShopController@checkout')->name('shop.checkout');
     });
 });

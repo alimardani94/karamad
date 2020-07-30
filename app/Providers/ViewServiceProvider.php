@@ -5,6 +5,7 @@ namespace App\Providers;
 use Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Session;
 
 class ViewServiceProvider extends ServiceProvider
 {

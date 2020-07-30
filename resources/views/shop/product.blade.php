@@ -100,21 +100,19 @@
                             {!! $product->description !!}
                         </p>
 
-                        <p class="ml-xl-0 ml-4"><strong>Storage: </strong>64GB</p>
-                        <p class="ml-xl-0 ml-4"><strong>Size: </strong>9.6-inch</p>
                         <p class="ml-xl-0 ml-4"><strong>Resolution: </strong>2048 x 1536</p>
                         <p class="ml-xl-0 ml-4"><strong>Availability: </strong>In stock</p>
 
                         <!-- Add to Cart -->
                         <div class="row mt-3 mb-4">
                             <div class="col-md-12 text-center text-md-right text-md-right">
-                                <button class="btn btn-primary btn-rounded">
+                                <a class="btn btn-primary btn-rounded"
+                                   href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}">
                                     <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i>افزودن به سبد خر ید
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <!-- Add to Cart -->
-
                     </div>
                 </div>
             </div>
