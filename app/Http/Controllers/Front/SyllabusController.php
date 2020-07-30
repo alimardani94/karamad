@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Front\Course;
+namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course\Course;
+use App\Models\Course\Syllabus;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
-class CourseController extends Controller
+class SyllabusController extends Controller
 {
 
     /**
@@ -18,10 +18,10 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::findOrFail($id);
+        $syllabus = Syllabus::findOrFail($id);
 
-        return view('front.course', [
-            'course' => $course,
+        return view('front.syllabus', [
+            'syllabus' => $syllabus,
         ]);
     }
 

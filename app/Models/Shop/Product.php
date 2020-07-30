@@ -52,6 +52,8 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Category $category
+ * @property-read mixed $image
  */
 class Product extends Model
 {

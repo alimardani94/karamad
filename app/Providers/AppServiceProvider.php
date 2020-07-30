@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\KeyGenerator\Generator;
 use App\Services\KeyGenerator\KeyGenerator;
+use App\Services\PriceCalculator\Calculator;
+use App\Services\PriceCalculator\PriceCalculator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         $this->app->bind(Generator::class, KeyGenerator::class);
+        $this->app->bind(Calculator::class, PriceCalculator::class);
     }
 
     /**
