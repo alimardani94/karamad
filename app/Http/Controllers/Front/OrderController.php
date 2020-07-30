@@ -17,19 +17,19 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        $products = $request->get('items');
+        $products = array_values($request->get('items'));
 
         $priceCalculator = app(Calculator::class);
         $totalPrice = $priceCalculator->calculate($products);
 
         $order = new Order();
         $order->user_id = Auth::id();
-        $order->products = $products;
+        $order->products = json_encode($products);
         $order->total_price = $totalPrice;
+        $order->status = 0;
         $order->save();
 
-        return redirect()->route('');
+        return redirect()->route('dashboard.home');
     }
 
 }

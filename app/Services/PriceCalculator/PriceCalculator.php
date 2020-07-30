@@ -4,6 +4,8 @@
 namespace App\Services\PriceCalculator;
 
 
+use App\Models\Shop\Product;
+
 class PriceCalculator implements Calculator
 {
 
@@ -15,7 +17,9 @@ class PriceCalculator implements Calculator
     {
         $totalPrice = 0;
         foreach ($products as $product) {
-            $totalPrice += 111111;
+            $product = Product::findOrFail($product['product_id']);
+
+            $totalPrice += ($product->price * (int)$product['quantity']);
         }
 
         return $totalPrice;
