@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @property int $exam_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereExamId($value)
+ * @property string|null $answer_reason
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Exam\Question whereAnswerReason($value)
  */
 class Question extends Model
 {

@@ -114,6 +114,10 @@
                                                                         <label class="form-check-label"
                                                                                for="{{$question->id}}_d">{!! $question->d !!}</label>
                                                                     </div>
+                                                                    <div class="mt-4 mb-0"  id="{{$question->id}}_answer_reason"
+                                                                         style="display: none">
+                                                                        {!! $question->answer_reason !!}
+                                                                    </div>
                                                                 </div>
 
                                                                 <br>
@@ -240,6 +244,7 @@
             } else {
                 score++
             }
+            $('#' + id + '_answer_reason').show();
 
             $('.submitBtn').hide();
             $('.goToNextBtn').show();

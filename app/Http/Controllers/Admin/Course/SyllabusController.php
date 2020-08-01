@@ -156,6 +156,7 @@ class SyllabusController extends Controller
                     $question->c = preventXSS($request->get('answer_c')[$index]);
                     $question->d = preventXSS($request->get('answer_d')[$index]);
                     $question->answer = $request->get('answer')[$index];
+                    $question->answer_reason = preventXSS($request->get('answer_reason')[$index]);
 
                     $question->save();
                 }

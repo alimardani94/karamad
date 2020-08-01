@@ -300,6 +300,12 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
+                        <label for="answer_reason">توضیحات پاسخ</label>
+                        <textarea id="answer_reason" required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
                         <label for="answer_a">گزینه 1</label>
                         <textarea id="answer_a" required></textarea>
                     </div>
@@ -503,6 +509,7 @@
                 let html = $('#question_sample .questions_row').clone().removeClass('d-none').attr('data-id', number);
                 html.find('#questions_titles').attr('id', 'questions_titles_' + number).attr('name', 'questions_titles[' + number + ']')
                 html.find('#answer').attr('id', 'answer_' + number).attr('name', 'answer[' + number + ']')
+                html.find('#answer_reason').attr('id', 'answer_reason_' + number).attr('name', 'answer_reason[' + number + ']')
                 html.find('#answer_a').attr('id', 'answer_a_' + number).attr('name', 'answer_a[' + number + ']')
                 html.find('#answer_b').attr('id', 'answer_b_' + number).attr('name', 'answer_b[' + number + ']')
                 html.find('#answer_c').attr('id', 'answer_c_' + number).attr('name', 'answer_c[' + number + ']')
@@ -515,6 +522,15 @@
                     menubar: false,
                     language: 'fa',
                     height: 100,
+                    relative_urls: false,
+                    toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+                });
+                tinymce.init({
+                    selector: 'textarea#answer_reason_' + number,
+                    plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+                    menubar: false,
+                    language: 'fa',
+                    height: 70,
                     relative_urls: false,
                     toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
                 });
