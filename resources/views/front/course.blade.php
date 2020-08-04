@@ -112,7 +112,7 @@
 
                     <!-- Sidebar -->
                     <div class="col-lg-3 col-12 mt-1">
-                        <div class="card">
+                        <div class="card" style="position: sticky; top: 90px;">
                             <div class="card-body">
                                 <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
                                     <strong>مدرس </strong>
