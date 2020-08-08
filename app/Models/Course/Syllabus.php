@@ -77,14 +77,14 @@ class Syllabus extends Model
         return SyllabusType::translatedKeyOf($this->file_disk);
     }
 
-    public function getVideoAttribute($value)
+    public function video()
     {
-        return ($this->file_disk == FileDisk::URL or !$value) ? $value : asset('media/' . $value);
+        return ($this->file_disk == FileDisk::URL or !$this->video) ? $this->video : asset('media/' . $this->video);
     }
 
-    public function getAudioAttribute($value)
+    public function audio()
     {
-        return ($this->file_disk == FileDisk::URL or !$value) ? $value : asset('media/' . $value);
+        return ($this->file_disk == FileDisk::URL or !$this->audio) ? $this->audio : asset('media/' . $this->audio);
     }
 
     /**

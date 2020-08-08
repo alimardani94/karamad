@@ -447,27 +447,33 @@
             $('#typeBox1').show();
             $('#typeBox2').hide();
             $('#typeBox3').hide();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', false);
             $('#typeBox2 input').prop('disabled', true);
             $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', true);
         }
 
         function activeAudio() {
             $('#typeBox1').hide();
             $('#typeBox2').show();
             $('#typeBox3').hide();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', true);
             $('#typeBox2 input').prop('disabled', false);
             $('#typeBox3 textarea').prop('disabled', true);
+            $('#typeBox4 input').prop('disabled', true);
         }
 
         function activeText() {
             $('#typeBox1').hide();
             $('#typeBox2').hide();
             $('#typeBox3').show();
+            $('#typeBox4').hide();
             $('#typeBox1 input').prop('disabled', true);
             $('#typeBox2 input').prop('disabled', true);
             $('#typeBox3 textarea').prop('disabled', false);
+            $('#typeBox4 input').prop('disabled', true);
         }
 
         function activeExam() {

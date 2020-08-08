@@ -58,14 +58,14 @@
                                             <div class="">
                                                 @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                     <video controls class="img-fluid" width="100%">
-                                                        <source src="{{$syllabus->video}}"
+                                                        <source src="{{$syllabus->video()}}"
                                                                 type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                     <div class="m-5 text-center">
                                                         <audio controls>
-                                                            <source src="{{$syllabus->audio}}"
+                                                            <source src="{{$syllabus->audio()}}"
                                                                     type="audio/mp3">
                                                             Your browser does not support the audio element.
                                                         </audio>
@@ -281,7 +281,7 @@
         }
 
         function getScore() {
-            let finalScore = score * 100 / questionsCount;
+            let finalScore = parseInt(score * 100 / questionsCount);
             let html = "شما به " + finalScore + " درصد سوالات پاسخ صحیح دادید"
             $('.question_card').html(html);
         }
