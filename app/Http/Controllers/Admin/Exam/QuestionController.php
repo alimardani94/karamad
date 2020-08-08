@@ -77,6 +77,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->exam_id = $request->get('exam');
         $question->title = preventXSS($request->get('title'));
+        $question->answer_reason = preventXSS($request->get('answer_reason'));
         $question->a = preventXSS($request->get('a'));
         $question->b = preventXSS($request->get('b'));
         $question->c = preventXSS($request->get('c'));
@@ -133,6 +134,7 @@ class QuestionController extends Controller
 
         $question = Question::findOrFail($id);
         $question->title = preventXSS($request->get('title'));
+        $question->answer_reason = preventXSS($request->get('answer_reason'));
         $question->a = preventXSS($request->get('a'));
         $question->b = preventXSS($request->get('b'));
         $question->c = preventXSS($request->get('c'));

@@ -2,8 +2,10 @@
 
 namespace App\Models\Exam;
 
+use App\Models\Course\Syllabus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\Exam
@@ -40,5 +42,14 @@ class Exam extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    /**
+     * only for exam syllabuses
+     * @return HasOne
+     */
+    public function syllabus()
+    {
+        return $this->hasOne(Syllabus::class);
     }
 }

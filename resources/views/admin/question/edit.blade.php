@@ -61,6 +61,13 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <label for="answer_reason">پاسخ تشریحی</label>
+                                    <textarea id="answer_reason" name="answer_reason" class="form-control">{!! old('a', $question->answer_reason) !!}</textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <label for="answer_a">گزینه ۱</label>
                                     <textarea id="answer_a" name="a" class="form-control">{!! old('a', $question->a) !!}</textarea>
                                 </div>
@@ -107,6 +114,16 @@
             menubar: false,
             language: 'fa',
             height: 100,
+            relative_urls: false,
+            toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
+        });
+
+        tinymce.init({
+            selector: 'textarea#answer_reason',
+            plugins: 'advlist autolink link lists preview table code pagebreak formula image',
+            menubar: false,
+            language: 'fa',
+            height: 125,
             relative_urls: false,
             toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link image | formula',
         });

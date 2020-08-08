@@ -24,8 +24,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست آزمون ها</h3>
-                        <a href="{{route('admin.exams.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
-                            آزمون جدید</a>
+{{--                        <a href="{{route('admin.exams.create')}}" class="btn btn-primary btn-flat pull-left">افزودن--}}
+{{--                            آزمون جدید</a>--}}
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
@@ -51,14 +51,16 @@
                                         <a href="{{route('admin.questions.index', ['exam' => $exam->id])}}"
                                            type="button" class="btn btn-block btn-info btn-xs">لیست سوالات</a>
 
-                                        <a href="{{ route('admin.exams.edit', ['exam' => $exam->id])}}"
-                                           type="button" class="btn btn-block btn-primary btn-xs">
-                                            ویرایش آزمون
-                                        </a>
-                                        <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removeExam({{$exam->id}})">
-                                            حذف آزمون
-                                        </a>
+                                        @if(!$exam->syllabus)
+                                            <a href="{{ route('admin.exams.edit', ['exam' => $exam->id])}}"
+                                               type="button" class="btn btn-block btn-primary btn-xs">
+                                                ویرایش آزمون
+                                            </a>
+                                            <a type="button" class="btn btn-block btn-danger btn-xs"
+                                               onclick="removeExam({{$exam->id}})">
+                                                حذف آزمون
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
