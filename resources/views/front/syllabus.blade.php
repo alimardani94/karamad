@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="row mt-5 pt-3">
                     <div class="col-lg-9 col-12 mt-1 ">
-                        <section class="pb-5 text-lg-left">
+                        <section class="text-lg-left">
 
                             <div class="row mb-4">
 
@@ -78,7 +78,7 @@
                                                     گزینه صحیح را انتخاب کنید
                                                     <hr>
                                                     @foreach($syllabus->questions as $index=>$question)
-                                                        <div class="card question_card" id="question_card_{{ $index }}">
+                                                        <div class="card question_card z-depth-0" id="question_card_{{ $index }}">
                                                             <div class="card-body">
                                                                 <h4 class="card-title">{!! $question->title !!}</h4>
                                                                 <input type="hidden" id="answer_{{$question->id}}"
@@ -114,7 +114,8 @@
                                                                         <label class="form-check-label"
                                                                                for="{{$question->id}}_d">{!! $question->d !!}</label>
                                                                     </div>
-                                                                    <div class="mt-4 mb-0"  id="{{$question->id}}_answer_reason"
+                                                                    <div class="mt-4 mb-0"
+                                                                         id="{{$question->id}}_answer_reason"
                                                                          style="display: none">
                                                                         {!! $question->answer_reason !!}
                                                                     </div>
@@ -179,6 +180,26 @@
                                 </div>
                             </div>
                         </section>
+                        <section class="pb-5">
+                            <div class="d-flex">
+                                @if($next)
+                                    <div class="ml-auto">
+                                        <a href="{{route('syllabuses.show', ['syllabus' => $next->id])}}"
+                                           class="btn btn-primary btn-rounded waves-effect waves-light">
+                                            بعدی
+                                        </a>
+                                    </div>
+                                @endif
+                                @if($previous)
+                                    <div class="mr-auto">
+                                        <a href="{{route('syllabuses.show', ['syllabus' => $previous->id])}}"
+                                           class="btn btn-primary btn-rounded waves-effect waves-light">
+                                            قبلی
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                        </section>
                     </div>
 
                     <!-- Sidebar -->
@@ -191,11 +212,11 @@
 
                                 <div class="mt-3 dark-grey-text font-small text-center">
                                     <ul class="list-group mx-0 px-0">
-                                        @foreach($syllabus->course->syllabuses as $syllabus)
-                                            <li class="list-group-item text-black">
-                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                        @foreach($syllabus->course->syllabuses as $sidebarSyllabus)
+                                            <li class="list-group-item text-black {{ ($sidebarSyllabus->id === $syllabus->id) ? 'active' : '' }}">
+                                                <a href="{{route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
                                                    class="black-text">
-                                                    {{$syllabus->title}}
+                                                    {{$sidebarSyllabus->title}}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -261,7 +282,7 @@
 
         function getScore() {
             let finalScore = score * 100 / questionsCount;
-            let html = "شما به " + finalScore +  " درصد سوالات پاسخ صحیح دادید"
+            let html = "شما به " + finalScore + " درصد سوالات پاسخ صحیح دادید"
             $('.question_card').html(html);
         }
     </script>

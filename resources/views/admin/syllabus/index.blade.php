@@ -24,8 +24,18 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست جلسه ها</h3>
-                        <a href="{{route('admin.syllabuses.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
-                            جلسه جدید</a>
+                        @if(request()->get('course'))
+                            <a href="{{route('admin.syllabuses.create', ['course' => request()->get('course')])}}"
+                               class="btn btn-primary btn-flat pull-left">
+                                افزودن
+                                جلسه جدید
+                            </a>
+                        @else
+                            <a href="{{route('admin.syllabuses.create')}}" class="btn btn-primary btn-flat pull-left">
+                                افزودن
+                                جلسه جدید
+                            </a>
+                        @endif
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">

@@ -20,8 +20,13 @@ class SyllabusController extends Controller
     {
         $syllabus = Syllabus::findOrFail($id);
 
+        $next = Syllabus::where('id', '>', $syllabus->id)->get(['id'])->first();
+        $previous = Syllabus::where('id', '<', $syllabus->id)->get(['id'])->first();
+
         return view('front.syllabus', [
             'syllabus' => $syllabus,
+            'next' => $next,
+            'previous' => $previous,
         ]);
     }
 

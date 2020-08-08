@@ -138,7 +138,7 @@ class CategoryController extends Controller
         $category->description = $request->get('description');
         $category->save();
 
-        return redirect()->route('admin.categories.index')->with('success', trans('categories.updated'));
+        return redirect()->route('admin.categories.index', ['type' => $category->type])->with('success', trans('categories.updated'));
     }
 
     /**

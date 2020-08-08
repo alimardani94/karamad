@@ -111,27 +111,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <hr>
-                                <div class="col-md-12">
-                                    <p>در صورتی که دوره رایگان نیست این قسمت را تکمیل فرمایید</p>
-                                </div>
+{{--                            <div class="row">--}}
+{{--                                <hr>--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <p>در صورتی که دوره رایگان نیست این قسمت را تکمیل فرمایید</p>--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="price">قیمت</label>
-                                        <input type="text" class="form-control" id="price" placeholder="قیمت"
-                                               value="{{old('price')}}" name="price">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="discount">تخفیف</label>
-                                        <input type="text" class="form-control" id="discount" placeholder="تخفیف"
-                                               value="{{old('discount')}}" name="discount">
-                                    </div>
-                                </div>
-                            </div>
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="price">قیمت</label>--}}
+{{--                                        <input type="text" class="form-control" id="price" placeholder="قیمت"--}}
+{{--                                               value="{{old('price')}}" name="price">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="discount">تخفیف</label>--}}
+{{--                                        <input type="text" class="form-control" id="discount" placeholder="تخفیف"--}}
+{{--                                               value="{{old('discount')}}" name="discount">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <hr>
                             <h5>
