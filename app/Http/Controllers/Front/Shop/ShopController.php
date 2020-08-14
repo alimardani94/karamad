@@ -22,11 +22,15 @@ class ShopController extends Controller
         ]);
     }
 
-    public function product(Request $request, $id) {
-        $product = Product::findOrFail($id);
+    public function product(Request $request, $id)
+    {
+        $product = Product::whereId($id)->with('comments')->withCount('comments')->first();
+
+        $relatedProducts = Product::where('id', '<>', $id)->limit(6)->get();
 
         return view('shop.product', [
             'product' => $product,
+            'relatedProducts' => $relatedProducts,
         ]);
     }
 }

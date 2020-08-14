@@ -154,9 +154,8 @@
                                             </div>
                                         </section>
                                         <hr>
-                                @endif
+                                    @endif
 
-                                <!-- Section: Leave a reply (Not Logged In User) -->
                                     <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                                         <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
                                         <form action="{{ route('posts.comments.store', ['post' => $post->id ]) }}"
@@ -242,11 +241,10 @@
                                                             </h4>
                                                             <hr>
 
-                                                            </p>
                                                             <p class="font-small font-weight-bold dark-grey-text mb-1">
                                                                 <i class="far fa-clock-o"></i> {{ jDate($relatedPost->created_at, 'dd MMMM yyyy') }}
                                                             </p>
-                                                            <p class="font-small grey-text mb-0">{{ $post->meta_description }}</p>
+                                                            <p class="font-small grey-text mb-0">{{ $relatedPost->meta_description }}</p>
                                                             <p class="text-right mb-0 font-small font-weight-bold">
                                                                 <a href="{{ route('posts.show', ['post' => $relatedPost->id]) }}">بیشتر
                                                                     <i class="fas fa-angle-left"></i>
@@ -296,11 +294,6 @@
             loop: false,
             margin: 2,
             dots: true,
-            // navText: [
-            //     '<i class="fa fa-angle-left" aria-hidden="true"></i>',
-            //     '<i class="fa fa-angle-right" aria-hidden="true"></i>'
-            // ],
-            // dotsContainer: '.carousel-box .custom-dots',
             responsive: {
                 0: {
                     items: 1
