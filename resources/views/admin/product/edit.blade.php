@@ -2,7 +2,7 @@
 
 @section('title', 'خانه')
 @section('product', 'active menu-open')
-@section('product2', 'active')
+@section('product1', 'active')
 
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.css')}}">
@@ -13,12 +13,12 @@
 @section('header')
     <section class="content-header">
         <h1>
-            افزودن محصول جدید
+            ویرایش محصول
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">محصولات</a></li>
-            <li class="active">افزودن محصول</li>
+            <li class="active">ویرایش محصول</li>
         </ol>
     </section>
 @endsection
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="name">عنوان</label>
                                         <input type="text" class="form-control" id="name" placeholder="عنوان"
-                                               value="{{old('name')}}" name="name">
+                                               value="{{old('name', $product->name)}}" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -48,7 +48,7 @@
                                                 style="width: 100%;">
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}"
-                                                    {{$category->id == old('category') ? 'selected':''}}>
+                                                    {{$category->id == old('category', $product->category_id) ? 'selected':''}}>
                                                     {{ $category->name }}
                                                 </option>
                                             @endforeach
@@ -62,7 +62,7 @@
                                                 multiple="multiple" style="width: 100%;">
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}"
-                                                    {{in_array($tag->id, old('tags', [])) ? 'selected':''}}>
+                                                    {{in_array($tag->id, old('tags', $product->tags()->pluck('id')->toArray())) ? 'selected':''}}>
                                                     {{ $tag->name }}
                                                 </option>
                                             @endforeach
@@ -78,7 +78,7 @@
                                             <option selected disabled>انتخاب کنید</option>
                                             @foreach($types as $type=>$index)
                                                 <option value="{{ $index }}"
-                                                    {{ $index == old('type') ? 'selected':''}}>
+                                                    {{ $index == old('type', $product->type) ? 'selected':''}}>
                                                     {{ $type }}
                                                 </option>
                                             @endforeach
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="file">فایل محصول</label>
                                         <label class="form-control">
-                                            <span> انتخاب کنید ... </span>
+                                            <span>{{ $product->file ?? 'انتخاب کنید ...' }}</span>
                                             <input type="file" class="custom-file-input"
                                                    id="file" name="file" hidden>
                                         </label>
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label for="quantity">تعداد</label>
                                         <input type="number" class="form-control" id="quantity" placeholder="تعداد"
-                                               value="{{old('quantity')}}" name="quantity">
+                                               value="{{old('quantity', $product->quantity)}}" name="quantity">
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                     <div class="form-group">
                                         <label for="price">قیمت</label>
                                         <input type="number" class="form-control" id="price" placeholder="قیمت"
-                                               value="{{old('price')}}" name="price">
+                                               value="{{old('price', $product->price)}}" name="price">
                                     </div>
                                 </div>
                                 {{--                                <div class="col-md-6">--}}
@@ -155,7 +155,7 @@
                                     <small> (پس از وارد کردن هر کدام کلید Enter را فشار دهید) </small>
                                     </label>
                                     <select multiple name="features[]" id="features">
-                                        @foreach( old('features', []) as $feature)
+                                        @foreach( old('features', $product->features()) as $feature)
                                             <option value="{{$feature}}">{{$feature}}</option
                                         @endforeach
                                     </select>
@@ -168,7 +168,7 @@
                                     <label for="description">توضیحات</label>
                                     <textarea id="description" name="description"
                                               style="width: 100%; height: 210px; border: 1px solid #dddddd; padding: 10px;"
-                                              class="form-control">{!! old('description') !!}</textarea>
+                                              class="form-control">{!! old('description', $product->description) !!}</textarea>
                                 </div>
                             </div>
 
@@ -183,7 +183,7 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{old('meta_keywords', $product->meta_keywords)}}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>
@@ -193,12 +193,12 @@
                                     <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
                                     <textarea id="meta_description" name="meta_description" minlength="135"
                                               maxlength="160"
-                                              class="form-control">{{old('meta_description')}}</textarea>
+                                              class="form-control">{{old('meta_description', $product->meta_description)}}</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">افزودن محصول جدید</button>
+                            <button type="submit" class="btn btn-primary">ویرایش محصول</button>
                         </div>
                     </form>
                 </div>

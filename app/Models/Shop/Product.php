@@ -87,4 +87,9 @@ class Product extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function features()
+    {
+        return json_decode($this->features, true);
+    }
 }

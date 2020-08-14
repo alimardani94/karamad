@@ -94,16 +94,22 @@ class ProductController extends Controller
 
 
         if ($request->file('attachment')) {
-            $attachPath = $request->file('attachment')->store('products/attachment');
+            $attachPath = $request->file('attachment')->store('products/attachments');
         }
 
         $product = new Product();
         $product->name = $request->get('name');
         $product->category_id = $request->get('category');
         $product->type = $request->get('type');
-        $product->quantity = $request->get('quantity');
+        if ($product->type = ProductType::Physical) {
+            $product->quantity = $request->get('quantity');
+        } else {
+            if ($request->file('file')) {
+                $attachPath = $request->file('file')->store('products/files');
+            }
+        }
         $product->price = $request->get('price');
-        $product->features = json_encode($request->get('features'));
+        $product->features = json_encode($request->get('features') ?? []);
         $product->description = preventXSS($request->get('description'));
         $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
@@ -134,9 +140,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = Category::where('parent_id', '<>', 0)
+            ->where('type', CategoryType::Shop)->get();
+
         return view('admin.product.edit', [
             'product' => $product,
             'tags' => Tag::all(),
+            'categories' => $categories,
+            'types' => ProductType::translatedAll(),
         ]);
     }
 
@@ -159,15 +170,35 @@ class ProductController extends Controller
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
-        $path = $product->image;
-        if ($request->file('image')) {
-            $path = $request->file('image')->store('products');
+        $images = [];
+        foreach ($request->get('images') as $tempPath) {
+            $newPath = str_replace('temp', 'products', $tempPath);
+            chmod('media/' . $tempPath, 0777);
+
+            File::move('media/' . $tempPath, 'media/' . $newPath);
+            $images[] = $newPath;
         }
 
-        $product->title = $request->get('title');
-        $product->content = preventXSS($request->get('content'));
-        $product->image = $path;
-        $product->author_id = Auth::id();
+
+        if ($request->file('attachment')) {
+            $attachPath = $request->file('attachment')->store('products/attachments');
+        }
+
+        $product->name = $request->get('name');
+        $product->category_id = $request->get('category');
+        $product->type = $request->get('type');
+        if ($product->type = ProductType::Physical) {
+            $product->quantity = $request->get('quantity');
+        } else {
+            if ($request->file('file')) {
+                $attachPath = $request->file('file')->store('products/files');
+            }
+        }
+        $product->price = $request->get('price');
+        $product->features = json_encode($request->get('features') ?? []);
+        $product->description = preventXSS($request->get('description'));
+        $product->images = json_encode($images);
+        $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');
         $product->meta_description = $request->get('meta_description');
         $product->save();
