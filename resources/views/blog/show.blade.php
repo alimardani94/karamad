@@ -27,6 +27,7 @@
             display: inline-block;
             zoom: 1;
         }
+
         .owl-dots .owl-dot span {
             margin: 5px 7px;
             display: block;
@@ -90,63 +91,72 @@
                                                 <strong>به اشتراک بگزارید</strong>
                                             </h4>
 
-                                            <button type="button" class="btn btn-fb btn-sm">
+                                            <a href="mailto:?subject={{ $post->title }}&amp;body={{ route('posts.show', ['post' => $post->id]) }}"
+                                               type="button" class="btn btn-sm btn-email waves-effect waves-light">
+                                                <i class="fas fa-envelope pr-1"></i>
+                                                ایمیل
+                                            </a>
+
+                                            <a href="http://www.facebook.com/sharer.php?u={{ route('posts.show', ['post' => $post->id]) }}"
+                                               target="_blank" type="button" class="btn btn-fb btn-sm">
                                                 <i class="fab fa-facebook-f left"></i> Facebook
-                                            </button>
-                                            <button type="button" class="btn btn-tw btn-sm">
-                                                <i class="fab fa-twitter left"></i> Twitter
-                                            </button>
-                                            <button type="button" class="btn btn-gplus btn-sm">
-                                                <i class="fab fa-google-plus-g left"></i> Google +
-                                            </button>
+                                            </a>
+
+                                            <a href="whatsapp://send?text={{ $post->title }}"
+                                               data-action="share/whatsapp/share"
+                                               type="button" class="btn  btn-sm btn-whatsapp waves-effect waves-light">
+                                                <i class="fab fa-whatsapp pr-1"></i> Whatsapp
+                                            </a>
                                         </div>
 
                                     </div>
 
                                     <hr class="mt-5">
-                                    <!-- Comments -->
-                                    <section>
-                                        <div class="comments-list text-center text-md-left">
-                                            <div class="text-center my-5">
-                                                <h3 class="font-weight-bold">دیدگاه
-                                                    <span class="badge indigo">{{ $post->comments_count }}</span>
-                                                </h3>
-                                            </div>
 
-                                            @foreach ($post->comments as $comment)
-                                                <div class="row mb-5">
-                                                    <!-- Image column -->
-                                                    <div class="col-sm-2 col-12 mb-3">
-                                                        <img src="{{ $comment->image }}"
-                                                             class="avatar rounded-circle z-depth-1-half"
-                                                             alt="comment image">
-                                                    </div>
-                                                    <!-- Image column -->
-
-                                                    <!-- Content column -->
-                                                    <div class="col-sm-10 col-12">
-                                                        <a>
-                                                            <h5 class="user-name font-weight-bold">{{ $comment->name }}</h5>
-                                                        </a>
-                                                        <div class="card-data">
-                                                            <ul class="list-unstyled">
-                                                                <li class="comment-date font-small">
-                                                                    <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy') }}
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <p class="dark-grey-text article">
-                                                            {{ $comment->body }}
-                                                        </p>
-                                                    </div>
-                                                    <!-- Content column -->
+                                    @if($post->comments_count)
+                                        <section>
+                                            <div class="comments-list text-center text-md-left">
+                                                <div class="text-center my-5">
+                                                    <h3 class="font-weight-bold">دیدگاه
+                                                        <span class="badge indigo">{{ $post->comments_count }}</span>
+                                                    </h3>
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                    </section>
-                                    <!-- Comments -->
-                                    <hr>
-                                    <!-- Section: Leave a reply (Not Logged In User) -->
+
+                                                @foreach ($post->comments as $comment)
+                                                    <div class="row mb-5">
+                                                        <!-- Image column -->
+                                                        <div class="col-sm-2 col-12 mb-3">
+                                                            <img src="{{ $comment->image }}"
+                                                                 class="avatar rounded-circle z-depth-1-half"
+                                                                 alt="comment image">
+                                                        </div>
+                                                        <!-- Image column -->
+
+                                                        <!-- Content column -->
+                                                        <div class="col-sm-10 col-12">
+                                                            <a>
+                                                                <h5 class="user-name font-weight-bold">{{ $comment->name }}</h5>
+                                                            </a>
+                                                            <div class="card-data">
+                                                                <ul class="list-unstyled">
+                                                                    <li class="comment-date font-small">
+                                                                        <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy') }}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <p class="dark-grey-text article">
+                                                                {{ $comment->body }}
+                                                            </p>
+                                                        </div>
+                                                        <!-- Content column -->
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </section>
+                                        <hr>
+                                @endif
+
+                                <!-- Section: Leave a reply (Not Logged In User) -->
                                     <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                                         <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
                                         <form action="{{ route('posts.comments.store', ['post' => $post->id ]) }}"
