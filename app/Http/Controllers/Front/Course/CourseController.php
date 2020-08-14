@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Course;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course\Course;

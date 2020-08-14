@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Shop;
 
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;

@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string|null $time
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Exam whereStart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Exam whereTime($value)
+ * @property-read \App\Models\Course\Syllabus $syllabus
  */
 class Exam extends Model
 {

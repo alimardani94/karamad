@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -51,5 +52,10 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

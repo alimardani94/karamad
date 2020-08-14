@@ -7,9 +7,44 @@
 @stop
 
 @section('style')
+    <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
     <style>
         #content p, #content img {
             max-width: 100%;
+        }
+
+
+        .owl-dots {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding-left: 0;
+            margin: 15px 15%;
+        }
+
+        .owl-dots .owl-dot {
+            display: inline-block;
+            zoom: 1;
+        }
+        .owl-dots .owl-dot span {
+            margin: 5px 7px;
+            display: block;
+            -webkit-backface-visibility: visible;
+            transition: opacity .2s ease;
+            border-radius: 30px;
+            width: 1.25rem;
+            max-width: 1.25rem;
+            height: 1.25rem;
+            background-color: #4285f4;
+        }
+
+        .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+            width: 1.56rem;
+            max-width: 1.56rem;
+            height: 1.56rem;
+            background-color: #4285f4;
+            border-radius: 50%;
         }
     </style>
 @endsection
@@ -32,7 +67,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-xl-12 d-flex justify-content-center">
                                     <p class="font-small dark-grey-text mb-1">
-                                        <strong>نویسنده: </strong> {{$post->author->full_name}}</p>
+                                        <strong>نویسنده: </strong> {{ $post->author->full_name }}</p>
                                     <p class="font-small grey-text mb-0 ml-3">
                                         <i class="far fa-clock-o dark-grey-text"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }}
                                     </p>
@@ -71,201 +106,101 @@
                                     <hr class="mt-5">
                                     <!-- Comments -->
                                     <section>
-
-                                        <!-- Main wrapper -->
                                         <div class="comments-list text-center text-md-left">
                                             <div class="text-center my-5">
                                                 <h3 class="font-weight-bold">دیدگاه
-                                                    <span class="badge indigo">3</span>
+                                                    <span class="badge indigo">{{ $post->comments_count }}</span>
                                                 </h3>
                                             </div>
-                                            <!-- First row -->
-                                            <div class="row mb-5">
-                                                <!-- Image column -->
-                                                <div class="col-sm-2 col-12 mb-3">
-                                                    <img
-                                                        src="https://mdbootstrap.com/img/Photos/Avatars/img (8).jpg"
-                                                        class="avatar rounded-circle z-depth-1-half"
-                                                        alt="sample image">
-                                                </div>
-                                                <!-- Image column -->
 
-                                                <!-- Content column -->
-                                                <div class="col-sm-10 col-12">
-                                                    <a>
-                                                        <h5 class="user-name font-weight-bold">John Doe</h5>
-                                                    </a>
-                                                    <div class="card-data">
-                                                        <ul class="list-unstyled">
-                                                            <li class="comment-date font-small">
-                                                                <i class="far fa-clock-o"></i> 05/10/2015
-                                                            </li>
-                                                        </ul>
+                                            @foreach ($post->comments as $comment)
+                                                <div class="row mb-5">
+                                                    <!-- Image column -->
+                                                    <div class="col-sm-2 col-12 mb-3">
+                                                        <img src="{{ $comment->image }}"
+                                                             class="avatar rounded-circle z-depth-1-half"
+                                                             alt="comment image">
                                                     </div>
-                                                    <p class="dark-grey-text article">Ut enim ad minim veniam, quis
-                                                        nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex
-                                                        ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                        in voluptate velit esse
-                                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                        occaecat cupidatat non proident.
-                                                    </p>
-                                                </div>
-                                                <!-- Content column -->
-                                            </div>
-                                            <!-- First row -->
+                                                    <!-- Image column -->
 
-                                            <!-- Second row -->
-                                            <div class="row mb-5">
-                                                <!-- Image column -->
-                                                <div class="col-sm-2 col-12 mb-3">
-                                                    <img
-                                                        src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
-                                                        class="avatar rounded-circle z-depth-1-half"
-                                                        alt="sample image">
-                                                </div>
-                                                <!-- Image column -->
-
-                                                <!-- Content column -->
-                                                <div class="col-sm-10 col-12 mb-3">
-                                                    <a>
-                                                        <h5 class="user-name font-weight-bold">Lily Brown</h5>
-                                                    </a>
-                                                    <div class="card-data">
-                                                        <ul class="list-unstyled">
-                                                            <li class="comment-date font-small">
-                                                                <i class="far fa-clock-o"></i> 05/10/2015
-                                                            </li>
-                                                        </ul>
+                                                    <!-- Content column -->
+                                                    <div class="col-sm-10 col-12">
+                                                        <a>
+                                                            <h5 class="user-name font-weight-bold">{{ $comment->name }}</h5>
+                                                        </a>
+                                                        <div class="card-data">
+                                                            <ul class="list-unstyled">
+                                                                <li class="comment-date font-small">
+                                                                    <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy') }}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <p class="dark-grey-text article">
+                                                            {{ $comment->body }}
+                                                        </p>
                                                     </div>
-                                                    <p class="dark-grey-text article">Ut enim ad minim veniam, quis
-                                                        nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex
-                                                        ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                        in voluptate velit esse
-                                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                        occaecat cupidatat non proident.
-                                                    </p>
+                                                    <!-- Content column -->
                                                 </div>
-                                                <!-- Content column -->
-                                            </div>
-                                            <!-- Second row -->
-
-                                            <!-- Third row -->
-                                            <div class="row mb-5">
-                                                <!-- Image column -->
-                                                <div class="col-sm-2 col-12 mb-3">
-                                                    <img
-                                                        src="https://mdbootstrap.com/img/Photos/Avatars/img (28).jpg"
-                                                        class="avatar rounded-circle z-depth-1-half"
-                                                        alt="sample image">
-                                                </div>
-                                                <!-- Image column -->
-                                                <!-- Content column -->
-                                                <div class="col-sm-10 col-12">
-                                                    <a>
-                                                        <h5 class="user-name font-weight-bold">Martha Smith</h5>
-                                                    </a>
-                                                    <div class="card-data">
-                                                        <ul class="list-unstyled">
-                                                            <li class="comment-date font-small">
-                                                                <i class="far fa-clock-o"></i> 05/10/2015
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <p class="dark-grey-text article">Ut enim ad minim veniam, quis
-                                                        nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex
-                                                        ea commodo consequat. Duis aute irure dolor in reprehenderit
-                                                        in voluptate velit esse
-                                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                                                        occaecat cupidatat non proident.
-                                                    </p>
-                                                </div>
-                                                <!-- Content column -->
-                                            </div>
-                                            <!-- Third row -->
+                                            @endforeach
                                         </div>
-                                        <!-- Main wrapper -->
-
                                     </section>
                                     <!-- Comments -->
                                     <hr>
                                     <!-- Section: Leave a reply (Not Logged In User) -->
                                     <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                                         <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
-
-                                        <!-- Grid row -->
-                                        <div class="row">
-
-                                            <!-- Grid column -->
-                                            <div class="col-lg-4 col-md-12 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
+                                        <form action="{{ route('posts.comments.store', ['post' => $post->id ]) }}"
+                                              method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12 mb-4">
+                                                    <div class="input-group md-form form-sm form-3 pl-0">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text white black-text"
                                                                   id="basic-addon8">1</span>
+                                                        </div>
+                                                        <label for="name"></label>
+                                                        <input type="text" id="name" name="name"
+                                                               class="form-control mt-0 black-border rgba-white-strong"
+                                                               placeholder="نام" aria-describedby="basic-addon9">
                                                     </div>
-                                                    <input type="text"
-                                                           class="form-control mt-0 black-border rgba-white-strong"
-                                                           placeholder="نام" aria-describedby="basic-addon9">
+
                                                 </div>
+                                                <!-- Grid column -->
 
-                                            </div>
-                                            <!-- Grid column -->
+                                                <!-- Grid column -->
+                                                <div class="col-lg-6 col-md-6 mb-4">
 
-                                            <!-- Grid column -->
-                                            <div class="col-lg-4 col-md-6 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
+                                                    <div class="input-group md-form form-sm form-3 pl-0">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text white black-text"
                                                                   id="basic-addon9">2</span>
+                                                        </div>
+                                                        <label for="email"></label>
+                                                        <input type="email" id="email" name="email"
+                                                               class="form-control mt-0 black-border rgba-white-strong"
+                                                               placeholder="ایمیل" aria-describedby="basic-addon9">
                                                     </div>
-                                                    <input type="text"
-                                                           class="form-control mt-0 black-border rgba-white-strong"
-                                                           placeholder="ایمیل" aria-describedby="basic-addon9">
+
                                                 </div>
-
                                             </div>
-                                            <!-- Grid column -->
 
-                                            <!-- Grid column -->
-                                            <div class="col-lg-4 col-md-6 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                            <span class="input-group-text white black-text"
-                                                                  id="basic-addon10">3</span>
+                                            <div class="row">
+                                                <div class="col-12 mt-1">
+                                                    <div class="md-form">
+                                                        <i class="fas fa-pencil-alt prefix"></i>
+                                                        <textarea id="body" class="md-textarea form-control"
+                                                                  rows="3" name="body"></textarea>
+                                                        <label for="body" class="">دیدگاه</label>
                                                     </div>
-                                                    <input type="text"
-                                                           class="form-control mt-0 black-border rgba-white-strong"
-                                                           placeholder="وبسایت" aria-describedby="basic-addon9">
-                                                </div>
 
+                                                    <div class="text-right">
+                                                        <button class="btn btn-grey btn-sm">ارسال</button>
+                                                    </div>
+
+                                                </div>
                                             </div>
-                                            <!-- Grid column -->
-
-                                        </div>
-                                        <!-- Grid row -->
-
-                                        <!-- Grid row -->
-                                        <div class="row">
-
-                                            <div class="col-12 mt-1">
-                                                <div class="form-group basic-textarea">
-
-                              <textarea class="form-control" id="exampleFormControlTextarea6" rows="5"
-                                        placeholder="دیدگاه من ..."></textarea>
-                                                </div>
-
-                                                <div class="text-right">
-                                                    <button class="btn btn-grey btn-sm">ارسال</button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                        </form>
 
                                     </section>
 
@@ -276,452 +211,43 @@
                                             <strong>پست های مرتبط</strong>
                                         </h4>
 
-                                        <!-- Carousel Wrapper -->
-                                        <div id="multi-item-example" class="carousel slide carousel-multi-item mx-1"
-                                             data-ride="carousel">
+                                        <div class="carousel-box courses-box">
+                                            <div class="owl-carousel mt-4">
+                                                @foreach($relatedPosts as $relatedPost)
+                                                    <div class="card m-2 h-100">
 
-                                            <!-- Indicators -->
-                                            <ol class="carousel-indicators">
-                                                <li data-target="#multi-item-example" data-slide-to="0"
-                                                    class="active"></li>
-                                                <li data-target="#multi-item-example" data-slide-to="1"></li>
-                                                <li data-target="#multi-item-example" data-slide-to="2"></li>
-                                            </ol>
-                                            <!-- Indicators -->
-
-                                            <!-- Slides -->
-                                            <div class="carousel-inner" role="listbox">
-
-                                                <!-- First slide -->
-                                                <div class="carousel-item active">
-
-                                                    <!-- Grid row -->
-                                                    <div class="row mb-4 mx-1">
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 my-3">
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img(40).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    </p>
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-
+                                                        <!-- Card image -->
+                                                        <div class="view overlay">
+                                                            <img
+                                                                src="{{ asset( 'media/' . $relatedPost->image) }}"
+                                                                class="card-img-top" alt="sample image">
+                                                            <a>
+                                                                <div class="mask rgba-white-slight"></div>
+                                                            </a>
                                                         </div>
-                                                        <!-- Grid column -->
 
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">
+                                                                <strong>{{ $relatedPost->title }}</strong>
+                                                            </h4>
+                                                            <hr>
 
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img(45).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
+                                                            </p>
+                                                            <p class="font-small font-weight-bold dark-grey-text mb-1">
+                                                                <i class="far fa-clock-o"></i> {{ jDate($relatedPost->created_at, 'dd MMMM yyyy') }}
+                                                            </p>
+                                                            <p class="font-small grey-text mb-0">{{ $post->meta_description }}</p>
+                                                            <p class="text-right mb-0 font-small font-weight-bold">
+                                                                <a href="{{ route('posts.show', ['post' => $relatedPost->id]) }}">بیشتر
+                                                                    <i class="fas fa-angle-left"></i>
+                                                                </a>
+                                                            </p>
                                                         </div>
-                                                        <!-- Grid column -->
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
-
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (35).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-                                                        </div>
-                                                        <!-- Grid column -->
 
                                                     </div>
-                                                    <!-- Grid row -->
-
-                                                </div>
-                                                <!-- First slide -->
-
-                                                <!-- Second slide -->
-                                                <div class="carousel-item">
-
-                                                    <!-- Grid row -->
-                                                    <div class="row mb-4 mx-1">
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 my-3">
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (43).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    </p>
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
-
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (39).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
-
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (46).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                    </div>
-                                                    <!-- Grid row -->
-                                                </div>
-                                                <!-- Second slide -->
-
-                                                <!-- Third slide -->
-                                                <div class="carousel-item">
-
-                                                    <!-- Grid row -->
-                                                    <div class="row mb-4 mx-1">
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 my-3">
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (30).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    </p>
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
-
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (28).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                        <!-- Grid column -->
-                                                        <div class="col-lg-4 text-left mt-3">
-
-                                                            <!-- Card -->
-                                                            <div class="card">
-
-                                                                <!-- Card image -->
-                                                                <div class="view overlay">
-                                                                    <img
-                                                                        src="https://mdbootstrap.com/img/Photos/Others/img (33).jpg"
-                                                                        class="card-img-top" alt="sample image">
-                                                                    <a>
-                                                                        <div class="mask rgba-white-slight"></div>
-                                                                    </a>
-                                                                </div>
-                                                                <!-- Card image -->
-
-                                                                <!-- Card content -->
-                                                                <div class="card-body">
-                                                                    <!-- Title -->
-                                                                    <h4 class="card-title">
-                                                                        <strong>تیتر</strong>
-                                                                    </h4>
-                                                                    <hr>
-
-                                                                    <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                        <i class="far fa-clock-o"></i> 27/08/2017
-                                                                    </p>
-                                                                    <p class="font-small grey-text mb-0">Anna
-                                                                        Smith</p>
-                                                                    <p class="text-right mb-0 font-small font-weight-bold">
-                                                                        <a>read more
-                                                                            <i class="fas fa-angle-right"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
-                                                                <!-- Card content -->
-
-                                                            </div>
-                                                            <!-- Card -->
-                                                        </div>
-                                                        <!-- Grid column -->
-
-                                                    </div>
-                                                    <!-- Grid row -->
-                                                </div>
-                                                <!-- Third slide -->
-
+                                                @endforeach
                                             </div>
-                                            <!-- Slides -->
-
                                         </div>
-                                        <!-- Carousel Wrapper -->
-
 
                                     </section>
                                     <!-- Posts -->
@@ -749,7 +275,35 @@
 @endsection
 
 @section('js')
+    <script src="{{asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js')}}"></script>
 
+    <script>
+        $('.owl-carousel').owlCarousel({
+            animateOut: 'slideOutDown',
+            animateIn: 'flipInX',
+            stagePadding: 1,
+            rtl: true,
+            loop: false,
+            margin: 2,
+            dots: true,
+            // navText: [
+            //     '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            //     '<i class="fa fa-angle-right" aria-hidden="true"></i>'
+            // ],
+            // dotsContainer: '.carousel-box .custom-dots',
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+    </script>
 @endsection
 
 @section('footer')

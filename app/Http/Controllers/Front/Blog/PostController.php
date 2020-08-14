@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Front\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Post;
 use App\Models\Tag;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
@@ -35,13 +38,18 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Blog\Post $post
-     * @return Factory|View
+     * @param $postId
+     * @return Application|Factory|View
      */
-    public function show(Post $post)
+    public function show(int $postId)
     {
+        $post = Post::whereId($postId)->with('comments')->withCount('comments')->first();
+
+        $relatedPosts = Post::where('id', '<>', $postId)->limit(6)->get();
+
         return view('blog.show', [
             'post' => $post,
+            'relatedPosts' => $relatedPosts,
         ]);
     }
 
