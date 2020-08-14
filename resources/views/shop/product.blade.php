@@ -72,9 +72,10 @@
                                     </div>
                                     <div class="slider slider-nav my-2">
                                         @foreach($product->images as $image)
-                                            <div>
+                                            <div class="view">
                                                 <img alt="{{  $product->name }}" src="{{ asset('media/' . $image) }}"
                                                      class="img-fluid mx-auto">
+                                                <a><div class="mask rgba-white-slight"></div></a>
                                             </div>
                                         @endforeach
                                     </div>
