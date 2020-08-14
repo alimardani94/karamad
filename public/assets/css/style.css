@@ -203,3 +203,11 @@ ul.list-group {
 .btn-group > .btn-group:not(:first-child) > .btn, .btn-group > .btn:not(:first-child) {
     border-radius: 10rem 0 0 10rem;
 }
+
+.ltr {
+    direction: ltr;
+}
+
+.rtl {
+    direction: rtl;
+}

@@ -122,18 +122,18 @@
                                 {{--                                </div>--}}
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="attachment">فایل ضمیمه</label>
-                                        <label class="form-control">
-                                            <span> انتخاب کنید ... </span>
-                                            <input type="file" class="custom-file-input"
-                                                   id="attachment" name="attachment" hidden>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="attachment">فایل ضمیمه</label>--}}
+{{--                                        <label class="form-control">--}}
+{{--                                            <span> انتخاب کنید ... </span>--}}
+{{--                                            <input type="file" class="custom-file-input"--}}
+{{--                                                   id="attachment" name="attachment" hidden>--}}
+{{--                                        </label>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <div class="row">
                                 <div class="col-md-12">

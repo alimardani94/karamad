@@ -8,6 +8,8 @@
 
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendor/slick/slick-theme.css')}}">
     <style>
         .owl-dots {
             display: -ms-flexbox;
@@ -54,67 +56,27 @@
             <div class="card mt-5 hoverable">
                 <div class="row mt-5">
                     <div class="col-lg-6">
-                        <div class="row mx-2">
-
-                            <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4"
-                                 data-ride="carousel">
-
-                                <div class="carousel-inner text-center text-md-right" role="listbox">
-                                    @foreach($product->images as $image)
-                                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                            <img src="{{ asset('media/' . $image) }}" alt="{{ $product->name }}"
-                                                 class="img-fluid">
-                                        </div>
-                                    @endforeach
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="slick-container ltr m-3">
+                                    <div class="slider slider-for">
+                                        @foreach($product->images as $image)
+                                            <div>
+                                                <img src="{{ asset('media/' . $image) }}"
+                                                     class="img-fluid mx-auto my-auto">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="slider slider-nav my-2">
+                                        @foreach($product->images as $image)
+                                            <div>
+                                                <img src="{{ asset('media/' . $image) }}" class="img-fluid mx-auto">
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <!-- Slides -->
-
-                                <!-- Thumbnails -->
-                                <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-                                    <span class="sr-only">Previous</span>
-
-                                </a>
-
-                                <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-                                    <span class="sr-only">Next</span>
-
-                                </a>
-                                <!-- Thumbnails -->
-
                             </div>
-                            <!-- Carousel Wrapper -->
-
                         </div>
-
-                        <!-- Grid row -->
-                        <div class="row mb-4">
-
-                            <div class="col-md-12">
-
-                                <div id="mdb-lightbox-ui"></div>
-
-                                <div class="mdb-lightbox no-margin">
-                                    @foreach($product->images as $image)
-                                        <figure class="col-md-4">
-                                            <a href="{{ asset('media/' . $image) }}"
-                                               data-size="1600x1067">
-                                                <img src="{{ asset('media/' . $image) }}" class="img-fluid">
-                                            </a>
-                                        </figure>
-                                    @endforeach
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- Grid row -->
-
                     </div>
 
                     <div class="col-lg-5 mr-3 text-center text-md-right">
@@ -134,9 +96,6 @@
                         <p class="ml-xl-0 ml-4">
                             {!! $product->description !!}
                         </p>
-
-                        <p class="ml-xl-0 ml-4"><strong>Resolution: </strong>2048 x 1536</p>
-                        <p class="ml-xl-0 ml-4"><strong>Availability: </strong>In stock</p>
 
                         <!-- Add to Cart -->
                         <div class="row mt-3 mb-4">
@@ -212,9 +171,7 @@
             <hr class="mb-5">
 
             <p class="text-center w-responsive mx-auto mb-5 dark-grey-text">
-                هوش کاپ ذیلثقب ثقثثقث ثبثثقثبثقبثقبثقبثثبثق ثصبثبثثبثصثصبصث ثبثبثثبثص
-                ثصبثصبثصثصبثص صثثصثقغفتعهنمخه هنهنهنعنعه عنهخمخهمهعتغفق
-                سیزربیک یریریی یسیسیمکتذ یبریبرمسی
+                بهترین و مناسبترین محصولات را از هوشکاپ تهیه کنید
             </p>
 
             <!-- Carousel Wrapper -->
@@ -222,48 +179,41 @@
                 <div class="owl-carousel mt-4">
                     @foreach($relatedProducts as $relatedProduct)
                         <div class="card m-2 h-100">
-
                             <!-- Card image -->
                             <div class="view overlay">
-                                <img
-                                    src="{{ asset('media/' . $relatedProduct->image) }}"
-                                    class="card-img-top" alt="sample image">
-                                <a>
+                                <img src="{{ asset('media/' . $relatedProduct->image) }}"
+                                     class="card-img-top" alt="sample image">
+                                <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">
                                     <div class="mask rgba-white-slight"></div>
                                 </a>
                             </div>
 
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    <strong>{{ $relatedProduct->name }}</strong>
+                                    <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">
+                                        <strong>{{ $relatedProduct->name }}</strong>
+                                    </a>
                                 </h4>
                                 <hr>
 
                                 <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                   <strong>{{ number_format($product->price) }}</strong>  تومان
+                                    <strong>{{ number_format($product->price) }}</strong> تومان
                                 </p>
                                 <p class="font-small grey-text mb-0">{{ $relatedProduct->meta_description }}</p>
-                                <p class="text-right mb-0 font-small font-weight-bold">
-                                    <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">بیشتر
-                                        <i class="fas fa-angle-left"></i>
-                                    </a>
-                                </p>
                             </div>
-
                         </div>
                     @endforeach
                 </div>
             </div>
             <!-- Carousel Wrapper -->
-
         </section>
         <!-- Section: Products v.5 -->
-
     </div>
 @endsection
 
 @section('js')
     <script src="{{asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/slick/slick.min.js')}}"></script>
 
     <script>
         $('.owl-carousel').owlCarousel({
@@ -286,6 +236,24 @@
                 }
             }
         })
+
+
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            arrows: false,
+            centerMode: true,
+            focusOnSelect: true
+        });
     </script>
 @endsection
 
