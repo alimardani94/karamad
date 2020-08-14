@@ -59,18 +59,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="slick-container ltr m-3">
-                                    <div class="slider slider-for">
+                                    <div id="mdb-lightbox-ui"></div>
+                                    <div class="slider slider-for mdb-lightbox no-margin">
                                         @foreach($product->images as $image)
-                                            <div>
-                                                <img src="{{ asset('media/' . $image) }}"
-                                                     class="img-fluid mx-auto my-auto">
-                                            </div>
+                                            <figure class="text-center">
+                                                <a href="{{ asset('media/' . $image) }}" data-size="1600x1067">
+                                                <img alt="{{  $product->name }}" src="{{ asset('media/' . $image) }}"
+                                                     class="img-fluid mx-auto">
+                                                </a>
+                                            </figure>
                                         @endforeach
                                     </div>
                                     <div class="slider slider-nav my-2">
                                         @foreach($product->images as $image)
                                             <div>
-                                                <img src="{{ asset('media/' . $image) }}" class="img-fluid mx-auto">
+                                                <img alt="{{  $product->name }}" src="{{ asset('media/' . $image) }}"
+                                                     class="img-fluid mx-auto">
                                             </div>
                                         @endforeach
                                     </div>
@@ -254,6 +258,11 @@
             centerMode: true,
             focusOnSelect: true
         });
+
+        $(function () {
+            $("#mdb-lightbox-ui").load("{{ asset('assets/vendor/MDB-Pro_4.11.0/mdb-addons/mdb-lightbox-ui.html') }}");
+        });
+
     </script>
 @endsection
 
