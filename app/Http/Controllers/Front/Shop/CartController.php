@@ -50,7 +50,7 @@ class CartController extends Controller
                 'id' => $product->id,
                 'name' => $product->name,
                 'type' => $product->type,
-                'image' => asset('media/' . $product->image),
+                'image' => $product->image(),
                 'price' => $product->price,
                 'quantity' => $qty,
                 'total_price' => $product->price * $qty,

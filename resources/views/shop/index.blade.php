@@ -23,7 +23,7 @@
                             <div class="col-lg-3 col-md-6 mb-4">
                                 <div class="card card-ecommerce">
                                     <div class="view overlay">
-                                        <img src="{{ asset('media/' . $product->image) }}"
+                                        <img src="{{ $product->image() }}"
                                              class="img-fluid" alt="{{ $product->name }}">
                                         <a href="{{ route('shop.product', ['id' => $product->id]) }}">
                                             <div class="mask rgba-white-slight waves-effect waves-light"></div>

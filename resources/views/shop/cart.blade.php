@@ -53,10 +53,13 @@
                                            value="{{ $item['quantity'] }}">
                                     <tr id="product_row_{{$item['id']}}" class="product_row">
                                         <td>
-                                            <img
-                                                src="{{ $item['image'] }}"
-                                                alt="{{ $item['name'] }}"
-                                                class="img-fluid z-depth-0">
+                                            <div class="view overlay">
+                                                <img src="{{ $item['image'] }}"
+                                                     class="img-fluid" alt="{{ $item['name'] }}">
+                                                <a>
+                                                    <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                                </a>
+                                            </div>
                                         </td>
                                         <td>
                                             <h5 class="mt-3">
@@ -161,10 +164,10 @@
 
         function calculatePrices() {
             let prices = [];
-            $('.product_row').each(function(i, obj) {
+            $('.product_row').each(function (i, obj) {
                 // console.log(i, obj)
                 let id = $(obj).attr('id');
-                id = id.replace('product_row_','');
+                id = id.replace('product_row_', '');
 
                 let price = parseInt($('#product_price_' + id).val());
                 let quantity = parseInt($('#product_quantity_' + id).val());
@@ -176,7 +179,7 @@
                 prices.push(price * quantity);
             });
 
-            var sum = prices.reduce(function(previousValue, currentValue){
+            var sum = prices.reduce(function (previousValue, currentValue) {
                 return currentValue + previousValue;
             });
 

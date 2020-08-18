@@ -73,14 +73,21 @@ class Product extends Model
         return ProductType::translatedKeyOf($this->type);
     }
 
-    public function getImagesAttribute($value)
+    public function images()
     {
-        return json_decode($value, true);
+        $arr = json_decode($this->images, true);
+        $images = [];
+
+        foreach ($arr as $img) {
+            $images[] = asset('media/' . $img);
+        }
+
+        return $images;
     }
 
-    public function getImageAttribute($value)
+    public function image()
     {
-        return $this->images[0] ?? '';
+        return $this->images()[0] ?? '';
     }
 
     public function comments()

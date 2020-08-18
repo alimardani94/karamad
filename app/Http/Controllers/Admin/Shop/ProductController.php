@@ -101,12 +101,13 @@ class ProductController extends Controller
         $product->name = $request->get('name');
         $product->category_id = $request->get('category');
         $product->type = $request->get('type');
-        if ($product->type = ProductType::Physical) {
+        if ($product->type == ProductType::Physical) {
             $product->quantity = $request->get('quantity');
         } else {
             if ($request->file('file')) {
-                $attachPath = $request->file('file')->store('products/files');
+                $file = $request->file('file')->store('products/files');
             }
+            $product->file = $file ?? null;
         }
         $product->price = $request->get('price');
         $product->features = json_encode($request->get('features') ?? []);
@@ -161,24 +162,42 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'title' => ['required', 'unique:products,title,' . $product->id],
-            'tags' => 'required|array',
+            'name' => ['required', 'unique:products,name,' . $product->id],
+            'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'content' => 'required',
-            'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg|max:4096',
+            'category' => ['required', 'exists:categories,id'],
+            'type' => ['required'],
+            'file' => [
+                'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar,pdf'
+            ],
+            'quantity' => [Rule::requiredIf((int)$request->get('type') == ProductType::Physical)],
+            'price' => 'required|numeric',
+            'discount' => 'nullable|numeric',
+            'attachment' => [
+                'nullable', 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar', 'max:100000',
+            ],
+            'images' => 'required|array',
+            'features' => 'nullable|array',
+            'description' => 'required|string',
             'meta_keywords' => 'nullable|string',
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
         $images = [];
-        foreach ($request->get('images') as $tempPath) {
-            $newPath = str_replace('temp', 'products', $tempPath);
-            chmod('media/' . $tempPath, 0777);
+        foreach ($request->get('images') as $img) {
 
-            File::move('media/' . $tempPath, 'media/' . $newPath);
-            $images[] = $newPath;
+            $oldImagesPrefix = asset('media/') . '/';
+
+            if (strpos($img, $oldImagesPrefix) !== false) {
+                $images[] = str_replace($oldImagesPrefix, '', $img);
+            } else {
+                $newPath = str_replace('temp', 'products', $img);
+                chmod('media/' . $img, 0777);
+
+                File::move('media/' . $img, 'media/' . $newPath);
+                $images[] = $newPath;
+            }
         }
-
 
         if ($request->file('attachment')) {
             $attachPath = $request->file('attachment')->store('products/attachments');
@@ -187,7 +206,7 @@ class ProductController extends Controller
         $product->name = $request->get('name');
         $product->category_id = $request->get('category');
         $product->type = $request->get('type');
-        if ($product->type = ProductType::Physical) {
+        if ($product->type == ProductType::Physical) {
             $product->quantity = $request->get('quantity');
         } else {
             if ($request->file('file')) {
@@ -205,7 +224,7 @@ class ProductController extends Controller
 
         $product->tags()->sync($request->get('tags'));
 
-        return redirect()->route('admin.shop.products.index')->with('success', trans('products.updated'));
+        return redirect()->route('admin.products.index')->with('success', trans('products.updated'));
     }
 
     /**

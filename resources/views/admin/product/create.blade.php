@@ -122,18 +122,18 @@
                                 {{--                                </div>--}}
                             </div>
 
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="attachment">فایل ضمیمه</label>--}}
-{{--                                        <label class="form-control">--}}
-{{--                                            <span> انتخاب کنید ... </span>--}}
-{{--                                            <input type="file" class="custom-file-input"--}}
-{{--                                                   id="attachment" name="attachment" hidden>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="row">--}}
+                            {{--                                <div class="col-md-6">--}}
+                            {{--                                    <div class="form-group">--}}
+                            {{--                                        <label for="attachment">فایل ضمیمه</label>--}}
+                            {{--                                        <label class="form-control">--}}
+                            {{--                                            <span> انتخاب کنید ... </span>--}}
+                            {{--                                            <input type="file" class="custom-file-input"--}}
+                            {{--                                                   id="attachment" name="attachment" hidden>--}}
+                            {{--                                        </label>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -152,7 +152,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="features">ویزگی ها
-                                    <small> (پس از وارد کردن هر کدام کلید Enter را فشار دهید) </small>
+                                        <small> (پس از وارد کردن هر کدام کلید Enter را فشار دهید) </small>
                                     </label>
                                     <select multiple name="features[]" id="features">
                                         @foreach( old('features', []) as $feature)
@@ -212,7 +212,8 @@
     <script type="text/javascript" src="{{ asset('assets/admin/adminLTE/components/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.js')}}"></script>
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+    <script type="text/javascript"
+            src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
     <script>
         tinymce.init({
@@ -245,11 +246,11 @@
             confirmKeys: [13, 188]
         });
 
-        $('.bootstrap-tagsinput input').on('keypress', function(e){
-            if (e.keyCode === 13){
+        $('.bootstrap-tagsinput input').on('keypress', function (e) {
+            if (e.keyCode === 13) {
                 e.keyCode = 188;
                 e.preventDefault();
-            };
+            }
         });
 
         let uploadedFiles = [];

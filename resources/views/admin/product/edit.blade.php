@@ -28,9 +28,11 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" id="productForm" action="{{route('admin.products.store')}}"
+                    <form method="post" id="productForm"
+                          action="{{route('admin.products.update', ['product' => $product->id])}}"
                           enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="box-header"></div>
                         <div class="box-body">
                             <div class="row">
@@ -122,18 +124,18 @@
                                 {{--                                </div>--}}
                             </div>
 
-{{--                            <div class="row">--}}
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="attachment">فایل ضمیمه</label>--}}
-{{--                                        <label class="form-control">--}}
-{{--                                            <span> انتخاب کنید ... </span>--}}
-{{--                                            <input type="file" class="custom-file-input"--}}
-{{--                                                   id="attachment" name="attachment" hidden>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="row">--}}
+                            {{--                                <div class="col-md-6">--}}
+                            {{--                                    <div class="form-group">--}}
+                            {{--                                        <label for="attachment">فایل ضمیمه</label>--}}
+                            {{--                                        <label class="form-control">--}}
+                            {{--                                            <span> انتخاب کنید ... </span>--}}
+                            {{--                                            <input type="file" class="custom-file-input"--}}
+                            {{--                                                   id="attachment" name="attachment" hidden>--}}
+                            {{--                                        </label>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -152,11 +154,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="features">ویزگی ها
-                                    <small> (پس از وارد کردن هر کدام کلید Enter را فشار دهید) </small>
+                                        <small> (پس از وارد کردن هر کدام کلید Enter را فشار دهید) </small>
                                     </label>
                                     <select multiple name="features[]" id="features">
                                         @foreach( old('features', $product->features()) as $feature)
-                                            <option value="{{$feature}}">{{$feature}}</option
+                                            <option value="{{$feature}}">{{$feature}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -183,7 +185,8 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords', $product->meta_keywords)}}" name="meta_keywords">
+                                               value="{{old('meta_keywords', $product->meta_keywords)}}"
+                                               name="meta_keywords">
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +215,11 @@
     <script type="text/javascript" src="{{ asset('assets/admin/adminLTE/components/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.js')}}"></script>
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
-
+    <script type="text/javascript"
+            src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+    <script>
+        let images = @json($product->images())
+    </script>
     <script>
         tinymce.init({
             selector: 'textarea#description',
@@ -245,11 +251,11 @@
             confirmKeys: [13, 188]
         });
 
-        $('.bootstrap-tagsinput input').on('keypress', function(e){
-            if (e.keyCode === 13){
+        $('.bootstrap-tagsinput input').on('keypress', function (e) {
+            if (e.keyCode === 13) {
                 e.keyCode = 188;
                 e.preventDefault();
-            };
+            }
         });
 
         let uploadedFiles = [];
@@ -293,6 +299,20 @@
                 });
 
             }
+        });
+
+        $(document).ready(function () {
+            let mockFile = [];
+
+            $.each(images, function (i, image) {
+                mockFile[i] = {name: image, size: 12345};
+                myDropzone.emit("addedfile", mockFile[i]);
+                myDropzone.emit("thumbnail", mockFile[i], image);
+                myDropzone.emit("complete", mockFile[i]);
+                myDropzone.options.maxFiles = myDropzone.options.maxFiles - 1;
+                uploadedFiles.push({fileName: image, file: ''});
+
+            });
         });
 
         $("#productForm").submit(function () {
