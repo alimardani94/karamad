@@ -17,8 +17,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $products = array_values($request->get('items'));
+        $request->validate([
+            'items' => ['required', 'array'],
+        ]);
 
+        $products = array_values($request->get('items', []));
         $priceCalculator = app(Calculator::class);
         $totalPrice = $priceCalculator->calculate($products);
 

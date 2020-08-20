@@ -20,14 +20,18 @@ class CartController extends Controller
      * @param int $count
      * @return RedirectResponse
      */
-    public function add(Request $request, Product $product, int $count)
+    public function add(Request $request, Product $product, int $count = 1)
     {
         $cart = Session::get('cart');
 
         if (isset($cart[$product->id]) and $product->type == ProductType::Physical) {
-            $cart[$product->id] = $cart[$product->id] + 1;
+            $cart[$product->id] = $cart[$product->id] + $count;
         } else {
-            $cart[$product->id] = 1;
+            $cart[$product->id] = $count;
+        }
+
+        if ($cart[$product->id] <= 0) {
+            unset($cart[$product->id]);
         }
 
         $request->session()->put('cart', $cart);
@@ -40,7 +44,7 @@ class CartController extends Controller
      */
     public function show()
     {
-        $cartItems = Session::get('cart');
+        $cartItems = Session::get('cart', []);
 
         $items = [];
         foreach ($cartItems as $id => $qty) {
@@ -63,7 +67,7 @@ class CartController extends Controller
             'items' => $items,
             'totalPrice' => $totalPrice,
         ]);
-    }
 
+    }
 
 }

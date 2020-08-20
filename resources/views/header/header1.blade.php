@@ -147,7 +147,7 @@
             <ul class="navbar-nav nav-flex-icons mr-auto">
                 <li class="nav-item">
                     <a class="nav-link dark-grey-text font-weight-bold waves-effect waves-light" href="{{ route('shop.cart.show') }}">
-                        <span class="badge danger-color">{{ array_sum(Session::get('cart', [])) }}</span>
+                        <span class="badge danger-color" id="cart_count">{{ array_sum(Session::get('cart', [])) }}</span>
                         <i class="fas fa-shopping-cart blue-text" aria-hidden="true"></i>
                         <span class="clearfix d-none d-sm-inline-block">سبد خرید</span>
                     </a>
