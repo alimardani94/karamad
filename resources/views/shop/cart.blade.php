@@ -44,7 +44,7 @@
                                     <tbody>
                                     @foreach($items as $item)
                                         <tr id="product_row_{{$item['id']}}" class="product_row">
-                                            <input type="hidden" name="items[{{ $item['id'] }}][product_id]"
+                                            <input type="hidden" name="items[{{ $item['id'] }}][id]"
                                                    value="{{ $item['id'] }}">
                                             <input type="hidden" id="product_price_{{ $item['id'] }}"
                                                    value="{{ $item['price'] }}">

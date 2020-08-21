@@ -17,9 +17,7 @@ class PriceCalculator implements Calculator
     {
         $totalPrice = 0;
         foreach ($products as $product) {
-            $product = Product::findOrFail($product['product_id']);
-
-            $totalPrice += ($product->price * (int)$product['quantity']);
+            $totalPrice += ($product['price'] * (int)$product['quantity']);
         }
 
         return $totalPrice;
