@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
-    public function product($assoc = false)
+    public function products($assoc = false)
     {
         return json_decode($this->products, $assoc);
     }

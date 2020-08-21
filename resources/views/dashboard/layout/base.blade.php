@@ -42,38 +42,38 @@
                             <strong>{{$authUser->fullname}}</strong></h5>
                         <hr>
                         <div class="card-text pt-2">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                            <div class="nav flex-column nav-pills" id="tab" role="tablist"
                                  aria-orientation="vertical">
-                                <a class="nav-link active" data-toggle="pill" id="v-pills-home-tab"
-                                   href="#v-pills-home" role="tab"
-                                   aria-controls="v-pills-home" aria-selected="true">
+                                <a class="nav-link active" data-toggle="pill" id="home-tab"
+                                   href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">
                                     داشبورد
                                 </a>
                                 @if($authUser->isInstructor())
-                                    <a class="nav-link" id="v-pills-add-course-tab" data-toggle="pill"
-                                       href="#v-pills-add-course" role="tab"
-                                       aria-controls="v-pills-add-course" aria-selected="false">
+                                    <a class="nav-link" id="add-course-tab" data-toggle="pill"
+                                       href="#add-course" role="tab"
+                                       aria-controls="add-course" aria-selected="false">
                                         افزودن دوره
                                     </a>
                                 @endif
-                                <a class="nav-link" id="v-pills-courses-tab" data-toggle="pill"
-                                   href="#v-pills-courses" role="tab"
-                                   aria-controls="v-pills-courses" aria-selected="false">
+                                <a class="nav-link" id="courses-tab" data-toggle="pill"
+                                   href="#courses" role="tab"
+                                   aria-controls="courses" aria-selected="false">
                                     دوره های من
                                 </a>
-                                <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill"
-                                   href="#v-pills-orders" role="tab"
-                                   aria-controls="v-pills-orders" aria-selected="false">
+                                <a class="nav-link" id="orders-tab" data-toggle="pill"
+                                   href="#orders" role="tab"
+                                   aria-controls="orders" aria-selected="false">
                                     سفارشات
                                 </a>
-                                <a class="nav-link" id="v-pills-transactions-tab" data-toggle="pill"
-                                   href="#v-pills-transactions" role="tab"
-                                   aria-controls="v-pills-transactions" aria-selected="false">
+                                <a class="nav-link" id="transactions-tab" data-toggle="pill"
+                                   href="#transactions" role="tab"
+                                   aria-controls="transactions" aria-selected="false">
                                     مالی
                                 </a>
-                                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
-                                   href="#v-pills-profile" role="tab"
-                                   aria-controls="v-pills-profile" aria-selected="false">
+                                <a class="nav-link" id="profile-tab" data-toggle="pill"
+                                   href="#profile" role="tab"
+                                   aria-controls="profile" aria-selected="false">
                                     پروفایل
                                 </a>
                             </div>

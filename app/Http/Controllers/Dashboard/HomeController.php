@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $orders = Order::all();
+        $orders = Order::whereUserId(Auth::id())->orderByDesc('id')->get();
 
         return view('dashboard.home', [
             'orders' => $orders,

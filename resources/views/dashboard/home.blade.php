@@ -14,9 +14,9 @@
 
 @section('content')
 
-    <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active h-100" id="v-pills-home"
-             role="tabpanel" aria-labelledby="v-pills-home-tab">
+    <div class="tab-content" id="tabContent">
+        <div class="tab-pane fade show active h-100" id="home"
+             role="tabpanel" aria-labelledby="home-tab">
             <div class="card-body">
                 <div class="row">
                     <div class="col-xl-4 col-md-6 mb-xl-0 mb-4">
@@ -64,8 +64,8 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="v-pills-courses" role="tabpanel"
-             aria-labelledby="v-pills-courses-tab">
+        <div class="tab-pane fade" id="courses" role="tabpanel"
+             aria-labelledby="courses-tab">
             <div class="card-title">دوره های من</div>
             <div class="card-body">
 
@@ -73,17 +73,17 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="v-pills-orders" role="tabpanel"
-             aria-labelledby="v-pills-orders-tab">
+        <div class="tab-pane fade" id="orders" role="tabpanel"
+             aria-labelledby="orders-tab">
             <div class="card-title">سفارشات</div>
             <div class="card-body">
                 <table class="table">
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th>#</th>
-                        <th>نام کالا</th>
-                        <th>تعداد</th>
+                        <th>محصولات</th>
                         <th>قیمت</th>
+                        <th>تاریخ</th>
                         <th>عملیات</th>
                     </tr>
                     </thead>
@@ -93,8 +93,34 @@
                     <tbody>
                     @foreach($orders as $order)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>@mdo</td>
+                            <th scope="row">{{ $loop->index }}</th>
+                            <td>
+                                <ul>
+                                    @foreach($order->products() as $product)
+                                        <li>
+                                            @if($product->type === \App\Enums\Shop\ProductType::Physical)
+                                                <span>{{ $product->quantity }}</span>
+                                                <span> عدد </span>
+                                                <span>{{ $product->name }}</span>
+
+                                                <span> - </span>
+                                                <span>{{ number_format($product->price) }}</span>
+                                            @else
+                                                <span>{{ $product->name }}</span>
+
+                                                <span> - </span>
+                                                <span>{{ number_format($product->price) }}</span>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td>{{ number_format($order->total_price) }}</td>
+                            <td>{{ jDate($order->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary btn-rounded">پرداخت</button>
+                                <button type="button" class="btn btn-sm btn-danger btn-rounded">حذف</button>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -103,8 +129,8 @@
         </div>
 
 
-        <div class="tab-pane fade" id="v-pills-transactions" role="tabpanel"
-             aria-labelledby="v-pills-transactions-tab">
+        <div class="tab-pane fade" id="transactions" role="tabpanel"
+             aria-labelledby="transactions-tab">
             <div class="card-title">مالی</div>
             <div class="card-body">
 
@@ -112,8 +138,8 @@
             </div>
         </div>
 
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-             aria-labelledby="v-pills-profile-tab">
+        <div class="tab-pane fade" id="profile" role="tabpanel"
+             aria-labelledby="profile-tab">
             <div class="card-title">پروفایل</div>
             <div class="card-body">
 
