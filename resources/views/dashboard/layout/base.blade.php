@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{asset('assets/img/icon.png')}}">
 
     <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/MDB-Pro_4.11.0/css/mdb.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/vendor/MDB-Pro_4.11.0/css/mdb_dashboard.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome-pro-5.12.0-web-ulabs/css/all.css')}}">
 
     <link href="{{asset('assets/css/header.css')}}" rel="stylesheet">
@@ -61,10 +61,10 @@
                                    aria-controls="v-pills-courses" aria-selected="false">
                                     دوره های من
                                 </a>
-                                <a class="nav-link" id="v-pills-online-courses-tab" data-toggle="pill"
-                                   href="#v-pills-online-courses" role="tab"
-                                   aria-controls="v-pills-online-courses" aria-selected="false">
-                                    کلاس آنلاین
+                                <a class="nav-link" id="v-pills-orders-tab" data-toggle="pill"
+                                   href="#v-pills-orders" role="tab"
+                                   aria-controls="v-pills-orders" aria-selected="false">
+                                    سفارشات
                                 </a>
                                 <a class="nav-link" id="v-pills-transactions-tab" data-toggle="pill"
                                    href="#v-pills-transactions" role="tab"
