@@ -41,6 +41,8 @@ class OrderController extends Controller
         $order->status = 0;
         $order->save();
 
+        $request->session()->put('cart', []);
+
         return redirect()->route('dashboard.home');
     }
 
