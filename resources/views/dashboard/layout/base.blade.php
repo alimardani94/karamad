@@ -33,13 +33,13 @@
                     <div class="card-up aqua-gradient"></div>
 
                     <div class="avatar mx-auto white">
-                        <img src="{{$authUser->image}}"
+                        <img src="{{ $authUser->image }}" alt="{{ $authUser->fullname }}"
                              class="rounded-circle img-fluid">
                     </div>
 
                     <div class="card-body">
                         <h5 class="card-title dark-grey-text text-center">
-                            <strong>{{$authUser->fullname}}</strong></h5>
+                            <strong>{{ $authUser->fullname }}</strong></h5>
                         <hr>
                         <div class="card-text pt-2">
                             <div class="nav flex-column nav-pills" id="tab" role="tablist"
@@ -84,9 +84,7 @@
             </div>
 
             <div class="col-lg-9 col-12">
-                <div class="card">
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
         </div>
     </div>
