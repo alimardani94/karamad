@@ -186,7 +186,7 @@
                         <div class="card m-2 h-100">
                             <!-- Card image -->
                             <div class="view overlay">
-                                <img src="{{ asset('media/' . $relatedProduct->image) }}"
+                                <img src="{{ $relatedProduct->image() }}"
                                      class="card-img-top" alt="sample image">
                                 <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">
                                     <div class="mask rgba-white-slight"></div>

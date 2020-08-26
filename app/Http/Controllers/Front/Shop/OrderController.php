@@ -43,7 +43,7 @@ class OrderController extends Controller
 
         $request->session()->put('cart', []);
 
-        return redirect()->route('dashboard.home');
+        return redirect()->route('dashboard.home', '#orders');
     }
 
 }

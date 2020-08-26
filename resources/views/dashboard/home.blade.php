@@ -105,7 +105,7 @@
 
                             <tbody>
                             @foreach($orders as $order)
-                                <tr>
+                                <tr id="order_row_{{ $order->id }}">
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>
                                         <ul class="pr-1">
@@ -190,5 +190,26 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    <script>
+        let deleteOrderUrl = '{{ route('dashboard.orders.destroy', ['order' => 'orderId']) }}';
+    </script>
+    <script>
+        function removeOrder(orderId) {
+            $.ajax({
+                method: 'DELETE',
+                dataType: 'json',
+                url: deleteOrderUrl.replace('orderId', orderId),
+                success: function (json) {
+                    $('#order_row_' + orderId).remove();
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            });
+        }
+    </script>
 @endsection
 
