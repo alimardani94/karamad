@@ -16,8 +16,9 @@
         "laravel/tinker": "^2.0",
         "miladrahimi/php-enum": "^1.0",
         "ext-intl": "*",
-      "ext-openssl": "*",
-      "ext-json": "*"
+        "ext-openssl": "*",
+        "ext-json": "*",
+        "ext-soap": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
