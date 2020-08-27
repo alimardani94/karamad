@@ -2,8 +2,12 @@
 
 namespace App\Models\Course;
 
+use App\CourseUser;
 use App\Models\Category;
+use App\Services\Reactions\Reactor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Course\Course
@@ -52,21 +56,44 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function instructor()
     {
         return $this->belongsTo(Instructor::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function syllabuses()
     {
         return $this->hasMany(Syllabus::class);
     }
 
+    /**
+     * @return int|null
+     */
+    public function reaction() {
+        /** @var Reactor $reactor */
+        $reactor = app(Reactor::class);
+        return $reactor->get($this, auth()->id() ?: 0);
+    }
+
+    /**
+     * @return int
+     */
+    public function rate() {
+        /** @var Reactor $reactor */
+        $reactor = app(Reactor::class);
+        return $reactor->rate($this);
+    }
 }
