@@ -55,6 +55,8 @@ use Illuminate\Support\Carbon;
  * @mixin \Eloquent
  * @property-read \App\Models\Category $category
  * @property-read mixed $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
  */
 class Product extends Model
 {

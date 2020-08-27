@@ -2,7 +2,7 @@
 
 namespace App\Services\KeyGenerator;
 
-use App\Models\OnlineCourse;
+use App\Models\Course\OnlineCourse;
 
 class KeyGenerator implements Generator
 {
