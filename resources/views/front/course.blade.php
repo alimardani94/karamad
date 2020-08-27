@@ -112,24 +112,73 @@
 
                     <!-- Sidebar -->
                     <div class="col-lg-3 col-12 mt-1">
-                        <div class="card" style="position: sticky; top: 90px;">
-                            <div class="card-body">
-                                <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
-                                    <strong>مدرس </strong>
-                                </h6>
-                                <h6 class="card-title text-center ">
-                                    {{$course->instructor->name}}
-                                </h6>
-                                <p class="mt-3 dark-grey-text font-small text-center">
-                                    {{$course->instructor->about}}
-                                </p>
+                        <div style="position: sticky; top: 90px;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
+                                        <strong>مدرس </strong>
+                                    </h6>
+                                    <h6 class="card-title text-center ">
+                                        {{$course->instructor->name}}
+                                    </h6>
+                                    <p class="mt-3 dark-grey-text font-small text-center">
+                                        {{$course->instructor->about}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <a style="display:{{$course->reaction() == 1 ? 'block' : 'none'}}"
+                                       id="dislike" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
+                                        <i class="fas fa-heart fa-2x pl-1" style="color: red" aria-hidden="true"></i>
+                                        <span class="pb-2" style="vertical-align:super"> حذف از علاقه مندی</span>
+                                    </a>
+                                    <a style="display:{{$course->reaction() != 1 ? 'block' : 'none'}}"
+                                       id="like" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
+                                        <i class="fas fa-heart fa-2x pl-1" style="color: rgba(48, 56, 64, .2)"
+                                           aria-hidden="true"></i>
+                                        <span class="pb-2" style="vertical-align:super"> افزودن به علاقه مندی</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
+@endsection
+
+@section('js')
+    <script>
+        $('#like, #dislike').click(function () {
+            let button = $(this)
+            let type, anotherBtn;
+            let link = button.attr('data-link');
+
+            if (button.attr('id') === 'like') {
+                anotherBtn = $('#dislike');
+                type = 1;
+            } else {
+                anotherBtn = $('#like');
+                type = 2;
+            }
+
+            $.ajax({
+                method: 'post',
+                url: link,
+                data: JSON.stringify({
+                    type: type,
+                }),
+                contentType: 'application/json',
+                dataType: 'json',
+            }).done(function (response) {
+                button.css('display', 'none');
+                anotherBtn.css('display', 'block');
+            }).fail(function (response) {
+                console.log(response);
+            });
+        });
+    </script>
 @endsection

@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body card-body-cascade">
-                                    <h3 class="font-weight-bold dark-grey-text">0</h3>
+                                    <h3 class="font-weight-bold dark-grey-text">{{ $courses->total() }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body card-body-cascade">
-                                    <h3 class="font-weight-bold dark-grey-text">1</h3>
+                                    <h3 class="font-weight-bold dark-grey-text">{{ $orders->total() }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -54,11 +54,11 @@
                                 <div class="admin-up">
                                     <i class="far fa-money-bill-alt primary-color mr-3 z-depth-2 float-left"></i>
                                     <div class="data">
-                                        <h4 class="text-uppercase">رسید ها</h4>
+                                        <h4 class="text-uppercase">تراکنش</h4>
                                     </div>
                                 </div>
                                 <div class="card-body card-body-cascade">
-                                    <h3 class="font-weight-bold dark-grey-text">2</h3>
+                                    <h3 class="font-weight-bold dark-grey-text">{{ $transactions->total() }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +77,39 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">دوره های من</div>
-
-                    3
+                    <div class="row">
+                        @foreach($courses as $course)
+                            <div class="col-md-4">
+                                <div class="card m-1 h-100">
+                                    <div class="view overlay">
+                                        <img src="{{asset('media/' .$course->thumbnail)}}" class="card-img-top"
+                                             alt="{{$course->title}}">
+                                        <a href="{{route('courses.show', ['course' => $course->id])}}">
+                                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="" class="teal-text text-center text-uppercase font-small"></a>
+                                        <h5 class="card-title">
+                                            <a href="{{route('courses.show', ['course' => $course->id])}}">
+                                                <strong class="black-text">{{$course->title}}</strong>
+                                            </a>
+                                        </h5>
+                                        <hr>
+                                        <p class="dark-grey-text mb-4 course-summary">
+                                            {{$course->summary}}
+                                        </p>
+                                        <p class="text-left mb-0 font-small">
+                                            <a class="btn btn-default btn-sm"
+                                               href="{{route('courses.show', ['course' => $course->id])}}">
+                                                مشاهده
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,7 +189,30 @@
                 <div class="card-body">
                     <div class="card-title">مالی</div>
 
-                    6
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="mdb-color darken-3">
+                            <tr class="text-white">
+                                <th>#</th>
+                                <th>قیمت کل</th>
+                                <th>تاریخ</th>
+                                <th>وضعیت</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            @foreach($transactions as $transaction)
+                                <tr id="order_row_{{ $transaction->id }}">
+                                    <th scope="row">{{ $loop->index + 1 }}</th>
+                                    <td>{{ number_format($transaction->amount) }}</td>
+                                    <td>{{ jDate($transaction->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>در انتظار پرداخت</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

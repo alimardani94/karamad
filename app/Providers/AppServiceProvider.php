@@ -6,6 +6,8 @@ use App\Services\KeyGenerator\Generator;
 use App\Services\KeyGenerator\KeyGenerator;
 use App\Services\PriceCalculator\Calculator;
 use App\Services\PriceCalculator\PriceCalculator;
+use App\Services\Reactions\Reactor;
+use App\Services\Reactions\SessionReactor;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(Generator::class, KeyGenerator::class);
         $this->app->bind(Calculator::class, PriceCalculator::class);
+        $this->app->bind(Reactor::class, SessionReactor::class);
     }
 
     /**

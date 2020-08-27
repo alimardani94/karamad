@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Front'], function () {
             'courses' => 'CourseController',
             'syllabuses' => 'SyllabusController',
         ]);
+        Route::post('/{course}/reactions', ['as' => 'courses.react', 'uses' => 'CourseController@react']);
     });
 
     Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
