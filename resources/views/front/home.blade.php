@@ -160,10 +160,10 @@
                             موضوع مورد نظر خود را جستجو کنید
                         </h6>
                         <br>
-                        <form
+                        <form action="{{ route('search') }}"
                             class="form-inline d-flex justify-content-center wow fadeInRight md-form form-sm active-cyan active-cyan-2 mt-0">
                             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="جستجو"
-                                   aria-label="Search">
+                                   aria-label="Search" name="q">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </form>
                     </div>

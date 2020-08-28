@@ -121,10 +121,10 @@
                     <a class="nav-link" href="#">کلاس های آموزشی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">کلاس های آنلاین</a>
+                    <a class="nav-link" href="{{route('shop.index')}}">فروشگاه</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">مقاله</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">درباره ما</a>
@@ -133,9 +133,9 @@
 
             <ul class="navbar-nav mr-auto mb-4">
                 <li class="nav-item">
-                    <form class="search-form" role="search">
+                    <form class="search-form" role="search" action="{{ route('search') }}">
                         <div class="form-group md-form my-0 waves-light waves-effect waves-light">
-                            <input type="text" class="form-control" placeholder="جستجو">
+                            <input type="text" name="q" class="form-control" placeholder="جستجو">
                         </div>
                     </form>
                 </li>
@@ -145,7 +145,8 @@
                 <li class="nav-item ">
                     <a class="nav-link dark-grey-text font-weight-bold waves-effect waves-light"
                        href="{{ route('shop.cart.show') }}">
-                        <span class="badge danger-color" id="cart_count">{{ array_sum(Session::get('cart', [])) }}</span>
+                        <span class="badge danger-color"
+                              id="cart_count">{{ array_sum(Session::get('cart', [])) }}</span>
                         <i class="fas fa-shopping-cart blue-text" aria-hidden="true"></i>
                         <span class="clearfix d-none d-sm-inline-block">سبد خرید</span>
                     </a>

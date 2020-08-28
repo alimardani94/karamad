@@ -38,6 +38,10 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
 
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@home')->name('home');
+    Route::get('/search', 'SearchController@search')->name('search');
+    Route::get('/course/search', 'SearchController@courseSearch')->name('course.search');
+    Route::get('/post/search', 'SearchController@postSearch')->name('post.search');
+    Route::get('/product/search', 'SearchController@productSearch')->name('product.search');
 
     Route::group(['prefix' => 'course', 'namespace' => 'Course'], function () {
         Route::resources([

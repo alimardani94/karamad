@@ -121,13 +121,10 @@
                     <a class="nav-link" href="#">کلاس های آموزشی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">کلاس های آنلاین</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{route('shop.index')}}">فروشگاه</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">مقاله</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">درباره ما</a>
@@ -136,9 +133,9 @@
 
             <ul class="navbar-nav mr-auto mb-4">
                 <li class="nav-item">
-                    <form class="search-form" role="search">
+                    <form class="search-form" role="search" action="{{ route('search') }}">
                         <div class="form-group md-form my-0 waves-light waves-effect waves-light">
-                            <input type="text" class="form-control" placeholder="جستجو">
+                            <input type="text" name="q" class="form-control" placeholder="جستجو">
                         </div>
                     </form>
                 </li>

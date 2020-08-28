@@ -215,3 +215,13 @@ ul.list-group {
 .rtl {
     direction: rtl;
 }
+
+.testimonial-card .avatar {
+    height: 120px;
+    width: 120px;
+}
+
+.testimonial-card .avatar img {
+    width: 100%;
+    height: 100%;
+}

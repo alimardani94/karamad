@@ -202,7 +202,7 @@
                                 <hr>
 
                                 <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                    <strong>{{ number_format($product->price) }}</strong> تومان
+                                    <strong>{{ number_format($relatedProduct->price) }}</strong> تومان
                                 </p>
                                 <p class="font-small grey-text mb-0">{{ $relatedProduct->meta_description }}</p>
                             </div>
