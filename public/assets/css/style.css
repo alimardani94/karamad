@@ -65,6 +65,10 @@ p, div, span, li, a, h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
+.md-form .form-control.is-invalid, .md-form .form-control.is-valid {
+    background-position: center left!important;
+}
+
 .input-group.md-form.form-sm.form-1 input {
     border: 1px solid #bdbdbd;
     border-top-right-radius: 0.25rem;

@@ -32,7 +32,7 @@ class SignUpController extends Controller
         $user->surname = $request->get('surname');
         $user->cell = fixNumbers($request->get('cell'));
         $user->email = $request->get('email');
-        $user->password = Hash::make($request->get('password'));
+        $user->password = Hash::make(trim($request->get('password')));
         $user->save();
 
         $credential = [
