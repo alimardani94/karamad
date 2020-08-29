@@ -307,10 +307,12 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit"
-                                class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">
-                            ویرایش
-                        </button>
+                        <div class="text-center">
+                            <button type="submit"
+                                    class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0">
+                                ویرایش
+                            </button>
+                        </div>
                     </form>
 
                     <div class="row text-center py-4">
@@ -354,11 +356,12 @@
                             </div>
                         </div>
 
-
-                        <button type="submit"
-                                class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">
-                            تغییر گذرواژه
-                        </button>
+                        <div class="text-center">
+                            <button type="submit"
+                                    class="btn btn-outline-info btn-rounded my-4 waves-effect z-depth-0">
+                                تغییر گذرواژه
+                            </button>
+                        </div>
                     </form>
 
                 </div>

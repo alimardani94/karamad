@@ -110,33 +110,7 @@
                     <div class="carousel-box courses-box">
                         <div class="owl-carousel mt-4">
                             @foreach($courses as $course)
-                                <div class="card m-1 h-100">
-                                    <div class="view overlay">
-                                        <img src="{{asset('media/' .$course->thumbnail)}}" class="card-img-top"
-                                             alt="{{$course->title}}">
-                                        <a href="{{route('courses.show', ['course' => $course->id])}}">
-                                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="" class="teal-text text-center text-uppercase font-small"></a>
-                                        <h5 class="card-title">
-                                            <a href="{{route('courses.show', ['course' => $course->id])}}">
-                                                <strong class="black-text">{{$course->title}}</strong>
-                                            </a>
-                                        </h5>
-                                        <hr>
-                                        <p class="dark-grey-text mb-4 course-summary">
-                                            {{$course->summary}}
-                                        </p>
-                                        <p class="text-left mb-0 font-small">
-                                            <a class="btn btn-default btn-sm"
-                                               href="{{route('courses.show', ['course' => $course->id])}}">
-                                                مشاهده
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
+                                @include('front.layout.single_course', ['course' => $course])
                             @endforeach
                         </div>
                         <div class="owl-controls">
@@ -179,6 +153,27 @@
         </div>
     </section>
 
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <h6 class="font-weight-bold mt-5 mb-3">دوره های محبوب</h6>
+
+                    <div class="carousel-box courses-box">
+                        <div class="owl-carousel mt-4">
+                            @foreach($popularCourses as $course)
+                               @include('front.layout.single_course', ['course' => $course])
+                            @endforeach
+                        </div>
+                        <div class="owl-controls">
+                            <div class="custom-nav owl-nav"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 @endsection
 
