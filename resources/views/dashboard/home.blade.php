@@ -164,7 +164,7 @@
                                     </td>
                                     <td>{{ number_format($order->total_price) }}</td>
                                     <td>{{ jDate($order->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
-                                    <td>در انتظار پرداخت</td>
+                                    <td>{{ $order->status() }}</td>
                                     <td>
                                         <button onclick="removeOrder({{ $order->id }})" type="button"
                                                 class="btn btn-sm btn-danger btn-rounded">حذف

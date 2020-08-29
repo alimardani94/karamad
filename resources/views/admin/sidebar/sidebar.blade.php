@@ -108,12 +108,12 @@
                 لیست آزمون ها
             </a>
         </li>
-{{--        <li class="@yield('exam2')">--}}
-{{--            <a href="{{ route('admin.exams.create') }}">--}}
-{{--                <i class="fa fa-circle-o"></i>--}}
-{{--                افزودن آزمون--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        {{--        <li class="@yield('exam2')">--}}
+        {{--            <a href="{{ route('admin.exams.create') }}">--}}
+        {{--                <i class="fa fa-circle-o"></i>--}}
+        {{--                افزودن آزمون--}}
+        {{--            </a>--}}
+        {{--        </li>--}}
     </ul>
 </li>
 
@@ -130,12 +130,12 @@
                 لیست سوالات
             </a>
         </li>
-{{--        <li class="@yield('question2')">--}}
-{{--            <a href="{{route('admin.questions.create')}}">--}}
-{{--                <i class="fa fa-circle-o"></i>--}}
-{{--                افزودن سوال--}}
-{{--            </a>--}}
-{{--        </li>--}}
+        {{--        <li class="@yield('question2')">--}}
+        {{--            <a href="{{route('admin.questions.create')}}">--}}
+        {{--                <i class="fa fa-circle-o"></i>--}}
+        {{--                افزودن سوال--}}
+        {{--            </a>--}}
+        {{--        </li>--}}
     </ul>
 </li>
 
@@ -227,9 +227,9 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('product1')">
-            <a href="{{route('admin.products.index')}}">
+            <a href="{{route('admin.orders.index')}}">
                 <i class="fa fa-circle-o"></i>
-                درخواست ها
+                سفارشات
             </a>
         </li>
     </ul>

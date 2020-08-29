@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\Shop\OrderStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Order
@@ -28,8 +30,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Order extends Model
 {
+    /**
+     * @param bool $assoc
+     * @return mixed
+     */
     public function products($assoc = false)
     {
         return json_decode($this->products, $assoc);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return array|string|null
+     */
+    public function status()
+    {
+        return OrderStatus::translatedKeyOf($this->status);
     }
 }

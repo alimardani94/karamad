@@ -44,6 +44,8 @@ Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
 
     Route::get('/comments/', 'CommentController@index')->name('products.comments.index');
     Route::delete('/comments/{comment}', 'CommentController@destroy')->name('products.comments.destroy');
+
+    Route::get('/orders/', 'OrderController@index')->name('orders.index');
 });
 
 Route::post('/upload/image', 'uploadController@dropzone')->name('upload.dropzone');
