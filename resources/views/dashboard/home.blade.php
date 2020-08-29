@@ -206,7 +206,7 @@
                                     <th scope="row">{{ $loop->index + 1 }}</th>
                                     <td>{{ number_format($transaction->amount) }}</td>
                                     <td>{{ jDate($transaction->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
-                                    <td>در انتظار پرداخت</td>
+                                    <td>{{ $transaction->status() }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

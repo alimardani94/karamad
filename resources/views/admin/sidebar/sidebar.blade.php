@@ -235,6 +235,14 @@
     </ul>
 </li>
 
+<li class="header">مالی</li>
+<li class="@yield('transaction')">
+    <a href="{{route('admin.transactions.index')}}">
+        <i class="fa fa-money"></i>
+        <span>تراکنش ها</span>
+    </a>
+</li>
+
 <li class="header">مدیریت</li>
 <li class="treeview @yield('post')">
     <a href="#">

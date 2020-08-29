@@ -1,8 +1,8 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('post', 'active menu-open')
-@section('post1', 'active')
+@section('comment', 'active menu-open')
+@section('comment1', 'active')
 
 @section('header')
     <section class="content-header">

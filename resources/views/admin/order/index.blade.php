@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                             @foreach($orders as $order)
-                                <tr id="order_row_{{ $order->id }}">
+                                <tr>
                                     <td>
                                         <a href="mailto:{{ $order->user->email }}">{{ $order->user->full_name }}</a>
                                     </td>
