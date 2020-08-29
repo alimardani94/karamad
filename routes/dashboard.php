@@ -11,5 +11,7 @@ Route::post('/profile/password/update', 'ProfileController@changePassword')->nam
 
 Route::group(['prefix' => 'orders'], function () {
     Route::delete('destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
+    Route::get('show/{order}', 'OrderController@show')->name('orders.show');
+    Route::get('pay/{order}', 'OrderController@pay')->name('orders.pay');
 });
 

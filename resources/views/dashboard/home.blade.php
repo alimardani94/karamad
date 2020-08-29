@@ -169,9 +169,9 @@
                                         <button onclick="removeOrder({{ $order->id }})" type="button"
                                                 class="btn btn-sm btn-danger btn-rounded">حذف
                                         </button>
-                                        <button onclick="payOrder({{ $order->id }})" type="button"
-                                                class="btn btn-sm btn-primary btn-rounded">پرداخت
-                                        </button>
+                                        <a href="{{ route('dashboard.orders.pay' , ['order' => $order->id]) }}"
+                                           class="btn btn-sm btn-primary btn-rounded">پرداخت
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

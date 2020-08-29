@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\InvoiceStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Invoice;
 use App\Models\Order;
+use App\Services\Payment\Exceptions\PaymentGatewayException;
+use App\Services\Payment\Zarinpal;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
@@ -30,5 +37,36 @@ class OrderController extends Controller
         } catch (Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], 500);
         }
+    }
+
+
+    /**
+     * @param Order $order
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     * @throws PaymentGatewayException
+     */
+    public function pay(Order $order)
+    {
+        if ($order->user_id != Auth::id()) {
+            throw new AuthorizationException();
+        }
+
+        $invoice = Invoice::updateOrCreate(
+            [
+                'user_id' => Auth::id(),
+                'invoiceable_type' => Order::class,
+                'invoiceable_id' => $order->id,
+            ],
+            [
+                'amount' => $order->total_price,
+                'gateway' => 'zarinpal',
+                'status' => InvoiceStatus::Pending,
+            ]
+        );
+
+        $gateway = new Zarinpal();
+
+        return redirect()->to($gateway->redirect($invoice->amount, ''));
     }
 }

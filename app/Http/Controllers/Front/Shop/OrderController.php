@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Shop;
 
+use App\Enums\Shop\OrderStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Shop\Product;
@@ -38,7 +39,7 @@ class OrderController extends Controller
         $order->user_id = Auth::id();
         $order->products = json_encode($products);
         $order->total_price = $totalPrice;
-        $order->status = 0;
+        $order->status = OrderStatus::Pending;
         $order->save();
 
         $request->session()->put('cart', []);

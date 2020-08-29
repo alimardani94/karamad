@@ -39,6 +39,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Invoice extends Model
 {
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     /**
      * @return MorphTo
      */

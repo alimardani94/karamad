@@ -89,11 +89,12 @@
             height: 145px;
         }
 
-        .courses-box .card-body .course-summary{
+        .courses-box .card-body .course-summary {
             height: 160px;
             overflow: hidden;
             font-size: 15px;
         }
+
         /* end cards style*/
 
 
@@ -129,7 +130,8 @@
                                             {{$course->summary}}
                                         </p>
                                         <p class="text-left mb-0 font-small">
-                                            <a class="btn btn-default btn-sm" href="{{route('courses.show', ['course' => $course->id])}}">
+                                            <a class="btn btn-default btn-sm"
+                                               href="{{route('courses.show', ['course' => $course->id])}}">
                                                 مشاهده
                                             </a>
                                         </p>
@@ -161,7 +163,7 @@
                         </h6>
                         <br>
                         <form action="{{ route('search') }}"
-                            class="form-inline d-flex justify-content-center wow fadeInRight md-form form-sm active-cyan active-cyan-2 mt-0">
+                              class="form-inline d-flex justify-content-center wow fadeInRight md-form form-sm active-cyan active-cyan-2 mt-0">
                             <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="جستجو"
                                    aria-label="Search" name="q">
                             <i class="fas fa-search" aria-hidden="true"></i>
