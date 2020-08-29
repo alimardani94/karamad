@@ -70,4 +70,7 @@ Route::group(['namespace' => 'Front'], function () {
         Route::post('/orders', 'OrderController@store')->name('orders.store');
         Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
     });
+
+
+    Route::post('/payment/{gateway}/{invoice}/callback', 'PaymentController@callback')->name('payment.callback');
 });

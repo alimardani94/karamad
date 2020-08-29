@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SoapClient;
 
-class Zarinpal implements Gateway
+class Zarinpal implements GatewayInterface
 {
     /**
      * @var SoapClient|object
