@@ -32,12 +32,18 @@ Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
     Route::resources([
         'posts' => 'PostController',
     ]);
+
+    Route::get('/comments/', 'CommentController@index')->name('posts.comments.index');
+    Route::delete('/comments/{comment}', 'CommentController@destroy')->name('posts.comments.destroy');
 });
 
 Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
     Route::resources([
         'products' => 'ProductController',
     ]);
+
+    Route::get('/comments/', 'CommentController@index')->name('products.comments.index');
+    Route::delete('/comments/{comment}', 'CommentController@destroy')->name('products.comments.destroy');
 });
 
 Route::post('/upload/image', 'uploadController@dropzone')->name('upload.dropzone');

@@ -159,6 +159,12 @@
                 افزودن مقاله
             </a>
         </li>
+        <li class="@yield('post3')">
+            <a href="{{route('admin.posts.comments.index')}}">
+                <i class="fa fa-circle-o"></i>
+                <span>دیدگاه ها</span>
+            </a>
+        </li>
     </ul>
 </li>
 
@@ -202,6 +208,12 @@
             <a href="{{ route('admin.products.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن محصول
+            </a>
+        </li>
+        <li class="@yield('product3')">
+            <a href="{{route('admin.products.comments.index')}}">
+                <i class="fa fa-circle-o"></i>
+                <span>دیدگاه ها</span>
             </a>
         </li>
     </ul>
