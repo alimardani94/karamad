@@ -7,7 +7,7 @@
 @stop
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css') }}">
     <style>
 
         /*@media (min-width: 769px) {*/
@@ -146,7 +146,7 @@
                 </div>
 
                 <div class="col-md-12 col-lg-5 wow fadeInLeft" data-wow-delay="0.3s">
-                    <img src="{{asset('assets/img/table.png')}}" alt=""
+                    <img src="{{ asset('assets/img/table.png') }}" alt=""
                          class="img-fluid m-auto">
                 </div>
             </div>
@@ -178,7 +178,7 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js') }}"></script>
 
     <script>
         $('.owl-carousel').owlCarousel({

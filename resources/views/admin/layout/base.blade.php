@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/AdminLTE.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/adminLTE/css/skins/_all-skins.min.css') }}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/toastr-2.1.1/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/css/select2.min.css') }}">
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <link href="{{asset('assets/admin/dist/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/dist/style.css') }}" rel="stylesheet">
     @yield('style')
 </head>
 
@@ -34,7 +34,7 @@
 <div class="wrapper">
 
     <header class="main-header">
-        <a href="{{route('admin.home')}}" class="logo">
+        <a href="{{ route('admin.home')}}" class="logo">
             <span class="logo-mini">پنل</span>
             <span class="logo-lg"><b>کنترل پنل مدیریت</b></span>
         </a>
@@ -46,7 +46,7 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{route('home')}}">نمایش سایت</a></li>
+                    <li><a href="{{ route('home')}}">نمایش سایت</a></li>
 
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -61,7 +61,7 @@
                                     <li><!-- start message -->
                                         <a href="#">
                                             <div class="pull-right">
-                                                <img src="{{asset('assets/img/avatars/avatar.png')}}" class="img-circle"
+                                                <img src="{{ asset('assets/img/avatars/avatar.png') }}" class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <h4>
@@ -120,10 +120,10 @@
 
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="{{route('admin.profiles.index')}}" class="btn btn-default btn-flat">پروفایل</a>
+                                    <a href="{{ route('admin.profiles.index')}}" class="btn btn-default btn-flat">پروفایل</a>
                                 </div>
                                 <div class="pull-left">
-                                    <a href="{{route('auth.sign-out')}}" class="btn btn-default btn-flat">خروج</a>
+                                    <a href="{{ route('auth.sign-out')}}" class="btn btn-default btn-flat">خروج</a>
                                 </div>
                             </li>
                         </ul>
@@ -178,9 +178,9 @@
 <script src="{{ asset('assets/admin/adminLTE/components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{ asset('assets/admin/adminLTE/js/adminlte.min.js')}}"></script>
 <script src="{{ asset('assets/admin/adminLTE/js/demo.js')}}"></script>
-<script src="{{asset('assets/vendor/toastr-2.1.1/toastr.min.js')}}"></script>
-<script src="{{asset('assets/vendor/select2/js/select2.full.min.js')}}"></script>
-<script src="{{asset('assets/vendor/sweetalert2/sweetalert2.all.js')}}"></script>
+<script src="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.all.js') }}"></script>
 <script>
     let toastPosition = 'toast-bottom-left';
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

@@ -5,9 +5,9 @@
 @section('product2', 'active')
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/dropzone-5.7.0/min/basic.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/dropzone-5.7.0/min/basic.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
 @endsection
 
 @section('header')
@@ -16,7 +16,7 @@
             افزودن محصول جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">محصولات</a></li>
             <li class="active">افزودن محصول</li>
         </ol>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" id="productForm" action="{{route('admin.products.store')}}"
+                    <form method="post" id="productForm" action="{{ route('admin.products.store')}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
@@ -139,7 +139,7 @@
                                 <div class="col-md-12">
                                     <label>تصاویر</label>
                                     <div id="dropzone" class="needsclick dz-clickable"
-                                         data-action="{{route('admin.upload.dropzone')}}">
+                                         data-action="{{ route('admin.upload.dropzone')}}">
                                         <div class="dz-message">
                                             <div><i class="fas fa-plus"></i></div>
                                             <div>برای بارگذاری تصاویر اینجا کلیک کنید.</div>

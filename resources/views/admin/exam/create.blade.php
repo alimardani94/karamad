@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.exams.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.exams.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
@@ -79,8 +79,8 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/vendor/persian-date/persian-date.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/persian-datepicker/js/persian-datepicker.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/persian-date/persian-date.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/persian-datepicker/js/persian-datepicker.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $("#start_time").pDatepicker({

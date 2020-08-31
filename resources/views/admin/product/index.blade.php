@@ -10,7 +10,7 @@
             محصولات <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">محصولات</a></li>
             <li class="active">لیست محصولات</li>
         </ol>
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست محصولات</h3>
-                        <a href="{{route('admin.products.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.products.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
                             محصول جدید</a>
                     </div>
                     <div class="box-body">
@@ -68,7 +68,7 @@
 @section('js')
     <script>
         function removeProduct(id) {
-            let url = "{{route('admin.products.destroy', '')}}/" + id
+            let url = "{{ route('admin.products.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا محصول حذف شود؟',
                 text: "",

@@ -10,7 +10,7 @@
             کاربران <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">کاربران</a></li>
             <li class="active">لیست کاربران</li>
         </ol>

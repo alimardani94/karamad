@@ -1,7 +1,7 @@
 <header id="header2">
     <nav class="navbar navbar-expand-lg navbar-light stylish-color-light white">
 
-        <a class="navbar-brand" href="{{route('home')}}">هوش کاپ</a>
+        <a class="navbar-brand" href="{{ route('home')}}">هوش کاپ</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,7 +121,7 @@
                     <a class="nav-link" href="#">کلاس های آموزشی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('shop.index')}}">فروشگاه</a>
+                    <a class="nav-link" href="{{ route('shop.index')}}">فروشگاه</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
@@ -161,14 +161,14 @@
                             <span class="clearfix d-none d-inline-block">{{auth()->user()->full_name}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{route('dashboard.home')}}">داشبورد</a>
-                            <a class="dropdown-item" href="{{route('auth.sign-out')}}">خروج</a>
+                            <a class="dropdown-item" href="{{ route('dashboard.home')}}">داشبورد</a>
+                            <a class="dropdown-item" href="{{ route('auth.sign-out')}}">خروج</a>
                         </div>
                     </li>
                 @endauth
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('auth.sign-in')}}">ورود</a>
+                        <a class="nav-link" href="{{ route('auth.sign-in')}}">ورود</a>
                     </li>
                 @endguest
             </ul>

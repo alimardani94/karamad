@@ -13,7 +13,7 @@
             افزودن برچسب جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">برچسب ها</a></li>
             <li class="active">افزودن برچسب</li>
         </ol>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.tags.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.tags.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
@@ -81,7 +81,7 @@
 @section('js')
     <script>
         function removeTag(id) {
-            let url = "{{route('admin.tags.destroy', '')}}/" + id
+            let url = "{{ route('admin.tags.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا برچسب حذف شود؟',
                 text: "",

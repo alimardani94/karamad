@@ -10,7 +10,7 @@
             دوره ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دوره ها</a></li>
             <li class="active">لیست دوره ها</li>
         </ol>
@@ -50,9 +50,9 @@
                                     <td>{{substr($course->summary,0,200)}}</td>
                                     <td>{{jDate($course->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a href="{{route('admin.syllabuses.create', ['course' => $course->id])}}"
+                                        <a href="{{ route('admin.syllabuses.create', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
-                                        <a href="{{route('admin.syllabuses.index', ['course' => $course->id])}}"
+                                        <a href="{{ route('admin.syllabuses.index', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-info btn-xs">لیست جلسات</a>
                                         <a href="{{  route('admin.courses.edit', ['course' => $course->id])}}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره

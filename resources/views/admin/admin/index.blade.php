@@ -10,7 +10,7 @@
             مدیران <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مدیران</a></li>
             <li class="active">لیست مدیران</li>
         </ol>
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مدیران</h3>
-                        <a href="{{route('admin.admins.create')}}" class="btn btn-primary btn-flat pull-left">
+                        <a href="{{ route('admin.admins.create')}}" class="btn btn-primary btn-flat pull-left">
                             افزودن مدیر جدید
                         </a>
                     </div>
@@ -62,7 +62,7 @@
 @section('js')
     <script>
         function removeAdmin(id) {
-            let url = "{{route('admin.admins.destroy', '')}}/" + id
+            let url = "{{ route('admin.admins.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا مدیر حذف شود؟',
                 text: "",

@@ -43,7 +43,7 @@
             افزودن جلسه جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">جلسه ها</a></li>
             <li class="active">افزودن جلسه</li>
         </ol>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form id="create_syllabus" method="post" action="{{route('admin.syllabuses.store')}}"
+                    <form id="create_syllabus" method="post" action="{{ route('admin.syllabuses.store')}}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
@@ -335,10 +335,10 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/jquery-validation/jquery.validate.js')}}"></script>
-    <script src="{{asset('assets/vendor/jquery-validation/localization/messages_fa.min.js')}}"></script>
-    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-validation/localization/messages_fa.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js') }}"></script>
 
     <script>
         function activeVideo() {

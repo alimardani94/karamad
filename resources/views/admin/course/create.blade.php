@@ -10,7 +10,7 @@
             افزودن دوره جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دوره ها</a></li>
             <li class="active">افزودن دوره</li>
         </ol>

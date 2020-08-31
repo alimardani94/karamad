@@ -13,7 +13,7 @@
             ویرایش مدیر
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مدیران</a></li>
             <li class="active">ویرایش مدیر</li>
         </ol>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.admins.update', ['admin' => $admin->id])}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.admins.update', ['admin' => $admin->id])}}" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="box-header"></div>

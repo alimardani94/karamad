@@ -55,44 +55,44 @@
                                                     <ul class="list-group mr-0 pr-0">
                                                         @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-tw btn-sm">
                                                                     <i class="fas fa-video"></i>
                                                                 </a>
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
                                                                     <i class="fas fa-volume-up"></i>
                                                                 </a>
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Text)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
                                                                     <i class="fas fa-volume-up"></i>
                                                                 </a>
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @else
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-yt btn-sm">
                                                                     <i class="fal fa-list-alt"></i>
                                                                 </a>
-                                                                <a href="{{route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>

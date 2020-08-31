@@ -10,7 +10,7 @@
             مقاله ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مقاله ها</a></li>
             <li class="active">لیست مقاله ها</li>
         </ol>
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مقاله ها</h3>
-                        <a href="{{route('admin.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
                             مقاله جدید</a>
                     </div>
                     <div class="box-body">
@@ -69,7 +69,7 @@
 @section('js')
     <script>
         function removePost(id) {
-            let url = "{{route('admin.posts.destroy', '')}}/" + id
+            let url = "{{ route('admin.posts.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا مقاله حذف شود؟',
                 text: "",

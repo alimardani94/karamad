@@ -45,7 +45,7 @@
                                                 <p class="text-left mb-0 text-uppercase dark-grey-text font-weight-bold">
                                                     <a type="button"
                                                        class="btn btn-outline-primary btn-rounded waves-effect"
-                                                       href="{{route('posts.show', ['post' => $post->id])}}">
+                                                       href="{{ route('posts.show', ['post' => $post->id])}}">
                                                         بیشتر
                                                     </a>
                                                 </p>
@@ -76,7 +76,7 @@
                                             <div class="col-5">
                                                 <!-- Image -->
                                                 <div class="view overlay">
-                                                    <img src="{{asset( 'media/' . $post->image)}}"
+                                                    <img src="{{ asset( 'media/' . $post->image) }}"
                                                          class="img-fluid z-depth-1 rounded-0" alt="{{ $post->title }}">
                                                     <a>
                                                         <div class="mask waves-light"></div>
@@ -86,7 +86,7 @@
 
                                             <div class="col-7">
                                                 <h6 class="mt-0 font-small">
-                                                    <a><strong>{{$post->title}}</strong></a>
+                                                    <a><strong>{{ $post->title }}</strong></a>
                                                 </h6>
 
                                                 <div class="post-data">
@@ -158,7 +158,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
-                                        <img src="{{asset( 'media/' . $post->image)}}" class="img-fluid"
+                                        <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
                                              alt="Post">
                                         <a>
                                             <div class="mask rgba-white-slight"></div>
@@ -192,7 +192,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
-                                        <img src="{{asset( 'media/' . $post->image)}}" class="img-fluid"
+                                        <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
                                              alt="Post">
                                         <a>
                                             <div class="mask rgba-white-slight"></div>

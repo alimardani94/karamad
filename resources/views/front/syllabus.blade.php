@@ -184,7 +184,7 @@
                             <div class="d-flex">
                                 @if($next)
                                     <div class="ml-auto">
-                                        <a href="{{route('syllabuses.show', ['syllabus' => $next->id])}}"
+                                        <a href="{{ route('syllabuses.show', ['syllabus' => $next->id])}}"
                                            class="btn btn-primary btn-rounded waves-effect waves-light">
                                             بعدی
                                         </a>
@@ -192,7 +192,7 @@
                                 @endif
                                 @if($previous)
                                     <div class="mr-auto">
-                                        <a href="{{route('syllabuses.show', ['syllabus' => $previous->id])}}"
+                                        <a href="{{ route('syllabuses.show', ['syllabus' => $previous->id])}}"
                                            class="btn btn-primary btn-rounded waves-effect waves-light">
                                             قبلی
                                         </a>
@@ -214,7 +214,7 @@
                                     <ul class="list-group mx-0 px-0">
                                         @foreach($syllabus->course->syllabuses as $sidebarSyllabus)
                                             <li class="list-group-item text-black {{ ($sidebarSyllabus->id === $syllabus->id) ? 'active' : '' }}">
-                                                <a href="{{route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
+                                                <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
                                                    class="black-text">
                                                     {{$sidebarSyllabus->title}}
                                                 </a>

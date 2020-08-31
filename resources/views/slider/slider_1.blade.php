@@ -10,7 +10,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" src="{{asset('assets/img/slider/1.jpg')}}"
+                    <img class="d-block w-100" src="{{ asset('assets/img/slider/1.jpg') }}"
                          alt="First slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="carousel-item">
                 <div class="view">
-                    <img class="d-block w-100" src="{{asset('assets/img/slider/2.jpg')}}"
+                    <img class="d-block w-100" src="{{ asset('assets/img/slider/2.jpg') }}"
                          alt="Second slide">
                     <div class="mask rgba-black-strong"></div>
                 </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="carousel-item">
                 <div class="view">
-                    <img class="d-block w-100" src="{{asset('assets/img/slider/3.jpg')}}"
+                    <img class="d-block w-100" src="{{ asset('assets/img/slider/3.jpg') }}"
                          alt="Third slide">
                     <div class="mask rgba-black-slight"></div>
                 </div>

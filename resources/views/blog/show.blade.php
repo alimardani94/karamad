@@ -7,7 +7,7 @@
 @stop
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css') }}">
     <style>
         #content p, #content img {
             max-width: 100%;
@@ -283,7 +283,7 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js') }}"></script>
 
     <script>
         $('.owl-carousel').owlCarousel({

@@ -52,7 +52,7 @@
                                     <div class="form-header info-color-dark">
                                         <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-user mx-3"></i>ورود</h3>
                                     </div>
-                                    <form id="signInForm" action="{{route('auth.sign-in')}}" method="post">
+                                    <form id="signInForm" action="{{ route('auth.sign-in')}}" method="post">
                                         @csrf
                                         <div class="md-form">
                                             <input type="text" id="email" name="login" class="form-control">
@@ -69,7 +69,7 @@
                                             <hr class="mt-4">
                                             <div>
                                                 <span class="ml-1">هنوز ثبت نام نکرده ام</span>
-                                                <a href="{{route('auth.sign-up')}}">ثبت نام</a>
+                                                <a href="{{ route('auth.sign-up')}}">ثبت نام</a>
                                             </div>
                                             <div class="inline-ul text-center d-flex justify-content-center">
                                                 <hr class="mt-1">

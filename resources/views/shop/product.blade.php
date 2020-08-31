@@ -7,9 +7,9 @@
 @stop
 
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/slick/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendor/slick/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/slick/slick-theme.css') }}">
     <style>
         .owl-dots {
             display: -ms-flexbox;
@@ -217,8 +217,8 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/vendor/slick/slick.min.js')}}"></script>
+    <script src="{{ asset('assets/vendor/OwlCarousel2-2.3.4/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/slick/slick.min.js') }}"></script>
 
     <script>
         $('.owl-carousel').owlCarousel({

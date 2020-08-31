@@ -13,7 +13,7 @@
             <span>ویرایش سوال</span>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">سوال ها</a></li>
             <li class="active">ویرایش سوال</li>
         </ol>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.questions.update', ['question' => $question->id])}}"
+                    <form method="post" action="{{ route('admin.questions.update', ['question' => $question->id])}}"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf

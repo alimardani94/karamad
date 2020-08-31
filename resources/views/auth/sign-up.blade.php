@@ -80,7 +80,7 @@
 
                                         <div class="col-md-6 ml-lg-5 ml-md-3">
                                             <form id="signUpForm" method="post" class="text-center"
-                                                  style="color: #757575;" action="{{route('auth.sign-up')}}">
+                                                  style="color: #757575;" action="{{ route('auth.sign-up')}}">
                                                 <div class="form-row">
                                                     <div class="col">
                                                         <div class="md-form">
@@ -138,7 +138,7 @@
                                                 <hr class="mt-4">
                                                 <div>
                                                     <span>قبلا ثبت نام کرده ام</span>
-                                                    <a href="{{route('auth.sign-in')}}">ورود</a>
+                                                    <a href="{{ route('auth.sign-in')}}">ورود</a>
                                                 </div>
                                             </form>
 

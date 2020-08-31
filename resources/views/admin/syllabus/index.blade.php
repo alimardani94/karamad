@@ -10,7 +10,7 @@
             جلسه ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">جلسه ها</a></li>
             <li class="active">لیست جلسه ها</li>
         </ol>
@@ -25,13 +25,13 @@
                     <div class="box-header">
                         <h3 class="box-title">لیست جلسه ها</h3>
                         @if(request()->get('course'))
-                            <a href="{{route('admin.syllabuses.create', ['course' => request()->get('course')])}}"
+                            <a href="{{ route('admin.syllabuses.create', ['course' => request()->get('course')])}}"
                                class="btn btn-primary btn-flat pull-left">
                                 افزودن
                                 جلسه جدید
                             </a>
                         @else
-                            <a href="{{route('admin.syllabuses.create')}}" class="btn btn-primary btn-flat pull-left">
+                            <a href="{{ route('admin.syllabuses.create')}}" class="btn btn-primary btn-flat pull-left">
                                 افزودن
                                 جلسه جدید
                             </a>
@@ -76,7 +76,7 @@
 @section('js')
     <script>
         function removeSyllabus(id) {
-            let url = "{{route('admin.syllabuses.destroy', '')}}/" + id
+            let url = "{{ route('admin.syllabuses.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا جلسه حذف شود؟',
                 text: "",

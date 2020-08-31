@@ -12,7 +12,7 @@
             دسته بندی ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دسته بندی ها</a></li>
             <li class="active">لیست دسته بندی ها</li>
         </ol>
