@@ -126,21 +126,26 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="card mt-3">
-                                <div class="card-body">
-                                    <a style="display:{{$course->reaction() == 1 ? 'block' : 'none'}}"
-                                       id="dislike" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
-                                        <i class="fas fa-heart fa-2x pl-1" style="color: red" aria-hidden="true"></i>
-                                        <span class="pb-2" style="vertical-align:super"> حذف از علاقه مندی</span>
-                                    </a>
-                                    <a style="display:{{$course->reaction() != 1 ? 'block' : 'none'}}"
-                                       id="like" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
-                                        <i class="fas fa-heart fa-2x pl-1" style="color: rgba(48, 56, 64, .2)"
-                                           aria-hidden="true"></i>
-                                        <span class="pb-2" style="vertical-align:super"> افزودن به علاقه مندی</span>
-                                    </a>
+
+                            @if(auth()->id())
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <a style="display:{{$course->reaction() == 1 ? 'block' : 'none'}}"
+                                           id="dislike"
+                                           data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
+                                            <i class="fas fa-heart fa-2x pl-1" style="color: red"
+                                               aria-hidden="true"></i>
+                                            <span class="pb-2" style="vertical-align:super"> حذف از علاقه مندی</span>
+                                        </a>
+                                        <a style="display:{{$course->reaction() != 1 ? 'block' : 'none'}}"
+                                           id="like" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
+                                            <i class="fas fa-heart fa-2x pl-1" style="color: rgba(48, 56, 64, .2)"
+                                               aria-hidden="true"></i>
+                                            <span class="pb-2" style="vertical-align:super"> افزودن به علاقه مندی</span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

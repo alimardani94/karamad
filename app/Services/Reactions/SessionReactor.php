@@ -15,7 +15,11 @@ class SessionReactor implements Reactor
     public function get(Model $entity, int $userId): ?int
     {
         $entityType = strtolower(class_basename($entity));
-        if ($r = Reaction::find(session($this->key($entityType,$entity->id)))) {
+        if ($r = Reaction::find(session($this->key($entityType, $entity->id)))) {
+            return $r->type;
+        }
+
+        if ($userId != null and $r = Reaction::whereEntityType(get_class($entity))->where('entity_id', $entity->id)->where('user_id', $userId)->first()) {
             return $r->type;
         }
 
@@ -28,10 +32,12 @@ class SessionReactor implements Reactor
     public function set(Model $entity, int $type, int $userId): void
     {
         $entityType = get_class($entity);
-        $id = session($this->key($entityType,$entity->id));
+        $id = session($this->key($entityType, $entity->id));
 
         if (empty($reaction = Reaction::find($id))) {
-            $reaction = new Reaction();
+            if ($userId != null and empty($r = Reaction::whereEntityType(get_class($entity))->where('entity_id', $entity->id)->where('user_id', $userId)->first())) {
+                $reaction = new Reaction();
+            }
         }
 
         $reaction->entity_type = $entityType;
@@ -45,7 +51,7 @@ class SessionReactor implements Reactor
         ]);
         $reaction->save();
 
-        session()->put($this->key($entityType,$entity->id), $reaction->id);
+        session()->put($this->key($entityType, $entity->id), $reaction->id);
     }
 
     /**
@@ -88,6 +94,6 @@ class SessionReactor implements Reactor
 
         $mostPopular = reset($entityPopularity);
 
-        return isset($entityPopularity[$entity->id]) ? $entityPopularity[$entity->id]  * 100 / $mostPopular : 0;
+        return isset($entityPopularity[$entity->id]) ? $entityPopularity[$entity->id] * 100 / $mostPopular : 0;
     }
 }
