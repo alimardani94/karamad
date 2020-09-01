@@ -23,7 +23,7 @@ class SyllabusController extends Controller
         $next = Syllabus::where('id', '>', $syllabus->id)->get(['id'])->first();
         $previous = Syllabus::where('id', '<', $syllabus->id)->get(['id'])->first();
 
-        return view('front.syllabus', [
+        return view('front.course.syllabus', [
             'syllabus' => $syllabus,
             'next' => $next,
             'previous' => $previous,

@@ -118,10 +118,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">کلاس های آموزشی</a>
+                    <a class="nav-link" href="{{ route('courses.index') }}">کلاس های آموزشی</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('shop.index')}}">فروشگاه</a>
+                    <a class="nav-link" href="{{ route('shop.index') }}">فروشگاه</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
@@ -159,8 +159,8 @@
                             <span class="clearfix d-none d-inline-block">{{auth()->user()->full_name}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('dashboard.home')}}">داشبورد</a>
-                            <a class="dropdown-item" href="{{ route('auth.sign-out')}}">خروج</a>
+                            <a class="dropdown-item" href="{{ route('dashboard.home') }}">داشبورد</a>
+                            <a class="dropdown-item" href="{{ route('auth.sign-out') }}">خروج</a>
                         </div>
                     </li>
                 @endauth

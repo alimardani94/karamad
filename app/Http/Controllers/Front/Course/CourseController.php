@@ -15,6 +15,20 @@ class CourseController extends Controller
 {
 
     /**
+     * Display the courses.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        $courses = Course::paginate(12);
+
+        return view('front.course.courses', [
+            'courses' => $courses,
+        ]);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -24,7 +38,7 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
 
-        return view('front.course', [
+        return view('front.course.course', [
             'course' => $course,
         ]);
     }

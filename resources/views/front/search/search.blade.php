@@ -24,14 +24,13 @@
                                 </div>
                             @endforeach
                         </div>
+                        <div class="text-center mb-5">
+                            <a href="{{ route('course.search', ['q' => request()->get('q')]) }}"
+                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                مشاهده بیشتر
+                            </a>
+                        </div>
                     @endif
-                    <div class="text-center mb-5">
-                        <a href="{{ route('course.search', ['q' => request()->get('q')]) }}"
-                           class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                            مشاهده بیشتر
-                        </a>
-                    </div>
-
 
                     @if($products->count())
                         <div class="row text-center py-4 mt-4">
@@ -44,14 +43,13 @@
                                 </div>
                             @endforeach
                         </div>
+                        <div class="text-center mb-5">
+                            <a href="{{ route('product.search', ['q' => request()->get('q')]) }}"
+                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                مشاهده بیشتر
+                            </a>
+                        </div>
                     @endif
-                    <div class="text-center mb-5">
-                        <a href="{{ route('product.search', ['q' => request()->get('q')]) }}"
-                           class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                            مشاهده بیشتر
-                        </a>
-                    </div>
-
 
                     @if($posts->count())
                         <div class="row text-center py-4 mt-4">
@@ -64,13 +62,19 @@
                                 </div>
                             @endforeach
                         </div>
+                        <div class="text-center mb-5">
+                            <a href="{{ route('post.search', ['q' => request()->get('q')]) }}"
+                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                مشاهده بیشتر
+                            </a>
+                        </div>
                     @endif
-                    <div class="text-center mb-5">
-                        <a href="{{ route('post.search', ['q' => request()->get('q')]) }}"
-                           class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                            مشاهده بیشتر
-                        </a>
-                    </div>
+
+                    @if(!$courses->count() and !$products->count() and !$posts->count())
+                        <div class="alert alert-primary my-5 p-4" role="alert">
+                            دستاوردی برای جستجوی شما یافت نشد
+                        </div>
+                    @endif
 
                 </div>
             </div>
