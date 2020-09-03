@@ -18,7 +18,7 @@
             <i class="fal fa-clock"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }}
         </div>
         <p class="text-left mb-0 font-small">
-            <a class="btn btn-default btn-sm"
+            <a class="btn btn-default btn-sm" style="position: absolute; bottom: 5px; left: 5px"
                href="{{ route('posts.show', ['post' => $post->id]) }}">
                 مشاهده
             </a>

@@ -1,24 +1,47 @@
-<div class="card h-100 m-1">
-    <!-- Card image -->
-    <div class="view overlay">
+<div class="card card-ecommerce h-100 m-1">
+    <div class="view overlay" style="max-height: 220px">
         <img src="{{ $product->image() }}"
-             class="card-img-top" alt="sample image">
+             class="img-fluid" alt="{{ $product->name }}">
         <a href="{{ route('shop.product', ['id' => $product->id]) }}">
-            <div class="mask rgba-white-slight"></div>
+            <div class="mask rgba-white-slight waves-effect waves-light"></div>
         </a>
     </div>
+    <!-- Card image -->
 
+    <!-- Card content -->
     <div class="card-body">
-        <h4 class="card-title">
-            <a href="{{ route('shop.product', ['id' => $product->id]) }}">
-                <strong>{{ $product->name }}</strong>
-            </a>
-        </h4>
-        <hr>
 
-        <p class="font-small font-weight-bold dark-grey-text mb-1">
-            <strong>{{ number_format($product->price) }}</strong> تومان
-        </p>
-        <p class="font-small grey-text mb-0">{{ $product->meta_description }}</p>
+        <h5 class="card-title mb-1">
+            <strong><a href="{{ route('shop.product', ['id' => $product->id]) }}"
+                       class="dark-grey-text">{{ $product->name }}</a></strong>
+        </h5>
+
+        @foreach($product->tags as $tag)
+            <span class="badge badge-primary mb-2">{{$tag->name}}</span>
+        @endforeach
+
+        <ul class="rating">
+            <li><i class="fas fa-star blue-text"></i></li>
+            <li><i class="fas fa-star blue-text"></i></li>
+            <li><i class="fas fa-star blue-text"></i></li>
+            <li><i class="fas fa-star blue-text"></i></li>
+            <li><i class="fas fa-star blue-text"></i></li>
+        </ul>
+
+        <div class="card-footer pb-0">
+            <div class="mb-0">
+                <div class="float-right">
+                    <strong>{{ number_format($product->price) }}</strong> تومان
+                </div>
+
+                <div class="float-left">
+                    <a href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}"
+                       data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Add to Cart">
+                        <i class="fas fa-shopping-cart ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

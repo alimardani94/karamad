@@ -90,8 +90,9 @@
                             <strong> {{ $product->name }} </strong>
                         </h2>
 
-                        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">bestseller</span>
-                        <span class="badge badge-success product mb-4 ml-2">SALE</span>
+                        @foreach($product->tags as $tag)
+                            <span class="badge badge-success product mb-4 ml-2">{{$tag->name}}</span>
+                        @endforeach
                         <h3 class="h3-responsive text-center text-md-right mb-5 ml-xl-0 ml-4">
                             <span
                                 class="red-text font-weight-bold"><strong>{{ number_format($product->price) }}</strong></span>
@@ -183,30 +184,7 @@
             <div class="carousel-box courses-box">
                 <div class="owl-carousel mt-4">
                     @foreach($relatedProducts as $relatedProduct)
-                        <div class="card m-2 h-100">
-                            <!-- Card image -->
-                            <div class="view overlay">
-                                <img src="{{ $relatedProduct->image() }}"
-                                     class="card-img-top" alt="sample image">
-                                <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="{{ route('shop.product', ['id' => $relatedProduct->id]) }}">
-                                        <strong>{{ $relatedProduct->name }}</strong>
-                                    </a>
-                                </h4>
-                                <hr>
-
-                                <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                    <strong>{{ number_format($relatedProduct->price) }}</strong> تومان
-                                </p>
-                                <p class="font-small grey-text mb-0">{{ $relatedProduct->meta_description }}</p>
-                            </div>
-                        </div>
+                        @include('front.layout.single_product', ['product' => $product])
                     @endforeach
                 </div>
             </div>

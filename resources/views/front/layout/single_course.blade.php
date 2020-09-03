@@ -18,7 +18,7 @@
             {{ $course->summary }}
         </p>
         <p class="text-left mb-0 font-small">
-            <a class="btn btn-default btn-sm"
+            <a class="btn btn-default btn-sm" style="position: absolute; bottom: 5px; left: 5px"
                href="{{ route('courses.show', ['course' => $course->id]) }}">
                 مشاهده
             </a>
