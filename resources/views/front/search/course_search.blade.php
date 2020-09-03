@@ -17,36 +17,10 @@
                         <div class="row text-center py-4 mt-4">
                             <h2 class="font-weight-bold mx-auto">دوره های یافته شده</h2>
                         </div>
-                        <div class="row my-3">
+                        <div class="row row-cols-1 row-cols-md-4">
                             @foreach($courses as $course)
-                                <div class="col-md-3">
-                                    <div class="card m-1">
-                                        <div class="view overlay">
-                                            <img src="{{ asset('media/' .$course->thumbnail) }}" class="card-img-top"
-                                                 alt="{{ $course->title }}">
-                                            <a href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                                <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                                            </a>
-                                        </div>
-                                        <div class="card-body">
-                                            <a href="" class="teal-text text-center text-uppercase font-small"></a>
-                                            <h5 class="card-title">
-                                                <a href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                                    <strong class="black-text">{{$course->title}}</strong>
-                                                </a>
-                                            </h5>
-                                            <hr>
-                                            <p class="dark-grey-text mb-4 course-summary">
-                                                {{ $course->summary }}
-                                            </p>
-                                            <p class="text-left mb-0 font-small">
-                                                <a class="btn btn-default btn-sm"
-                                                   href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                                    مشاهده
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
+                                <div class="col my-3">
+                                    @include('front.layout.single_course', ['course' => $course])
                                 </div>
                             @endforeach
                         </div>

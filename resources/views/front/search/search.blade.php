@@ -17,9 +17,9 @@
                         <div class="row text-center py-4 mt-4">
                             <h2 class="font-weight-bold mx-auto">دوره های یافته شده</h2>
                         </div>
-                        <div class="row my-3">
+                        <div class="row row-cols-1 row-cols-md-4">
                             @foreach($courses as $course)
-                                <div class="col-md-3">
+                                <div class="col my-3">
                                     @include('front.layout.single_course', ['course' => $course])
                                 </div>
                             @endforeach
@@ -36,9 +36,9 @@
                         <div class="row text-center py-4 mt-4">
                             <h2 class="font-weight-bold mx-auto">محصولات یافته شده</h2>
                         </div>
-                        <div class="row my-3">
+                        <div class="row row-cols-1 row-cols-md-4">
                             @foreach($products as $product)
-                                <div class="col-md-3">
+                                <div class="col my-3">
                                     @include('front.layout.single_product', ['product' => $product])
                                 </div>
                             @endforeach
@@ -55,9 +55,9 @@
                         <div class="row text-center py-4 mt-4">
                             <h2 class="font-weight-bold mx-auto">مقالات یافته شده</h2>
                         </div>
-                        <div class="row my-3">
+                        <div class="row row-cols-1 row-cols-md-4">
                             @foreach($posts as $post)
-                                <div class="col-md-3">
+                                <div class="col my-3">
                                     @include('front.layout.single_post', ['post' => $post])
                                 </div>
                             @endforeach

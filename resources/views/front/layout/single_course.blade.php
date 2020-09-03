@@ -1,4 +1,4 @@
-<div class="card m-1">
+<div class="card h-100 m-1">
     <div class="view overlay">
         <img src="{{ asset('media/' .$course->thumbnail) }}" class="card-img-top"
              alt="{{ $course->title }}">
