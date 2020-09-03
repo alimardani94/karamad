@@ -55,6 +55,7 @@ Route::group(['namespace' => 'Front'], function () {
         Route::resources([
             'posts' => 'PostController',
         ]);
+        Route::get('/filter', 'PostController@filter')->name('blog.filter');
         Route::resource('posts.comments', 'CommentController')->shallow();
     });
 

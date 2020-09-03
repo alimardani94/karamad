@@ -67,10 +67,10 @@
                         <section class="section widget-content mb-5">
                             <div class="card card-body pb-0">
                                 <p class="font-weight-bold dark-grey-text text-center spacing grey lighten-4 py-2 mb-4">
-                                    <strong>مقالات مرتبط</strong>
+                                    <strong>مقالات محبوب</strong>
                                 </p>
 
-                                @foreach($relatedPosts as $post)
+                                @foreach($popularPosts as $post)
                                     <div class="single-post">
                                         <div class="row mb-4">
                                             <div class="col-5">
@@ -110,11 +110,12 @@
                                     <ul class="list-group mb-4">
                                         @foreach($tags as $tag)
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <a class="">
+                                                <a href="{{ route('blog.filter', ['tag' => $tag->id]) }}">
                                                     <p class="mb-0"> {{$tag->name}} </p>
                                                 </a>
-                                                <span
-                                                    class="badge teal badge-pill font-small"> {{$tag->posts_count}} </span>
+                                                <span class="badge teal badge-pill font-small">
+                                                    {{$tag->posts_count}}
+                                                </span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -152,7 +153,7 @@
 
                     <!-- Grid column -->
                     <div class="col-lg-4 col-md-6">
-                        <h6 class="font-weight-bold mt-5 mb-3">جدیدترین مقالات</h6>
+                        <h6 class="font-weight-bold mt-5 mb-3">مقالات محبوب</h6>
                         <hr class="mb-5">
                         @foreach($popularPosts as $post)
                             <div class="row">
