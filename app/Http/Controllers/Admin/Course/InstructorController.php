@@ -21,7 +21,7 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $instructors = Instructor::all();
+        $instructors = Instructor::paginate(15);
 
         return view('admin.instructor.index', [
             'instructors' => $instructors

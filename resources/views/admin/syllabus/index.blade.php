@@ -66,6 +66,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-2">
+                            {{ $syllabuses->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

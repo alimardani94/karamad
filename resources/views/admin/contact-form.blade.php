@@ -48,6 +48,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-2">
+                                {{ $messages->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

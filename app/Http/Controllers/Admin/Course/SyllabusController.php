@@ -30,9 +30,9 @@ class SyllabusController extends Controller
     public function index(Request $request)
     {
         if ($request->get('course')) {
-            $syllabuses = Syllabus::where('course_id', $request->get('course'))->get();
+            $syllabuses = Syllabus::where('course_id', $request->get('course'))->paginate(10);
         } else {
-            $syllabuses = Syllabus::all();
+            $syllabuses = Syllabus::paginate(10);
         }
 
         return view('admin.syllabus.index', [

@@ -246,7 +246,7 @@
 <li class="header">مدیریت</li>
 <li class="@yield('contact-form')">
     <a href="{{ route('admin.contact-form.index')}}">
-        <i class="fa fa-money"></i>
+        <i class="fa fa-comment"></i>
         <span>پیام ها</span>
     </a>
 </li>

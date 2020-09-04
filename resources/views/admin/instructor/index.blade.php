@@ -61,6 +61,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-2">
+                            {{ $instructors->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
