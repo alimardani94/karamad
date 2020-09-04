@@ -118,11 +118,19 @@
                                         </td>
 
                                         <td colspan="3" class="text-right">
-                                            <button type="submit"
-                                                    class="btn btn-primary btn-rounded waves-effect waves-light">
-                                                تکمیل خرید
-                                                <i class="fas fa-angle-left left"></i>
-                                            </button>
+                                            @if(auth()->id())
+                                                <button type="submit"
+                                                        class="btn btn-primary btn-rounded waves-effect waves-light">
+                                                    تکمیل خرید
+                                                    <i class="far fa-angle-left left"></i>
+                                                </button>
+                                            @else
+                                                <a class="btn btn-primary btn-rounded waves-effect waves-light"
+                                                    href="{{ route('auth.sign-in') }}">
+                                                    ورود به حساب کاربری
+                                                    <i class="far fa-angle-left left"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     </tbody>

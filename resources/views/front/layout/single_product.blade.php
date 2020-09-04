@@ -38,7 +38,7 @@
                     <a href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}"
                        data-toggle="tooltip" data-placement="top" title=""
                        data-original-title="Add to Cart">
-                        <i class="fas fa-shopping-cart ml-3"></i>
+                        <i class="fas fa-shopping-cart mr-3"></i>
                     </a>
                 </div>
             </div>

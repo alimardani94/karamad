@@ -225,3 +225,8 @@ ul.list-group {
     width: 100%;
     height: 100%;
 }
+
+header .avatar {
+    width: 45px;
+    height: 45px;
+}

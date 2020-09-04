@@ -142,31 +142,44 @@
             </ul>
 
             <ul class="navbar-nav nav-flex-icons mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link dark-grey-text font-weight-bold waves-effect waves-light" href="{{ route('shop.cart.show') }}">
-                        <span class="badge danger-color" id="cart_count">{{ array_sum(Session::get('cart', [])) }}</span>
-                        <i class="fas fa-shopping-cart blue-text" aria-hidden="true"></i>
-                        <span class="clearfix d-none d-sm-inline-block">سبد خرید</span>
-                    </a>
-                </li>
-
+                @if( array_sum(Session::get('cart', [])) )
+                    <li class="nav-item">
+                        <a class="nav-link dark-grey-text font-weight-bold waves-effect waves-light pt-3"
+                           href="{{ route('shop.cart.show') }}">
+                                <span class="badge primary-color" id="cart_count">
+                                    {{ array_sum(Session::get('cart', [])) }}
+                                </span>
+                            <i class="far fa-shopping-cart blue-text" aria-hidden="true"></i>
+                            <span class="clearfix d-md-none">سبد خرید</span>
+                        </a>
+                    </li>
+                @endif
                 @auth
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown d-none d-md-block">
                         <a class="nav-link dropdown-toggle waves-effect" href="#" id="userDropdown"
                            data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                            <span class="clearfix d-none d-inline-block">{{auth()->user()->full_name}}</span>
+                            <span class="clearfix d-none d-inline-block">
+                                 <img id="profile-pic" src="{{ auth()->user()->image }}" class="rounded-circle avatar"
+                                      alt="{{ auth()->user()->full_name }}">
+                            </span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu mt-2" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="{{ route('dashboard.home') }}">داشبورد</a>
                             <a class="dropdown-item" href="{{ route('auth.sign-out') }}">خروج</a>
                         </div>
                     </li>
+
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link pt-3" href="{{ route('dashboard.home') }}">داشبورد</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link pt-3" href="{{ route('auth.sign-out') }}">خروج</a>
+                    </li>
                 @endauth
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('auth.sign-in')}}">ورود</a>
+                        <a class="nav-link pt-3" href="{{ route('auth.sign-in')}}">ورود</a>
                     </li>
                 @endguest
             </ul>
