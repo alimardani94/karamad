@@ -118,7 +118,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses.index') }}">کلاس های آموزشی</a>
+                    <a class="nav-link" href="{{ route('courses.index') }}">دوره های آموزشی</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('shop.index') }}">فروشگاه</a>
@@ -127,7 +127,7 @@
                     <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">درباره ما</a>
+                    <a class="nav-link" href="{{ route('contact-us') }}">تماس با ما</a>
                 </li>
             </ul>
 
@@ -185,7 +185,7 @@
                         <div class="text-center">
                             <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown"
                                 data-wow-delay="0.3s">
-                                <strong>{{$headerTitle ?? trans('general.hooshcup')}}</strong>
+                                <strong>{{ $headerTitle ?? trans('general.hooshcup') }}</strong>
                             </h1>
                         </div>
                     </div>

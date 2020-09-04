@@ -51,6 +51,9 @@ Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
 Route::get('/transactions/', 'TransactionController@index')->name('transactions.index');
 
 
+Route::get('/contact-form/', 'ContactFormController@index')->name('contact-form.index');
+
+
 Route::post('/upload/image', 'uploadController@dropzone')->name('upload.dropzone');
 
 

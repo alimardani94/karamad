@@ -118,7 +118,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('courses.index') }}">کلاس های آموزشی</a>
+                    <a class="nav-link" href="{{ route('courses.index') }}">دوره های آموزشی</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('shop.index') }}">فروشگاه</a>
@@ -127,7 +127,7 @@
                     <a class="nav-link" href="{{ route('posts.index') }}">مقالات</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">درباره ما</a>
+                    <a class="nav-link" href="{{ route('contact-us') }}">تماس با ما</a>
                 </li>
             </ul>
 

@@ -244,6 +244,12 @@
 </li>
 
 <li class="header">مدیریت</li>
+<li class="@yield('contact-form')">
+    <a href="{{ route('admin.contact-form.index')}}">
+        <i class="fa fa-money"></i>
+        <span>پیام ها</span>
+    </a>
+</li>
 <li class="treeview @yield('post')">
     <a href="#">
         <i class="fa fa-tag"></i>

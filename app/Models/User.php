@@ -41,6 +41,8 @@ use Illuminate\Notifications\Notifiable;
  * @property-read \App\Models\Course\Instructor $instructor
  * @property string $image
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereImage($value)
+ * @property string|null $cell_verified_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereCellVerifiedAt($value)
  */
 class User extends Authenticatable
 {
