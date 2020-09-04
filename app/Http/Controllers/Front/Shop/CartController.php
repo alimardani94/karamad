@@ -36,7 +36,7 @@ class CartController extends Controller
 
         $request->session()->put('cart', $cart);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', trans('cart.added'));
     }
 
     /**

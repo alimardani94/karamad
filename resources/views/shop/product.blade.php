@@ -44,6 +44,10 @@
             background-color: #4285f4;
             border-radius: 50%;
         }
+
+        .slider-nav .slick-current {
+            border: 5px solid #4285f4;
+        }
     </style>
 @endsection
 
@@ -64,8 +68,8 @@
                                         @foreach($product->images() as $image)
                                             <figure class="text-center">
                                                 <a href="{{ $image }}" data-size="1600x1067">
-                                                <img alt="{{  $product->name }}" src="{{ $image }}"
-                                                     class="img-fluid mx-auto">
+                                                    <img alt="{{  $product->name }}" src="{{ $image }}"
+                                                         class="img-fluid mx-auto">
                                                 </a>
                                             </figure>
                                         @endforeach
@@ -75,7 +79,9 @@
                                             <div class="view">
                                                 <img alt="{{  $product->name }}" src="{{ $image }}"
                                                      class="img-fluid mx-auto">
-                                                <a><div class="mask rgba-white-slight"></div></a>
+                                                <a>
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
                                             </div>
                                         @endforeach
                                     </div>
@@ -108,8 +114,14 @@
                             <div class="col-md-12 text-center text-md-right text-md-right">
                                 <a class="btn btn-primary btn-rounded"
                                    href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}">
-                                    <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i>افزودن به سبد خر ید
+                                    <i class="far fa-cart-plus ml-2" aria-hidden="true"></i>افزودن به سبد خر ید
                                 </a>
+                                @if( in_array($product->id, array_keys(Session::get('cart', [])) ))
+                                    <a class="btn btn-secondary btn-rounded"
+                                       href="{{ route('shop.cart.show') }}">
+                                       برو به سبد خر ید
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <!-- Add to Cart -->
