@@ -150,7 +150,7 @@
                                     {{ array_sum(Session::get('cart', [])) }}
                                 </span>
                             <i class="far fa-shopping-cart blue-text" aria-hidden="true"></i>
-                            <span class="clearfix d-none d-sm-inline-block">سبد خرید</span>
+                            <span class="clearfix d-md-none">سبد خرید</span>
                         </a>
                     </li>
                 @endif
