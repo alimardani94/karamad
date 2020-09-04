@@ -24,12 +24,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="text-center mb-5">
-                            <a href="{{ route('course.search', ['q' => request()->get('q')]) }}"
-                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                                مشاهده بیشتر
-                            </a>
-                        </div>
+                        @if($courses->count() > 3)
+                            <div class="text-center mt-3 mb-5">
+                                <a href="{{ route('course.search', ['q' => request()->get('q')]) }}"
+                                   class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                    مشاهده بیشتر
+                                </a>
+                            </div>
+                        @endif
                     @endif
 
                     @if($products->count())
@@ -43,12 +45,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="text-center mb-5">
-                            <a href="{{ route('product.search', ['q' => request()->get('q')]) }}"
-                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                                مشاهده بیشتر
-                            </a>
-                        </div>
+                        @if($products->count() > 3)
+                            <div class="text-center mt-3 mb-5">
+                                <a href="{{ route('product.search', ['q' => request()->get('q')]) }}"
+                                   class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                    مشاهده بیشتر
+                                </a>
+                            </div>
+                        @endif
                     @endif
 
                     @if($posts->count())
@@ -62,12 +66,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="text-center mb-5">
-                            <a href="{{ route('post.search', ['q' => request()->get('q')]) }}"
-                               class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
-                                مشاهده بیشتر
-                            </a>
-                        </div>
+                        @if($posts->count() > 3)
+                            <div class="text-center mt-3 mb-5">
+                                <a href="{{ route('post.search', ['q' => request()->get('q')]) }}"
+                                   class="btn btn-outline-info btn-rounded waves-effect z-depth-0">
+                                    مشاهده بیشتر
+                                </a>
+                            </div>
+                        @endif
                     @endif
 
                     @if(!$courses->count() and !$products->count() and !$posts->count())
