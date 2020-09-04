@@ -7,6 +7,9 @@ use App\Models\Blog\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -19,11 +22,15 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['required', 'email'],
             'body' => ['required', 'max:1000'],
         ]);
+
+        if ($validator->fails()) {
+            return  Redirect::to(URL::previous() . "#leave-comment")->withErrors($validator)->withInput();
+        }
 
 
         $comment = new Comment();

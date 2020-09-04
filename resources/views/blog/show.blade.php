@@ -140,7 +140,7 @@
                                                             <div class="card-data">
                                                                 <ul class="list-unstyled">
                                                                     <li class="comment-date font-small">
-                                                                        <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy') }}
+                                                                        <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy ساعت hh:mm') }}
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -156,39 +156,33 @@
                                         <hr>
                                     @endif
 
-                                    <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
+                                    <section id="leave-comment" class="mb-4 wow fadeIn" data-wow-delay="0.2s">
                                         <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
                                         <form action="{{ route('posts.comments.store', ['post' => $post->id ]) }}"
-                                              method="post">
+                                              method="post" id="comment_form">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12 mb-4">
-                                                    <div class="input-group md-form form-sm form-3 pl-0">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text white black-text"
-                                                                  id="basic-addon8">1</span>
-                                                        </div>
-                                                        <label for="name"></label>
+                                                    <div class="md-form">
+                                                        <i class="far fa-user prefix"></i>
+                                                        <label for="name">نام</label>
                                                         <input type="text" id="name" name="name"
-                                                               class="form-control mt-0 black-border rgba-white-strong"
-                                                               placeholder="نام" aria-describedby="basic-addon9">
+                                                               class="form-control @error('name') is-invalid @enderror">
+                                                        @error('name')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
-
                                                 </div>
-                                                <!-- Grid column -->
 
-                                                <!-- Grid column -->
                                                 <div class="col-lg-6 col-md-6 mb-4">
-
-                                                    <div class="input-group md-form form-sm form-3 pl-0">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text white black-text"
-                                                                  id="basic-addon9">2</span>
-                                                        </div>
-                                                        <label for="email"></label>
-                                                        <input type="email" id="email" name="email"
-                                                               class="form-control mt-0 black-border rgba-white-strong"
-                                                               placeholder="ایمیل" aria-describedby="basic-addon9">
+                                                    <div class="md-form">
+                                                        <i class="far fa-envelope prefix"></i>
+                                                        <label for="email">ایمیل</label>
+                                                        <input type="text" id="email" name="email"
+                                                               class="form-control @error('email') is-invalid @enderror">
+                                                        @error('email')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
 
                                                 </div>
@@ -197,10 +191,14 @@
                                             <div class="row">
                                                 <div class="col-12 mt-1">
                                                     <div class="md-form">
-                                                        <i class="fas fa-pencil-alt prefix"></i>
-                                                        <textarea id="body" class="md-textarea form-control"
-                                                                  rows="3" name="body"></textarea>
+                                                        <i class="far fa-pencil-alt prefix"></i>
                                                         <label for="body" class="">دیدگاه</label>
+                                                        <textarea id="body"
+                                                                  class="md-textarea form-control @error('body') is-invalid @enderror"
+                                                                  rows="3" name="body"></textarea>
+                                                        @error('body')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="text-right">

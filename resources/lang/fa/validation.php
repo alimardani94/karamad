@@ -157,6 +157,7 @@ return [
         'category' => 'دسته',
         'title' => 'عنوان',
         'content' => 'محتوا',
+        'body' => 'محتوا',
         'type' => 'نوع',
         'button' => 'دکمه',
         'image' => 'تصویر',

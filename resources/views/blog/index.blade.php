@@ -3,7 +3,7 @@
 @section('title', 'مقاله')
 
 @section('header')
-    @include('header.header1', ['headerBG' => asset('assets/img/slider/3.jpg')])
+    @include('header.header1', ['headerBG' => asset('assets/img/slider/2.jpg'), 'headerTitle' => 'دوره ها'])
 @stop
 
 @section('style')
@@ -109,14 +109,17 @@
                                 <div class="single-post">
                                     <ul class="list-group mb-4">
                                         @foreach($tags as $tag)
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <a href="{{ route('blog.filter', ['tag' => $tag->id]) }}">
-                                                    <p class="mb-0"> {{$tag->name}} </p>
-                                                </a>
-                                                <span class="badge teal badge-pill font-small">
+                                            @if($tag->posts_count)
+                                                <li class="list-group-item d-flex justify-content-between
+                                                      align-items-center {{ ($tag->id == request()->get('tag')) ? 'active' : '' }}">
+                                                    <a href="{{ route('blog.filter', ['tag' => $tag->id]) }}">
+                                                        <p class="mb-0 black-text"> {{$tag->name}} </p>
+                                                    </a>
+                                                    <span class="badge teal badge-pill">
                                                     {{$tag->posts_count}}
                                                 </span>
-                                            </li>
+                                                </li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 </div>

@@ -115,6 +115,36 @@
                         <div style="position: sticky; top: 90px;">
                             <div class="card">
                                 <div class="card-body">
+                                    <h5 class="card-title dark-grey-text text-center grey lighten-4 py-2">
+                                        <strong>لیست فصل ها</strong>
+                                    </h5>
+
+                                    <div class="mt-3 dark-grey-text font-small text-center">
+                                        <ul class="list-group mx-0 px-0">
+                                            @foreach($course->syllabuses as $sidebarSyllabus)
+                                                <li class="list-group-item text-black">
+                                                    <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
+                                                       class="black-text">
+                                                        @if($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
+                                                            <i class="far fa-video pl-1"></i>
+                                                        @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
+                                                            <i class="far fa-volume-up pl-1"></i>
+                                                        @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Text)
+                                                            <i class="far fa-align-center pl-1"></i>
+                                                        @else
+                                                            <i class="far fa-question pl-1"></i>
+                                                        @endif
+                                                        {{$sidebarSyllabus->title}}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-5">
+                                <div class="card-body">
                                     <h6 class="card-title dark-grey-text text-center grey lighten-4 py-2">
                                         <strong>مدرس </strong>
                                     </h6>

@@ -55,7 +55,7 @@
                                             <h4 class="card-title">
                                                 <strong>{{$syllabus->title}}</strong>
                                             </h4>
-                                            <div class="">
+                                            <div class="mt-4">
                                                 @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                     <video controls class="img-fluid" width="100%">
                                                         <source src="{{$syllabus->video()}}"
@@ -78,7 +78,8 @@
                                                     گزینه صحیح را انتخاب کنید
                                                     <hr>
                                                     @foreach($syllabus->questions as $index=>$question)
-                                                        <div class="card question_card z-depth-0" id="question_card_{{ $index }}">
+                                                        <div class="card question_card z-depth-0"
+                                                             id="question_card_{{ $index }}">
                                                             <div class="card-body">
                                                                 <h4 class="card-title">{!! $question->title !!}</h4>
                                                                 <input type="hidden" id="answer_{{$question->id}}"
@@ -148,7 +149,7 @@
 
                                             @if($syllabus->attachments())
                                                 <hr>
-                                                <h4>پیوست ها</h4>
+                                                <h4 class="mb-4">پیوست ها</h4>
                                                 <div class="row wow fadeIn" data-wow-delay="0.4s"
                                                      style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
                                                     @foreach($syllabus->attachments() as $attachment)
@@ -213,9 +214,18 @@
                                 <div class="mt-3 dark-grey-text font-small text-center">
                                     <ul class="list-group mx-0 px-0">
                                         @foreach($syllabus->course->syllabuses as $sidebarSyllabus)
-                                            <li class="list-group-item text-black {{ ($sidebarSyllabus->id === $syllabus->id) ? 'active' : '' }}">
+                                            <li class="list-group-item {{ ($sidebarSyllabus->id === $syllabus->id) ? 'active' : '' }}">
                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
                                                    class="black-text">
+                                                    @if($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
+                                                        <i class="far fa-video pl-1"></i>
+                                                    @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
+                                                        <i class="far fa-volume-up pl-1"></i>
+                                                    @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Text)
+                                                        <i class="far fa-align-center pl-1"></i>
+                                                    @else
+                                                        <i class="far fa-question pl-1"></i>
+                                                    @endif
                                                     {{$sidebarSyllabus->title}}
                                                 </a>
                                             </li>
