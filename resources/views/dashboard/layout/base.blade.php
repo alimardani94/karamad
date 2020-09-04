@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/icon.png') }}">
 
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/MDB-Pro_4.11.0/css/mdb_dashboard.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/MDB-Pro_4.11.0/css/mdb.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-pro-5.12.0-web-ulabs/css/all.css') }}">
 
     <link href="{{ asset('assets/css/header.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
         <div class="row mt-3 pt-3">
             <!-- Sidebar -->
             <div class="col-lg-3 col-12">
-                <div class="card testimonial-card" style="max-width: 22rem;">
+                <div class="card testimonial-card mb-4">
                     <div class="card-up aqua-gradient"></div>
 
                     <div class="avatar mx-auto white">
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title dark-grey-text text-center">
+                        <h5 class="card-title dark-grey-text text-center d-none d-md-block">
                             <strong>{{ $authUser->fullname }}</strong></h5>
                         <hr>
                         <div class="card-text pt-2">

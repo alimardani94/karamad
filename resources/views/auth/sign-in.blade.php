@@ -49,8 +49,8 @@
                             <div class="card wow fadeIn" data-wow-delay="0.3s">
                                 <div class="card-body">
 
-                                    <div class="form-header info-color-dark">
-                                        <h3 class="font-weight-500 my-2 py-1"><i class="fas fa-user mx-3"></i>ورود</h3>
+                                    <div class="form-header primary-color">
+                                        <h3 class="font-weight-500 my-2 py-1"><i class="far fa-user mx-3"></i>ورود</h3>
                                     </div>
                                     <form id="signInForm" action="{{ route('auth.sign-in')}}" method="post">
                                         @csrf
@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="text-center">
-                                            <button class="btn blue-gradient btn-lg">ورود</button>
+                                            <button class="btn btn-primary btn-rounded">ورود</button>
                                             <hr class="mt-4">
                                             <div>
                                                 <span class="ml-1">هنوز ثبت نام نکرده ام</span>

@@ -8,7 +8,33 @@
 
 @section('style')
     <style>
+        .cascading-admin-card {
+            margin-top: 1.25rem;
+        }
 
+        .cascading-admin-card {
+            margin-top: 1.25rem;
+        }
+
+        .cascading-admin-card .admin-up {
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-top: -1.25rem;
+        }
+
+        .cascading-admin-card .admin-up .data {
+            float: right;
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .cascading-admin-card .admin-up .fab, .cascading-admin-card .admin-up .far, .cascading-admin-card .admin-up .fas {
+            padding: 1.7rem;
+            font-size: 2rem;
+            color: #fff;
+            text-align: left;
+            border-radius: 3px;
+        }
     </style>
 @endsection
 
@@ -77,36 +103,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">دوره های من</div>
-                    <div class="row">
+                    <div class="row row-cols-1 row-cols-md-4">
                         @foreach($courses as $course)
-                            <div class="col-md-4">
-                                <div class="card m-1 h-100">
-                                    <div class="view overlay">
-                                        <img src="{{ asset('media/' .$course->thumbnail) }}" class="card-img-top"
-                                             alt="{{$course->title}}">
-                                        <a href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                            <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                                        </a>
-                                    </div>
-                                    <div class="card-body">
-                                        <a href="" class="teal-text text-center text-uppercase font-small"></a>
-                                        <h5 class="card-title">
-                                            <a href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                                <strong class="black-text">{{ $course->title }}</strong>
-                                            </a>
-                                        </h5>
-                                        <hr>
-                                        <p class="dark-grey-text mb-4 course-summary">
-                                            {{ $course->summary }}
-                                        </p>
-                                        <p class="text-left mb-0 font-small">
-                                            <a class="btn btn-default btn-sm"
-                                               href="{{ route('courses.show', ['course' => $course->id]) }}">
-                                                مشاهده
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="col my-3">
+                                @include('front.layout.single_course', ['course' => $course, 'summarize'=> true])
                             </div>
                         @endforeach
                     </div>

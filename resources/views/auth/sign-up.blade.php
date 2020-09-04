@@ -138,7 +138,7 @@
                                                 <hr class="mt-4">
                                                 <div>
                                                     <span>قبلا ثبت نام کرده ام</span>
-                                                    <a href="{{ route('auth.sign-in')}}">ورود</a>
+                                                    <a href="{{ route('auth.sign-in')}}" class="px-2 bold">ورود</a>
                                                 </div>
                                             </form>
 
