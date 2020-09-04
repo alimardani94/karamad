@@ -158,7 +158,7 @@
                             </div>
 
                             @if(auth()->id())
-                                <div class="card mt-3">
+                                <div class="card mt-5">
                                     <div class="card-body">
                                         <a style="display:{{$course->reaction() == 1 ? 'block' : 'none'}}"
                                            id="dislike"
