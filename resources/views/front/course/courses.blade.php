@@ -13,17 +13,27 @@
 @section('content')
     <section>
         <div class="container">
-            <div class="row my-4">
-                @foreach($courses as $course)
-                    <div class="col-md-3 my-2">
-                        @include('front.layout.single_course', ['course' => $course])
-                    </div>
-                @endforeach
-            </div>
+            @if($courses->count())
+                <div class="row my-4">
+                    @foreach($courses as $course)
+                        <div class="col-md-3 my-2">
+                            @include('front.layout.single_course', ['course' => $course])
+                        </div>
+                    @endforeach
+                </div>
 
-            <div class="row mt-3">
-                {{ $courses->links() }}
-            </div>
+                <div class="row mt-3">
+                    {{ $courses->links() }}
+                </div>
+            @else
+                <div class="row my-4">
+                    <div class="col-lg-12">
+                        <div class="alert alert-primary my-3" role="alert">
+                            هبچ دوره ای یافت نشد
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
 @endsection

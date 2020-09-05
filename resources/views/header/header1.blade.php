@@ -178,8 +178,11 @@
                     </li>
                 @endauth
                 @guest
-                    <li class="nav-item">
-                        <a class="nav-link pt-3" href="{{ route('auth.sign-in')}}">ورود</a>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link ml-3" href="{{ route('auth.sign-in')}}">ورود</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link pt-3 ml-3" href="{{ route('auth.sign-in')}}">ورود</a>
                     </li>
                 @endguest
             </ul>

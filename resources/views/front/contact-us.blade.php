@@ -3,7 +3,7 @@
 @section('title', 'درباره ما')
 
 @section('header')
-    @include('header.header1', ['headerBG' => asset('assets/img/slider/1.jpg')])
+    @include('header.header1', ['headerBG' => asset('assets/img/header/contact-us.jpg'), 'headerTitle' => 'تماس با ما'])
 @stop
 
 @section('style')

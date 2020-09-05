@@ -9,22 +9,6 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('assets/vendor/OwlCarousel2-2.3.4/assets/owl.carousel.min.css') }}">
     <style>
-
-        /*@media (min-width: 769px) {*/
-        /*    .navbar:not(.top-nav-collapse) {*/
-        /*        box-shadow: none;*/
-        /*    }*/
-
-        /*    .navbar:not(.top-nav-collapse) {*/
-        /*        background: 0 0;*/
-        /*    }*/
-
-        /*    .navbar {*/
-        /*        background-color: #5991fb;*/
-        /*        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);*/
-        /*    }*/
-        /*}*/
-
         .search-section {
             background-image: linear-gradient(whitesmoke, #c1f7ff, whitesmoke);
         }
@@ -97,31 +81,31 @@
 
         /* end cards style*/
 
-
     </style>
 @endsection
 @section('content')
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h6 class="font-weight-bold mt-5 mb-3">دوره های جدید</h6>
+    @if($courses->count())
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold mt-5 mb-3">دوره های جدید</h6>
 
-                    <div class="carousel-box courses-box">
-                        <div class="owl-carousel mt-4">
-                            @foreach($courses as $course)
-                                @include('front.layout.single_course', ['course' => $course])
-                            @endforeach
-                        </div>
-                        <div class="owl-controls">
-                            <div class="custom-nav owl-nav"></div>
+                        <div class="carousel-box courses-box">
+                            <div class="owl-carousel mt-4">
+                                @foreach($courses as $course)
+                                    @include('front.layout.single_course', ['course' => $course])
+                                @endforeach
+                            </div>
+                            <div class="owl-controls">
+                                <div class="custom-nav owl-nav"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    @endif
 
     <section class="view search-section rgba-gradient py-5">
         <div class="container h-100 d-flex justify-content-center align-items-center pt-3">
@@ -153,27 +137,28 @@
         </div>
     </section>
 
+    @if($popularCourses->count())
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-5">
+                        <h6 class="font-weight-bold mt-5 mb-3">دوره های محبوب</h6>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 mb-5">
-                    <h6 class="font-weight-bold mt-5 mb-3">دوره های محبوب</h6>
-
-                    <div class="carousel-box courses-box">
-                        <div class="owl-carousel mt-4">
-                            @foreach($popularCourses as $course)
-                               @include('front.layout.single_course', ['course' => $course])
-                            @endforeach
-                        </div>
-                        <div class="owl-controls">
-                            <div class="custom-nav owl-nav"></div>
+                        <div class="carousel-box courses-box">
+                            <div class="owl-carousel mt-4">
+                                @foreach($popularCourses as $course)
+                                    @include('front.layout.single_course', ['course' => $course])
+                                @endforeach
+                            </div>
+                            <div class="owl-controls">
+                                <div class="custom-nav owl-nav"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
 @endsection
 
