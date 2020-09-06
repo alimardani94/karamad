@@ -20,99 +20,58 @@
                         <div class="row">
                             <div class="col-md-5 col-xl-3 sub-menu mb-xl-0 mb-5">
                                 <ul class="list-unstyled">
-                                    <li class="sub-title text-uppercase">
-                                        <a class="menu-item pr-1 mt-2" href="#!">دبستان</a>
-                                    </li>
-                                    <li class="sub-title text-uppercase">
-                                        <a class="menu-item pr-1 mt-2" href="#!">دبیرستان</a>
-                                    </li>
-                                    <li class="sub-title text-uppercase">
-                                        <a class="menu-item pr-1 mt-2" href="#!">دانشگاهی</a>
-                                    </li>
-                                    <li class="sub-title text-uppercase">
-                                        <a class="menu-item pr-1 mt-2" href="#!">عمومی</a>
-                                    </li>
-                                    <li class="sub-title text-uppercase">
-                                        <a class="menu-item pr-1 mt-2" href="#!">تکنولوژی</a>
-                                    </li>
+                                    @foreach($headerCategories as $category)
+                                        <li class="sub-title text-uppercase">
+                                            <a class="menu-item pr-1 mt-2"
+                                               href="{{ route('home') }}">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
+
                             <div class="col-md-7 col-xl-4 sub-menu mb-xl-0 mb-4">
-                                <h6 class="sub-title pb-3 text-uppercase font-weight-bold">ویژگی ها</h6>
-                                <!--Featured image-->
-                                <a href="#!" class="view overlay z-depth-1 p-0 my-3">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(42).jpg"
-                                         class="img-fluid" alt="First sample image">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                                <a class="news-title font-weight-bold pl-0" href="#!">
-                                    کنفرانس بزرگ استاد بنفشه
-                                </a>
-                                <p class="font-small text-uppercase text-muted">
-                                    <span>توسط -</span>
-                                    <a class="p-0 m-sm" href="#!"> شخس استاد</a>
-                                    <span>- ۵ مهر </span>
-                                </p>
+                                <h6 class="sub-title pb-3 text-uppercase font-weight-bold">مقالات</h6>
+                            @if($headerPost)
+                                    <a href="#!" class="view overlay z-depth-1 p-0 my-3">
+                                        <img
+                                            src="{{ asset( 'media/' . $headerPost->image) }}"
+                                            class="img-fluid" alt="First sample image">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    <a class="news-title font-weight-bold pl-0" href="#!">
+                                        {{ $headerPost->title }}
+                                    </a>
+                                    <p class="font-small text-uppercase text-muted">
+                                        <span>توسط -</span>
+                                        <a class="p-0 m-sm" href="#!"> {{ $headerPost->author->full_name  }} </a>
+                                        <span>-  {{ jDate($headerPost->created_at, 'dd MMMM')  }}</span>
+                                    </p>
+                                @endif
                             </div>
                             <div class="col-md-12 col-xl-5 sub-menu mb-md-0 mb-xl-0 mb-4">
                                 <h6 class="sub-title pb-3 text-uppercase font-weight-bold">دوره ها</h6>
-                                <div class="news-single">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <!--Image-->
-                                            <a href="#!" class="view overlay z-depth-1 p-0 my-3">
-                                                <img
-                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(43).jpg"
-                                                    class="img-fluid" alt="First sample image">
-                                                <div class="mask rgba-white-slight"></div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <a class="news-title smaller mt-md-2 pl-0" href="#!">
-                                                کلاس علوم اقای در پیت
-                                            </a>
-                                            <p class="font-small text-uppercase text-muted">July 14, 2017</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="news-single">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <!--Image-->
-                                            <a href="#!" class="view overlay z-depth-1 p-0 mb-3 mt-4">
-                                                <img
-                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(44).jpg"
-                                                    class="img-fluid" alt="First sample image">
-                                                <div class="mask rgba-white-slight"></div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <a class="news-title smaller mt-md-2 pl-0" href="#!">
-                                                ریاضیات خیلی گسسته شمایی زاده
-                                            </a>
-                                            <p class="font-small text-uppercase text-muted">July 14, 2017</p>
+                                @foreach($headerCourses as $course)
+                                    <div class="news-single">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <!--Image-->
+                                                <a href="#!" class="view overlay z-depth-1 p-0 my-3">
+                                                    <img
+                                                        src="{{ asset('media/'.$course->image) }}"
+                                                        class="img-fluid" alt="First sample image">
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <a class="news-title smaller mt-md-2 pl-0" href="#!">
+                                                    {{ $course->title }}
+                                                </a>
+                                                <p class="font-small text-uppercase text-muted">{{ $course->syllabuse_count }}
+                                                    جلسه </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="news-single">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <!--Image-->
-                                            <a href="#!" class="view overlay z-depth-1 p-0 mb-3 mt-4">
-                                                <img
-                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Work/6-col/img%20(41).jpg"
-                                                    class="img-fluid" alt="First sample image">
-                                                <div class="mask rgba-white-slight"></div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <a class="news-title smaller" href="#!">
-                                                دوره مبارزه با گیاه خواری
-                                            </a>
-                                            <p class="font-small text-uppercase text-muted">July 14, 2017</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
