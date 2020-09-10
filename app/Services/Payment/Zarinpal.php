@@ -28,16 +28,17 @@ class Zarinpal implements GatewayInterface
      *
      * @param int $price
      * @param string $callbackURL
+     * @param string $description
      * @return string
      * @throws PaymentGatewayException
      */
-    public function redirect(int $price, string $callbackURL): string
+    public function redirect(int $price, string $callbackURL, string $description = ''): string
     {
         $result = $this->client->PaymentRequest(
             [
                 'MerchantID' => config('payment.gateways.zarinpal.merchantID'),
                 'Amount' => $price,
-                'Description' => config('app.name'),
+                'Description' => $description ?? config('app.name'),
                 'Email' => Auth::user()->email,
                 'Mobile' => Auth::user()->cell,
                 'CallbackURL' => $callbackURL,
@@ -61,22 +62,23 @@ class Zarinpal implements GatewayInterface
     {
         if ($request->get('Status') == 'OK') {
 
-            $result = $this->client->PaymentVerification(
-                [
-                    'MerchantID' => config('payment.gateways.zarinpal.merchantID'),
-                    'Authority' => $request->get('Authority'),
-                    'Amount' => $invoice->amount,
-                ]
-            );
+            $result = $this->client->PaymentVerification([
+                'MerchantID' => config('payment.gateways.zarinpal.merchantID'),
+                'Authority' => $request->get('Authority'),
+                'Amount' => $invoice->amount,
+            ]);
 
             if ($result->Status == 100) {
-                return $result;
-            } else {
-                throw new PaymentGatewayException('Transaction failed. Status:' . $result->Status);
+                return [
+                    'status' => $result->Status ?? '',
+                    'ref_id' => $result->RefID ?? '',
+                ];
             }
 
-        } else {
-            throw new PaymentGatewayException('Transaction canceled by user');
+            throw new PaymentGatewayException('Transaction failed. Status:' . $result->Status);
+
         }
+
+        throw new PaymentGatewayException('Transaction canceled by user');
     }
 }

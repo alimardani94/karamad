@@ -12,9 +12,10 @@ interface GatewayInterface
      *
      * @param int $price
      * @param string $callbackURL
+     * @param string $description
      * @return string
      */
-    public function redirect(int $price, string $callbackURL) :string;
+    public function redirect(int $price, string $callbackURL, string $description = ''): string;
 
     /**
      * @param Request $request

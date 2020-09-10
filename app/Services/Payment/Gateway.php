@@ -8,7 +8,7 @@ use App\Models\Invoice;
 use App\Services\Payment\Exceptions\PaymentGatewayException;
 use Illuminate\Http\Request;
 
-class Gateway
+class Gateway implements GatewayInterface
 {
     private $gateway;
 
@@ -27,9 +27,10 @@ class Gateway
      *
      * @param int $price
      * @param string $callbackURL
+     * @param string $description
      * @return string
      */
-    public function redirect(int $price, string $callbackURL): string
+    public function redirect(int $price, string $callbackURL, string $description = ''): string
     {
         return $this->gateway->redirect($price, $callbackURL);
     }
