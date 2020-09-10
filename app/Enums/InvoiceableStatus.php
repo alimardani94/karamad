@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Enums\Shop;
+namespace App\Enums;
 
-use App\Enums\Enum;
-
-class OrderStatus extends Enum
+class InvoiceableStatus extends Enum
 {
     const Pending =  0;
     const Payed = 1;

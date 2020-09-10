@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\Shop\OrderStatus;
+use App\Enums\InvoiceableStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -53,6 +53,6 @@ class Order extends Model
      */
     public function status()
     {
-        return OrderStatus::translatedKeyOf($this->status);
+        return InvoiceableStatus::translatedKeyOf($this->status);
     }
 }

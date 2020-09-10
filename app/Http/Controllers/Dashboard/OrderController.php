@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Enums\InvoiceStatus;
+use App\Enums\InvoiceableStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Order;
@@ -45,7 +46,7 @@ class OrderController extends Controller
      * @param Order $order
      * @return RedirectResponse
      * @throws AuthorizationException
-     * @throws PaymentGatewayException
+     * @throws Exception
      */
     public function pay(Order $order)
     {
@@ -53,25 +54,25 @@ class OrderController extends Controller
             throw new AuthorizationException();
         }
 
-        $invoice = Invoice::updateOrCreate(
-            [
-                'user_id' => Auth::id(),
-                'invoiceable_type' => Order::class,
-                'invoiceable_id' => $order->id,
-            ],
-            [
-                'amount' => $order->total_price,
-                'gateway' => 'zarinpal',
-                'status' => InvoiceStatus::Pending,
-            ]
-        );
+        if($order->status != InvoiceableStatus::Pending) {
+            throw new Exception('this order is payed before');
+        }
+
+        $invoice = Invoice::updateOrCreate([
+            'user_id' => Auth::id(),
+            'invoiceable_type' => Order::class,
+            'invoiceable_id' => $order->id,
+        ], [
+            'amount' => $order->total_price,
+            'gateway' => 'zarinpal',
+            'status' => InvoiceStatus::Pending,
+        ]);
 
         $gateway = new Gateway('zarinpal');
 
         return redirect()->to($gateway->redirect(
-            $invoice->amount, route('payment.callback', [
-            'gateway' => 'zarinpal',
-            'invoice' => $invoice->id,
-        ])));
+            $invoice->amount,
+            route('payment.callback', ['gateway' => 'zarinpal', 'invoice' => $invoice->id,])
+        ));
     }
 }

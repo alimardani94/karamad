@@ -77,5 +77,5 @@ Route::group(['namespace' => 'Front'], function () {
     });
 
 
-    Route::post('/payment/{gateway}/{invoice}/callback', 'PaymentController@callback')->name('payment.callback');
+    Route::any('/payment/callback/{gateway}/{invoice}', 'PaymentController@callback')->name('payment.callback');
 });
