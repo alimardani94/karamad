@@ -38,7 +38,7 @@ class Zarinpal implements GatewayInterface
             [
                 'MerchantID' => config('payment.gateways.zarinpal.merchantID'),
                 'Amount' => $price,
-                'Description' => $description ?? config('app.name'),
+                'Description' => isset($description) ? config('app.name') : $description,
                 'Email' => Auth::user()->email,
                 'Mobile' => Auth::user()->cell,
                 'CallbackURL' => $callbackURL,
@@ -49,7 +49,7 @@ class Zarinpal implements GatewayInterface
             return 'https://www.zarinpal.com/pg/StartPay/' . $result->Authority;
         }
 
-        throw new PaymentGatewayException('zarinpal gateway connection error');
+        throw new PaymentGatewayException('zarinpal gateway connection error:' . $result->Status);
     }
 
     /**
