@@ -25,14 +25,18 @@ class OrderController extends Controller
     /**
      * @param Order $order
      * @return JsonResponse
-     * @throws AuthorizationException
      */
     public function destroy(Order $order)
     {
-        if ($order->user_id != Auth::id()) {
-            throw new AuthorizationException();
-        }
         try {
+            if ($order->user_id != Auth::id()) {
+                throw new AuthorizationException();
+            }
+
+            if ($order->status != InvoiceableStatus::Pending) {
+                throw new Exception('you cant delete this order');
+            }
+
             $order->delete();
 
             return new JsonResponse(['message' => trans('orders.deleted')]);
@@ -54,7 +58,7 @@ class OrderController extends Controller
             throw new AuthorizationException();
         }
 
-        if($order->status != InvoiceableStatus::Pending) {
+        if ($order->status != InvoiceableStatus::Pending) {
             throw new Exception('this order is payed before');
         }
 
