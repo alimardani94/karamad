@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\InvoiceableStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
  * App\Models\Order
@@ -54,5 +55,13 @@ class Order extends Model
     public function status()
     {
         return InvoiceableStatus::translatedKeyOf($this->status);
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function invoices()
+    {
+        return $this->morphMany(Invoice::class, 'invoiceable');
     }
 }

@@ -169,9 +169,15 @@
                                         <button onclick="removeOrder({{ $order->id }})" type="button"
                                                 class="btn btn-sm btn-danger btn-rounded">حذف
                                         </button>
-                                        <a href="{{ route('dashboard.orders.pay' , ['order' => $order->id]) }}"
-                                           class="btn btn-sm btn-primary btn-rounded">پرداخت
-                                        </a>
+                                        @if($order->status == \App\Enums\InvoiceableStatus::Pending)
+                                            <a href="{{ route('dashboard.orders.pay' , ['order' => $order->id]) }}"
+                                               class="btn btn-sm btn-primary btn-rounded">پرداخت
+                                            </a>
+                                        @else
+                                            <a href="{{ route('invoices.show', ['invoice' => $order->invoices->first()->id]) }}"
+                                               class="btn btn-sm btn-secondary btn-rounded">مشاهده
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -7,18 +7,11 @@ use App\Enums\InvoiceableStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Order;
-use App\Services\Payment\Exceptions\PaymentGatewayException;
-use App\Services\Payment\Gateway;
-use App\Services\Payment\Zarinpal;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class OrderController extends Controller
 {
@@ -72,11 +65,6 @@ class OrderController extends Controller
             'status' => InvoiceStatus::Pending,
         ]);
 
-        $gateway = new Gateway('zarinpal');
-
-        return redirect()->to($gateway->redirect(
-            $invoice->amount,
-            route('payment.callback', ['gateway' => 'zarinpal', 'invoice' => $invoice->id,])
-        ));
+        return redirect()->route('invoices.show', ['invoice' => $invoice]);
     }
 }

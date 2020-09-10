@@ -76,6 +76,8 @@ Route::group(['namespace' => 'Front'], function () {
         Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
     });
 
+    Route::get('/invoices/{invoice}', 'InvoiceController@show')->name('invoices.show');
+    Route::get('/invoices/{invoice}/pay', 'InvoiceController@pay')->name('invoices.pay');
 
     Route::any('/payment/callback/{gateway}/{invoice}', 'PaymentController@callback')->name('payment.callback');
 });
