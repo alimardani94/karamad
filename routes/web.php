@@ -61,10 +61,10 @@ Route::group(['namespace' => 'Front'], function () {
         Route::get('/instructors/{instructor}/{slug?}', 'InstructorController@show')->name('instructors.show');
     });
 
-    Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
+    Route::group(['prefix' => 'articles', 'namespace' => 'Blog'], function () {
         Route::get('/', 'PostController@index')->name('posts.index');
-        Route::get('/{post}/{slug?}', 'PostController@show')->name('posts.show');
         Route::get('/filter', 'PostController@filter')->name('posts.filter');
+        Route::get('/{post}/{slug?}', 'PostController@show')->name('posts.show');
 
         Route::resource('posts.comments', 'CommentController')->shallow();
     });
