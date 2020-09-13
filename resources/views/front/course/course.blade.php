@@ -57,7 +57,7 @@
                                                             <li class="list-group-item px-0">
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-tw btn-sm">
-                                                                    <i class="fas fa-video"></i>
+                                                                    <i class="far fa-video"></i>
                                                                 </a>
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
@@ -68,7 +68,7 @@
                                                             <li class="list-group-item px-0">
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
-                                                                    <i class="fas fa-volume-up"></i>
+                                                                    <i class="far fa-volume-up"></i>
                                                                 </a>
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
@@ -79,7 +79,7 @@
                                                             <li class="list-group-item px-0">
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
-                                                                    <i class="fas fa-volume-up"></i>
+                                                                    <i class="far fa-align-justify"></i>
                                                                 </a>
                                                                 <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
                                                                    class="black-text">
@@ -130,7 +130,7 @@
                                                         @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                             <i class="far fa-volume-up pl-1"></i>
                                                         @elseif($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Text)
-                                                            <i class="far fa-align-center pl-1"></i>
+                                                            <i class="far fa-align-justify pl-1"></i>
                                                         @else
                                                             <i class="far fa-question pl-1"></i>
                                                         @endif
@@ -163,13 +163,13 @@
                                         <a style="display:{{$course->reaction() == 1 ? 'block' : 'none'}}"
                                            id="dislike"
                                            data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
-                                            <i class="fas fa-heart fa-2x pl-1" style="color: red"
+                                            <i class="far fa-heart fa-2x pl-1" style="color: red"
                                                aria-hidden="true"></i>
                                             <span class="pb-2" style="vertical-align:super"> حذف از علاقه مندی</span>
                                         </a>
                                         <a style="display:{{$course->reaction() != 1 ? 'block' : 'none'}}"
                                            id="like" data-link="{{ route('courses.react', ['course' =>$course->id]) }}">
-                                            <i class="fas fa-heart fa-2x pl-1" style="color: rgba(48, 56, 64, .2)"
+                                            <i class="far fa-heart fa-2x pl-1" style="color: rgba(48, 56, 64, .2)"
                                                aria-hidden="true"></i>
                                             <span class="pb-2" style="vertical-align:super"> افزودن به علاقه مندی</span>
                                         </a>
