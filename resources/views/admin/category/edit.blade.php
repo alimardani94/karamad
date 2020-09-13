@@ -15,7 +15,7 @@
             ویرایش دسته بندی
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دسته بندی ها</a></li>
             <li class="active">ویرایش دسته بندی</li>
         </ol>
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.categories.update', ['category' => $category->id])}}"
+                    <form method="post" action="{{ route('admin.categories.update', ['category' => $category->id]) }}"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" placeholder="نام"
-                                               value="{{old('name', $category->name)}}" name="name">
+                                               value="{{ old('name', $category->name) }}" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

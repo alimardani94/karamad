@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                               value="{{old('name')}}" placeholder="نام">
+                                               value="{{ old('name')}}" placeholder="نام">
                                     </div>
                                 </div>
 
@@ -41,7 +41,7 @@
                                             لقب / سمت / شغل ( برای مثال استاد دانشگاه)
                                         </label>
                                         <input type="text" class="form-control" id="title" name="title"
-                                               value="{{old('title')}}" placeholder="عنوان">
+                                               value="{{ old('title')}}" placeholder="عنوان">
                                     </div>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title" placeholder="عنوان"
-                                               value="{{old('title')}}" name="title">
+                                               value="{{ old('title')}}" name="title">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,7 +59,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="image" name="image" value="{{old('image')}}"
+                                                   id="image" name="image" value="{{ old('image')}}"
                                                    hidden>
                                         </label>
                                     </div>
@@ -85,7 +85,7 @@
                                     <div class="form-group">
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords" placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords')}}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>

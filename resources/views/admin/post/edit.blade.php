@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title" placeholder="عنوان"
-                                               value="{{old('title', $post->title)}}" name="title">
+                                               value="{{ old('title', $post->title)}}" name="title">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords" placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords', $post->meta_keywords)}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords', $post->meta_keywords)}}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>

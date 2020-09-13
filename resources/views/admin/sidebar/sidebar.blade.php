@@ -1,5 +1,5 @@
 <li class="@yield('home')">
-    <a href="{{ route('admin.home')}}">
+    <a href="{{ route('admin.home') }}">
         <i class="fa fa-home"></i>
         <span>خانه</span>
     </a>
@@ -42,7 +42,7 @@
             </a>
         </li>
         <li class="@yield('instructor2')">
-            <a href="{{ route('admin.instructors.create')}}">
+            <a href="{{ route('admin.instructors.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مدرس
             </a>
@@ -58,7 +58,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('course1')">
-            <a href="{{ route('admin.courses.index')}}">
+            <a href="{{ route('admin.courses.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست دوره ها
             </a>
@@ -86,7 +86,7 @@
             </a>
         </li>
         <li class="@yield('syllabus2')">
-            <a href="{{ route('admin.syllabuses.create')}}">
+            <a href="{{ route('admin.syllabuses.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن جلسه
             </a>
@@ -131,7 +131,7 @@
             </a>
         </li>
         {{--        <li class="@yield('question2')">--}}
-        {{--            <a href="{{ route('admin.questions.create')}}">--}}
+        {{--            <a href="{{ route('admin.questions.create') }}">--}}
         {{--                <i class="fa fa-circle-o"></i>--}}
         {{--                افزودن سوال--}}
         {{--            </a>--}}
@@ -160,7 +160,7 @@
             </a>
         </li>
         <li class="@yield('post3')">
-            <a href="{{ route('admin.posts.comments.index')}}">
+            <a href="{{ route('admin.posts.comments.index') }}">
                 <i class="fa fa-circle-o"></i>
                 <span>دیدگاه ها</span>
             </a>
@@ -211,7 +211,7 @@
             </a>
         </li>
         <li class="@yield('product3')">
-            <a href="{{ route('admin.products.comments.index')}}">
+            <a href="{{ route('admin.products.comments.index') }}">
                 <i class="fa fa-circle-o"></i>
                 <span>دیدگاه ها</span>
             </a>
@@ -227,7 +227,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('product1')">
-            <a href="{{ route('admin.orders.index')}}">
+            <a href="{{ route('admin.orders.index') }}">
                 <i class="fa fa-circle-o"></i>
                 سفارشات
             </a>
@@ -237,7 +237,7 @@
 
 <li class="header">مالی</li>
 <li class="@yield('transaction')">
-    <a href="{{ route('admin.transactions.index')}}">
+    <a href="{{ route('admin.transactions.index') }}">
         <i class="fa fa-money"></i>
         <span>تراکنش ها</span>
     </a>
@@ -245,7 +245,7 @@
 
 <li class="header">مدیریت</li>
 <li class="@yield('contact-form')">
-    <a href="{{ route('admin.contact-form.index')}}">
+    <a href="{{ route('admin.contact-form.index') }}">
         <i class="fa fa-comment"></i>
         <span>پیام ها</span>
     </a>
@@ -273,13 +273,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('admin1')">
-            <a href="{{ route('admin.admins.index')}}">
+            <a href="{{ route('admin.admins.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست مدیران
             </a>
         </li>
         <li class="@yield('admin2')">
-            <a href="{{ route('admin.admins.create')}}">
+            <a href="{{ route('admin.admins.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مدیر
             </a>
@@ -295,7 +295,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('user1')">
-            <a href="{{ route('admin.users.index')}}">
+            <a href="{{ route('admin.users.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست کاربران
             </a>

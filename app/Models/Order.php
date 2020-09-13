@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUserId($value)
  * @mixin \Eloquent
  * @property-read \App\Models\User|null $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Invoice[] $invoices
+ * @property-read int|null $invoices_count
  */
 class Order extends Model
 {

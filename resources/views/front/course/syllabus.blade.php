@@ -58,14 +58,14 @@
                                             <div class="mt-4">
                                                 @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                     <video controls class="img-fluid" width="100%">
-                                                        <source src="{{$syllabus->video()}}"
+                                                        <source src="{{$syllabus->video() }}"
                                                                 type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                     <div class="m-5 text-center">
                                                         <audio controls>
-                                                            <source src="{{$syllabus->audio()}}"
+                                                            <source src="{{$syllabus->audio() }}"
                                                                     type="audio/mp3">
                                                             Your browser does not support the audio element.
                                                         </audio>
@@ -185,7 +185,7 @@
                             <div class="d-flex">
                                 @if($next)
                                     <div class="ml-auto">
-                                        <a href="{{ route('syllabuses.show', ['syllabus' => $next->id])}}"
+                                        <a href="{{ route('syllabuses.show', ['syllabus' => $next->id]) }}"
                                            class="btn btn-primary btn-rounded waves-effect waves-light">
                                             بعدی
                                         </a>
@@ -193,7 +193,7 @@
                                 @endif
                                 @if($previous)
                                     <div class="mr-auto">
-                                        <a href="{{ route('syllabuses.show', ['syllabus' => $previous->id])}}"
+                                        <a href="{{ route('syllabuses.show', ['syllabus' => $previous->id]) }}"
                                            class="btn btn-primary btn-rounded waves-effect waves-light">
                                             قبلی
                                         </a>
@@ -215,7 +215,7 @@
                                     <ul class="list-group mx-0 px-0">
                                         @foreach($syllabus->course->syllabuses as $sidebarSyllabus)
                                             <li class="list-group-item {{ ($sidebarSyllabus->id === $syllabus->id) ? 'active' : '' }}">
-                                                <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
+                                                <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id]) }}"
                                                    class="black-text">
                                                     @if($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                         <i class="far fa-video pl-1"></i>
@@ -241,7 +241,10 @@
                                     <strong>مدرس </strong>
                                 </h6>
                                 <h6 class="card-title text-center ">
-                                    {{$syllabus->course->instructor->name}}
+                                    <a href="{{ route('instructors.show', ['instructor' => $syllabus->course->instructor->id, 'slug' => $syllabus->course->instructor->slug]) }}"
+                                       class="black-text">
+                                        {{$syllabus->course->instructor->name}}
+                                    </a>
                                 </h6>
                                 <p class="mt-3 dark-grey-text font-small text-center">
                                     {{$syllabus->course->instructor->about}}

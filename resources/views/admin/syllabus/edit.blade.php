@@ -43,7 +43,7 @@
             افزودن جلسه جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">جلسه ها</a></li>
             <li class="active">افزودن جلسه</li>
         </ol>
@@ -56,7 +56,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <form id="create_syllabus" method="post"
-                          action="{{ route('admin.syllabuses.update', [ 'syllabus' => $syllabus->id ])}}"
+                          action="{{ route('admin.syllabuses.update', [ 'syllabus' => $syllabus->id ]) }}"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -84,7 +84,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title"
-                                               placeholder="عنوان" value="{{old('title', $syllabus->title)}}"
+                                               placeholder="عنوان" value="{{ old('title', $syllabus->title) }}"
                                                name="title">
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
                                                    id="video_url" name="video_url"
-                                                   value="{{old('video_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->video : '')}}">
+                                                   value="{{ old('video_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->video : '') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -164,7 +164,7 @@
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
                                                    id="audio_url" name="audio_url"
-                                                   value="{{old('audio_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->audio : '')}}">
+                                                   value="{{ old('audio_url', $syllabus->file_disk == \App\Enums\FileDisk::URL ? $syllabus->audio : '') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -174,7 +174,7 @@
                                                 <span>{{ ($syllabus->audio and $syllabus->file_disk == \App\Enums\FileDisk::Local) ? $syllabus->audio :'انتخاب کنید ...' }}</span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       name="audio_file" id="audio_file" value="{{old('audio_file')}}"
+                                                       name="audio_file" id="audio_file" value="{{ old('audio_file') }}"
                                                        hidden>
                                             </label>
                                         </div>
@@ -322,7 +322,7 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords') }}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>

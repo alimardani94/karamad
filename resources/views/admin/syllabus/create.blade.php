@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title"
-                                               placeholder="عنوان" value="{{old('title')}}"
+                                               placeholder="عنوان" value="{{ old('title')}}"
                                                name="title">
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                             <label for="video_url">آدرس ویدیو</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="video_url" name="video_url" value="{{old('video_url')}}">
+                                                   id="video_url" name="video_url" value="{{ old('video_url')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -139,7 +139,7 @@
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="video/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       id="video_file" name="video_file" value="{{old('video_file')}}"
+                                                       id="video_file" name="video_file" value="{{ old('video_file')}}"
                                                        hidden>
                                             </label>
                                         </div>
@@ -167,7 +167,7 @@
                                             <label for="audio_url">آدرس فایل صوتی</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="audio_url" name="audio_url" value="{{old('audio_url')}}">
+                                                   id="audio_url" name="audio_url" value="{{ old('audio_url')}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -177,7 +177,7 @@
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       name="audio_file" id="audio_file" value="{{old('audio_file')}}"
+                                                       name="audio_file" id="audio_file" value="{{ old('audio_file')}}"
                                                        hidden>
                                             </label>
                                         </div>
@@ -215,7 +215,7 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords')}}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>

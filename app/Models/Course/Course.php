@@ -2,7 +2,6 @@
 
 namespace App\Models\Course;
 
-use App\CourseUser;
 use App\Models\Category;
 use App\Services\Reactions\Reactor;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +27,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $meta_description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Course\Category $category
+ * @property-read \App\Models\Category $category
+ * @property-read string $slug
  * @property-read \App\Models\Course\Instructor $instructor
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course\Syllabus[] $syllabuses
  * @property-read int|null $syllabuses_count
@@ -55,6 +55,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Course extends Model
 {
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
+    {
+        return slugify($this->title);
+    }
+
     /**
      * @return BelongsTo
      */

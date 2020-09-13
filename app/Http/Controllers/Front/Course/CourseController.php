@@ -9,11 +9,11 @@ use App\Services\Reactions\Reactor;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class CourseController extends Controller
 {
-
     /**
      * Display the courses.
      *
@@ -31,18 +31,22 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Course $course
      * @return Factory|View
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        $course = Course::findOrFail($id);
-
         return view('front.course.course', [
             'course' => $course,
         ]);
     }
 
+    /**
+     * @param int $course
+     * @param Request $request
+     * @return JsonResponse
+     * @throws ValidationException
+     */
     public function react(int $course, Request $request)
     {
         $this->validate($request, [

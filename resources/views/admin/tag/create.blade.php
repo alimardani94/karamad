@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" placeholder="نام"
-                                               value="{{old('name')}}" name="name">
+                                               value="{{ old('name')}}" name="name">
                                     </div>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@
             افزودن محصول جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">محصولات</a></li>
             <li class="active">افزودن محصول</li>
         </ol>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" id="productForm" action="{{ route('admin.products.store')}}"
+                    <form method="post" id="productForm" action="{{ route('admin.products.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
@@ -38,7 +38,7 @@
                                     <div class="form-group">
                                         <label for="name">عنوان</label>
                                         <input type="text" class="form-control" id="name" placeholder="عنوان"
-                                               value="{{old('name')}}" name="name">
+                                               value="{{ old('name') }}" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -100,7 +100,7 @@
                                     <div class="form-group">
                                         <label for="quantity">تعداد</label>
                                         <input type="number" class="form-control" id="quantity" placeholder="تعداد"
-                                               value="{{old('quantity')}}" name="quantity">
+                                               value="{{ old('quantity') }}" name="quantity">
                                     </div>
                                 </div>
                             </div>
@@ -110,14 +110,14 @@
                                     <div class="form-group">
                                         <label for="price">قیمت</label>
                                         <input type="number" class="form-control" id="price" placeholder="قیمت"
-                                               value="{{old('price')}}" name="price">
+                                               value="{{ old('price') }}" name="price">
                                     </div>
                                 </div>
                                 {{--                                <div class="col-md-6">--}}
                                 {{--                                    <div class="form-group">--}}
                                 {{--                                        <label for="discount">تخفیف</label>--}}
                                 {{--                                        <input type="number" class="form-control" id="discount" placeholder="تخفیف"--}}
-                                {{--                                               value="{{old('discount')}}" name="discount">--}}
+                                {{--                                               value="{{ old('discount') }}" name="discount">--}}
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
                             </div>
@@ -139,7 +139,7 @@
                                 <div class="col-md-12">
                                     <label>تصاویر</label>
                                     <div id="dropzone" class="needsclick dz-clickable"
-                                         data-action="{{ route('admin.upload.dropzone')}}">
+                                         data-action="{{ route('admin.upload.dropzone') }}">
                                         <div class="dz-message">
                                             <div><i class="fas fa-plus"></i></div>
                                             <div>برای بارگذاری تصاویر اینجا کلیک کنید.</div>
@@ -183,7 +183,7 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords') }}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>
@@ -209,11 +209,11 @@
 
 
 @section('js')
-    <script type="text/javascript" src="{{ asset('assets/admin/adminLTE/components/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.js')}}"></script>
-    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/admin/adminLTE/components/ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/dropzone-5.7.0/min/dropzone.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript"
-            src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+            src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 
     <script>
         tinymce.init({

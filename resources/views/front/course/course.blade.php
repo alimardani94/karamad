@@ -55,44 +55,44 @@
                                                     <ul class="list-group mr-0 pr-0">
                                                         @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="text-white btn-floating btn-tw btn-sm">
                                                                     <i class="far fa-video"></i>
                                                                 </a>
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
                                                                     <i class="far fa-volume-up"></i>
                                                                 </a>
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Text)
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="text-white btn-floating btn-fb btn-sm">
                                                                     <i class="far fa-align-justify"></i>
                                                                 </a>
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
                                                             </li>
                                                         @else
                                                             <li class="list-group-item px-0">
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="text-white btn-floating btn-yt btn-sm">
                                                                     <i class="fal fa-list-alt"></i>
                                                                 </a>
-                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id])}}"
+                                                                <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
                                                                    class="black-text">
                                                                     {{$syllabus->title}}
                                                                 </a>
@@ -123,7 +123,7 @@
                                         <ul class="list-group mx-0 px-0">
                                             @foreach($course->syllabuses as $sidebarSyllabus)
                                                 <li class="list-group-item text-black">
-                                                    <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id])}}"
+                                                    <a href="{{ route('syllabuses.show', ['syllabus' => $sidebarSyllabus->id, 'slug' => $sidebarSyllabus->slug]) }}"
                                                        class="black-text">
                                                         @if($sidebarSyllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                             <i class="far fa-video pl-1"></i>
@@ -149,7 +149,7 @@
                                         <strong>مدرس </strong>
                                     </h6>
                                     <h6 class="card-title text-center">
-                                        <a href="{{ route('instructors.show', ['instructor' => $course->instructor->id]) }}"
+                                        <a href="{{ route('instructors.show', ['instructor' => $course->instructor->id, 'slug' => $course->instructor->slug]) }}"
                                            class="black-text">
                                             {{ $course->instructor->name }}
                                         </a>

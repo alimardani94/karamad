@@ -10,7 +10,7 @@
             جلسه ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">جلسه ها</a></li>
             <li class="active">لیست جلسه ها</li>
         </ol>
@@ -25,13 +25,13 @@
                     <div class="box-header">
                         <h3 class="box-title">لیست جلسه ها</h3>
                         @if(request()->get('course'))
-                            <a href="{{ route('admin.syllabuses.create', ['course' => request()->get('course')])}}"
+                            <a href="{{ route('admin.syllabuses.create', ['course' => request()->get('course')]) }}"
                                class="btn btn-primary btn-flat pull-left">
                                 افزودن
                                 جلسه جدید
                             </a>
                         @else
-                            <a href="{{ route('admin.syllabuses.create')}}" class="btn btn-primary btn-flat pull-left">
+                            <a href="{{ route('admin.syllabuses.create') }}" class="btn btn-primary btn-flat pull-left">
                                 افزودن
                                 جلسه جدید
                             </a>
@@ -56,7 +56,7 @@
                                     <td>{{$syllabus->type()}}</td>
                                     <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a href="{{ route('admin.syllabuses.edit', ['syllabus' => $syllabus->id])}}"
+                                        <a href="{{ route('admin.syllabuses.edit', ['syllabus' => $syllabus->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
                                         </a>
                                         <a onclick="removeSyllabus({{$syllabus->id}})" type="button"

@@ -10,7 +10,7 @@
             افزودن دوره جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دوره ها</a></li>
             <li class="active">افزودن دوره</li>
         </ol>
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.courses.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.courses.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title" name="title"
-                                               value="{{old('title')}}" placeholder="عنوان">
+                                               value="{{ old('title') }}" placeholder="عنوان">
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="thumbnail" name="thumbnail" value="{{old('thumbnail')}}"
+                                                   id="thumbnail" name="thumbnail" value="{{ old('thumbnail') }}"
                                                    hidden>
                                         </label>
                                     </div>
@@ -105,7 +105,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="image" name="image" value="{{old('image')}}"
+                                                   id="image" name="image" value="{{ old('image') }}"
                                                    hidden>
                                         </label>
                                     </div>
@@ -121,14 +121,14 @@
 {{--                                    <div class="form-group">--}}
 {{--                                        <label for="price">قیمت</label>--}}
 {{--                                        <input type="text" class="form-control" id="price" placeholder="قیمت"--}}
-{{--                                               value="{{old('price')}}" name="price">--}}
+{{--                                               value="{{ old('price') }}" name="price">--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                                <div class="col-md-6">--}}
 {{--                                    <div class="form-group">--}}
 {{--                                        <label for="discount">تخفیف</label>--}}
 {{--                                        <input type="text" class="form-control" id="discount" placeholder="تخفیف"--}}
-{{--                                               value="{{old('discount')}}" name="discount">--}}
+{{--                                               value="{{ old('discount') }}" name="discount">--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
@@ -143,7 +143,7 @@
                                     <div class="form-group">
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords" placeholder="HTML, CSS, JavaScript"
-                                               value="{{old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords') }}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js') }}"></script>
     <script>
         tinymce.init({
             selector: 'textarea#description',

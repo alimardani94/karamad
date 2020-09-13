@@ -6,10 +6,11 @@ use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
 use App\Models\Exam\Exam;
 use App\Models\Exam\Question;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
 
 /**
  * App\Models\Course\Syllabus
@@ -52,6 +53,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereVideo($value)
  * @mixin \Eloquent
+ * @property-read string $slug
  */
 class Syllabus extends Model
 {
@@ -67,28 +69,48 @@ class Syllabus extends Model
         'course_id', 'type', 'title', 'file_disk', 'text', 'video', 'audio', 'confirmed',
     ];
 
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
+    {
+        return slugify($this->title);
+    }
+
+    /**
+     * @return array|Application|Translator|string|null
+     */
     public function type()
     {
         return SyllabusType::translatedKeyOf($this->type);
     }
 
+    /**
+     * @return array|Application|Translator|string|null
+     */
     public function fileDisk()
     {
         return SyllabusType::translatedKeyOf($this->file_disk);
     }
 
+    /**
+     * @return string|null
+     */
     public function video()
     {
         return ($this->file_disk == FileDisk::URL or !$this->video) ? $this->video : asset('media/' . $this->video);
     }
 
+    /**
+     * @return string|null
+     */
     public function audio()
     {
         return ($this->file_disk == FileDisk::URL or !$this->audio) ? $this->audio : asset('media/' . $this->audio);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function course()
     {
@@ -111,6 +133,11 @@ class Syllabus extends Model
         return $this->hasMany(Question::class, 'exam_id', 'exam_id');
     }
 
+    /**
+     * @param bool $assoc
+     * @param null $default
+     * @return mixed|null
+     */
     public function attachments($assoc = false, $default = null)
     {
         $rawAttachments = json_decode($this->attachments) ?? [];

@@ -2,6 +2,12 @@
 
 use Carbon\Carbon;
 
+/**
+ * @param Carbon $datetime
+ * @param string $format
+ * @param bool $fixNumbers
+ * @return string
+ */
 function jDate(Carbon $datetime, $format = 'yyyy/MM/dd HH:mm:ss', $fixNumbers = false): string
 {
     $formatter = new IntlDateFormatter(
@@ -16,6 +22,10 @@ function jDate(Carbon $datetime, $format = 'yyyy/MM/dd HH:mm:ss', $fixNumbers = 
     return $fixNumbers ? fixNumbers($result) : $result;
 }
 
+/**
+ * @param string $string
+ * @return string
+ */
 function fixNumbers(string $string): string
 {
     $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -25,6 +35,11 @@ function fixNumbers(string $string): string
     return str_replace($arabic, $num, $convertedPersianNums);
 }
 
+/**
+ * @param string $jDate
+ * @param string $format
+ * @return Carbon
+ */
 function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss'): Carbon
 {
     $fmt = new IntlDateFormatter(
@@ -48,12 +63,37 @@ function gDate(string $jDate, $format = 'yyyy-MM-dd HH:mm:ss'): Carbon
     return Carbon::parse($formatter->format($time));
 }
 
+/**
+ * @param string $string
+ * @return string|string[]|null
+ */
 function parse_number(string $string)
 {
     return preg_replace('/[^0-9]/', '', fixNumbers($string));
 }
 
+/**
+ * @param $content
+ * @return string|string[]|null
+ */
 function preventXSS($content)
 {
     return preg_replace('/(script.*?(?:\/|&#47;|&#x0002F;)script)/ius', '', $content);
+}
+
+/**
+ * @param $string
+ * @param string $separator
+ * @param int $limit
+ * @return string
+ */
+function slugify($string, $separator = '-', $limit = 10)
+{
+    $string = strtolower($string);
+    $string = str_replace('‌', ' ', $string);
+    $string = Str::words($string, $limit, '');
+    $string = mb_ereg_replace('([^آ-ی۰-۹a-z0-9]|-)+', $separator, $string);
+    $string = strtolower($string);
+
+    return trim($string, $separator);
 }

@@ -35,7 +35,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title" placeholder="عنوان"
-                                               value="{{old('title')}}" name="title">
+                                               value="{{ old('title')}}" name="title">
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <label for="start_time">ساعت شروع</label>
                                         <input type="text" class="form-control" id="start_time" placeholder="ساعت شروع"
-                                               value="{{old('start_time')}}" name="start_time" autocomplete="false"
+                                               value="{{ old('start_time')}}" name="start_time" autocomplete="false"
                                                style="direction: ltr" readonly>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                     <div class="form-group">
                                         <label for="time">زمان امتحان</label>
                                         <input type="text" class="form-control" id="time" placeholder="زمان امتحان"
-                                               value="{{old('time', '02:30:00')}}" name="time" autocomplete="false"
+                                               value="{{ old('time', '02:30:00')}}" name="time" autocomplete="false"
                                                style="direction: ltr" readonly>
                                     </div>
                                 </div>

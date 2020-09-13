@@ -47,14 +47,18 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/post/search', 'SearchController@postSearch')->name('post.search');
     Route::get('/product/search', 'SearchController@productSearch')->name('product.search');
 
-    Route::group(['prefix' => 'course', 'namespace' => 'Course'], function () {
-        Route::resources([
-            'courses' => 'CourseController',
-            'syllabuses' => 'SyllabusController',
-        ]);
-        Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
+    Route::group(['prefix' => 'courses', 'namespace' => 'Course'], function () {
+        Route::get('/', 'CourseController@index')->name('courses.index');
+        Route::get('/{course}/{slug?}', 'CourseController@show')->name('courses.show');
 
         Route::post('/{course}/reactions', ['as' => 'courses.react', 'uses' => 'CourseController@react']);
+
+
+        Route::group(['prefix' => 'syllabuses'], function () {
+            Route::get('/{syllabus}/{slug?}', 'SyllabusController@show')->name('syllabuses.show');
+        });
+
+        Route::get('/instructors/{instructor}/{slug?}', 'InstructorController@show')->name('instructors.show');
     });
 
     Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
