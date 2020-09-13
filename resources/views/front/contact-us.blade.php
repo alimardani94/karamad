@@ -27,10 +27,9 @@
 
                             <div class="row">
 
-                                <!-- Grid column -->
                                 <div class="col-md-4">
                                     <div class="md-form mb-0">
-                                        <i class="far fa-user prefix"></i>
+                                        <i class="fal fa-user prefix"></i>
                                         <label for="name">نام</label>
                                         <input type="text" id="name" name="name"
                                                class="form-control @error('name') is-invalid @enderror">
@@ -41,7 +40,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form mb-0">
-                                        <i class="far fa-envelope prefix"></i>
+                                        <i class="fal fa-envelope prefix"></i>
                                         <label for="email">ایمیل</label>
                                         <input type="text" id="email" name="email"
                                                class="form-control @error('email') is-invalid @enderror">
@@ -52,7 +51,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form mb-0">
-                                        <i class="far fa-phone prefix"></i>
+                                        <i class="fal fa-phone prefix"></i>
                                         <label for="cell">تلفن</label>
                                         <input type="text" id="cell" name="cell"
                                                class="form-control @error('phone') is-invalid @enderror">
@@ -74,7 +73,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                         <button class="btn-floating btn-lg blue float-left" type="submit">
-                                            <i class="far fa-paper-plane"></i>
+                                            <i class="fal fa-paper-plane"></i>
                                         </button>
                                     </div>
 

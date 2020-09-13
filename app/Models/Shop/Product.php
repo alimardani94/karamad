@@ -6,9 +6,12 @@ use App\Enums\Shop\ProductType;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Tag;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * App\Models\Shop\Product
@@ -30,6 +33,10 @@ use Illuminate\Support\Carbon;
  * @property string|null $meta_description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product newModelQuery()
@@ -53,28 +60,28 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \App\Models\Category $category
- * @property-read mixed $image
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
  */
 class Product extends Model
 {
-    public function tags()
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return slugify($this->name);
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
+    /**
+     * @return array|Application|Translator|string|null
+     */
     public function type()
     {
         return ProductType::translatedKeyOf($this->type);
     }
 
+    /**
+     * @return array
+     */
     public function images()
     {
         $arr = json_decode($this->images, true);
@@ -87,18 +94,43 @@ class Product extends Model
         return $images;
     }
 
+    /**
+     * @return mixed|string
+     */
     public function image()
     {
         return $this->images()[0] ?? '';
     }
 
-    public function comments()
+    /**
+     * @return MorphToMany
+     */
+    public function tags()
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    /**
+     * @return mixed
+     */
     public function features()
     {
         return json_decode($this->features, true);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

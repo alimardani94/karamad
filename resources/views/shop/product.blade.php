@@ -53,10 +53,8 @@
 
 @section('content')
     <div class="container mt-2 pt-2">
-        <!-- Section: product details -->
         <section id="productDetails" class="pb-5">
 
-            <!-- News card -->
             <div class="card mt-5 hoverable">
                 <div class="row mt-5">
                     <div class="col-lg-6">
@@ -91,7 +89,6 @@
                     </div>
 
                     <div class="col-lg-5 mr-3 text-center text-md-right">
-
                         <h2 class="h2-responsive text-center text-md-right product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
                             <strong> {{ $product->name }} </strong>
                         </h2>
@@ -109,7 +106,6 @@
                             {!! $product->description !!}
                         </p>
 
-                        <!-- Add to Cart -->
                         <div class="row mt-3 mb-4">
                             <div class="col-md-12 text-center text-md-right text-md-right">
                                 <a class="btn btn-primary btn-rounded"
@@ -119,16 +115,14 @@
                                 @if( in_array($product->id, array_keys(Session::get('cart', [])) ))
                                     <a class="btn btn-secondary btn-rounded"
                                        href="{{ route('shop.cart.show') }}">
-                                       برو به سبد خر ید
+                                        برو به سبد خر ید
                                     </a>
                                 @endif
                             </div>
                         </div>
-                        <!-- Add to Cart -->
                     </div>
                 </div>
             </div>
-            <!-- News card -->
         </section>
 
         <section>
@@ -148,15 +142,11 @@
 
                     @foreach ($product->comments as $comment)
                         <div class="row mb-5">
-                            <!-- Image column -->
                             <div class="col-sm-2 col-12 mb-3">
                                 <img src="{{ $comment->image }}"
                                      class="avatar rounded-circle z-depth-1-half"
                                      alt="comment image">
                             </div>
-                            <!-- Image column -->
-
-                            <!-- Content column -->
                             <div class="col-sm-10 col-12">
                                 <a>
                                     <h5 class="user-name font-weight-bold">{{ $comment->name }}</h5>
@@ -172,14 +162,12 @@
                                     {{ $comment->body }}
                                 </p>
                             </div>
-                            <!-- Content column -->
                         </div>
                     @endforeach
                 </div>
             @endif
         </section>
 
-        <!-- Section: Products v.5 -->
         <section id="products" class="pb-5 mt-4">
             <hr>
             <h4 class="h4-responsive dark-grey-text font-weight-bold my-5 text-center">
@@ -192,7 +180,6 @@
                 بهترین و مناسبترین محصولات را از هوشکاپ تهیه کنید
             </p>
 
-            <!-- Carousel Wrapper -->
             <div class="carousel-box courses-box">
                 <div class="owl-carousel mt-4">
                     @foreach($relatedProducts as $relatedProduct)
@@ -200,9 +187,7 @@
                     @endforeach
                 </div>
             </div>
-            <!-- Carousel Wrapper -->
         </section>
-        <!-- Section: Products v.5 -->
     </div>
 @endsection
 

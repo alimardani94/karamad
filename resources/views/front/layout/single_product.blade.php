@@ -2,17 +2,14 @@
     <div class="view overlay" style="max-height: 220px">
         <img src="{{ $product->image() }}"
              class="img-fluid" alt="{{ $product->name }}">
-        <a href="{{ route('shop.product', ['id' => $product->id]) }}">
+        <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}">
             <div class="mask rgba-white-slight waves-effect waves-light"></div>
         </a>
     </div>
-    <!-- Card image -->
 
-    <!-- Card content -->
     <div class="card-body">
-
         <h5 class="card-title mb-1">
-            <strong><a href="{{ route('shop.product', ['id' => $product->id]) }}"
+            <strong><a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}"
                        class="dark-grey-text">{{ $product->name }}</a></strong>
         </h5>
 
@@ -20,13 +17,13 @@
             <span class="badge badge-primary mb-2">{{$tag->name}}</span>
         @endforeach
 
-        <ul class="rating">
-            <li><i class="fas fa-star blue-text"></i></li>
-            <li><i class="fas fa-star blue-text"></i></li>
-            <li><i class="fas fa-star blue-text"></i></li>
-            <li><i class="fas fa-star blue-text"></i></li>
-            <li><i class="fas fa-star blue-text"></i></li>
-        </ul>
+{{--        <ul class="rating">--}}
+{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+{{--        </ul>--}}
 
         <div class="card-footer pb-0">
             <div class="mb-0">
