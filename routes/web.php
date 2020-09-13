@@ -52,6 +52,8 @@ Route::group(['namespace' => 'Front'], function () {
             'courses' => 'CourseController',
             'syllabuses' => 'SyllabusController',
         ]);
+        Route::get('/instructors/{instructor}', 'InstructorController@show')->name('instructors.show');
+
         Route::post('/{course}/reactions', ['as' => 'courses.react', 'uses' => 'CourseController@react']);
     });
 

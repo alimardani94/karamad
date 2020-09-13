@@ -52,4 +52,9 @@ class Instructor extends Model
     {
         return ($this->type == InstructorType::User) ? $this->user->full_name : $value;
     }
+
+    public function getImageAttribute()
+    {
+        return isset($this->user) ? $this->user->image : null;
+    }
 }
