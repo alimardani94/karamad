@@ -1,6 +1,11 @@
 @extends('front/layout/base')
 
-@section('title', 'فروشگاه')
+@section('title', 'فروشگاه | ' . $product->name)
+
+@section('meta')
+    <meta name="description" content="{{ $product->meta_description }}">
+    <meta name="keywords" content="{{ $product->meta_keywords }}">
+@endsection
 
 @section('header')
     @include('header.header2')
@@ -168,26 +173,28 @@
             @endif
         </section>
 
-        <section id="products" class="pb-5 mt-4">
-            <hr>
-            <h4 class="h4-responsive dark-grey-text font-weight-bold my-5 text-center">
-                <strong>محصولات مرتبط</strong>
-            </h4>
+        @if($relatedProducts->count())
+            <section id="products" class="pb-5 mt-4">
+                <hr>
+                <h4 class="h4-responsive dark-grey-text font-weight-bold my-5 text-center">
+                    <strong>محصولات مرتبط</strong>
+                </h4>
 
-            <hr class="mb-5">
+                <hr class="mb-5">
 
-            <p class="text-center w-responsive mx-auto mb-5 dark-grey-text">
-                بهترین و مناسبترین محصولات را از هوشکاپ تهیه کنید
-            </p>
+                <p class="text-center w-responsive mx-auto mb-5 dark-grey-text">
+                    بهترین و مناسبترین محصولات را از هوشکاپ تهیه کنید
+                </p>
 
-            <div class="carousel-box courses-box">
-                <div class="owl-carousel mt-4">
-                    @foreach($relatedProducts as $relatedProduct)
-                        @include('front.layout.single_product', ['product' => $product])
-                    @endforeach
+                <div class="carousel-box courses-box">
+                    <div class="owl-carousel mt-4">
+                        @foreach($relatedProducts as $relatedProduct)
+                            @include('front.layout.single_product', ['product' => $product])
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
     </div>
 @endsection
 

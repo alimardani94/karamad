@@ -2,6 +2,11 @@
 
 @section('title', $course->title)
 
+@section('meta')
+    <meta name="description" content="{{ $course->meta_description }}">
+    <meta name="keywords" content="{{ $course->meta_keywords }}">
+@endsection
+
 @section('header')
     @include('header.header1', [
     'headerBG' => asset('media/'.$course->image),

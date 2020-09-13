@@ -2,6 +2,11 @@
 
 @section('title', $syllabus->title)
 
+@section('meta')
+    <meta name="description" content="{{ $syllabus->meta_description }}">
+    <meta name="keywords" content="{{ $syllabus->meta_keywords }}">
+@endsection
+
 @section('header')
     @include('header.header1', [
     'headerBG' => asset('assets/img/header/header1.jpg'),

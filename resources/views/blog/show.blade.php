@@ -2,6 +2,11 @@
 
 @section('title', $post->title)
 
+@section('meta')
+    <meta name="description" content="{{ $post->meta_description }}">
+    <meta name="keywords" content="{{ $post->meta_keywords }}">
+@endsection
+
 @section('header')
     @include('header.header1', ['headerBG' => asset( 'media/' . $post->image)])
 @stop

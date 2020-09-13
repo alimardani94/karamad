@@ -8,9 +8,9 @@
     <meta name="success" content="{{ session('success') }}">
     <meta name="error" content="{{ session('error') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('meta')
     <title>@lang('general.hooshcup') | @yield('title')</title>
-    <link rel="shortcut icon"  href="{{ asset('assets/img/favicon.ico') }}">
-
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/MDB-Pro_4.11.0/css/mdb.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-pro-5.12.0-web-ulabs/css/all.css') }}">

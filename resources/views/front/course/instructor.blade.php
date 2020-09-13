@@ -2,6 +2,10 @@
 
 @section('title', $instructor->name)
 
+@section('meta')
+    <meta name="keywords" content="{{ $instructor->name }}">
+@endsection
+
 @section('header')
     @include('header.header1', [
     'headerBG' => asset('assets/img/header/instructor.jpg'),
