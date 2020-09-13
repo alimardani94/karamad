@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{ $comment->body }}</td>
                                     <td>
-                                        <a href="{{ route('posts.show', ['post' => $comment->commentable_id]) }}">
+                                        <a href="{{ route('posts.show', ['post' => $comment->commentable_id, 'slug' => $comment->commentable->title]) }}">
                                             {{ $comment->commentable->title }}
                                         </a>
                                     </td>

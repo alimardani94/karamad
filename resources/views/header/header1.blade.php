@@ -151,7 +151,7 @@
 
 
     <div class="view jarallax" data-jarallax='{"speed": 0.2}'
-         style="background-image: url({{$headerBG}}); background-repeat: no-repeat;
+         style="background-image: url({{ $headerBG}}); background-repeat: no-repeat;
              background-size: cover; background-position: center center;">
         <div class="mask rgba-black-light">
             <div class="container h-100 d-flex justify-content-center align-items-center">

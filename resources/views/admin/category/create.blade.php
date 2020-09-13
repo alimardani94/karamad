@@ -16,7 +16,7 @@
             افزودن دسته بندی جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دسته بندی ها</a></li>
             <li class="active">افزودن دسته بندی</li>
         </ol>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.categories.store')}}"
+                    <form method="post" action="{{route('admin.categories.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="type" value="{{ request()->get('type') }}">
@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" placeholder="نام"
-                                               value="{{ old('name')}}" name="name">
+                                               value="{{ old('name') }}" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -75,7 +75,7 @@
                                 <div class="col-md-12">
                                     <label for="description">توضیحات </label>
                                     <textarea id="description" name="description"
-                                              class="form-control">{{old('description')}}</textarea>
+                                              class="form-control">{{old('description') }}</textarea>
                                 </div>
                             </div>
 

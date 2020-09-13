@@ -28,7 +28,7 @@
 
     <div class="footer-copyright text-center py-3">
         <div class="container-fluid" style="font-family: Roboto, sans-serif">
-            Copyright ©2020 <a href=" {{env('APP_URL')}} " target="_blank"> HooshCup.ir </a>
+            Copyright ©2020 <a href=" {{env('APP_URL') }} " target="_blank"> HooshCup.ir </a>
         </div>
     </div>
 </footer>

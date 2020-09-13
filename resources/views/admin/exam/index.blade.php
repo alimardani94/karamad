@@ -41,10 +41,10 @@
                             <tbody>
                             @foreach($exams as $exam)
                                 <tr>
-                                    <td>{{$exam->title}}</td>
-                                    <td>{{$exam->description}}</td>
-                                    <td>{{$exam->questions_count}}</td>
-                                    <td>{{jDate($exam->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{ $exam->title}}</td>
+                                    <td>{{ $exam->description}}</td>
+                                    <td>{{ $exam->questions_count}}</td>
+                                    <td>{{jDate($exam->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.questions.create', ['exam' => $exam->id]) }}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن سوال</a>
@@ -57,7 +57,7 @@
                                                 ویرایش آزمون
                                             </a>
                                             <a type="button" class="btn btn-block btn-danger btn-xs"
-                                               onclick="removeExam({{$exam->id}})">
+                                               onclick="removeExam({{ $exam->id}})">
                                                 حذف آزمون
                                             </a>
                                         @endif
@@ -79,7 +79,7 @@
 @section('js')
     <script>
         function removeExam(id) {
-            let url = "{{ route('admin.exams.destroy', '')}}/" + id
+            let url = "{{ route('admin.exams.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا آزمون حذف شود؟',
                 text: "",

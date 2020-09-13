@@ -10,7 +10,7 @@
             پیام ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">پیام ها</a></li>
             <li class="active">لیست پیام ها</li>
         </ol>
@@ -43,7 +43,7 @@
                                     <td>{{$message->email}}</td>
                                     <td>{{$message->cell}}</td>
                                     <td>{{$message->body}}</td>
-                                    <td>{{jDate($message->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{jDate($message->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

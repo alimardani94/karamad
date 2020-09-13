@@ -43,12 +43,12 @@
                             <tbody>
                             @foreach($courses as $course)
                                 <tr>
-                                    <td>{{$course->title}}</td>
-                                    <td>{{$course->instructor->name ?? ''}}</td>
-                                    <td>{{$course->category->name ?? ''}}</td>
-                                    <td>{{$course->syllabuses()->count()}}</td>
-                                    <td>{{substr($course->summary,0,200)}}</td>
-                                    <td>{{jDate($course->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{ $course->title}}</td>
+                                    <td>{{ $course->instructor->name ?? ''}}</td>
+                                    <td>{{ $course->category->name ?? ''}}</td>
+                                    <td>{{ $course->syllabuses()->count() }}</td>
+                                    <td>{{substr($course->summary,0,200) }}</td>
+                                    <td>{{jDate($course->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.syllabuses.create', ['course' => $course->id]) }}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
@@ -57,7 +57,7 @@
                                         <a href="{{  route('admin.courses.edit', ['course' => $course->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
                                         </a>
-                                        <a onclick="removeCourse({{$course->id}})" type="button"
+                                        <a onclick="removeCourse({{ $course->id}})" type="button"
                                            class="btn btn-block btn-danger btn-xs">حذف دوره</a>
                                     </td>
                                 </tr>
@@ -77,7 +77,7 @@
 @section('js')
     <script>
         function removeCourse(id) {
-            let url = "{{ route('admin.courses.destroy', '')}}/" + id
+            let url = "{{ route('admin.courses.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا دوره حذف شود؟',
                 text: "",

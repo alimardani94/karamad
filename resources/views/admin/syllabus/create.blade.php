@@ -43,7 +43,7 @@
             افزودن جلسه جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">جلسه ها</a></li>
             <li class="active">افزودن جلسه</li>
         </ol>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form id="create_syllabus" method="post" action="{{ route('admin.syllabuses.store')}}"
+                    <form id="create_syllabus" method="post" action="{{ route('admin.syllabuses.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
@@ -80,7 +80,7 @@
                                 <hr>
                             @else
                                 <label>
-                                    <input name="course" value="{{$course->id}}" hidden>
+                                    <input name="course" value="{{ $course->id}}" hidden>
                                 </label>
                             @endif
                             <div class="row">
@@ -88,7 +88,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title"
-                                               placeholder="عنوان" value="{{ old('title')}}"
+                                               placeholder="عنوان" value="{{ old('title') }}"
                                                name="title">
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                             <label for="video_url">آدرس ویدیو</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="video_url" name="video_url" value="{{ old('video_url')}}">
+                                                   id="video_url" name="video_url" value="{{ old('video_url') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -139,7 +139,7 @@
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="video/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       id="video_file" name="video_file" value="{{ old('video_file')}}"
+                                                       id="video_file" name="video_file" value="{{ old('video_file') }}"
                                                        hidden>
                                             </label>
                                         </div>
@@ -167,7 +167,7 @@
                                             <label for="audio_url">آدرس فایل صوتی</label>
                                             <input type="text" class="form-control" placeholder="آدرس"
                                                    data-fileDisk="{{\App\Enums\FileDisk::URL}}"
-                                                   id="audio_url" name="audio_url" value="{{ old('audio_url')}}">
+                                                   id="audio_url" name="audio_url" value="{{ old('audio_url') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 file_disk_type" style="display: none">
@@ -177,7 +177,7 @@
                                                 <span> انتخاب کنید ... </span>
                                                 <input type="file" class="custom-file-input" accept="audio/*"
                                                        data-fileDisk="{{\App\Enums\FileDisk::Local}}"
-                                                       name="audio_file" id="audio_file" value="{{ old('audio_file')}}"
+                                                       name="audio_file" id="audio_file" value="{{ old('audio_file') }}"
                                                        hidden>
                                             </label>
                                         </div>
@@ -215,7 +215,7 @@
                                         <label for="meta_keywords">کلمات کلیدی</label>
                                         <input type="text" class="form-control" id="meta_keywords"
                                                placeholder="HTML, CSS, JavaScript"
-                                               value="{{ old('meta_keywords')}}" name="meta_keywords">
+                                               value="{{ old('meta_keywords') }}" name="meta_keywords">
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                     <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
                                     <textarea id="meta_description" name="meta_description" minlength="135"
                                               maxlength="160"
-                                              class="form-control">{{old('meta_description')}}</textarea>
+                                              class="form-control">{{old('meta_description') }}</textarea>
                                 </div>
                             </div>
                         </div>

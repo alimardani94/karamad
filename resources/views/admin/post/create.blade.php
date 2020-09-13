@@ -13,7 +13,7 @@
             افزودن مقاله جدید
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مقاله ها</a></li>
             <li class="active">افزودن مقاله</li>
         </ol>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.posts.store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label for="title">عنوان</label>
                                         <input type="text" class="form-control" id="title" placeholder="عنوان"
-                                               value="{{ old('title')}}" name="title">
+                                               value="{{ old('title') }}" name="title">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -59,7 +59,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="image" name="image" value="{{ old('image')}}"
+                                                   id="image" name="image" value="{{ old('image') }}"
                                                    hidden>
                                         </label>
                                     </div>

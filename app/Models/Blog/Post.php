@@ -6,7 +6,9 @@ use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * App\Models\Blog\Post
@@ -21,6 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post newModelQuery()
@@ -36,26 +41,44 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
- * @property-read int|null $comments_count
  */
 class Post extends Model
 {
+    /**
+     * @return string
+     */
+    public function getSlugAttribute()
+    {
+        return slugify($this->title);
+    }
+
+    /**
+     * @return MorphToMany
+     */
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    /**
+     * @return array
+     */
     public function tagsArray()
     {
         return $this->tags()->pluck('name')->toArray();
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return MorphMany
+     */
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');

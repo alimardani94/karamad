@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.profiles.update')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.profiles.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>
                         <div class="box-body">
@@ -32,7 +32,7 @@
                                         <label class="form-control">
                                             <span> انتخاب کنید ... </span>
                                             <input type="file" class="custom-file-input" accept="image/*"
-                                                   id="image" name="image" value="{{ old('image')}}"
+                                                   id="image" name="image" value="{{ old('image') }}"
                                                    hidden>
                                         </label>
                                     </div>
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" placeholder="نام"
-                                               value="{{ old('name', $user->name)}}" name="name">
+                                               value="{{ old('name', $user->name) }}" name="name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

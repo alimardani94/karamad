@@ -62,10 +62,10 @@ Route::group(['namespace' => 'Front'], function () {
     });
 
     Route::group(['prefix' => 'blog', 'namespace' => 'Blog'], function () {
-        Route::resources([
-            'posts' => 'PostController',
-        ]);
-        Route::get('/filter', 'PostController@filter')->name('blog.filter');
+        Route::get('/', 'PostController@index')->name('posts.index');
+        Route::get('/{post}/{slug?}', 'PostController@show')->name('posts.show');
+        Route::get('/filter', 'PostController@filter')->name('posts.filter');
+
         Route::resource('posts.comments', 'CommentController')->shallow();
     });
 

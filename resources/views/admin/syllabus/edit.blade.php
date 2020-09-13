@@ -184,20 +184,20 @@
                             <div id="typeBox3">
                                 <label for="text">متن</label>
                                 <div class="form-group">
-                                    <textarea name="text" id="text">{{old('text', $syllabus->text)}}</textarea>
+                                    <textarea name="text" id="text">{{old('text', $syllabus->text) }}</textarea>
                                 </div>
                             </div>
                             <div id="typeBox4">
                                 <div id="questions_box">
 
                                     @foreach($syllabus->questions as $index => $question)
-                                        <div class="questions_row" data-id="{{$index + 1}}">
+                                        <div class="questions_row" data-id="{{ $index + 1}}">
                                             <div class="row">
                                                 <div class="col-md-11">
                                                     <div class="form-group">
-                                                        <label for="questions_titles_{{$index + 1}}">عنوان</label>
-                                                        <textarea id="questions_titles_{{$index + 1}}"
-                                                                  name="questions_titles[{{$index + 1}}]"
+                                                        <label for="questions_titles_{{ $index + 1}}">عنوان</label>
+                                                        <textarea id="questions_titles_{{ $index + 1}}"
+                                                                  name="questions_titles[{{ $index + 1}}]"
                                                                   required>{!! $question->title !!}</textarea>
                                                     </div>
                                                 </div>
@@ -211,9 +211,9 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="answer_{{$index + 1}}">پاسخ</label>
+                                                        <label for="answer_{{ $index + 1}}">پاسخ</label>
                                                         <select type="text" class="form-control"
-                                                                id="answer_{{$index + 1}}" name="answer[{{$index + 1}}]" required>
+                                                                id="answer_{{ $index + 1}}" name="answer[{{ $index + 1}}]" required>
                                                             <option disabled selected>انتخاب کنید</option>
                                                             <option
                                                                 value="a" {{ $question->answer == 'a' ? 'selected' : ''}}>
@@ -236,8 +236,8 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="answer_a_{{$index + 1}}">گزینه 1</label>
-                                                        <textarea id="answer_a_{{$index + 1}}"
+                                                        <label for="answer_a_{{ $index + 1}}">گزینه 1</label>
+                                                        <textarea id="answer_a_{{ $index + 1}}"
                                                                   name="answer_a[{{$index + 1}}]"
                                                                   required>{!! $question->a !!}</textarea>
                                                     </div>
@@ -332,7 +332,7 @@
                                     <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
                                     <textarea id="meta_description" name="meta_description" minlength="135"
                                               maxlength="160"
-                                              class="form-control">{{old('meta_description')}}</textarea>
+                                              class="form-control">{{old('meta_description') }}</textarea>
                                 </div>
                             </div>
                         </div>

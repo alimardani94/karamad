@@ -50,7 +50,7 @@
                                                 style="width: 100%;">
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}"
-                                                    {{$category->id == old('category', $product->category_id) ? 'selected':''}}>
+                                                    {{ $category->id == old('category', $product->category_id) ? 'selected':''}}>
                                                     {{ $category->name }}
                                                 </option>
                                             @endforeach
@@ -158,7 +158,7 @@
                                     </label>
                                     <select multiple name="features[]" id="features">
                                         @foreach( old('features', $product->features()) as $feature)
-                                            <option value="{{$feature}}">{{$feature}}</option>
+                                            <option value="{{ $feature}}">{{ $feature}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -196,7 +196,7 @@
                                     <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
                                     <textarea id="meta_description" name="meta_description" minlength="135"
                                               maxlength="160"
-                                              class="form-control">{{old('meta_description', $product->meta_description)}}</textarea>
+                                              class="form-control">{{old('meta_description', $product->meta_description) }}</textarea>
                                 </div>
                             </div>
                         </div>

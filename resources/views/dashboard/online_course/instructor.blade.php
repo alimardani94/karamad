@@ -56,8 +56,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
-        const courseKey = '{{$onlineCourse->key}}';
-        const userId = '{{$authUser->id ?? ''}}';
+        const courseKey = '{{ $onlineCourse->key}}';
+        const userId = '{{ $authUser->id ?? ''}}';
     </script>
     <script src="{{ asset('assets/js/stream2.js') }}"></script>
 

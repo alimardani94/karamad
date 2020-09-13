@@ -12,7 +12,7 @@
         <h1>
             @if(request()->get('exam'))
                 <span>افزودن سوال شماره</span>
-                <strong>{{$number}}</strong>
+                <strong>{{ $number}}</strong>
             @else
                 افزودن سوال
             @endif
@@ -54,7 +54,7 @@
                                 <hr>
                             @else
                                 <label>
-                                    <input name="exam" value="{{$exam->id}}" hidden>
+                                    <input name="exam" value="{{ $exam->id}}" hidden>
                                 </label>
                             @endif
 

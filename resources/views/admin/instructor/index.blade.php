@@ -10,7 +10,7 @@
             مدرسان <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مدرسان</a></li>
             <li class="active">لیست مدرسان</li>
         </ol>
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مدرسان</h3>
-                        <a href="{{ route('admin.instructors.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.instructors.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                             مدرس جدید</a>
                     </div>
                     <div class="box-body">
@@ -41,18 +41,18 @@
                             <tbody>
                             @foreach($instructors as $instructor)
                                 <tr>
-                                    <td>{{$instructor->name}}</td>
-                                    <td>{{substr($instructor->about,0,200)}}</td>
-                                    <td>{{$instructor->type()}}</td>
-                                    <td>{{jDate($instructor->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{ $instructor->name}}</td>
+                                    <td>{{substr($instructor->about,0,200) }}</td>
+                                    <td>{{ $instructor->type() }}</td>
+                                    <td>{{jDate($instructor->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         @if($instructor->type = \App\Enums\Instructor\InstructorType::NotUser)
-                                            <a href="{{  route('admin.instructors.edit', ['instructor' => $instructor->id])}}"
+                                            <a href="{{  route('admin.instructors.edit', ['instructor' => $instructor->id]) }}"
                                                type="button" class="btn btn-block btn-primary btn-xs">
                                                 ویرایش مدرس
                                             </a>
                                             <a type="button" class="btn btn-block btn-danger btn-xs"
-                                               onclick="removeInstructor({{$instructor->id}})">
+                                               onclick="removeInstructor({{ $instructor->id}})">
                                                 حذف مدرس
                                             </a>
                                         @endif
@@ -74,7 +74,7 @@
 @section('js')
     <script>
         function removeInstructor(id) {
-            let url = "{{ route('admin.instructors.destroy', '')}}/" + id
+            let url = "{{ route('admin.instructors.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا مدرس حذف شود؟',
                 text: "",

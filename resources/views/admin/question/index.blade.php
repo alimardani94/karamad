@@ -10,7 +10,7 @@
             سوالات <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">سوالات</a></li>
             <li class="active">لیست سوالات</li>
         </ol>
@@ -25,11 +25,11 @@
                     <div class="box-header">
                         <h3 class="box-title">لیست سوالات</h3>
                         @if(request()->get('exam'))
-                            <a href="{{route('admin.questions.create', ['exam' => request()->get('exam')])}}"
+                            <a href="{{route('admin.questions.create', ['exam' => request()->get('exam')]) }}"
                                class="btn btn-primary btn-flat pull-left">افزودن
                                 سوال جدید</a>
                         @else
-                            <a href="{{route('admin.questions.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                            <a href="{{route('admin.questions.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                                 سوال جدید</a>
                         @endif
                     </div>
@@ -54,12 +54,12 @@
                                     <td style="{{ ($question->answer == 'c') ? 'color:green' : ''}}">{!! $question->c !!}</td>
                                     <td style="{{ ($question->answer == 'd') ? 'color:green' : ''}}">{!! $question->d !!}</td>
                                     <td>
-                                        <a href="{{ route('admin.questions.edit', ['question' => $question->id])}}"
+                                        <a href="{{ route('admin.questions.edit', ['question' => $question->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">
                                             ویرایش سوال
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removeQuestion({{$question->id}})">
+                                           onclick="removeQuestion({{ $question->id}})">
                                             حذف سوال
                                         </a>
                                     </td>
@@ -80,7 +80,7 @@
 @section('js')
     <script>
         function removeQuestion(id) {
-            let url = "{{route('admin.questions.destroy', '')}}/" + id
+            let url = "{{route('admin.questions.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا سوال حذف شود؟',
                 text: "",

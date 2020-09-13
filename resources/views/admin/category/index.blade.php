@@ -12,7 +12,7 @@
             دسته بندی ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">دسته بندی ها</a></li>
             <li class="active">لیست دسته بندی ها</li>
         </ol>
@@ -26,7 +26,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست دسته بندی ها</h3>
-                        <a href="{{route('admin.categories.create', ['type' => request()->get('type')])}}"
+                        <a href="{{route('admin.categories.create', ['type' => request()->get('type')]) }}"
                            class="btn btn-primary btn-flat pull-left">افزودن
                             دسته بندی جدید</a>
                     </div>
@@ -43,16 +43,16 @@
                             <tbody>
                             @foreach($categories as $category)
                                 <tr>
-                                    <td>{{$category->name}}</td>
+                                    <td>{{ $category->name}}</td>
                                     <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
-                                    <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.categories.edit', ['category' => $category->id])}}"
+                                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">
                                             ویرایش دسته بندی
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removeCategory({{$category->id}})">
+                                           onclick="removeCategory({{ $category->id}})">
                                             حذف دسته بندی
                                         </a>
                                     </td>
@@ -73,7 +73,7 @@
 @section('js')
     <script>
         function removeCategory(id) {
-            let url = "{{route('admin.categories.destroy', '')}}/" + id
+            let url = "{{route('admin.categories.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا دسته بندی حذف شود؟',
                 text: "",

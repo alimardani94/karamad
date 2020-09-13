@@ -15,7 +15,7 @@
             <li><a href="#">دوره ها</a></li>
             <li class="active">
                 ویرایش دوره
-                <span>{{$course->title}}</span>
+                <span>{{ $course->title}}</span>
             </li>
         </ol>
     </section>
@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="summary">خلاصه</label>
-                                    <textarea id="summary" name="summary" class="form-control">{{old('summary', $course->summary)}}</textarea>
+                                    <textarea id="summary" name="summary" class="form-control">{{old('summary', $course->summary) }}</textarea>
                                 </div>
                             </div>
                             <br>
@@ -158,7 +158,7 @@
                                     <label for="meta_description">توضیحات(بین ۱۳۵ تا ۱۶۰ کاراکتر باشد)</label>
                                     <textarea id="meta_description" name="meta_description" minlength="135"
                                               maxlength="160"
-                                              class="form-control">{{old('meta_description', $course->meta_description)}}</textarea>
+                                              class="form-control">{{old('meta_description', $course->meta_description) }}</textarea>
                                 </div>
                             </div>
                         </div>

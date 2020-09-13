@@ -70,7 +70,7 @@
                                     <p class="font-small dark-grey-text mb-1">
                                         <strong>نویسنده: </strong> {{ $post->author->full_name }}</p>
                                     <p class="font-small grey-text mb-0 ml-3">
-                                        <i class="far fa-clock-o dark-grey-text"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }}
+                                        <i class="fal fa-clock-o dark-grey-text"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }}
                                     </p>
                                 </div>
                             </div>
@@ -91,21 +91,21 @@
                                                 <strong>به اشتراک بگزارید</strong>
                                             </h4>
 
-                                            <a href="mailto:?subject={{ $post->title }}&amp;body={{ route('posts.show', ['post' => $post->id]) }}"
+                                            <a href="mailto:?subject={{ $post->title }}&amp;body={{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}"
                                                type="button" class="btn btn-sm btn-email waves-effect waves-light">
-                                                <i class="fas fa-envelope pr-1"></i>
+                                                <i class="far fa-envelope pl-1"></i>
                                                 ایمیل
                                             </a>
 
-                                            <a href="http://www.facebook.com/sharer.php?u={{ route('posts.show', ['post' => $post->id]) }}"
+                                            <a href="http://www.facebook.com/sharer.php?u={{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}"
                                                target="_blank" type="button" class="btn btn-fb btn-sm">
-                                                <i class="fab fa-facebook-f left"></i> Facebook
+                                                <i class="fab fa-facebook-f pl-1"></i> Facebook
                                             </a>
 
                                             <a href="whatsapp://send?text={{ $post->title }}"
                                                data-action="share/whatsapp/share"
                                                type="button" class="btn  btn-sm btn-whatsapp waves-effect waves-light">
-                                                <i class="fab fa-whatsapp pr-1"></i> Whatsapp
+                                                <i class="fab fa-whatsapp pl-1"></i> Whatsapp
                                             </a>
                                         </div>
 
@@ -124,15 +124,12 @@
 
                                                 @foreach ($post->comments as $comment)
                                                     <div class="row mb-5">
-                                                        <!-- Image column -->
                                                         <div class="col-sm-2 col-12 mb-3">
                                                             <img src="{{ $comment->image }}"
                                                                  class="avatar rounded-circle z-depth-1-half"
-                                                                 alt="comment image">
+                                                                 alt="{{ $comment->name }}">
                                                         </div>
-                                                        <!-- Image column -->
 
-                                                        <!-- Content column -->
                                                         <div class="col-sm-10 col-12">
                                                             <a>
                                                                 <h5 class="user-name font-weight-bold">{{ $comment->name }}</h5>
@@ -140,7 +137,7 @@
                                                             <div class="card-data">
                                                                 <ul class="list-unstyled">
                                                                     <li class="comment-date font-small">
-                                                                        <i class="far fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy ساعت hh:mm') }}
+                                                                        <i class="fal fa-clock-o"></i> {{ jDate($comment->created_at, 'dd MMMM yyyy ساعت hh:mm') }}
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -148,7 +145,6 @@
                                                                 {{ $comment->body }}
                                                             </p>
                                                         </div>
-                                                        <!-- Content column -->
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -164,7 +160,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12 mb-4">
                                                     <div class="md-form">
-                                                        <i class="far fa-user prefix"></i>
+                                                        <i class="fal fa-user prefix"></i>
                                                         <label for="name">نام</label>
                                                         <input type="text" id="name" name="name"
                                                                class="form-control @error('name') is-invalid @enderror">
@@ -176,7 +172,7 @@
 
                                                 <div class="col-lg-6 col-md-6 mb-4">
                                                     <div class="md-form">
-                                                        <i class="far fa-envelope prefix"></i>
+                                                        <i class="fal fa-envelope prefix"></i>
                                                         <label for="email">ایمیل</label>
                                                         <input type="text" id="email" name="email"
                                                                class="form-control @error('email') is-invalid @enderror">
@@ -190,7 +186,7 @@
                                             <div class="row">
                                                 <div class="col-12 mt-1">
                                                     <div class="md-form">
-                                                        <i class="far fa-pencil-alt prefix"></i>
+                                                        <i class="fal fa-pencil-alt prefix"></i>
                                                         <label for="body" class="">دیدگاه</label>
                                                         <textarea id="body"
                                                                   class="md-textarea form-control @error('body') is-invalid @enderror"
@@ -210,71 +206,55 @@
 
                                     </section>
 
-                                    <!-- Posts -->
-                                    <section class="text-left mt-4">
+                                    @if($relatedPosts->count())
+                                        <section class="text-left mt-4">
+                                            <h4 class="font-weight-bold mt-5 mb-5 text-center">
+                                                <strong>پست های مرتبط</strong>
+                                            </h4>
 
-                                        <h4 class="font-weight-bold mt-5 mb-5 text-center">
-                                            <strong>پست های مرتبط</strong>
-                                        </h4>
-
-                                        <div class="carousel-box courses-box">
-                                            <div class="owl-carousel mt-4">
-                                                @foreach($relatedPosts as $relatedPost)
-                                                    <div class="card m-2 h-100">
-
-                                                        <!-- Card image -->
-                                                        <div class="view overlay">
-                                                            <img
-                                                                src="{{ asset( 'media/' . $relatedPost->image) }}"
-                                                                class="card-img-top" alt="sample image">
-                                                            <a>
-                                                                <div class="mask rgba-white-slight"></div>
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">
-                                                                <strong>{{ $relatedPost->title }}</strong>
-                                                            </h4>
-                                                            <hr>
-
-                                                            <p class="font-small font-weight-bold dark-grey-text mb-1">
-                                                                <i class="far fa-clock-o"></i> {{ jDate($relatedPost->created_at, 'dd MMMM yyyy') }}
-                                                            </p>
-                                                            <p class="font-small grey-text mb-0">{{ $relatedPost->meta_description }}</p>
-                                                            <p class="text-right mb-0 font-small font-weight-bold">
-                                                                <a href="{{ route('posts.show', ['post' => $relatedPost->id]) }}">بیشتر
-                                                                    <i class="fas fa-angle-left"></i>
+                                            <div class="carousel-box courses-box">
+                                                <div class="owl-carousel mt-4">
+                                                    @foreach($relatedPosts as $relatedPost)
+                                                        <div class="card m-2 h-100">
+                                                            <div class="view overlay">
+                                                                <img
+                                                                    src="{{ asset( 'media/' . $relatedPost->image) }}"
+                                                                    class="card-img-top"
+                                                                    alt="{{ $relatedPost->title }}">
+                                                                <a>
+                                                                    <div class="mask rgba-white-slight"></div>
                                                                 </a>
-                                                            </p>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <h4 class="card-title">
+                                                                    <strong>{{ $relatedPost->title }}</strong>
+                                                                </h4>
+                                                                <hr>
+
+                                                                <p class="font-small font-weight-bold dark-grey-text mb-1">
+                                                                    <i class="fal fa-clock-o"></i> {{ jDate($relatedPost->created_at, 'dd MMMM yyyy') }}
+                                                                </p>
+                                                                <p class="font-small grey-text mb-0">{{ $relatedPost->meta_description }}</p>
+                                                                <p class="text-right mb-0 font-small font-weight-bold">
+                                                                    <a href="{{ route('posts.show', ['post' => $relatedPost->id, 'slug' => $relatedPost->slug]) }}">بیشتر
+                                                                        <i class="fas fa-angle-left"></i>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
                                                         </div>
-
-                                                    </div>
-                                                @endforeach
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </section>
-                                    <!-- Posts -->
-
+                                        </section>
+                                    @endif
                                 </div>
-                                <!-- Grid column -->
-
                             </div>
-                            <!-- Grid row -->
-
                         </div>
-                        <!-- Grid column -->
-
                     </div>
-                    <!-- Grid row -->
-
                 </div>
-                <!-- Card -->
             </div>
-            <!-- Grid column -->
         </div>
-        <!-- Grid row -->
     </div>
 
 @endsection

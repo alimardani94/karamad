@@ -10,7 +10,7 @@
         <a href="" class="teal-text text-center text-uppercase font-small"></a>
         <h5 class="card-title">
             <a href="{{  route('courses.show', ['course' => $course->id, 'slug' => $course->slug]) }}">
-                <strong class="black-text">{{$course->title}}</strong>
+                <strong class="black-text">{{ $course->title}}</strong>
             </a>
         </h5>
         @if(!isset($summarize))

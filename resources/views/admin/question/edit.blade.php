@@ -46,13 +46,13 @@
                                         <label for="answer">گزینه صحیح</label>
                                         <select type="text" class="form-control select2" id="answer" name="answer">
                                             <option disabled selected>انتخاب کنید</option>
-                                            <option value="a" {{$question->answer == 'a' ? 'selected' : ''}}>گزینه 1
+                                            <option value="a" {{ $question->answer == 'a' ? 'selected' : ''}}>گزینه 1
                                             </option>
-                                            <option value="b" {{$question->answer == 'b' ? 'selected' : ''}}>گزینه 2
+                                            <option value="b" {{ $question->answer == 'b' ? 'selected' : ''}}>گزینه 2
                                             </option>
-                                            <option value="c" {{$question->answer == 'c' ? 'selected' : ''}}>گزینه 3
+                                            <option value="c" {{ $question->answer == 'c' ? 'selected' : ''}}>گزینه 3
                                             </option>
-                                            <option value="d" {{$question->answer == 'd' ? 'selected' : ''}}>گزینه 4
+                                            <option value="d" {{ $question->answer == 'd' ? 'selected' : ''}}>گزینه 4
                                             </option>
                                         </select>
                                     </div>

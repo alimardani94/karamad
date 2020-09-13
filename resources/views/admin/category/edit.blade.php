@@ -74,7 +74,7 @@
                                 <div class="col-md-12">
                                     <label for="description">توضیحات </label>
                                     <textarea id="description" name="description"
-                                              class="form-control">{{old('description', $category->description)}}</textarea>
+                                              class="form-control">{{old('description', $category->description) }}</textarea>
                                 </div>
                             </div>
 

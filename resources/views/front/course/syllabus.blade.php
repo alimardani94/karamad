@@ -53,19 +53,19 @@
 
                                         <div class="card-body">
                                             <h4 class="card-title">
-                                                <strong>{{$syllabus->title}}</strong>
+                                                <strong>{{ $syllabus->title}}</strong>
                                             </h4>
                                             <div class="mt-4">
                                                 @if($syllabus->type == \App\Enums\Syllabus\SyllabusType::Video)
                                                     <video controls class="img-fluid" width="100%">
-                                                        <source src="{{$syllabus->video() }}"
+                                                        <source src="{{ $syllabus->video() }}"
                                                                 type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 @elseif($syllabus->type == \App\Enums\Syllabus\SyllabusType::Audio)
                                                     <div class="m-5 text-center">
                                                         <audio controls>
-                                                            <source src="{{$syllabus->audio() }}"
+                                                            <source src="{{ $syllabus->audio() }}"
                                                                     type="audio/mp3">
                                                             Your browser does not support the audio element.
                                                         </audio>
@@ -82,41 +82,41 @@
                                                              id="question_card_{{ $index }}">
                                                             <div class="card-body">
                                                                 <h4 class="card-title">{!! $question->title !!}</h4>
-                                                                <input type="hidden" id="answer_{{$question->id}}"
-                                                                       value="{{$question->answer}}">
+                                                                <input type="hidden" id="answer_{{ $question->id}}"
+                                                                       value="{{ $question->answer}}">
 
                                                                 <div class="card-text">
                                                                     <div class="form-check mr-4">
                                                                         <input type="radio" class="form-check-input"
-                                                                               id="{{$question->id}}_a" value="a"
-                                                                               name="question_{{$question->id}}">
+                                                                               id="{{ $question->id}}_a" value="a"
+                                                                               name="question_{{ $question->id}}">
                                                                         <label class="form-check-label"
-                                                                               for="{{$question->id}}_a">{!! $question->a !!}</label>
+                                                                               for="{{ $question->id}}_a">{!! $question->a !!}</label>
                                                                     </div>
 
                                                                     <div class="form-check mr-4">
                                                                         <input type="radio" class="form-check-input"
-                                                                               id="{{$question->id}}_b" value="b"
-                                                                               name="question_{{$question->id}}">
+                                                                               id="{{ $question->id}}_b" value="b"
+                                                                               name="question_{{ $question->id}}">
                                                                         <label class="form-check-label"
-                                                                               for="{{$question->id}}_b">{!! $question->b !!}</label>
+                                                                               for="{{ $question->id}}_b">{!! $question->b !!}</label>
                                                                     </div>
                                                                     <div class="form-check mr-4">
                                                                         <input type="radio" class="form-check-input"
-                                                                               id="{{$question->id}}_c" value="c"
-                                                                               name="question_{{$question->id}}">
+                                                                               id="{{ $question->id}}_c" value="c"
+                                                                               name="question_{{ $question->id}}">
                                                                         <label class="form-check-label"
-                                                                               for="{{$question->id}}_c">{!! $question->c !!}</label>
+                                                                               for="{{ $question->id}}_c">{!! $question->c !!}</label>
                                                                     </div>
                                                                     <div class="form-check mr-4">
                                                                         <input type="radio" class="form-check-input"
-                                                                               id="{{$question->id}}_d" value="d"
-                                                                               name="question_{{$question->id}}">
+                                                                               id="{{ $question->id}}_d" value="d"
+                                                                               name="question_{{ $question->id}}">
                                                                         <label class="form-check-label"
-                                                                               for="{{$question->id}}_d">{!! $question->d !!}</label>
+                                                                               for="{{ $question->id}}_d">{!! $question->d !!}</label>
                                                                     </div>
                                                                     <div class="mt-4 mb-0"
-                                                                         id="{{$question->id}}_answer_reason"
+                                                                         id="{{ $question->id}}_answer_reason"
                                                                          style="display: none">
                                                                         {!! $question->answer_reason !!}
                                                                     </div>
@@ -124,7 +124,7 @@
 
                                                                 <br>
                                                                 <button class="btn btn-primary btn-sm submitBtn"
-                                                                        onclick="answerQuestion({{$question->id}})">
+                                                                        onclick="answerQuestion({{ $question->id}})">
                                                                     ارسال
                                                                 </button>
                                                                 @if ($loop->last)
@@ -136,7 +136,7 @@
                                                                 @else
                                                                     <button class="btn btn-primary btn-sm goToNextBtn"
                                                                             style="display: none"
-                                                                            onclick="goToNext({{$index + 1}})">
+                                                                            onclick="goToNext({{ $index + 1}})">
                                                                         بعدی
                                                                     </button>
                                                                 @endif
@@ -154,20 +154,20 @@
                                                      style="visibility: visible; animation-name: fadeIn; animation-delay: 0.4s;">
                                                     @foreach($syllabus->attachments() as $attachment)
                                                         <div class="col-md-3 mb-5">
-                                                            <div class="card card-body  {{$attachment->color}}
+                                                            <div class="card card-body  {{ $attachment->color}}
                                                                 lighten-3 hoverable text-center">
-                                                                <i class="{{$attachment->icon}} fa-3x mb-4 mt-3
+                                                                <i class="{{ $attachment->icon}} fa-3x mb-4 mt-3
                                                                 white-text text-center"
                                                                    aria-hidden="true"></i>
                                                                 <h5 class="feature-title font-weight-bold white-text
                                                                 text-uppercase text-center">
                                                                     <a target="_blank" class="white-text text-center"
-                                                                       href="{{$attachment->path}}">
-                                                                        {{$attachment->title}}
+                                                                       href="{{ $attachment->path}}">
+                                                                        {{ $attachment->title}}
                                                                     </a>
                                                                 </h5>
                                                                 <a target="_blank" class="white-text text-center"
-                                                                   href="{{$attachment->path}}">
+                                                                   href="{{ $attachment->path}}">
                                                                     دانلود
                                                                 </a>
                                                             </div>
@@ -226,7 +226,7 @@
                                                     @else
                                                         <i class="far fa-question pl-1"></i>
                                                     @endif
-                                                    {{$sidebarSyllabus->title}}
+                                                    {{ $sidebarSyllabus->title}}
                                                 </a>
                                             </li>
                                         @endforeach
@@ -243,11 +243,11 @@
                                 <h6 class="card-title text-center ">
                                     <a href="{{ route('instructors.show', ['instructor' => $syllabus->course->instructor->id, 'slug' => $syllabus->course->instructor->slug]) }}"
                                        class="black-text">
-                                        {{$syllabus->course->instructor->name}}
+                                        {{ $syllabus->course->instructor->name}}
                                     </a>
                                 </h6>
                                 <p class="mt-3 dark-grey-text font-small text-center">
-                                    {{$syllabus->course->instructor->about}}
+                                    {{ $syllabus->course->instructor->about}}
                                 </p>
                             </div>
                         </div>

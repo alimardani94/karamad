@@ -43,7 +43,7 @@
 
                                     <tbody>
                                     @foreach($items as $item)
-                                        <tr id="product_row_{{$item['id']}}" class="product_row">
+                                        <tr id="product_row_{{ $item['id']}}" class="product_row">
                                             <input type="hidden" name="items[{{ $item['id'] }}][id]"
                                                    value="{{ $item['id'] }}">
                                             <input type="hidden" id="product_price_{{ $item['id'] }}"
@@ -75,11 +75,11 @@
                                                     <div class="btn-group radio-group ml-2" data-toggle="buttons">
                                                         <label class="btn btn-sm btn-primary btn-rounded">
                                                             <input type="radio" name="options" id="option1"
-                                                                   onclick="stepDownQty({{$item['id']}})">&mdash;
+                                                                   onclick="stepDownQty({{ $item['id']}})">&mdash;
                                                         </label>
                                                         <label class="btn btn-sm btn-primary btn-rounded">
                                                             <input type="radio" name="options" id="option2"
-                                                                   onclick="stepUpQty({{$item['id']}})">+
+                                                                   onclick="stepUpQty({{ $item['id']}})">+
                                                         </label>
                                                     </div>
                                                 @endif
@@ -96,7 +96,7 @@
                                                         data-toggle="tooltip"
                                                         data-placement="top"
                                                         title="Remove item"
-                                                        onclick="removeQty({{$item['id']}})">X
+                                                        onclick="removeQty({{ $item['id']}})">X
                                                 </button>
                                             </td>
                                         </tr>

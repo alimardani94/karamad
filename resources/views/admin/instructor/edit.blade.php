@@ -10,7 +10,7 @@
             ویرایش مدرس
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مدرسان</a></li>
             <li class="active">ویرایش مدرس</li>
         </ol>
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.instructors.update', ['instructor' => $instructor])}}">
+                    <form method="post" action="{{ route('admin.instructors.update', ['instructor' => $instructor]) }}">
                         @method('PUT')
                         @csrf
                         <div class="box-header"></div>
@@ -32,7 +32,7 @@
                                     <div class="form-group">
                                         <label for="name">نام</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                               value="{{ old('name', $instructor->name)}}" placeholder="نام">
+                                               value="{{ old('name', $instructor->name) }}" placeholder="نام">
                                     </div>
                                 </div>
 
@@ -42,7 +42,7 @@
                                             لقب / سمت / شغل ( برای مثال استاد دانشگاه)
                                         </label>
                                         <input type="text" class="form-control" id="title" name="title"
-                                               value="{{ old('title', $instructor->title)}}" placeholder="عنوان">
+                                               value="{{ old('title', $instructor->title) }}" placeholder="عنوان">
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="about">توضیحات </label>
-                                    <textarea id="about" name="about" class="form-control">{{old('about', $instructor->about)}}</textarea>
+                                    <textarea id="about" name="about" class="form-control">{{old('about', $instructor->about) }}</textarea>
                                 </div>
                             </div>
 

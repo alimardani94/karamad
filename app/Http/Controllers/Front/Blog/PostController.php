@@ -7,7 +7,6 @@ use App\Models\Blog\Post;
 use App\Models\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -33,18 +32,16 @@ class PostController extends Controller
         ]);
     }
 
-
     /**
      * Display the specified resource.
      *
-     * @param $postId
+     * @param int $id
      * @return Application|Factory|View
      */
-    public function show(int $postId)
+    public function show(int $id)
     {
-        $post = Post::whereId($postId)->with('comments')->withCount('comments')->first();
-
-        $relatedPosts = Post::where('id', '<>', $postId)->limit(6)->get();
+        $post = Post::whereId($id)->with('comments')->withCount('comments')->first();
+        $relatedPosts = Post::where('id', '<>', $id)->limit(6)->get();
 
         return view('blog.show', [
             'post' => $post,
@@ -52,6 +49,10 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function filter(Request $request)
     {
         $posts = Tag::findOrFail($request->get('tag'))->posts()->orderBy('id', 'desc')->paginate(5);

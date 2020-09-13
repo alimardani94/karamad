@@ -51,15 +51,15 @@
                             <tbody>
                             @foreach($syllabuses as $syllabus)
                                 <tr>
-                                    <td>{{$syllabus->title}}</td>
-                                    <td>{{$syllabus->course->title}}</td>
-                                    <td>{{$syllabus->type()}}</td>
-                                    <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{ $syllabus->title}}</td>
+                                    <td>{{ $syllabus->course->title}}</td>
+                                    <td>{{ $syllabus->type() }}</td>
+                                    <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.syllabuses.edit', ['syllabus' => $syllabus->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
                                         </a>
-                                        <a onclick="removeSyllabus({{$syllabus->id}})" type="button"
+                                        <a onclick="removeSyllabus({{ $syllabus->id}})" type="button"
                                            class="btn btn-block btn-danger btn-xs">حذف جلسه</a>
                                     </td>
                                 </tr>
@@ -79,7 +79,7 @@
 @section('js')
     <script>
         function removeSyllabus(id) {
-            let url = "{{ route('admin.syllabuses.destroy', '')}}/" + id
+            let url = "{{ route('admin.syllabuses.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا جلسه حذف شود؟',
                 text: "",

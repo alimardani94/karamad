@@ -97,7 +97,7 @@
                         </h2>
 
                         @foreach($product->tags as $tag)
-                            <span class="badge badge-success product mb-4 ml-2">{{$tag->name}}</span>
+                            <span class="badge badge-success product mb-4 ml-2">{{ $tag->name}}</span>
                         @endforeach
                         <h3 class="h3-responsive text-center text-md-right mb-5 ml-xl-0 ml-4">
                             <span

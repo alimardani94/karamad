@@ -38,9 +38,9 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{{$user->full_name}}</td>
-                                    <td>{{$user->cell}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td>{{ $user->full_name}}</td>
+                                    <td>{{ $user->cell}}</td>
+                                    <td>{{ $user->email}}</td>
                                     <td>{{jDate($user->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                 </tr>
                             @endforeach

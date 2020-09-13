@@ -26,7 +26,7 @@
                                                 <div class="view overlay">
                                                     <img src="{{ asset('media/' . $post->image) }}"
                                                          class="card-img-top"
-                                                         alt="{{$post->title}}">
+                                                         alt="{{ $post->title }}">
                                                     <a>
                                                         <div class="mask rgba-white-slight"></div>
                                                     </a>
@@ -36,16 +36,16 @@
                                                         <i class="fal fa-clock"></i> {{ jDate($post->created_at, 'dd MMMM yyyy') }}
                                                     </div>
                                                     <h4 class="card-title">
-                                                        <strong>{{$post->title}}</strong>
+                                                        <strong>{{ $post->title }}</strong>
                                                     </h4>
                                                     <hr>
                                                     <p class="dark-grey-text mb-4">
-                                                        {{$post->meta_description}}
+                                                        {{ $post->meta_description }}
                                                     </p>
                                                     <p class="text-left mb-0 text-uppercase dark-grey-text font-weight-bold">
                                                         <a type="button"
                                                            class="btn btn-outline-primary btn-rounded waves-effect"
-                                                           href="{{ route('posts.show', ['post' => $post->id])}}">
+                                                           href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                                             بیشتر
                                                         </a>
                                                     </p>
@@ -57,7 +57,7 @@
                             </section>
 
                             <nav class="mb-5 pb-2">
-                                {{$posts->links()}}
+                                {{ $posts->links() }}
                             </nav>
                         </div>
 
@@ -78,7 +78,7 @@
                                                             <img src="{{ asset( 'media/' . $post->image) }}"
                                                                  class="img-fluid z-depth-1 rounded-0"
                                                                  alt="{{ $post->title }}">
-                                                            <a>
+                                                            <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                                                 <div class="mask waves-light"></div>
                                                             </a>
                                                         </div>
@@ -86,7 +86,10 @@
 
                                                     <div class="col-7">
                                                         <h6 class="mt-0 font-small">
-                                                            <a><strong>{{ $post->title }}</strong></a>
+                                                            <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}"
+                                                               class="black-text">
+                                                                <strong>{{ $post->title }}</strong>
+                                                            </a>
                                                         </h6>
 
                                                         <div class="post-data">
@@ -114,11 +117,11 @@
                                                     @if($tag->posts_count)
                                                         <li class="list-group-item d-flex justify-content-between
                                                       align-items-center {{ ($tag->id == request()->get('tag')) ? 'active' : '' }}">
-                                                            <a href="{{ route('blog.filter', ['tag' => $tag->id]) }}">
-                                                                <p class="mb-0 black-text"> {{$tag->name}} </p>
+                                                            <a href="{{ route('posts.filter', ['tag' => $tag->id]) }}">
+                                                                <p class="mb-0 black-text"> {{ $tag->name}} </p>
                                                             </a>
                                                             <span class="badge teal badge-pill">
-                                                    {{$tag->posts_count}}
+                                                    {{ $tag->posts_count}}
                                                 </span>
                                                         </li>
                                                     @endif
@@ -167,8 +170,8 @@
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
                                         <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
-                                             alt="Post">
-                                        <a>
+                                             alt="{{ $post->title}}">
+                                        <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                             <div class="mask rgba-white-slight"></div>
                                         </a>
                                     </div>
@@ -177,12 +180,13 @@
                                 <div class="col-8 mb-1">
                                     <div class="">
                                         <p class="mb-1">
-                                            <a href="#!" class="text-hover font-weight-bold">
-                                                {{$post->title}}
+                                            <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}"
+                                               class="text-hover font-weight-bold">
+                                                {{ $post->title}}
                                             </a>
                                         </p>
                                         <p class="font-small grey-text">
-                                            <em> {{jDate($post->created_at, 'yyyy/MM/dd')}} </em>
+                                            <em> {{jDate($post->created_at, 'yyyy/MM/dd') }} </em>
                                         </p>
                                     </div>
                                 </div>
@@ -198,8 +202,8 @@
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
                                         <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
-                                             alt="Post">
-                                        <a>
+                                             alt="{{ $post->title}}">
+                                        <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                             <div class="mask rgba-white-slight"></div>
                                         </a>
                                     </div>
@@ -208,12 +212,13 @@
                                 <div class="col-8 mb-1">
                                     <div class="">
                                         <p class="mb-1">
-                                            <a href="#" class="text-hover font-weight-bold">
-                                                {{$post->title}}
+                                            <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}"
+                                               class="text-hover font-weight-bold">
+                                                {{ $post->title}}
                                             </a>
                                         </p>
                                         <p class="font-small grey-text">
-                                            <em> {{jDate($post->created_at, 'yyyy/MM/dd')}} </em>
+                                            <em> {{jDate($post->created_at, 'yyyy/MM/dd') }} </em>
                                         </p>
                                     </div>
                                 </div>
