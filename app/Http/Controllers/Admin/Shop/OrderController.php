@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
+use App\Enums\InvoiceableStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Shop\Product;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class OrderController extends Controller
@@ -24,5 +27,20 @@ class OrderController extends Controller
         ]);
     }
 
+    public function ChangeStatus(Order $order, Request $request)
+    {
+        $request->validate([
+            'status' => ['required', Rule::in(InvoiceableStatus::all())],
+        ]);
+
+        if ($order->status == InvoiceableStatus::Payed) {
+            $order->status = InvoiceableStatus::Shipped;
+            $order->save();
+
+            return new JsonResponse(['message' => 'status changed to shipped']);
+        }
+
+        return new JsonResponse(['message' => 'this method works for payed orders']);
+    }
 
 }

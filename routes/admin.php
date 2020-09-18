@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
     Route::delete('/comments/{comment}', 'CommentController@destroy')->name('products.comments.destroy');
 
     Route::get('/orders/', 'OrderController@index')->name('orders.index');
+    Route::post('/orders/{order}/change-status', 'OrderController@ChangeStatus')->name('orders.change-status');
 });
 
 Route::get('/transactions/', 'TransactionController@index')->name('transactions.index');

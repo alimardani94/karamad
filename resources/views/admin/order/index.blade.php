@@ -35,6 +35,7 @@
                                 <th>قیمت کل</th>
                                 <th>تاریخ</th>
                                 <th>وضعیت</th>
+                                <th>-</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,6 +71,14 @@
                                     <td>{{ number_format($order->total_price) }}</td>
                                     <td>{{ jDate($order->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>{{ $order->status() }}</td>
+                                    <td>
+                                        @if($order->status == \App\Enums\InvoiceableStatus::Payed)
+                                            <a type="button" class="btn btn-block btn-default btn-xs"
+                                               onclick="makeShipped({{ $order->id}})">
+                                                ارسال شده
+                                            </a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -85,4 +94,44 @@
 @endsection
 
 @section('js')
+    <script>
+        let changeStatusRoute = "{{ route('admin.orders.change-status', ['order' => 'orderId']) }}";
+        let statuses = @json(\App\Enums\InvoiceableStatus::all())
+    </script>
+    <script>
+        function makeShipped(id) {
+            let url = changeStatusRoute.replace('orderId', id)
+            Swal.fire({
+                title: 'آیا وضعیت به ارسال شده تغییر کند',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {
+                            'status': statuses['Shipped'],
+                        },
+                        success: function (response) {
+                            // window.location.reload();
+                        },
+                        error: function (e) {
+                            if (e.responseJSON.message != undefined) {
+                                toastr.error(e.responseJSON.message);
+                            } else {
+                                toastr.error();
+                            }
+                        }
+                    });
+                }
+            })
+        }
+    </script>
 @endsection
+
