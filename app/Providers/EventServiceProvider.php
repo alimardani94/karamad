@@ -21,6 +21,16 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\OrderEventSubscriber',
+        'App\Listeners\InvoiceEventSubscriber',
+    ];
+
+    /**
      * Register any events for your application.
      *
      * @return void
