@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InvoiceableStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -40,6 +41,14 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Invoice extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    /**
+     * @return array|string|null
+     */
+    public function status()
+    {
+        return InvoiceableStatus::translatedKeyOf($this->status);
+    }
 
     /**
      * @return MorphTo

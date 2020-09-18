@@ -14,7 +14,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between bd-highlight mb-3 example-parent">
-                    <h4 class="card-title"> صورتحساب شماره <span>{{ $invoice->id }}</span></h4>
+                    <h5 class="card-title">
+                        شماره صورتحساب: <span>{{ $invoice->id }}</span>
+                        <small class="pr-3">({{ $invoice->status() }})</small>
+                    </h5>
                     <div
                         class="p-2 bd-highlight col-example">{{ jDate($invoice->updated_at, 'dd MMMM yyyy - HH:mm') }}</div>
                 </div>
@@ -23,8 +26,11 @@
                         <thead class="mdb-color darken-3">
                         <tr class="text-white">
                             <th>#</th>
-                            <th></th>
+                            <th style="width: 50%"></th>
                             <th>قیمت</th>
+                            @if($invoice->status != \App\Enums\InvoiceableStatus::Pending)
+                                <th>وضعیت</th>
+                            @endif
                         </tr>
                         </thead>
 
@@ -46,6 +52,15 @@
                                     <td>
                                         <span>{{ number_format($product->price) }} تومان </span>
                                     </td>
+                                    @if($invoice->status != \App\Enums\InvoiceableStatus::Pending)
+                                        <td>
+                                            @if($product->type == \App\Enums\Shop\ProductType::Physical)
+                                                <span>{{ $invoice->status() }}</span>
+                                            @else
+                                                <a href="{{ asset('media/' . $product->file) }}">دانلود</a>
+                                            @endif
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif
