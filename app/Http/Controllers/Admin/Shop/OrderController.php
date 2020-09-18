@@ -27,6 +27,11 @@ class OrderController extends Controller
         ]);
     }
 
+    /**
+     * @param Order $order
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function ChangeStatus(Order $order, Request $request)
     {
         $request->validate([
