@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
@@ -22,6 +23,12 @@ class CartController extends Controller
      */
     public function add(Request $request, Product $product, int $count = 1)
     {
+        $user = Auth::user();
+
+        if ($user != null and $user->isAdmin()) {
+            return redirect()->back()->with('error', 'admin can not add product to cart');
+        }
+
         $cart = Session::get('cart');
 
         if (isset($cart[$product->id]) and $product->type == ProductType::Physical) {
