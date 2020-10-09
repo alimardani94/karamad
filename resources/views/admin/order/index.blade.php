@@ -43,7 +43,9 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>
-                                        <a href="mailto:{{ $order->user->email }}">{{ $order->user->full_name }}</a>
+                                        <a href="{{ route('admin.users.show', $order->user->id) }}">
+                                            {{ $order->user->full_name }}
+                                        </a>
                                     </td>
                                     <td>
                                         <ul class="pr-1">

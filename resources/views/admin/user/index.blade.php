@@ -1,6 +1,6 @@
 @extends('admin.layout.base')
 
-@section('title', 'خانه')
+@section('title', 'لیست کاربران')
 @section('user', 'active menu-open')
 @section('user1', 'active')
 
@@ -38,7 +38,11 @@
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $user->full_name}}</td>
+                                    <td>
+                                        <a href="{{ route('admin.users.show', $user->id) }}">
+                                            {{ $user->full_name}}
+                                        </a>
+                                    </td>
                                     <td>{{ $user->cell}}</td>
                                     <td>{{ $user->email}}</td>
                                     <td>{{jDate($user->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
