@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\InvoiceableStatus;
+use App\Enums\Shop\ProductType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -41,6 +42,17 @@ class Order extends Model
     public function products($assoc = false)
     {
         return json_decode($this->products, $assoc);
+    }
+
+    /**
+     * @return bool
+     */
+    public function needAddress()
+    {
+        $products = $this->products(true);
+        $types = array_column($products, 'type');
+
+        return in_array(ProductType::Physical, $types);
     }
 
     /**
