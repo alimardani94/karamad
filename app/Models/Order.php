@@ -32,6 +32,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property-read \App\Models\User|null $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Invoice[] $invoices
  * @property-read int|null $invoices_count
+ * @property int $address_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereAddressId($value)
+ * @property-read \App\Models\UserAddress $address
  */
 class Order extends Model
 {
@@ -53,6 +56,11 @@ class Order extends Model
         $types = array_column($products, 'type');
 
         return in_array(ProductType::Physical, $types);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(UserAddress::class, 'address_id');
     }
 
     /**

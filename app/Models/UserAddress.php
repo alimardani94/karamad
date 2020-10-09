@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereUserId($value)
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereName($value)
  */
 class UserAddress extends Model
 {

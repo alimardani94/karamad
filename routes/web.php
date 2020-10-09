@@ -36,6 +36,8 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     ]);
 });
 
+Route::get('/cities', 'CityController@get')->name('cities');
+
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@home')->name('home');
 
@@ -83,7 +85,7 @@ Route::group(['namespace' => 'Front'], function () {
     });
 
     Route::get('/invoices/{invoice}', 'InvoiceController@show')->name('invoices.show');
-    Route::get('/invoices/{invoice}/pay', 'InvoiceController@pay')->name('invoices.pay');
+    Route::post('/invoices/{invoice}/pay', 'InvoiceController@pay')->name('invoices.pay');
 
     Route::any('/payment/callback/{gateway}/{invoice}', 'PaymentController@callback')->name('payment.callback');
 });
