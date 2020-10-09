@@ -1,8 +1,8 @@
 @extends('admin.layout.base')
 
 @section('title', 'خانه')
-@section('post', 'active menu-open')
-@section('post1', 'active')
+@section('order', 'active menu-open')
+@section('order1', 'active')
 
 @section('header')
     <section class="content-header">
@@ -34,6 +34,7 @@
                                 <th>قیمت</th>
                                 <th>قیمت کل</th>
                                 <th>تاریخ</th>
+                                <th>آدرس</th>
                                 <th>وضعیت</th>
                                 <th>-</th>
                             </tr>
@@ -70,12 +71,13 @@
                                     </td>
                                     <td>{{ number_format($order->total_price) }}</td>
                                     <td>{{ jDate($order->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>{{ $order->address->toString() }}</td>
                                     <td>{{ $order->status() }}</td>
                                     <td>
                                         @if($order->status == \App\Enums\InvoiceableStatus::Payed)
                                             <a type="button" class="btn btn-block btn-default btn-xs"
                                                onclick="makeShipped({{ $order->id}})">
-                                                ارسال شده
+                                                ارسال شد
                                             </a>
                                         @endif
                                     </td>

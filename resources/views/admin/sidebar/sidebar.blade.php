@@ -219,14 +219,14 @@
     </ul>
 </li>
 
-<li class="treeview @yield('product')">
+<li class="treeview @yield('order')">
     <a href="#">
         <i class="fa fa-shopping-cart"></i>
         <span>فروش</span>
         <i class="fa fa-angle-left pull-left"></i>
     </a>
     <ul class="treeview-menu">
-        <li class="@yield('product1')">
+        <li class="@yield('order1')">
             <a href="{{ route('admin.orders.index') }}">
                 <i class="fa fa-circle-o"></i>
                 سفارشات
