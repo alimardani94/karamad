@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Enums\InvoiceStatus;
 use App\Enums\InvoiceableStatus;
 use App\Enums\TransactionStatus;
+use App\Events\InvoicePayed;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Order;
@@ -40,6 +41,8 @@ class PaymentController extends Controller
                 $order->status = InvoiceableStatus::Payed;
                 $order->save();
             });
+
+            event(new InvoicePayed($invoice));
 
         } catch (Exception $e) {
             $transaction->status = TransactionStatus::Failed;
