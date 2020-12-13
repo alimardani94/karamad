@@ -2,14 +2,21 @@
 
 namespace App\Providers;
 
-use App\Services\KeyGenerator\Generator;
-use App\Services\KeyGenerator\KeyGenerator;
+use App\Services\Otp\Otp;
+use App\Services\Otp\Redis as OtpRedis;
 use App\Services\PriceCalculator\Calculator;
 use App\Services\PriceCalculator\PriceCalculator;
 use App\Services\Reactions\Reactor;
 use App\Services\Reactions\SessionReactor;
+use App\Services\SMS\Candoo;
+use App\Services\SMS\SMS;
+use App\Services\Token\Jwt as TokenJwt;
+use App\Services\Token\Token;
+use \Exception;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +29,32 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $this->app->bind(Generator::class, KeyGenerator::class);
+        $this->app->singleton(Sms::class, function () {
+            switch (config('sms.driver')) {
+                case 'candoo':
+                    return new Candoo();
+                default:
+                    throw new Exception();
+            }
+        });
+
+        $this->app->singleton(Token::class, function () {
+            switch (config('token.type')) {
+                case 'jwt':
+                    return new TokenJwt();
+                default:
+                    throw new Exception();
+            }
+        });
+
+        $this->app->singleton(Otp::class, function () {
+            switch (config('otp.driver')) {
+                case 'redis':
+                    return new OtpRedis();
+                default:
+                    throw new Exception();
+            }
+        });
         $this->app->bind(Calculator::class, PriceCalculator::class);
         $this->app->bind(Reactor::class, SessionReactor::class);
     }
@@ -34,10 +66,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if($this->app->environment('production')) {
-            \URL::forceScheme('https');
+        if (Str::startsWith(config('app.url'), 'https')) {
+            URL::forceScheme('https');
         }
 
-        require(__DIR__ . '/../Helpers/helpers.php');
+        require(__DIR__ . '/../Services/Utils/helpers.php');
     }
 }
