@@ -1,9 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Admin;
 use App\Models\User;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder
 {
