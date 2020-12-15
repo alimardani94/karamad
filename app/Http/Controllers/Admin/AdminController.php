@@ -18,8 +18,6 @@ use Illuminate\View\View;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return Factory|View
      */
     public function index()
@@ -32,8 +30,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return Factory|View
      */
     public function create()
@@ -42,8 +38,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -72,8 +66,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param int $id
      */
     public function show($id)
@@ -82,8 +74,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
      * @param int $id
      * @return Factory|View
      */
@@ -99,8 +89,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
      * @param int $id
      * @return RedirectResponse
@@ -132,8 +120,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param int $id
      * @return JsonResponse
      * @throws Exception

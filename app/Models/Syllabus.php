@@ -183,6 +183,7 @@ class Syllabus extends Model
             }
         }
 
+
         if (count($attachments)) {
             return json_decode(json_encode($attachments), $assoc);
         }

@@ -213,7 +213,8 @@
                                                     <div class="form-group">
                                                         <label for="answer_{{ $index + 1}}">پاسخ</label>
                                                         <select type="text" class="form-control"
-                                                                id="answer_{{ $index + 1}}" name="answer[{{ $index + 1}}]" required>
+                                                                id="answer_{{ $index + 1}}"
+                                                                name="answer[{{ $index + 1}}]" required>
                                                             <option disabled selected>انتخاب کنید</option>
                                                             <option
                                                                 value="a" {{ $question->answer == 'a' ? 'selected' : ''}}>
@@ -278,10 +279,12 @@
                             </div>
                             <hr>
 
-                            <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-3" id="add_attachment_btn">افزودن
-                                ضمیمه</a>
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm mb-3" id="add_attachment_btn">
+                                افزودن
+                                ضمیمه
+                            </a>
                             <div id="attachments_box">
-                                @foreach( $syllabus->attachments() as $index=>$attachment)
+                                @foreach( $syllabus->attachments(false, []) as $index=>$attachment)
                                     <div class="row attachments_row" data-id="{{$index}}">
                                         <div class="col-md-5">
                                             <div class="form-group">

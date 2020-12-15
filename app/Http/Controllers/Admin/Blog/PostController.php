@@ -17,8 +17,6 @@ use Illuminate\View\View;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return Factory|View
      */
     public function index()
@@ -31,8 +29,6 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return Factory|View
      */
     public function create()
@@ -43,8 +39,6 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -77,8 +71,6 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param Post $post
      */
     public function show(Post $post)
@@ -87,8 +79,6 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
      * @param Post $post
      * @return Application|Factory|View
      */
@@ -101,8 +91,6 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
      * @param Post $post
      * @return RedirectResponse
@@ -138,8 +126,6 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param Post $post
      * @return JsonResponse
      * @throws Exception

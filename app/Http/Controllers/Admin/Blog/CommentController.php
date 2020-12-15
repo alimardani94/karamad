@@ -13,8 +13,6 @@ use Illuminate\View\View;
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return Factory|View
      */
     public function index()
@@ -28,8 +26,6 @@ class CommentController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param Comment $comment
      * @return JsonResponse
      * @throws Exception

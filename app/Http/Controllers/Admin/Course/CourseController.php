@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Course;
 use App\Enums\CategoryType;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models;
+use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\Syllabus;
 use Exception;
@@ -19,8 +19,6 @@ use Illuminate\View\View;
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @return Factory|View
      */
     public function index()
@@ -33,8 +31,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return Factory|View
      */
     public function create()
@@ -50,16 +46,14 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
      * @return RedirectResponse
      */
     public function store(Request $request)
     {
         $request->merge([
-            'price' => parse_number($request->get('price') ?? '0'),
-            'discount' => parse_number($request->get('discount') ?? '0'),
+            'price' => parseNumber($request->get('price') ?? '0'),
+            'discount' => parseNumber($request->get('discount') ?? '0'),
         ]);
 
         $request->validate([
@@ -96,8 +90,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param int $id
      */
     public function show($id)
@@ -106,8 +98,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
      * @param int $id
      * @return Application|Factory|View
      */
@@ -125,19 +115,15 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
-     * @param int $id
+     * @param Course $course
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        $course = Course::findOrFail($id);
-
         $request->merge([
-            'price' => parse_number($request->get('price') ?? '0'),
-            'discount' => parse_number($request->get('discount') ?? '0'),
+            'price' => parseNumber($request->get('price') ?? '0'),
+            'discount' => parseNumber($request->get('discount') ?? '0'),
         ]);
 
         $request->validate([
@@ -181,8 +167,6 @@ class CourseController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param int $id
      * @return JsonResponse
      * @throws Exception

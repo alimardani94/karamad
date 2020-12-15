@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\CategoryType;
 use App\Models\Category;
 use App\Models\Product;
 use App\Rules\UniqueCategory;
@@ -18,15 +17,13 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @param Request $request
      * @return Factory|View
      */
     public function index(Request $request)
     {
         if (!$request->get('type')) {
-            throw new RouteNotFoundException();
+            abort(404);
         }
 
         $categories = Category::where('type', $request->get('type'))->paginate(10);
@@ -37,8 +34,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @param Request $request
      * @return Factory|View
      */
@@ -56,8 +51,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -67,7 +60,7 @@ class CategoryController extends Controller
             'name' => ['required', new UniqueCategory($request->get('parent'))],
             'parent' => ['nullable', 'exists:categories,id'],
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
-            'description' => 'required|max:1024',
+            'description' => 'nullable|max:1024',
         ]);
 
         $path = $request->file('image')->store('categories');
@@ -84,48 +77,30 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
+     * @param Category $category
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
-
         return view('admin.category.edit', [
-            'mainCategories' => Category::whereParentId(0)->where('id', '<>', $id)->get(),
+            'mainCategories' => Category::whereParentId(0)->where('id', '<>', $category->id)->get(),
             'category' => $category,
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
-     * @param int $id
+     * @param Category $category
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
             'name' => ['required', new UniqueCategory($request->get('parent'), $id)],
             'parent' => ['nullable', 'exists:categories,id'],
             'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
-            'description' => 'required|max:1024',
+            'description' => 'nullable|max:1024',
         ]);
-
-        $category = Category::findOrFail($id);
 
         $path = $category->image;
         if ($request->file('image')) {
@@ -142,8 +117,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param int $id
      * @return JsonResponse
      * @throws Exception

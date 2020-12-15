@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Course;
 
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
-use App\Models;
+use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\Syllabus;
@@ -22,8 +22,6 @@ use Illuminate\View\View;
 class SyllabusController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
      * @param Request $request
      * @return Factory|View
      */
@@ -41,8 +39,6 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @param Request $request
      * @return Factory|View
      */
@@ -65,8 +61,6 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -188,8 +182,6 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param int $id
      */
     public function show($id)
@@ -198,14 +190,11 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
+     * @param Syllabus $syllabus
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(Syllabus $syllabus)
     {
-        $syllabus = Syllabus::findOrFail($id);
         $courses = Course::all();
         $types = SyllabusType::translatedAll();
 
@@ -218,17 +207,12 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
-     * @param int $id
+     * @param Syllabus $syllabus
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Syllabus $syllabus)
     {
-
-        $syllabus = Syllabus::findOrFail($id);
-
         $request->validate([
             'title' => 'required',
             'course' => 'required|exists:courses,id',
@@ -341,15 +325,13 @@ class SyllabusController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
+     * @param Syllabus $syllabus
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Syllabus $syllabus)
     {
-        Syllabus::findOrFail($id)->delete();
+        $syllabus->delete();
 
         return new JsonResponse(['message' => trans('syllabuses.deleted')]);
     }
