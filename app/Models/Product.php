@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Models\Shop;
+namespace App\Models;
 
 use App\Enums\Shop\ProductType;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * App\Models\Shop\Product
+ * App\Models\Product
  *
  * @property int $id
  * @property string $name
@@ -39,26 +36,26 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereAttachment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereDiscountType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereFeatures($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereFile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereImages($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereMetaKeywords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Shop\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereAttachment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscountType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereFeatures($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereImages($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Product extends Model

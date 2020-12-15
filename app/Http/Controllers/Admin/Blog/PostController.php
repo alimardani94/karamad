@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog\Post;
+use App\Models\Post;
  use App\Models\Tag;
 use Auth;
 use Exception;

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin\Course;
 
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
-use App\Models\Course\Course;
-use App\Models\Exam\Exam;
-use App\Models\Exam\Question;
-use App\Models\Course\Syllabus;
+use App\Models;
+use App\Models\Exam;
+use App\Models\Question;
+use App\Models\Syllabus;
 use App\Rules\SyllabusAttachment;
 use Auth;
 use Exception;

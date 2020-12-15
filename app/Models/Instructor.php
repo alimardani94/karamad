@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Course;
+namespace App\Models;
 
 use App\Enums\Instructor\InstructorType;
 use App\Models\User;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Models\Course\Instructor
+ * App\Models\Instructor
  *
  * @property int $id
  * @property int $type
@@ -22,18 +22,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string|null $image
  * @property-read string $slug
- * @property-read \App\Models\User|null $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereAbout($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Instructor whereUserId($value)
+ * @property-read User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereAbout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Instructor whereUserId($value)
  * @mixin \Eloquent
  */
 class Instructor extends Model

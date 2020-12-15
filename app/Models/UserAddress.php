@@ -20,24 +20,24 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property float|null $longitude
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\UserAddress[] $addresses
+ * @property-read \Illuminate\Database\Eloquent\Collection|UserAddress[] $addresses
  * @property-read int|null $addresses_count
  * @property-read \App\Models\City $city
  * @property-read \App\Models\Province $province
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereCityId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereLatitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereLongitude($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress wherePostalCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereProvinceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\UserAddress whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereCityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress wherePostalCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereProvinceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserAddress whereUserId($value)
  * @mixin \Eloquent
  */
 class UserAddress extends Model

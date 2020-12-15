@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Front\Shop;
 use App\Enums\InvoiceableStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Shop\Product;
+use App\Models\Product;
 use App\Services\PriceCalculator\Calculator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

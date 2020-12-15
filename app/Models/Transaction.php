@@ -18,19 +18,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Invoice $invoice
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereInvoiceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereMeta($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Transaction whereUserId($value)
- * @mixin \Eloquent
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereInvoiceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
+ * @mixin \Eloquent
  */
 class Transaction extends Model
 {

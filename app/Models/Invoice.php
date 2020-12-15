@@ -20,22 +20,22 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property mixed|null $meta
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $invoiceable
+ * @property-read Model|\Eloquent $invoiceable
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Transaction[] $transactions
  * @property-read int|null $transactions_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereGateway($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereInvoiceableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereInvoiceableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereMeta($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Invoice whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereGateway($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereInvoiceableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereInvoiceableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereMeta($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invoice whereUserId($value)
  * @mixin \Eloquent
  */
 class Invoice extends Model

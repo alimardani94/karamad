@@ -4,12 +4,12 @@ use Carbon\Carbon;
 
 if (!function_exists('jDate')) {
     /**
-     * @param Carbon $datetime
+     * @param Carbon|null $datetime
      * @param string $format
      * @param false $fixNumbers
      * @return string
      */
-    function jDate(Carbon $datetime, string $format = 'yyyy/MM/dd - HH:mm:ss', bool $fixNumbers = false): string
+    function jDate(Carbon $datetime = null, string $format = 'yyyy/MM/dd - HH:mm:ss', bool $fixNumbers = false): string
     {
         $formatter = new IntlDateFormatter(
             "fa_IR@calendar=persian",

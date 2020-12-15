@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front\Shop;
 
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Product;
+use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;

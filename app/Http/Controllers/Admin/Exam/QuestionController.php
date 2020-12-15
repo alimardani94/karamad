@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Exam;
 
 use App\Http\Controllers\Controller;
-use App\Models\Exam\Exam;
-use App\Models\Exam\Question;
+use App\Models\Exam;
+use App\Models\Question;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;

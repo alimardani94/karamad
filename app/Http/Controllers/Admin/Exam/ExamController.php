@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Exam;
 
 use App\Http\Controllers\Controller;
-use App\Models\Exam\Exam;
+use App\Models\Exam;
 use Auth;
 use Carbon\Carbon;
 use Exception;

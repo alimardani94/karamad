@@ -4,7 +4,7 @@
 namespace App\Services\PriceCalculator;
 
 
-use App\Models\Shop\Product;
+use App\Models\Product;
 
 class PriceCalculator implements Calculator
 {

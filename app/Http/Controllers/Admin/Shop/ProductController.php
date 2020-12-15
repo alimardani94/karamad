@@ -6,7 +6,7 @@ use App\Enums\CategoryType;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Shop\Product;
+use App\Models\Product;
 use App\Models\Tag;
 use Auth;
 use Exception;

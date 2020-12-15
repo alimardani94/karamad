@@ -2,7 +2,7 @@
 
 namespace App\Services\Reactions;
 
-use App\Models\Course\Course;
+use App\Models;
 use App\Models\Reaction;
 use App\Services\Reactions\Enums\ReactionTypes;
 use Illuminate\Database\Eloquent\Model;

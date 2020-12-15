@@ -14,27 +14,27 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property int $id
  * @property int|null $user_id
  * @property string $products
+ * @property int|null $address_id
  * @property int $total_price
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereProducts($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereTotalPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUserId($value)
- * @mixin \Eloquent
- * @property-read \App\Models\User|null $user
+ * @property-read \App\Models\UserAddress|null $address
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Invoice[] $invoices
  * @property-read int|null $invoices_count
- * @property int $address_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereAddressId($value)
- * @property-read \App\Models\UserAddress $address
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereAddressId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereProducts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereTotalPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
+ * @mixin \Eloquent
  */
 class Order extends Model
 {

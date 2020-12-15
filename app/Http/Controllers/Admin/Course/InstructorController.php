@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Course;
 
 use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
-use App\Models\Course\Instructor;
+use App\Models\Instructor;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;

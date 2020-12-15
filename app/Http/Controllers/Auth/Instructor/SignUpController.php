@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth\Instructor;
 
 use App\Enums\Instructor\InstructorType;
 use App\Http\Controllers\Controller;
-use App\Models\Course\Instructor;
+use App\Models\Instructor;
 use App\Models\User;
 use App\Rules\Mobile;
 use Hash;

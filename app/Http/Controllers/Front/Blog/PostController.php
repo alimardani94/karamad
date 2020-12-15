@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog\Post;
+use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

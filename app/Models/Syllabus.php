@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models\Course;
+namespace App\Models;
 
 use App\Enums\FileDisk;
 use App\Enums\Syllabus\SyllabusType;
-use App\Models\Exam\Exam;
-use App\Models\Exam\Question;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * App\Models\Course\Syllabus
+ * App\Models\Syllabus
  *
  * @property int $id
  * @property int $course_id
@@ -23,37 +21,37 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $text
  * @property string|null $video
  * @property string|null $audio
+ * @property string|null $attachments
  * @property int|null $exam_id
  * @property int $confirmed
  * @property string|null $meta_keywords
  * @property string|null $meta_description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $attachments
- * @property-read \App\Models\Course\Course $course
- * @property-read \App\Models\Exam\Exam|null $exam
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Exam\Question[] $questions
- * @property-read int|null $questions_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereAttachments($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereAudio($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereConfirmed($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereCourseId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereExamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereFileDisk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereMetaKeywords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Course\Syllabus whereVideo($value)
- * @mixin \Eloquent
+ * @property-read \App\Models\Course $course
+ * @property-read \App\Models\Exam|null $exam
  * @property-read string $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Question[] $questions
+ * @property-read int|null $questions_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereAttachments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereAudio($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereConfirmed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereCourseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereExamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereFileDisk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Syllabus whereVideo($value)
+ * @mixin \Eloquent
  */
 class Syllabus extends Model
 {

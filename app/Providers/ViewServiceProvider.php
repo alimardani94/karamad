@@ -3,13 +3,12 @@
 namespace App\Providers;
 
 use App\Enums\CategoryType;
-use App\Models\Blog\Post;
+use App\Models\Course;
+use App\Models\Post;
 use App\Models\Category;
-use App\Models\Course\Course;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Session;
 
 class ViewServiceProvider extends ServiceProvider
 {

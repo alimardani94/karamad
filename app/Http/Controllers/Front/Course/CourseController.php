@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front\Course;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course\Course;
+use App\Models;
 use App\Services\Reactions\Enums\ReactionTypes;
 use App\Services\Reactions\Reactor;
 use Illuminate\Contracts\View\Factory;

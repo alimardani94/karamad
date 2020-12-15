@@ -7,26 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Models\ContactForm
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm query()
- * @mixin \Eloquent
  * @property int $id
+ * @property int|null $user_id
  * @property string $name
  * @property string $email
  * @property string|null $cell
  * @property string $body
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereCell($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereUpdatedAt($value)
- * @property int|null $user_id
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ContactForm whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereCell($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContactForm whereUserId($value)
+ * @mixin \Eloquent
  */
 class ContactForm extends Model
 {

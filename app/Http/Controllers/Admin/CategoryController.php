@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\CategoryType;
 use App\Models\Category;
-use App\Models\Shop\Product;
+use App\Models\Product;
 use App\Rules\UniqueCategory;
 use Exception;
 use Illuminate\Contracts\View\Factory;

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Blog\Post;
-use App\Models\Course\Course;
+use App\Models\Post;
+use App\Models;
 use App\Http\Controllers\Controller;
-use App\Models\Shop\Product;
+use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;

@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Models\Blog;
+namespace App\Models;
 
-use App\Models\Comment;
-use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * App\Models\Blog\Post
+ * App\Models\Post
  *
  * @property int $id
  * @property string $title
@@ -28,18 +25,18 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereAuthorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereContent($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereImage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereMetaKeywords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Blog\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Post extends Model
