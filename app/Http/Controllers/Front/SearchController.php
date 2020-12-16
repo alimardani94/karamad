@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Course;
 use App\Models\Post;
-use App\Models;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Contracts\View\Factory;

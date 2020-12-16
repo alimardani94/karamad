@@ -2,7 +2,6 @@
 
 namespace App\Services\Reactions;
 
-use App\Models;
 use App\Models\Reaction;
 use App\Services\Reactions\Enums\ReactionTypes;
 use Illuminate\Database\Eloquent\Model;

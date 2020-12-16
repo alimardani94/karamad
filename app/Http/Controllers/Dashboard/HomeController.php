@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models;
-use App\Models\Invoice;
+use App\Models\Course;
 use App\Models\Order;
 use App\Models\Reaction;
 use App\Models\Transaction;
 use App\Services\Reactions\Enums\ReactionTypes;
 use Auth;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
