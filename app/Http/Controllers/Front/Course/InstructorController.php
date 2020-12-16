@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front\Course;
 
 use App\Http\Controllers\Controller;
-use App\Models;
+use App\Models\Course;
 use App\Models\Instructor;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
