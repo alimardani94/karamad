@@ -17,6 +17,8 @@ class CreateSchoolsTable extends Migration
             $table->id();
             $table->string('name')->index();
             $table->foreignId('city_id')->index();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

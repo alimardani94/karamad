@@ -3,15 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
-    Route::get('sign-up', [
-        'uses' => 'SignUpController@show',
-        'as' => 'auth.sign-up',
-        'middleware' => 'guest',
-    ]);
-    Route::post('sign-up', [
-        'uses' => 'SignUpController@request',
-        'middleware' => 'guest',
-    ]);
     Route::get('sign-in', [
         'uses' => 'SignInController@show',
         'as' => 'auth.sign-in',
@@ -24,15 +15,6 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     Route::get('sign-out', [
         'uses' => 'SignOutController@handle',
         'as' => 'auth.sign-out',
-    ]);
-    Route::get('instructor/sign-up', [
-        'uses' => 'Instructor\SignUpController@show',
-        'as' => 'auth.instructor.sign-up',
-        'middleware' => 'guest',
-    ]);
-    Route::post('instructor/sign-up', [
-        'uses' => 'Instructor\SignUpController@request',
-        'middleware' => 'guest',
     ]);
 });
 

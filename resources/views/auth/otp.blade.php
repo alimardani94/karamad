@@ -1,6 +1,6 @@
 @extends('auth/layout.base')
 
-@section('title', 'ورود')
+@section('title', 'ورود/نام‌نویسی')
 
 @section('class', 'login-page')
 
@@ -32,7 +32,7 @@
         }
 
         .login-page .intro-2 {
-            background: url(http://localhost:8888/assets/img/auth/register.jpg) center center no-repeat;
+            background: url(http://localhost:8888/assets/img/auth/Artificial-intelligence.jpg) center center no-repeat;
             background-size: cover;
         }
     </style>
@@ -67,6 +67,10 @@
                                         <div class="text-center">
                                             <button class="btn btn-primary btn-rounded">ورود</button>
                                             <hr class="mt-4">
+                                            <div>
+                                                <span class="ml-1">هنوز ثبت نام نکرده ام</span>
+                                                <a href="{{ route('auth.sign-up')}}">ثبت نام</a>
+                                            </div>
                                             <div class="inline-ul text-center d-flex justify-content-center">
                                                 <hr class="mt-1">
                                                 <a class="p-2 m-2 fa-lg tw-ic"><i class="fab fa-twitter black-text"></i></a>
