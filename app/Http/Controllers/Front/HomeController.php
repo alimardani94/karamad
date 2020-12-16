@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models;
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\Reaction;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
