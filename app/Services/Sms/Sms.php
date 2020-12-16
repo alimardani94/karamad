@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SMS;
+namespace App\Services\Sms;
 
-interface SMS
+interface Sms
 {
     /**
      * send SMS to single phone
@@ -14,12 +14,14 @@ interface SMS
 
     /**
      * get array of received SMS from users
+     *
      * @return array
      */
-    public function receivedSMS(): array;
+    public function received(): array;
 
     /**
      * get SMS provider balance
+     *
      * @return int
      */
     public function balance(): int;

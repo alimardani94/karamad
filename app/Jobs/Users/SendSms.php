@@ -16,7 +16,7 @@ class SendSms implements ShouldQueue
     /**
      * @var string
      */
-    private $cellphone;
+    private $cell;
 
     /**
      * @var string
@@ -26,12 +26,12 @@ class SendSms implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param string $cellphone
+     * @param string $cell
      * @param string $body
      */
-    public function __construct(string $cellphone, string $body)
+    public function __construct(string $cell, string $body)
     {
-        $this->cellphone = $cellphone;
+        $this->cell = $cell;
         $this->body = $body;
     }
 
@@ -44,6 +44,6 @@ class SendSms implements ShouldQueue
     {
         /** @var Sms $sms */
         $sms = app(Sms::class);
-        $sms->send($this->cellphone, $this->body);
+        $sms->send($this->cell, $this->body);
     }
 }

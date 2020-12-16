@@ -19,7 +19,7 @@ class Redis implements Otp
      */
     public function __construct()
     {
-        $this->ttl = config('tp.drivers.redis.ttl');
+        $this->ttl = (int)config('otp.drivers.redis.ttl');
     }
 
     /**

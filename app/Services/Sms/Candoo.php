@@ -1,19 +1,23 @@
 <?php
 
-namespace App\Services\SMS;
+namespace App\Services\Sms;
 
 use App\Models\SmsLog;
-use App\Services\SMS\Exceptions\SmsException;
+use App\Services\Sms\Exceptions\SmsException;
 use Exception;
 use \SoapClient;
 
-class Candoo implements SMS
+class Candoo implements Sms
 {
     /**
      * @var SoapClient
      */
     private $client;
 
+    /**
+     * Candoo constructor.
+     * @throws \SoapFault
+     */
     public function __construct()
     {
         $this->client = new SoapClient(config('sms.drivers.candoo.wdsl'));
@@ -54,7 +58,10 @@ class Candoo implements SMS
         }
     }
 
-    public function receivedSMS(): array
+    /**
+     * @return array
+     */
+    public function received(): array
     {
         $params = [
             'username' => config('sms.drivers.candoo.username'),
@@ -66,6 +73,9 @@ class Candoo implements SMS
         return $this->client->__soapCall('ViewReceive', $params);
     }
 
+    /**
+     * @return int
+     */
     public function balance(): int
     {
         $params = [
@@ -76,6 +86,10 @@ class Candoo implements SMS
         return $this->client->__soapCall('Balance', $params);
     }
 
+    /**
+     * @param $phone
+     * @return string
+     */
     private function formatPhone($phone)
     {
         return "98" . substr($phone, 1);
