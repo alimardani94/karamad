@@ -2,54 +2,67 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\SignInActivityTypes;
 use App\Http\Controllers\Controller;
+use App\Models\SignInActivity;
+use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class SignInController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function show()
     {
         return view('auth.sign-in');
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function request(Request $request)
     {
-        $this->validate($request, [
-            'login' => 'required',
+
+        sleep(10);
+        $request->validate([
+            'cell' => 'required',
             'password' => 'required',
         ]);
 
         $credential = [
-            'email' => $request->get('login'),
+            'cell' => $request->get('cell'),
             'password' => $request->get('password'),
         ];
 
-        if (Auth::attempt($credential)) {
+        $signInActivity = new SignInActivity();
+        $signInActivity->ip = $request->getClientIp() ?? 'N/A';
+        $signInActivity->agent = $request->userAgent() ?? 'N/A';
+
+        if (Auth::attempt($credential, $request->get('remember_me'))) {
+            $signInActivity->user_id = Auth::id();
+            $signInActivity->type = SignInActivityTypes::SUCCESSFUL;
+            $signInActivity->save();
+
             return new JsonResponse([
                 'message' => trans('auth.user_registered_successfully'),
                 'link' => route('dashboard.home'),
             ]);
         }
 
-        $credential = [
-            'cell' => $request->get('login'),
-            'password' => $request->get('password'),
-        ];
-
-        if (Auth::attempt($credential)) {
-            return new JsonResponse([
-                'message' => trans('auth.success'),
-                'link' => route('dashboard.home'),
-            ]);
+        if ($user = User::whereCell($credential['cell'])->first()) {
+            $signInActivity->user_id = $user->id ?? 0;
+            $signInActivity->type = SignInActivityTypes::FAILED;
+            $signInActivity->save();
         }
 
-        return new JsonResponse([
-            'errors' => [trans('auth.failed')],
-        ], 404);
+        return new JsonResponse(['message' => trans('auth.failed')], 404);
     }
 }
 

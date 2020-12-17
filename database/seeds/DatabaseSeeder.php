@@ -4,16 +4,16 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\User;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
+     * @throws FileNotFoundException
      */
     public function run()
     {
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'surname' => 'علیمردانی',
             'cell' => '09198959530',
             'email' => 'alimardani94@gmail.com',
-            'password' => '$2y$10$v5UsZMnnHbWHgfDKYScHMOjOQfPt0ovVH0MbbZegEOb01EVsk.19e',
+            'password' => Hash::make('12345678'),
         ];
 
         $admin = [
@@ -47,11 +47,17 @@ class DatabaseSeeder extends Seeder
         ], $admin);
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     private function createProvince()
     {
         DB::unprepared(File::get(__DIR__ . '/sql/provinces.sql'));
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     private function createCity()
     {
         DB::unprepared(File::get(__DIR__ . '/sql/cities.sql'));

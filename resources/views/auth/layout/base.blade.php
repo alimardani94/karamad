@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="success" content="{{ session('success') }}">
     <meta name="error" content="{{ session('error') }}">
+    <meta name="errors" content="{{ json_encode($errors->all()) }}">
+    <meta name="message" content="{{ session('message') }}">
     <title>@lang('general.hooshcup') | @yield('title')</title>
 
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-pro-5.12.0-web-ulabs/css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.css') }}">
 
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ m(asset('assets/css/style.css')) }}" rel="stylesheet">
 
     @yield('style')
 </head>
@@ -30,39 +32,10 @@
 <script type="text/javascript" src="{{ asset('assets/vendor/MDB-Pro_4.11.0/js/mdb.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-validation/jquery.validate.js') }}"></script>
 <script src="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/input-mask/jquery.inputmask.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
+<script type="text/javascript" src="{{ m(asset('assets/js/main.js')) }}"></script>
 
-<script>
-    let toastPosition = 'toast-bottom-left';
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        toastPosition = 'toast-top-center';
-    }
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": toastPosition,
-        "onclick": null,
-        "showDuration": "1000",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-
-    let success = $('meta[name=success]').attr("content");
-    let error = $('meta[name=error]').attr("content");
-
-    if (success !== '') {
-        toastr.success(success);
-    }
-    if (error !== '') {
-        toastr.error(error);
-    }
-</script>
 @yield('js')
 
 </body>
