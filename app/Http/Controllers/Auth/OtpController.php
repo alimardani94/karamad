@@ -14,6 +14,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -95,8 +96,14 @@ class OtpController extends Controller
         $signInActivity->type = SignInActivityTypes::SUCCESSFUL;
         $signInActivity->save();
 
+        $redirectRoute = route('dashboard.home');
+
+        if (Auth::user()->name == null) {
+            $redirectRoute = route('auth.sign-up');
+        }
+
         return new JsonResponse([
-            'redirect' => route('dashboard.home'),
+            'redirect' => $redirectRoute,
         ]);
     }
 }

@@ -89,7 +89,7 @@
                                 <ul class="menu">
                                     <li>
                                         <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> ۵ کاربر جدید ثبت نام کردند
+                                            <i class="fa fa-users text-aqua"></i> ۵ کاربر جدید نام‌نویسی کردند
                                         </a>
                                     </li>
                                     <li>

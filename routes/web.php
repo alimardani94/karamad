@@ -19,6 +19,16 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
         'middleware' => ['throttle:3,1', 'guest'],
     ]);
 
+    Route::get('sign-up', [
+        'uses' => 'SignUpController@show',
+        'as' => 'auth.sign-up',
+        'middleware' => 'auth',
+    ]);
+    Route::post('sign-up', [
+        'uses' => 'SignUpController@request',
+        'middleware' => 'auth',
+    ]);
+
     Route::get('sign-in', [
         'uses' => 'SignInController@show',
         'as' => 'auth.sign-in',

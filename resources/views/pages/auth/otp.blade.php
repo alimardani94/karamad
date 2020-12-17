@@ -73,7 +73,8 @@
                                         </h3>
                                     </div>
 
-                                    <form id="request_form" action="{{ route('auth.otp.request')}}" method="post">
+                                    <form id="request_form" action="{{ route('auth.otp.request')}}" method="post"
+                                          autocomplete="off">
                                         <small class="mb-2">
                                             شماره همراه خود را وارد کنید و بر روی دکمه ارسال کلیک کنید.
                                         </small>
@@ -87,7 +88,7 @@
                                         </div>
                                     </form>
                                     <form id="submit_form" action="{{ route('auth.otp.submit')}}" method="post"
-                                          style="display: none">
+                                          autocomplete="off" style="display: none">
                                         <small class="mb-2">
                                             کد تایید ارسال شده را وارد نمایید.
                                         </small>
