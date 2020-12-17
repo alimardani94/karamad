@@ -24,7 +24,7 @@ class AdminController extends Controller
     {
         $admins = Admin::paginate(10);
 
-        return view('admin.admin.index', [
+        return view('pages.admin.admin.index', [
             'admins' => $admins,
         ]);
     }
@@ -34,7 +34,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.admin.create');
+        return view('pages.admin.admin.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class AdminController extends Controller
     {
         $admin = Admin::findOrFail($id);
 
-        return view('admin.admin.edit', [
+        return view('pages.admin.admin.edit', [
             'admin' => $admin,
             'user' => $admin->user,
         ]);

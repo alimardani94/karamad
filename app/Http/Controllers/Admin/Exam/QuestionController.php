@@ -26,7 +26,7 @@ class QuestionController extends Controller
             $questions = Question::paginate(10);
         }
 
-        return view('admin.question.index', [
+        return view('pages.admin.question.index', [
             'questions' => $questions,
         ]);
     }
@@ -45,7 +45,7 @@ class QuestionController extends Controller
             $number = 1;
         }
 
-        return view('admin.question.create', [
+        return view('pages.admin.question.create', [
             'number' => $number,
             'exam' => $exam ?? null,
             'exams' => $exams ?? [],
@@ -99,7 +99,7 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
 
-        return view('admin.question.edit', [
+        return view('pages.admin.question.edit', [
             'question' => $question,
         ]);
     }

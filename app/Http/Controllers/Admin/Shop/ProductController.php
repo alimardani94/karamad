@@ -30,7 +30,7 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
 
-        return view('admin.product.index', [
+        return view('pages.admin.product.index', [
             'products' => $products,
         ]);
     }
@@ -45,7 +45,7 @@ class ProductController extends Controller
         $categories = Category::where('parent_id', '<>', 0)
             ->where('type', CategoryType::Shop)->get();
 
-        return view('admin.product.create', [
+        return view('pages.admin.product.create', [
             'tags' => Tag::all(),
             'categories' => $categories,
             'types' => ProductType::translatedAll(),
@@ -144,7 +144,7 @@ class ProductController extends Controller
         $categories = Category::where('parent_id', '<>', 0)
             ->where('type', CategoryType::Shop)->get();
 
-        return view('admin.product.edit', [
+        return view('pages.admin.product.edit', [
             'product' => $product,
             'tags' => Tag::all(),
             'categories' => $categories,

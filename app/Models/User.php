@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,17 +14,20 @@ use Illuminate\Notifications\Notifiable;
  * App\Models\User
  *
  * @property int $id
- * @property string $name
- * @property string $surname
+ * @property string|null $name
+ * @property string|null $surname
  * @property string $cell
- * @property string $email
+ * @property string|null $email
+ * @property int|null $school_id
+ * @property string|null $grade
  * @property string $image
- * @property string|null $cell_verified_at
+ * @property \Illuminate\Support\Carbon|null $cell_verified_at
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Admin|null $admin
  * @property-read string $full_name
  * @property-read \App\Models\Instructor|null $instructor
@@ -29,53 +35,52 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
  * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property-read int|null $roles_count
+ * @property-read \App\Models\UserEmailReset|null $userEmailReset
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCell($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCellVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGrade($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSchoolId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSurname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id', 'name', 'surname', 'cell', 'email', 'password',
-    ];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'cell_verified_at',
+        'updated_at',
+        'deleted_at',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'cell_verified_at' => 'datetime',
     ];
+
+    public $appends = ['full_name'];
 
     /**
      * @param $value
@@ -101,15 +106,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Instructor::Class);
     }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return $this->admin != null;
-    }
-
 
     /**
      * @return bool
@@ -142,5 +138,67 @@ class User extends Authenticatable
         }else {
             return asset('assets/img/avatars/avatar.png');
         }
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * @param int $roleId
+     * @return bool
+     */
+    public function hasRole(int $roleId): bool
+    {
+        foreach ($this->roles as $role) {
+            if ($role->id == $roleId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $permissions
+     * @return bool
+     */
+    public function hasPermission(string $permissions): bool
+    {
+        $permissions = explode('|', $permissions);
+
+        foreach ($this->roles as $role) {
+            foreach ($role->permissions() as $p) {
+                if (in_array($p, $permissions)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->roles()->count() > 0;
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        $this->load('roles');
+
+        return $this->roles()->where('title', 'super_admin')->exists();
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function userEmailReset()
+    {
+        return $this->hasOne(UserEmailReset::class);
     }
 }

@@ -18,7 +18,7 @@ class ShopController extends Controller
     {
         $products = Product::paginate();
 
-        return view('shop.index', [
+        return view('pages.shop.index', [
             'products' => $products,
         ]);
     }
@@ -33,7 +33,7 @@ class ShopController extends Controller
         $product = Product::whereId($id)->with('comments')->withCount('comments')->first();
         $relatedProducts = Product::where('id', '<>', $id)->limit(6)->get();
 
-        return view('shop.product', [
+        return view('pages.shop.product', [
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ]);

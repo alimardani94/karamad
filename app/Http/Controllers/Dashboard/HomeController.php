@@ -20,7 +20,7 @@ class HomeController extends Controller
         $courses = Course::whereIn('id', $ids)->paginate(10);
         $transactions = Transaction::whereUserId(Auth::id())->orderByDesc('id')->paginate(10);
 
-        return view('dashboard.home', [
+        return view('pages.dashboard.home', [
             'orders' => $orders,
             'courses' => $courses,
             'transactions' => $transactions,

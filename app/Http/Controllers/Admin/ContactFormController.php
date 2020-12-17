@@ -17,7 +17,7 @@ class ContactFormController extends Controller
     {
         $messages = ContactForm::paginate(30);
 
-        return view('admin.contact-form', [
+        return view('pages.admin.contact-form', [
             'messages' => $messages
         ]);
     }

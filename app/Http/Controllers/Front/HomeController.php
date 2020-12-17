@@ -24,7 +24,7 @@ class HomeController extends Controller
         $popularCourses = Course::whereIn('id', $ids)->limit(6)->get();
 
 
-        return view('front.home', [
+        return view('pages.front.home', [
             'courses' => $courses,
             'popularCourses' => $popularCourses,
         ]);

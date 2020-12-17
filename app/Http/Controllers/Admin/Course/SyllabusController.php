@@ -33,7 +33,7 @@ class SyllabusController extends Controller
             $syllabuses = Syllabus::paginate(10);
         }
 
-        return view('admin.syllabus.index', [
+        return view('pages.admin.syllabus.index', [
             'syllabuses' => $syllabuses
         ]);
     }
@@ -52,7 +52,7 @@ class SyllabusController extends Controller
 
         $types = SyllabusType::translatedAll();
 
-        return view('admin.syllabus.create', [
+        return view('pages.admin.syllabus.create', [
             'course' => $course ?? null,
             'courses' => $courses ?? [],
             'types' => $types,
@@ -198,7 +198,7 @@ class SyllabusController extends Controller
         $courses = Course::all();
         $types = SyllabusType::translatedAll();
 
-        return view('admin.syllabus.edit', [
+        return view('pages.admin.syllabus.edit', [
             'syllabus' => $syllabus,
             'courses' => $courses,
             'types' => $types,

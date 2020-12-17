@@ -21,7 +21,7 @@ class InstructorController extends Controller
     {
         $instructors = Instructor::paginate(15);
 
-        return view('admin.instructor.index', [
+        return view('pages.admin.instructor.index', [
             'instructors' => $instructors
         ]);
     }
@@ -31,7 +31,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        return view('admin.instructor.create');
+        return view('pages.admin.instructor.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class InstructorController extends Controller
     {
         $instructor = Instructor::findOrFail($id);
 
-        return view('admin.instructor.edit', [
+        return view('pages.admin.instructor.edit', [
             'instructor' => $instructor,
         ]);
     }

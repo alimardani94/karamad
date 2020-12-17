@@ -83,6 +83,6 @@ class ProfileController extends Controller
         $user->save();
 
         Auth::logout();
-        return redirect()->route('auth.sign-in');
+        return redirect()->route('auth.otp');
     }
 }

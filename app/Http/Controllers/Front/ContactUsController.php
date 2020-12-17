@@ -18,7 +18,7 @@ class ContactUsController extends Controller
      */
     public function show()
     {
-        return view('front.contact-us');
+        return view('pages.front.contact-us');
     }
 
     /**

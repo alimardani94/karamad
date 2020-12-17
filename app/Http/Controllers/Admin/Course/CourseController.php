@@ -25,7 +25,7 @@ class CourseController extends Controller
     {
         $courses = Course::paginate(10);
 
-        return view('admin.course.index', [
+        return view('pages.admin.course.index', [
             'courses' => $courses
         ]);
     }
@@ -39,7 +39,7 @@ class CourseController extends Controller
         $categories = Category::where('parent_id', '<>', 0)
             ->where('type', CategoryType::Course)->get();
 
-        return view('admin.course.create', [
+        return view('pages.admin.course.create', [
             'instructors' => $instructors,
             'categories' => $categories,
         ]);
@@ -107,7 +107,7 @@ class CourseController extends Controller
         $instructors = Instructor::all();
         $categories = Category::where('parent_id', '<>', 0)->get();
 
-        return view('admin.course.edit', [
+        return view('pages.admin.course.edit', [
             'course' => $course,
             'instructors' => $instructors,
             'categories' => $categories,

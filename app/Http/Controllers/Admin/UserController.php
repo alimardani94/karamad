@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('admin.user.index', [
+        return view('pages.admin.user.index', [
             'users' => $users,
         ]);
     }
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', [
+        return view('pages.admin.user.show', [
             'user' => $user,
             'orders' => $user->orders,
         ]);

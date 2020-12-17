@@ -70,7 +70,7 @@ class CartController extends Controller
 
         $totalPrice = array_sum(array_column($items, 'total_price'));
 
-        return view('shop.cart', [
+        return view('pages.shop.cart', [
             'items' => $items,
             'totalPrice' => $totalPrice,
         ]);

@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         $posts = Post::paginate(10);
 
-        return view('admin.post.index', [
+        return view('pages.admin.post.index', [
             'posts' => $posts,
         ]);
     }
@@ -33,7 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.post.create', [
+        return view('pages.admin.post.create', [
             'tags' => Tag::all(),
         ]);
     }
@@ -84,7 +84,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.post.edit', [
+        return view('pages.admin.post.edit', [
             'post' => $post,
             'tags' => Tag::all(),
         ]);

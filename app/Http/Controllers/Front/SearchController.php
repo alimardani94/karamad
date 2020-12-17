@@ -24,7 +24,7 @@ class SearchController extends Controller
         $posts = Post::where('title', 'like', "%$q%")->limit(4)->get();
         $products = Product::where('name', 'like', "%$q%")->limit(4)->get();
 
-        return view('front.search.search', [
+        return view('pages.front.search.search', [
             'courses' => $courses,
             'posts' => $posts,
             'products' => $products,
@@ -41,7 +41,7 @@ class SearchController extends Controller
 
         $courses = Course::where('title', 'like', "%$q%")->paginate(12);
 
-        return view('front.search.course_search', [
+        return view('pages.front.search.course_search', [
             'courses' => $courses,
         ]);
     }
@@ -56,7 +56,7 @@ class SearchController extends Controller
 
         $posts = Post::where('title', 'like', "%$q%")->paginate(12);
 
-        return view('front.search.post_search', [
+        return view('pages.front.search.post_search', [
             'posts' => $posts,
         ]);
     }
@@ -71,7 +71,7 @@ class SearchController extends Controller
 
         $products = Product::where('name', 'like', "%$q%")->paginate(12);
 
-        return view('front.search.product_search', [
+        return view('pages.front.search.product_search', [
             'products' => $products,
         ]);
     }

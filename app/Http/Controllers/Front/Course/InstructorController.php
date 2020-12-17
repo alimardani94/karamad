@@ -20,7 +20,7 @@ class InstructorController extends Controller
     {
         $courses = Course::whereInstructorId($instructor->id)->orderBy('id', 'desc')->whereHas('syllabuses')->limit(6)->paginate(16);
 
-        return view('front.course.instructor', [
+        return view('pages.front.course.instructor', [
             'instructor' => $instructor,
             'courses' => $courses,
         ]);

@@ -22,7 +22,7 @@ class ExamController extends Controller
     {
         $exams = Exam::withCount('questions')->paginate(10);
 
-        return view('admin.exam.index', [
+        return view('pages.admin.exam.index', [
             'exams' => $exams,
         ]);
     }
@@ -32,7 +32,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('admin.exam.create', [
+        return view('pages.admin.exam.create', [
         ]);
     }
 
@@ -78,7 +78,7 @@ class ExamController extends Controller
     {
         $exam = Exam::findOrFail($id);
 
-        return view('admin.exam.edit', [
+        return view('pages.admin.exam.edit', [
             'exam' => $exam,
         ]);
     }

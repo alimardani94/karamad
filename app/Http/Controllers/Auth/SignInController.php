@@ -20,7 +20,7 @@ class SignInController extends Controller
      */
     public function show()
     {
-        return view('auth.sign-in');
+        return view('pages.auth.sign-in');
     }
 
     /**

@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         $categories = Category::where('type', $request->get('type'))->paginate(10);
 
-        return view('admin.category.index', [
+        return view('pages.admin.category.index', [
             'categories' => $categories,
         ]);
     }
@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         $categories = Category::whereParentId(0)->where('type', $request->get('type'))->get();
 
-        return view('admin.category.create', [
+        return view('pages.admin.category.create', [
             'mainCategories' => $categories,
         ]);
     }
@@ -82,7 +82,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit', [
+        return view('pages.admin.category.edit', [
             'mainCategories' => Category::whereParentId(0)->where('id', '<>', $category->id)->get(),
             'category' => $category,
         ]);

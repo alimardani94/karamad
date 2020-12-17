@@ -23,7 +23,7 @@ class OrderController extends Controller
     {
         $orders = Order::orderByDesc('id')->paginate(10);
 
-        return view('admin.order.index', [
+        return view('pages.admin.order.index', [
             'orders' => $orders,
         ]);
     }

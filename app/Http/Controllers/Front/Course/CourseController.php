@@ -23,7 +23,7 @@ class CourseController extends Controller
     {
         $courses = Course::paginate(12);
 
-        return view('front.course.courses', [
+        return view('pages.front.course.courses', [
             'courses' => $courses,
         ]);
     }
@@ -36,7 +36,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view('front.course.course', [
+        return view('pages.front.course.course', [
             'course' => $course,
         ]);
     }

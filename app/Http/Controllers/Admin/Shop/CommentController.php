@@ -21,7 +21,7 @@ class CommentController extends Controller
     {
         $comments = Comment::whereCommentableType(Product::class)->paginate(12);
 
-        return view('admin.comment.index', [
+        return view('pages.admin.comment.index', [
             'comments' => $comments,
         ]);
     }

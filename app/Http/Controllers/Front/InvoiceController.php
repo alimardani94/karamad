@@ -34,7 +34,7 @@ class InvoiceController extends Controller
             $address = $order->address;
         }
 
-        return view('front.invoice', [
+        return view('pages.front.invoice', [
             'invoice' => $invoice,
             'provinces' => $provinces,
             'address' => $address,

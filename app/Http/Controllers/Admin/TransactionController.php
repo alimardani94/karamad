@@ -19,7 +19,7 @@ class TransactionController
     {
         $transactions = Transaction::orderByDesc('id')->paginate(10);
 
-        return view('admin.transaction.index', [
+        return view('pages.admin.transaction.index', [
             'transactions' => $transactions,
         ]);
     }

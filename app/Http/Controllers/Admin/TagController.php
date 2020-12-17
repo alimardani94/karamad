@@ -29,7 +29,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create', [
+        return view('pages.admin.tag.create', [
             'tags' => Tag::all(),
         ]);
     }
