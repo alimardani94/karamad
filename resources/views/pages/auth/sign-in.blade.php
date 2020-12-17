@@ -55,7 +55,7 @@
                                             <span class="mb-2 align-top">ورود</span>
                                         </h1>
                                     </div>
-                                    <form id="signInForm" action="{{ route('auth.otp')}}" method="post">
+                                    <form id="signInForm" action="{{ route('auth.sign-in')}}" method="post">
                                         @csrf
                                         <div class="md-form">
                                             <input type="text" id="cell" name="cell" class="form-control">

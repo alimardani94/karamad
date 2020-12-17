@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Seeder;
@@ -24,27 +24,24 @@ class DatabaseSeeder extends Seeder
 
     private function createAdminUser()
     {
-        $user = [
+        $role = Role::updateOrCreate([
+            'title' => 'super_admin'
+        ], [
+            'permissions' => json_encode(['super-admin']),
+        ]);
+
+        $user = User::updateOrCreate([
+            'id' => 1
+        ], [
             'id' => 1,
             'name' => 'محمد',
             'surname' => 'علیمردانی',
             'cell' => '09198959530',
             'email' => 'alimardani94@gmail.com',
             'password' => Hash::make('12345678'),
-        ];
+        ]);
 
-        $admin = [
-            'id' => 1,
-            'user_id' => 1,
-        ];
-
-        User::updateOrCreate([
-            'id' => $user['id']
-        ], $user);
-
-        Admin::updateOrCreate([
-            'id' => $admin['id']
-        ], $admin);
+        $user->roles()->save($role);
     }
 
     /**

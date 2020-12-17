@@ -40,7 +40,7 @@
                             <tbody>
                             @foreach($admins as $admin)
                                 <tr>
-                                    <td>{{ $admin->user->full_name}}</td>
+                                    <td>{{ $admin->full_name}}</td>
                                     <td>{{jDate($admin->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.admins.edit', ['admin' => $admin->id]) }}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مدیر

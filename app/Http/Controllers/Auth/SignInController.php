@@ -29,8 +29,6 @@ class SignInController extends Controller
      */
     public function request(Request $request)
     {
-
-        sleep(10);
         $request->validate([
             'cell' => 'required',
             'password' => 'required',

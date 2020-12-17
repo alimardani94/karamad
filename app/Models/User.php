@@ -28,7 +28,6 @@ use Illuminate\Notifications\Notifiable;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\Admin|null $admin
  * @property-read string $full_name
  * @property-read \App\Models\Instructor|null $instructor
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -89,14 +88,6 @@ class User extends Authenticatable
     public function getFullNameAttribute($value)
     {
         return $this->name . ' ' . $this->surname;
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function admin()
-    {
-        return $this->hasOne(Admin::Class);
     }
 
     /**

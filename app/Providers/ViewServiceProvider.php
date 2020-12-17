@@ -29,11 +29,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('admin.*', function ($view) {
+        View::composer('pages.admin.*', function ($view) {
             $view->with('authUser', Auth::user());
         });
 
-        View::composer('dashboard.*', function ($view) {
+        View::composer('pages.dashboard.*', function ($view) {
             $view->with('authUser', Auth::user());
         });
 
