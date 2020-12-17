@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'کاربری با این مشخصات یافت نشد',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'درخواست های زیادی از سمت شما آمده است لطفا کمی صبر کنید.',
     'success' => 'خوش آمدید',
     'user_registered_successfully' => 'ثبت نام شما با موفقیت انجام شد',
 

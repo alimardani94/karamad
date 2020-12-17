@@ -35,6 +35,23 @@
             background: url(http://localhost:8888/assets/img/auth/sign-in.jpg) center center no-repeat;
             background-size: cover;
         }
+
+        input {
+            text-align: center;
+            direction: ltr;
+        }
+
+        input[type="text"]:-moz-placeholder {
+            text-align: right;
+        }
+
+        input[type="text"]:-ms-input-placeholder {
+            text-align: right;
+        }
+
+        input[type="text"]::-webkit-input-placeholder {
+            text-align: right;
+        }
     </style>
 @endsection
 @section('body')
