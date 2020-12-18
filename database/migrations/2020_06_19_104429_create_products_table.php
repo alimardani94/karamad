@@ -27,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('discount')->default(0);
             $table->text('attachment')->nullable();
             $table->text('features')->nullable();
+            $table->text('summery')->nullable();
             $table->text('description')->nullable();
             $table->text('images');
             $table->string('meta_keywords')->nullable();

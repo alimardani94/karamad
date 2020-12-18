@@ -228,6 +228,11 @@ ul.list-group {
     direction: rtl;
 }
 
+.card {
+    -webkit-box-shadow: 0 0 30px 0 rgba(82,63,105,.05);
+    box-shadow: 0 0 30px 0 rgba(82,63,105,.05);
+}
+
 .testimonial-card .avatar {
     height: 120px;
     width: 120px;
