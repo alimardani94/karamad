@@ -66,6 +66,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Models\School|null $school
  */
 class User extends Authenticatable
 {

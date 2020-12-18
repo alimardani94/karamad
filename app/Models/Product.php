@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Shop\ProductStatus;
 use App\Enums\Shop\ProductType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Translation\Translator;
@@ -14,8 +15,10 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * App\Models\Product
  *
  * @property int $id
+ * @property int $owner_id
  * @property string $name
  * @property int $category_id
+ * @property int $status
  * @property int $type
  * @property int|null $quantity
  * @property string|null $file
@@ -52,8 +55,10 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereMetaKeywords($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereOwnerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -69,7 +74,15 @@ class Product extends Model
     }
 
     /**
-     * @return array|Application|Translator|string|null
+     * @return string|null
+     */
+    public function status()
+    {
+        return ProductStatus::translatedKeyOf($this->status);
+    }
+
+    /**
+     * @return string|null
      */
     public function type()
     {

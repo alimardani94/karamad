@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->foreignId('owner_id')->index();
             $table->string('name');
             $table->unsignedBigInteger('category_id')->index();
-            $table->integer('type');
-            $table->integer('quantity')->nullable();
+            $table->unsignedSmallInteger('status')->default(0);
+            $table->unsignedSmallInteger('type');
+            $table->unsignedBigInteger('quantity')->nullable();
             $table->string('file')->nullable();
             $table->unsignedBigInteger('price')->default(0);
             $table->unsignedSmallInteger('discount_type')->default(0);

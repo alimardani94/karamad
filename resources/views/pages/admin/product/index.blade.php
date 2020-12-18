@@ -35,24 +35,26 @@
                                 <th>نوع</th>
                                 <th>قیمت</th>
                                 <th>موجودی</th>
-                                <th>تاریخ ایجاد</th>
+                                <th>تاریخ</th>
+                                <th>وضعیت</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $product->name}}</td>
+                                    <td>{{ $product->name }}</td>
                                     <td>{{ $product->type() }}</td>
-                                    <td>{{ $product->price}}</td>
-                                    <td>{{ $product->quantity}}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->quantity }}</td>
 
                                     <td>{{jDate($product->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>{{ $product->status()}}</td>
                                     <td>
                                         <a href="{{ route('admin.shop.products.edit', ['product' => $product->id]) }}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش محصول
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removeProduct({{ $product->id}})">حذف محصول</a>
+                                           onclick="removeProduct({{ $product->id }})">حذف محصول</a>
                                     </td>
                                 </tr>
                             @endforeach

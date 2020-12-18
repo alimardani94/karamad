@@ -46,7 +46,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'parent' => ['nullable', 'exists:categories,id'],
+            'parent' => ['nullable', 'exists:course_categories,id'],
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'nullable|max:1024',
         ]);
@@ -84,7 +84,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'parent' => ['nullable', 'exists:categories,id'],
+            'parent' => ['nullable', 'exists:course_categories,id'],
             'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'nullable|max:1024',
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
+use App\Enums\Shop\ProductStatus;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -61,9 +62,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'unique:products'],
-            'owner' => ['required', 'exists:owners,id'],
-            'category' => ['required', 'exists:categories,id'],
+            'name' => ['required'],
+            'owner' => ['required', 'exists:users,id'],
+            'category' => ['required', 'exists:product_categories,id'],
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
             'type' => ['required'],
@@ -100,8 +101,10 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->get('name');
+        $product->owner_id = $request->get('owner');
         $product->category_id = $request->get('category');
         $product->type = $request->get('type');
+        $product->status = ProductStatus::CONFIRMED;
         if ($product->type == ProductType::Physical) {
             $product->quantity = $request->get('quantity');
         } else {
@@ -162,10 +165,11 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name' => ['required', 'unique:products,name,' . $product->id],
+            'name' => ['required'],
+            'owner' => ['required', 'exists:users,id'],
+            'category' => ['required', 'exists:product_categories,id'],
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'category' => ['required', 'exists:categories,id'],
             'type' => ['required'],
             'file' => [
                 'mimes:mp3,mpga,wav,mp4,mov,ogg,qt,jpeg,bmp,png,gif,svg,pdf,zip,rar,pdf'
