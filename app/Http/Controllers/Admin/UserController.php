@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
 
@@ -17,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::whereDoesntHave('roles')->paginate(10);
 
         return view('pages.admin.user.index', [
             'users' => $users,
@@ -28,6 +27,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
+     * @return Factory|View
      */
     public function show(User $user)
     {

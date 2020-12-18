@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Rules\Mobile;
 use Auth;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -34,7 +33,7 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
-            'cell' => ['required', 'string', new Mobile(), 'unique:users,cell,'. $user->id],
+            'cell' => ['required', 'string', 'cell', 'unique:users,cell,'. $user->id],
             'email' => ['required', 'email', 'unique:users,email,'. $user->id],
             'image' => ['nullable', 'mimes:jpeg,png,,svg', 'max:3000'],
         ]);

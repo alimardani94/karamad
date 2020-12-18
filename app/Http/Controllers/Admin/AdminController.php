@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
-use App\Rules\Mobile;
 use Auth;
 use Exception;
 use Hash;
@@ -46,7 +45,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
-            'cell' => ['required', 'string', new Mobile(), 'unique:users'],
+            'cell' => ['required', 'string', 'cell', 'unique:users'],
             'email' => ['required', 'email', 'unique:users'],
         ]);
 
@@ -91,7 +90,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
-            'cell' => ['required', 'string', new Mobile(), 'unique:users,cell,' . $admin->id],
+            'cell' => ['required', 'string', 'cell', 'unique:users,cell,' . $admin->id],
             'email' => ['required', 'email', 'unique:users,email,' . $admin->id],
         ]);
 
@@ -112,7 +111,7 @@ class AdminController extends Controller
      */
     public function destroy(User $admin)
     {
-        if($admin->id == Auth::id()) {
+        if ($admin->id == Auth::id()) {
             return new JsonResponse(['message' => trans('admins.you_cant_delete_yourself')], 403);
         }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Tag;
+use App\Models\User;
 use Exception;
 use File;
 use Illuminate\Contracts\Foundation\Application;
@@ -41,10 +42,12 @@ class ProductController extends Controller
     public function create()
     {
         $categories = ProductCategory::where('parent_id', '<>', null)->get();
+        $owners = User::whereHas('school')->select(['id', 'name', 'surname'])->get();
 
         return view('pages.admin.product.create', [
             'tags' => Tag::all(),
             'categories' => $categories,
+            'owners' => $owners,
             'types' => ProductType::translatedAll(),
         ]);
     }
@@ -59,9 +62,10 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => ['required', 'unique:products'],
+            'owner' => ['required', 'exists:owners,id'],
+            'category' => ['required', 'exists:categories,id'],
             'tags' => 'nullable|array',
             'tags.*' => 'exists:tags,id',
-            'category' => ['required', 'exists:categories,id'],
             'type' => ['required'],
             'file' => [
                 Rule::requiredIf((int)$request->get('type') == ProductType::Digital),

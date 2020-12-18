@@ -96,7 +96,7 @@
                             window.location.reload();
                         },
                         error: function (e) {
-                            if (e['responseJSON']['message'] != undefined) {
+                            if (e['responseJSON']['message'] !== undefined) {
                                 toastr.error(e['responseJSON']['message']);
                             } else {
                                 toastr.error();
