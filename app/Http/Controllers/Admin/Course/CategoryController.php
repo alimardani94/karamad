@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
         $category = new CourseCategory();
         $category->name = $request->get('name');
-        $category->parent_id = $request->get('parent') ?? 0;
+        $category->parent_id = $request->get('parent');
         $category->image = $path;
         $category->description = $request->get('description');
         $category->save();
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         }
 
         $category->name = $request->get('name');
-        $category->parent_id = $request->get('parent') ?? 0;
+        $category->parent_id = $request->get('parent');
         $category->image = $path;
         $category->description = $request->get('description');
         $category->save();
