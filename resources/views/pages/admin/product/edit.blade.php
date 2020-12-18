@@ -29,7 +29,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <form method="post" id="productForm"
-                          action="{{ route('admin.products.update', ['product' => $product->id]) }}"
+                          action="{{ route('admin.shop.products.update', ['product' => $product->id]) }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

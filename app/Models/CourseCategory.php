@@ -11,33 +11,31 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Category
+ * App\Models\CourseCategory
  *
  * @property int $id
  * @property int $parent_id
- * @property int $type
  * @property string $name
  * @property string|null $image
  * @property string|null $description
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read Collection|Category[] $children
+ * @property-read Collection|CourseCategory[] $children
  * @property-read int|null $children_count
- * @property-read Category $parent
- * @method static Builder|Category newModelQuery()
- * @method static Builder|Category newQuery()
- * @method static Builder|Category query()
- * @method static Builder|Category whereCreatedAt($value)
- * @method static Builder|Category whereDescription($value)
- * @method static Builder|Category whereId($value)
- * @method static Builder|Category whereImage($value)
- * @method static Builder|Category whereName($value)
- * @method static Builder|Category whereParentId($value)
- * @method static Builder|Category whereType($value)
- * @method static Builder|Category whereUpdatedAt($value)
+ * @property-read CourseCategory $parent
+ * @method static Builder|CourseCategory newModelQuery()
+ * @method static Builder|CourseCategory newQuery()
+ * @method static Builder|CourseCategory query()
+ * @method static Builder|CourseCategory whereCreatedAt($value)
+ * @method static Builder|CourseCategory whereDescription($value)
+ * @method static Builder|CourseCategory whereId($value)
+ * @method static Builder|CourseCategory whereImage($value)
+ * @method static Builder|CourseCategory whereName($value)
+ * @method static Builder|CourseCategory whereParentId($value)
+ * @method static Builder|CourseCategory whereUpdatedAt($value)
  * @mixin Eloquent
  */
-class Category extends Model
+class CourseCategory extends Model
 {
 
     protected $fillable = [

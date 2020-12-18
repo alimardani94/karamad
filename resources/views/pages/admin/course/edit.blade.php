@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.courses.update', ['course' => $course->id]) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('admin.course.courses.update', ['course' => $course->id]) }}" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="box-header"></div>

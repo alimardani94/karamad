@@ -22,6 +22,7 @@ class CreateQuestionsTable extends Migration
             $table->text('c');
             $table->text('d');
             $table->string('answer')->index();
+            $table->text('answer_reason')->nullable();
 
             $table->timestamps();
         });

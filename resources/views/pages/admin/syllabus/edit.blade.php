@@ -56,7 +56,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <form id="create_syllabus" method="post"
-                          action="{{ route('admin.syllabuses.update', [ 'syllabus' => $syllabus->id ]) }}"
+                          action="{{ route('admin.course.syllabuses.update', [ 'syllabus' => $syllabus->id ]) }}"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf

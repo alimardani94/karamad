@@ -2,10 +2,8 @@
 
 @section('title', 'خانه')
 
-@php($categoryType = strtolower(\App\Enums\CategoryType::keyOf(request()->get('type'))))
-
-@section( $categoryType . '.category', 'active menu-open')
-@section( $categoryType .'.category2', 'active')
+@section( 'course.category', 'active menu-open')
+@section( 'course.category2', 'active')
 
 @section('style')
 @endsection
@@ -28,7 +26,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{route('admin.categories.store') }}"
+                    <form method="post" action="{{route('admin.course.categories.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="type" value="{{ request()->get('type') }}">

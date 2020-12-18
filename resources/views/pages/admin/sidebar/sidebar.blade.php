@@ -14,13 +14,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('course.category1')">
-            <a href="{{ route('admin.categories.index', ['type' =>  \App\Enums\CategoryType::Course]) }}">
+            <a href="{{ route('admin.course.categories.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست دسته بندی ها
             </a>
         </li>
         <li class="@yield('course.category2')">
-            <a href="{{ route('admin.categories.create', ['type' =>  \App\Enums\CategoryType::Course]) }}">
+            <a href="{{ route('admin.course.categories.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دسته بندی
             </a>
@@ -36,13 +36,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('instructor1')">
-            <a href="{{ route('admin.instructors.index') }}">
+            <a href="{{ route('admin.course.instructors.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست مدرسان
             </a>
         </li>
         <li class="@yield('instructor2')">
-            <a href="{{ route('admin.instructors.create') }}">
+            <a href="{{ route('admin.course.instructors.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مدرس
             </a>
@@ -58,13 +58,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('course1')">
-            <a href="{{ route('admin.courses.index') }}">
+            <a href="{{ route('admin.course.courses.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست دوره ها
             </a>
         </li>
         <li class="@yield('course2')">
-            <a href="{{ route('admin.courses.create') }}">
+            <a href="{{ route('admin.course.courses.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دوره
             </a>
@@ -80,13 +80,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('syllabus1')">
-            <a href="{{ route('admin.syllabuses.index') }}">
+            <a href="{{ route('admin.course.syllabuses.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست جلسات
             </a>
         </li>
         <li class="@yield('syllabus2')">
-            <a href="{{ route('admin.syllabuses.create') }}">
+            <a href="{{ route('admin.course.syllabuses.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن جلسه
             </a>
@@ -103,13 +103,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('exam1')">
-            <a href="{{ route('admin.exams.index') }}">
+            <a href="{{ route('admin.exam.exams.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست آزمون ها
             </a>
         </li>
         {{--        <li class="@yield('exam2')">--}}
-        {{--            <a href="{{ route('admin.exams.create') }}">--}}
+        {{--            <a href="{{ route('admin.exam.exams.create') }}">--}}
         {{--                <i class="fa fa-circle-o"></i>--}}
         {{--                افزودن آزمون--}}
         {{--            </a>--}}
@@ -125,13 +125,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('question1')">
-            <a href="{{ route('admin.questions.index') }}">
+            <a href="{{ route('admin.exam.questions.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست سوالات
             </a>
         </li>
         {{--        <li class="@yield('question2')">--}}
-        {{--            <a href="{{ route('admin.questions.create') }}">--}}
+        {{--            <a href="{{ route('admin.exam.questions.create') }}">--}}
         {{--                <i class="fa fa-circle-o"></i>--}}
         {{--                افزودن سوال--}}
         {{--            </a>--}}
@@ -148,19 +148,19 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('post1')">
-            <a href="{{ route('admin.posts.index') }}">
+            <a href="{{ route('admin.blog.posts.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست مقالات
             </a>
         </li>
         <li class="@yield('post2')">
-            <a href="{{ route('admin.posts.create') }}">
+            <a href="{{ route('admin.blog.posts.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن مقاله
             </a>
         </li>
         <li class="@yield('post3')">
-            <a href="{{ route('admin.posts.comments.index') }}">
+            <a href="{{ route('admin.blog.posts.comments.index') }}">
                 <i class="fa fa-circle-o"></i>
                 <span>دیدگاه ها</span>
             </a>
@@ -177,13 +177,13 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('shop.category1')">
-            <a href="{{ route('admin.categories.index', ['type' =>  \App\Enums\CategoryType::Shop]) }}">
+            <a href="{{ route('admin.shop.categories.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست دسته بندی ها
             </a>
         </li>
         <li class="@yield('shop.category2')">
-            <a href="{{ route('admin.categories.create', ['type' =>  \App\Enums\CategoryType::Shop]) }}">
+            <a href="{{ route('admin.shop.categories.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن دسته بندی محصول
             </a>
@@ -199,19 +199,19 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('product1')">
-            <a href="{{ route('admin.products.index') }}">
+            <a href="{{ route('admin.shop.products.index') }}">
                 <i class="fa fa-circle-o"></i>
                 لیست محصولات
             </a>
         </li>
         <li class="@yield('product2')">
-            <a href="{{ route('admin.products.create') }}">
+            <a href="{{ route('admin.shop.products.create') }}">
                 <i class="fa fa-circle-o"></i>
                 افزودن محصول
             </a>
         </li>
         <li class="@yield('product3')">
-            <a href="{{ route('admin.products.comments.index') }}">
+            <a href="{{ route('admin.shop.products.comments.index') }}">
                 <i class="fa fa-circle-o"></i>
                 <span>دیدگاه ها</span>
             </a>
@@ -227,7 +227,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="@yield('order1')">
-            <a href="{{ route('admin.orders.index') }}">
+            <a href="{{ route('admin.shop.orders.index') }}">
                 <i class="fa fa-circle-o"></i>
                 سفارشات
             </a>

@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" action="{{ route('admin.instructors.update', ['instructor' => $instructor]) }}">
+                    <form method="post" action="{{ route('admin.course.instructors.update', ['instructor' => $instructor]) }}">
                         @method('PUT')
                         @csrf
                         <div class="box-header"></div>

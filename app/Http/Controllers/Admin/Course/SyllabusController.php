@@ -177,16 +177,8 @@ class SyllabusController extends Controller
         $syllabus->meta_description = $request->get('meta_description');
         $syllabus->save();
 
-        return redirect()->route('admin.syllabuses.index', ['course' => $syllabus->course_id])
+        return redirect()->route('admin.course.syllabuses.index', ['course' => $syllabus->course_id])
             ->with('success', trans('syllabuses.created'));
-    }
-
-    /**
-     * @param int $id
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -320,7 +312,7 @@ class SyllabusController extends Controller
         $syllabus->meta_description = $request->get('meta_description');
         $syllabus->save();
 
-        return redirect()->route('admin.syllabuses.index', ['course' => $syllabus->course_id])
+        return redirect()->route('admin.course.syllabuses.index', ['course' => $syllabus->course_id])
             ->with('success', trans('syllabuses.updated'));
     }
 

@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مقاله ها</h3>
-                        <a href="{{ route('admin.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.blog.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
                             مقاله جدید</a>
                     </div>
                     <div class="box-body">
@@ -50,7 +50,7 @@
                                     <td>{{ $post->author->full_name }}</td>
                                     <td>{{jDate($post->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
                                     <td>
-                                        <a href="{{ route('admin.posts.edit', ['post' => $post->id])}}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مقاله
+                                        <a href="{{ route('admin.blog.posts.edit', ['post' => $post->id])}}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مقاله
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
                                            onclick="removePost({{$post->id}})">حذف مقاله</a>
@@ -72,7 +72,7 @@
 @section('js')
     <script>
         function removePost(id) {
-            let url = "{{ route('admin.posts.destroy', '')}}/" + id
+            let url = "{{ route('admin.blog.posts.destroy', '')}}/" + id
             Swal.fire({
                 title: 'آیا مقاله حذف شود؟',
                 text: "",

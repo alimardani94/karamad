@@ -80,7 +80,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect()->route('admin.questions.create', ['exam' => $question->exam_id])->with('success', trans('questions.created'));
+        return redirect()->route('admin.exam.questions.create', ['exam' => $question->exam_id])->with('success', trans('questions.created'));
     }
 
     /**
@@ -130,7 +130,7 @@ class QuestionController extends Controller
         $question->answer = $request->get('answer');
         $question->save();
 
-        return redirect()->route('admin.questions.index', ['exam' => $question->exam_id])
+        return redirect()->route('admin.exam.questions.index', ['exam' => $question->exam_id])
             ->with('success', trans('questions.updated'));
     }
 

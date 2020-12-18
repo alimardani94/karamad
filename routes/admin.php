@@ -10,25 +10,25 @@ Route::resources([
     'users' => 'UserController',
     'admins' => 'AdminController',
     'tags' => 'TagController',
-    'categories' => 'CategoryController',
 ]);
 
-Route::group(['namespace' => 'Course', 'prefix' => 'course'], function () {
+Route::group(['namespace' => 'Course', 'prefix' => 'course', 'as' => 'course.'], function () {
     Route::resources([
         'instructors' => 'InstructorController',
         'courses' => 'CourseController',
         'syllabuses' => 'SyllabusController',
+        'categories' => 'CategoryController',
     ]);
 });
 
-Route::group(['namespace' => 'Exam', 'prefix' => 'exam'], function () {
+Route::group(['namespace' => 'Exam', 'prefix' => 'exam' , 'as' => 'exam.'], function () {
     Route::resources([
         'exams' => 'ExamController',
         'questions' => 'QuestionController',
     ]);
 });
 
-Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
+Route::group(['namespace' => 'Blog', 'prefix' => 'blog', 'as' => 'blog.'], function () {
     Route::resources([
         'posts' => 'PostController',
     ]);
@@ -37,9 +37,10 @@ Route::group(['namespace' => 'Blog', 'prefix' => 'blog'], function () {
     Route::delete('/comments/{comment}', 'CommentController@destroy')->name('posts.comments.destroy');
 });
 
-Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
+Route::group(['namespace' => 'Shop', 'prefix' => 'shop', 'as' => 'shop.'], function () {
     Route::resources([
         'products' => 'ProductController',
+        'categories' => 'CategoryController',
     ]);
 
     Route::get('/comments/', 'CommentController@index')->name('products.comments.index');

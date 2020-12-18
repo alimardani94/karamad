@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Shop;
 
-use App\Enums\CategoryType;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Tag;
-use Auth;
 use Exception;
 use File;
 use Illuminate\Contracts\Foundation\Application;
@@ -42,8 +40,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id', '<>', 0)
-            ->where('type', CategoryType::Shop)->get();
+        $categories = ProductCategory::where('parent_id', '<>', null)->get();
 
         return view('pages.admin.product.create', [
             'tags' => Tag::all(),
@@ -120,7 +117,7 @@ class ProductController extends Controller
 
         $product->tags()->attach($request->get('tags'));
 
-        return redirect()->route('admin.products.index')->with('success', trans('products.created'));
+        return redirect()->route('admin.shop.products.index')->with('success', trans('products.created'));
     }
 
     /**
@@ -141,8 +138,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::where('parent_id', '<>', 0)
-            ->where('type', CategoryType::Shop)->get();
+        $categories = ProductCategory::where('parent_id', '<>', null)->get();
 
         return view('pages.admin.product.edit', [
             'product' => $product,
@@ -224,7 +220,7 @@ class ProductController extends Controller
 
         $product->tags()->sync($request->get('tags'));
 
-        return redirect()->route('admin.products.index')->with('success', trans('products.updated'));
+        return redirect()->route('admin.shop.products.index')->with('success', trans('products.updated'));
     }
 
     /**

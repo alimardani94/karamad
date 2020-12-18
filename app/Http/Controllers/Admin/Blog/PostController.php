@@ -67,7 +67,7 @@ class PostController extends Controller
 
         $post->tags()->attach($request->get('tags'));
 
-        return redirect()->route('admin.posts.index')->with('success', trans('posts.created'));
+        return redirect()->route('admin.blog.posts.index')->with('success', trans('posts.created'));
     }
 
     /**
@@ -122,7 +122,7 @@ class PostController extends Controller
 
         $post->tags()->sync($request->get('tags'));
 
-        return redirect()->route('admin.posts.index')->with('success', trans('posts.updated'));
+        return redirect()->route('admin.blog.posts.index')->with('success', trans('posts.updated'));
     }
 
     /**

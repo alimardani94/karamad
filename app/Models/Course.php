@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|null $meta_description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Category $category
+ * @property-read \App\Models\CourseCategory $category
  * @property-read string $slug
  * @property-read \App\Models\Instructor $instructor
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Syllabus[] $syllabuses
@@ -75,7 +75,7 @@ class Course extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(CourseCategory::class);
     }
 
     /**

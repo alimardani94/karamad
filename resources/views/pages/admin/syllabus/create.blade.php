@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form id="create_syllabus" method="post" action="{{ route('admin.syllabuses.store') }}"
+                    <form id="create_syllabus" method="post" action="{{ route('admin.course.syllabuses.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>

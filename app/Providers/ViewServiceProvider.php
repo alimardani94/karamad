@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Enums\CategoryType;
 use App\Models\Course;
 use App\Models\Post;
-use App\Models\Category;
+use App\Models\CourseCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -38,7 +37,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $view->with('headerCategories', Category::whereType(CategoryType::Course)->where('parent_id', 0)->limit(3)->get());
+            $view->with('headerCategories', CourseCategory::where('parent_id', 0)->limit(3)->get());
         });
         View::composer('*', function ($view) {
             $view->with('headerPost', Post::first());

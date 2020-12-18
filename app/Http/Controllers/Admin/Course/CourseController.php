@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Course;
 
-use App\Enums\CategoryType;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\CourseCategory;
 use App\Models\Course;
 use App\Models\Instructor;
-use App\Models\Syllabus;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -36,8 +34,7 @@ class CourseController extends Controller
     public function create()
     {
         $instructors = Instructor::all();
-        $categories = Category::where('parent_id', '<>', 0)
-            ->where('type', CategoryType::Course)->get();
+        $categories = CourseCategory::where('parent_id', '<>', null)->get();
 
         return view('pages.admin.course.create', [
             'instructors' => $instructors,
@@ -86,26 +83,17 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('admin.courses.index')->with('success', trans('courses.created'));
+        return redirect()->route('admin.course.courses.index')->with('success', trans('courses.created'));
     }
 
     /**
-     * @param int $id
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * @param int $id
+     * @param Course $course
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        $course = Course::findOrFail($id);
         $instructors = Instructor::all();
-        $categories = Category::where('parent_id', '<>', 0)->get();
+        $categories = CourseCategory::where('parent_id', '<>', null)->get();
 
         return view('pages.admin.course.edit', [
             'course' => $course,
@@ -163,21 +151,21 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect()->route('admin.courses.index')->with('success', trans('courses.created'));
+        return redirect()->route('admin.course.courses.index')->with('success', trans('courses.created'));
     }
 
     /**
-     * @param int $id
+     * @param Course $course
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        if (Syllabus::whereCourseId($id)->exists()) {
+        if ($course->has('syllabuses')) {
             return new JsonResponse(['message' => 'این دوره دارای جلسه بوده و برای جذف ان ابتدا جلسات آن را حذف کنید'], 400);
         }
 
-        Course::findOrFail($id)->delete();
+        $course->delete();
 
         return new JsonResponse(['message' => trans('categories.deleted')]);
     }

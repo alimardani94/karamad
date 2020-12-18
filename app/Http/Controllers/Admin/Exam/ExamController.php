@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Exam;
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use Auth;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -59,7 +58,7 @@ class ExamController extends Controller
 
         $exam->save();
 
-        return redirect()->route('admin.questions.create', ['exam' => $exam])->with('success', trans('exams.created'));
+        return redirect()->route('admin.exam.questions.create', ['exam' => $exam])->with('success', trans('exams.created'));
     }
 
     /**
@@ -105,7 +104,7 @@ class ExamController extends Controller
         $exam->description = $request->get('description');
         $exam->save();
 
-        return redirect()->route('admin.exams.index')->with('success', trans('exams.updated'));
+        return redirect()->route('admin.exam.exams.index')->with('success', trans('exams.updated'));
     }
 
     /**

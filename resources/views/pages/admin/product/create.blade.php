@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <form method="post" id="productForm" action="{{ route('admin.products.store') }}"
+                    <form method="post" id="productForm" action="{{ route('admin.shop.products.store') }}"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-header"></div>

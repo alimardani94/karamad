@@ -70,7 +70,7 @@
 @section('js')
     <script>
         function removePost(id) {
-            let url = "{{ route('admin.posts.comments.destroy', '') }}/" + id
+            let url = "{{ route('admin.blog.posts.comments.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا دیدگاه حذف شود؟',
                 text: "",

@@ -1,10 +1,9 @@
 @extends('pages.admin.layout.base')
 
 @section('title', 'خانه')
-@php($categoryType = strtolower(\App\Enums\CategoryType::keyOf(request()->get('type'))))
 
-@section( $categoryType . '.category', 'active menu-open')
-@section( $categoryType .'.category1', 'active')
+@section( 'course.category', 'active menu-open')
+@section( 'course.category1', 'active')
 
 @section('header')
     <section class="content-header">
@@ -26,7 +25,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست دسته بندی ها</h3>
-                        <a href="{{route('admin.categories.create', ['type' => request()->get('type')]) }}"
+                        <a href="{{route('admin.course.categories.create') }}"
                            class="btn btn-primary btn-flat pull-left">افزودن
                             دسته بندی جدید</a>
                     </div>
@@ -47,7 +46,7 @@
                                     <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
                                     <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.categories.edit', ['category' => $category->id]) }}"
+                                        <a href="{{ route('admin.course.categories.edit', ['category' => $category->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">
                                             ویرایش دسته بندی
                                         </a>
@@ -73,7 +72,7 @@
 @section('js')
     <script>
         function removeCategory(id) {
-            let url = "{{route('admin.categories.destroy', '') }}/" + id
+            let url = "{{route('admin.course.categories.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا دسته بندی حذف شود؟',
                 text: "",
@@ -97,8 +96,8 @@
                             window.location.reload();
                         },
                         error: function (e) {
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
+                            if (e['responseJSON']['message'] != undefined) {
+                                toastr.error(e['responseJSON']['message']);
                             } else {
                                 toastr.error();
                             }

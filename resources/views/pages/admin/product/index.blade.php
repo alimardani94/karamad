@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست محصولات</h3>
-                        <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.shop.products.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                             محصول جدید</a>
                     </div>
                     <div class="box-body">
@@ -49,7 +49,7 @@
 
                                     <td>{{jDate($product->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.products.edit', ['product' => $product->id]) }}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش محصول
+                                        <a href="{{ route('admin.shop.products.edit', ['product' => $product->id]) }}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش محصول
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
                                            onclick="removeProduct({{ $product->id}})">حذف محصول</a>
@@ -71,7 +71,7 @@
 @section('js')
     <script>
         function removeProduct(id) {
-            let url = "{{ route('admin.products.destroy', '') }}/" + id
+            let url = "{{ route('admin.shop.products.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا محصول حذف شود؟',
                 text: "",

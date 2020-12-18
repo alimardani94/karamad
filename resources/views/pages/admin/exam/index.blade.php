@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست آزمون ها</h3>
-{{--                        <a href="{{ route('admin.exams.create') }}" class="btn btn-primary btn-flat pull-left">افزودن--}}
+{{--                        <a href="{{ route('admin.exam.exams.create') }}" class="btn btn-primary btn-flat pull-left">افزودن--}}
 {{--                            آزمون جدید</a>--}}
                     </div>
                     <div class="box-body">
@@ -46,13 +46,13 @@
                                     <td>{{ $exam->questions_count}}</td>
                                     <td>{{jDate($exam->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.questions.create', ['exam' => $exam->id]) }}"
+                                        <a href="{{ route('admin.exam.questions.create', ['exam' => $exam->id]) }}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن سوال</a>
-                                        <a href="{{ route('admin.questions.index', ['exam' => $exam->id]) }}"
+                                        <a href="{{ route('admin.exam.questions.index', ['exam' => $exam->id]) }}"
                                            type="button" class="btn btn-block btn-info btn-xs">لیست سوالات</a>
 
                                         @if(!$exam->syllabus)
-                                            <a href="{{ route('admin.exams.edit', ['exam' => $exam->id]) }}"
+                                            <a href="{{ route('admin.exam.exams.edit', ['exam' => $exam->id]) }}"
                                                type="button" class="btn btn-block btn-primary btn-xs">
                                                 ویرایش آزمون
                                             </a>
@@ -79,7 +79,7 @@
 @section('js')
     <script>
         function removeExam(id) {
-            let url = "{{ route('admin.exams.destroy', '') }}/" + id
+            let url = "{{ route('admin.exam.exams.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا آزمون حذف شود؟',
                 text: "",

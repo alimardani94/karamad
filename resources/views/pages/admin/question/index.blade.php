@@ -25,11 +25,11 @@
                     <div class="box-header">
                         <h3 class="box-title">لیست سوالات</h3>
                         @if(request()->get('exam'))
-                            <a href="{{route('admin.questions.create', ['exam' => request()->get('exam')]) }}"
+                            <a href="{{route('admin.exam.questions.create', ['exam' => request()->get('exam')]) }}"
                                class="btn btn-primary btn-flat pull-left">افزودن
                                 سوال جدید</a>
                         @else
-                            <a href="{{route('admin.questions.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
+                            <a href="{{route('admin.exam.questions.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                                 سوال جدید</a>
                         @endif
                     </div>
@@ -54,7 +54,7 @@
                                     <td style="{{ ($question->answer == 'c') ? 'color:green' : ''}}">{!! $question->c !!}</td>
                                     <td style="{{ ($question->answer == 'd') ? 'color:green' : ''}}">{!! $question->d !!}</td>
                                     <td>
-                                        <a href="{{ route('admin.questions.edit', ['question' => $question->id]) }}"
+                                        <a href="{{ route('admin.exam.questions.edit', ['question' => $question->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">
                                             ویرایش سوال
                                         </a>
@@ -80,7 +80,7 @@
 @section('js')
     <script>
         function removeQuestion(id) {
-            let url = "{{route('admin.questions.destroy', '') }}/" + id
+            let url = "{{route('admin.exam.questions.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا سوال حذف شود؟',
                 text: "",

@@ -1,18 +1,19 @@
 @extends('pages.admin.layout.base')
 
 @section('title', 'خانه')
-@section('syllabus', 'active menu-open')
-@section('syllabus1', 'active')
+
+@section( 'shop.category', 'active menu-open')
+@section( 'shop.category1', 'active')
 
 @section('header')
     <section class="content-header">
         <h1>
-            جلسه ها <small>لیست</small>
+            دسته بندی ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
-            <li><a href="#">جلسه ها</a></li>
-            <li class="active">لیست جلسه ها</li>
+            <li><a href="#">دسته بندی ها</a></li>
+            <li class="active">لیست دسته بندی ها</li>
         </ol>
     </section>
 @endsection
@@ -23,51 +24,43 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">لیست جلسه ها</h3>
-                        @if(request()->get('course'))
-                            <a href="{{ route('admin.course.syllabuses.create', ['course' => request()->get('course')]) }}"
-                               class="btn btn-primary btn-flat pull-left">
-                                افزودن
-                                جلسه جدید
-                            </a>
-                        @else
-                            <a href="{{ route('admin.course.syllabuses.create') }}" class="btn btn-primary btn-flat pull-left">
-                                افزودن
-                                جلسه جدید
-                            </a>
-                        @endif
+                        <h3 class="box-title">لیست دسته بندی ها</h3>
+                        <a href="{{route('admin.shop.categories.create') }}"
+                           class="btn btn-primary btn-flat pull-left">افزودن
+                            دسته بندی جدید</a>
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>عنوان</th>
-                                <th>دوره</th>
-                                <th>نوع</th>
+                                <th>نام</th>
+                                <th>والد</th>
                                 <th>تاریخ ایجاد</th>
                                 <th>عملیات</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($syllabuses as $syllabus)
+                            @foreach($categories as $category)
                                 <tr>
-                                    <td>{{ $syllabus->title}}</td>
-                                    <td>{{ $syllabus->course->title}}</td>
-                                    <td>{{ $syllabus->type() }}</td>
-                                    <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>{{ $category->name}}</td>
+                                    <td>{{ $category->parent ? $category->parent->name : 'ندارد (دسته اصلی)' }}</td>
+                                    <td>{{jDate($category->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.course.syllabuses.edit', ['syllabus' => $syllabus->id]) }}"
-                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
+                                        <a href="{{ route('admin.shop.categories.edit', ['category' => $category->id]) }}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">
+                                            ویرایش دسته بندی
                                         </a>
-                                        <a onclick="removeSyllabus({{ $syllabus->id}})" type="button"
-                                           class="btn btn-block btn-danger btn-xs">حذف جلسه</a>
+                                        <a type="button" class="btn btn-block btn-danger btn-xs"
+                                           onclick="removeCategory({{ $category->id}})">
+                                            حذف دسته بندی
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                         <div class="mt-2">
-                            {{ $syllabuses->links() }}
+                            {{ $categories->links() }}
                         </div>
                     </div>
                 </div>
@@ -78,10 +71,10 @@
 
 @section('js')
     <script>
-        function removeSyllabus(id) {
-            let url = "{{ route('admin.course.syllabuses.destroy', '') }}/" + id
+        function removeCategory(id) {
+            let url = "{{route('admin.shop.categories.destroy', '') }}/" + id
             Swal.fire({
-                title: 'آیا جلسه حذف شود؟',
+                title: 'آیا دسته بندی حذف شود؟',
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
@@ -96,14 +89,13 @@
                         url: url,
                         success: function (response) {
                             Swal.fire(
-                                'جلسه با موفقیت حذف شد',
+                                'دسته بندی با موفقیت حذف شد',
                                 '',
                                 'success'
                             )
                             window.location.reload();
                         },
                         error: function (e) {
-                            console.log(e, e.responseJSON.message)
                             if (e.responseJSON.message != undefined) {
                                 toastr.error(e.responseJSON.message);
                             } else {

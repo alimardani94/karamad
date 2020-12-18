@@ -53,7 +53,7 @@ class InstructorController extends Controller
         $instructor->about = $request->get('about');
         $instructor->save();
 
-        return redirect()-> route('admin.instructors.index')->with('success', trans('instructors.created'));
+        return redirect()-> route('admin.course.instructors.index')->with('success', trans('instructors.created'));
     }
 
     /**
@@ -96,7 +96,7 @@ class InstructorController extends Controller
         $instructor->about = $request->get('about');
         $instructor->save();
 
-        return redirect()-> route('admin.instructors.index')->with('success', trans('instructors.updated'));
+        return redirect()-> route('admin.course.instructors.index')->with('success', trans('instructors.updated'));
     }
 
     /**

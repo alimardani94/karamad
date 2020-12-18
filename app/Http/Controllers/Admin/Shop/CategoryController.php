@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Shop;
 
-use App\Models\Category;
 use App\Models\Product;
-use App\Rules\UniqueCategory;
+use App\Models\ProductCategory;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -12,40 +11,29 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\View\View;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class CategoryController extends Controller
 {
     /**
-     * @param Request $request
      * @return Factory|View
      */
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request->get('type')) {
-            abort(404);
-        }
+        $categories = ProductCategory::paginate(10);
 
-        $categories = Category::where('type', $request->get('type'))->paginate(10);
-
-        return view('pages.admin.category.index', [
+        return view('pages.admin.product_category.index', [
             'categories' => $categories,
         ]);
     }
 
     /**
-     * @param Request $request
      * @return Factory|View
      */
-    public function create(Request $request)
+    public function create()
     {
-        if (!$request->get('type')) {
-            throw new RouteNotFoundException();
-        }
+        $categories = ProductCategory::whereParentId(null)->get();
 
-        $categories = Category::whereParentId(0)->where('type', $request->get('type'))->get();
-
-        return view('pages.admin.category.create', [
+        return view('pages.admin.product_category.create', [
             'mainCategories' => $categories,
         ]);
     }
@@ -57,7 +45,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', new UniqueCategory($request->get('parent'))],
+            'name' => ['required'],
             'parent' => ['nullable', 'exists:categories,id'],
             'image' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'nullable|max:1024',
@@ -65,38 +53,37 @@ class CategoryController extends Controller
 
         $path = $request->file('image')->store('categories');
 
-        $category = new Category();
-        $category->type = $request->get('type');
+        $category = new ProductCategory();
         $category->name = $request->get('name');
         $category->parent_id = $request->get('parent') ?? 0;
         $category->image = $path;
         $category->description = $request->get('description');
         $category->save();
 
-        return redirect()->route('admin.categories.index', ['type' => $request->get('type')])->with('success', trans('categories.created'));
+        return redirect()->route('admin.shop.categories.index', ['type' => $request->get('type')])->with('success', trans('categories.created'));
     }
 
     /**
-     * @param Category $category
+     * @param ProductCategory $category
      * @return Factory|View
      */
-    public function edit(Category $category)
+    public function edit(ProductCategory $category)
     {
-        return view('pages.admin.category.edit', [
-            'mainCategories' => Category::whereParentId(0)->where('id', '<>', $category->id)->get(),
+        return view('pages.admin.product_category.edit', [
+            'mainCategories' => ProductCategory::whereParentId(null)->where('id', '<>', $category->id)->get(),
             'category' => $category,
         ]);
     }
 
     /**
      * @param Request $request
-     * @param Category $category
+     * @param ProductCategory $category
      * @return RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, ProductCategory $category)
     {
         $request->validate([
-            'name' => ['required', new UniqueCategory($request->get('parent'), $id)],
+            'name' => ['required'],
             'parent' => ['nullable', 'exists:categories,id'],
             'image' => 'nullable|mimes:jpeg,bmp,png,gif,svg,pdf|max:4096',
             'description' => 'nullable|max:1024',
@@ -113,21 +100,21 @@ class CategoryController extends Controller
         $category->description = $request->get('description');
         $category->save();
 
-        return redirect()->route('admin.categories.index', ['type' => $category->type])->with('success', trans('categories.updated'));
+        return redirect()->route('admin.shop.categories.index')->with('success', trans('categories.updated'));
     }
 
     /**
-     * @param int $id
+     * @param ProductCategory $category
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(ProductCategory $category)
     {
-        Category::findOrFail($id)->delete();
+        $category->delete();
 
         // update children of deleted category
-        Category::where('parent_id', $id)->update(['parent_id' => 0]);
-        Product::where('category_id', $id)->update(['category_id' => 0]);
+        ProductCategory::where('parent_id', $category->id)->update(['parent_id' => null]);
+        Product::where('category_id', $category->id)->update(['category_id' => null]);
 
         return new JsonResponse(['message' => trans('categories.deleted')]);
     }

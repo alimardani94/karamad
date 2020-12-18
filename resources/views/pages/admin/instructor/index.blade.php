@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مدرسان</h3>
-                        <a href="{{ route('admin.instructors.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.course.instructors.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                             مدرس جدید</a>
                     </div>
                     <div class="box-body">
@@ -47,7 +47,7 @@
                                     <td>{{jDate($instructor->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         @if($instructor->type = \App\Enums\Instructor\InstructorType::NotUser)
-                                            <a href="{{  route('admin.instructors.edit', ['instructor' => $instructor->id]) }}"
+                                            <a href="{{  route('admin.course.instructors.edit', ['instructor' => $instructor->id]) }}"
                                                type="button" class="btn btn-block btn-primary btn-xs">
                                                 ویرایش مدرس
                                             </a>
@@ -74,7 +74,7 @@
 @section('js')
     <script>
         function removeInstructor(id) {
-            let url = "{{ route('admin.instructors.destroy', '') }}/" + id
+            let url = "{{ route('admin.course.instructors.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا مدرس حذف شود؟',
                 text: "",

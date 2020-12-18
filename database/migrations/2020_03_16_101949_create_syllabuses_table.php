@@ -22,6 +22,7 @@ class CreateSyllabusesTable extends Migration
             $table->longText('text')->nullable();
             $table->string('video')->nullable();
             $table->string('audio')->nullable();
+            $table->text('attachments')->nullable();
             $table->unsignedBigInteger('exam_id')->nullable();
             $table->tinyInteger('confirmed')->default(0);
             $table->string('meta_keywords')->nullable();

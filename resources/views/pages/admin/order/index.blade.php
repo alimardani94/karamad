@@ -99,7 +99,7 @@
 
 @section('js')
     <script>
-        let changeStatusRoute = "{{ route('admin.orders.change-status', ['order' => 'orderId']) }}";
+        let changeStatusRoute = "{{ route('admin.shop.orders.change-status', ['order' => 'orderId']) }}";
         let statuses = @json(\App\Enums\InvoiceableStatus::all())
     </script>
     <script>
