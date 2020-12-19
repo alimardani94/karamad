@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Rules\CurrentPasswordCheck;
-use App\Rules\Mobile;
-use Auth;
+use App\Mail\EmailVerification;
+use App\Models\UserEmailReset;
+use App\Services\Utils\Random;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -21,19 +23,27 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
             'surname' => ['required', 'string'],
-            'cell' => ['required', new Mobile(), 'unique:users,cell,' . $user->id],
+            'cell' => ['required', 'cell', 'unique:users,cell,' . $user->id],
             'email' => ['required', 'email', 'unique:users,email,' . $user->id],
         ]);
 
         if ($validator->fails()) {
-            return  Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
+            return Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
         }
-
 
         $user->name = $request->get('name');
         $user->surname = $request->get('surname');
-        $user->email = $request->get('email');
-        $user->cell = fixNumbers($request->get('cell'));
+
+        if ($user->email != $request->get('email')) {
+            $email = UserEmailReset::updateOrCreate([
+                'user_id' => auth()->id()
+            ], [
+                'email' => $request->input('email'),
+                'token' => Random::alphabetic(32),
+            ]);
+
+            Mail::to($email->email)->send(new EmailVerification($user, $email->token));
+        }
 
         $user->save();
 
@@ -47,7 +57,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return  Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
+            return Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
         }
 
         $user = Auth::user();
@@ -60,26 +70,17 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
-            'current_password' => ['required', 'string', new CurrentPasswordCheck()],
+            'current_password' => ['required', 'string', 'password'],
             'password' => ['required', 'string', 'min:6', 'confirmed', 'different:current_password']
         ]);
 
         if ($validator->fails()) {
-            return  Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
+            return Redirect::to(URL::previous() . "#profile")->withErrors($validator)->withInput();
         }
-
-        $current_password = trim($request->get('current_password'));
-        $new_password = trim($request->get('password'));
 
         $user = Auth::user();
-
-        if (!Hash::check($current_password, $user->password)) {
-            return back()->with('error', 'کلماه عبور فعلی اشتباه است');
-        }
-
-        $user->password = Hash::make($new_password);
+        $user->password = Hash::make($request->get('password'));
         $user->save();
 
         Auth::logout();

@@ -153,6 +153,12 @@
                 }
             }
 
+            Inputmask.extendDefinitions({
+                '9': {
+                    validator: "[\u06F0-\u06F90-9\u0660-\u0669]",
+                },
+            });
+
             $("#cell").inputmask("url", {
                 mask: "0[*{1,10}]",
                 greedy: false,

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ProductCategory;
 use App\Models\Role;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->createCity();
         $this->createCourseCategories();
         $this->createProductCategories();
+        $this->createTags();
     }
 
     private function createAdminUser()
@@ -142,7 +144,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'id' => 18,
                 'parent_id' => 11,
-                'name' => 'سفال, کاشی و چینی',
+                'name' => 'سفال، کاشی و چینی',
             ], [
                 'id' => 19,
                 'parent_id' => 11,
@@ -154,7 +156,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'id' => 21,
                 'parent_id' => 20,
-                'name' => 'دارو و روغن های درمانی',
+                'name' => 'دارو و روغن‌های درمانی',
             ], [
                 'id' => 22,
                 'parent_id' => 20,
@@ -166,7 +168,7 @@ class DatabaseSeeder extends Seeder
             ], [
                 'id' => 24,
                 'parent_id' => null,
-                'name' => 'فرهنگی, آموزشی و سرگرمی',
+                'name' => 'فرهنگی، آموزشی و سرگرمی',
             ], [
                 'id' => 25,
                 'parent_id' => 24,
@@ -182,10 +184,25 @@ class DatabaseSeeder extends Seeder
             ], [
                 'id' => 28,
                 'parent_id' => 27,
-                'name' => 'گرافیک, طراحی و عکاسی',
+                'name' => 'گرافیک، طراحی و عکاسی',
             ]
         ];
 
         ProductCategory::insertOrIgnore($categories);
+    }
+
+
+    private function createTags()
+    {
+        $tags = [
+            ['name' => 'علمی'],
+            ['name' => 'فرهنگی'],
+            ['name' => 'هنری'],
+            ['name' => 'ورزشی'],
+            ['name' => 'صنایع دستی'],
+            ['name' => 'مواد غذایی'],
+        ];
+
+        Tag::insertOrIgnore($tags);
     }
 }
