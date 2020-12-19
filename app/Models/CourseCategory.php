@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +15,7 @@ use Illuminate\Support\Carbon;
  * App\Models\CourseCategory
  *
  * @property int $id
- * @property int $parent_id
+ * @property int|null $parent_id
  * @property string $name
  * @property string|null $image
  * @property string|null $description
@@ -37,10 +38,9 @@ use Illuminate\Support\Carbon;
  */
 class CourseCategory extends Model
 {
+    use HasFactory;
 
-    protected $fillable = [
-        'id', 'parent_id', 'name', 'image', 'description',
-    ];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
      * @return BelongsTo
