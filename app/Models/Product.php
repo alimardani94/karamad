@@ -62,6 +62,8 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $summery
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSummery($value)
  */
 class Product extends Model
 {

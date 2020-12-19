@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\UserEmailReset
@@ -24,8 +25,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|UserEmailReset whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserEmailReset whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\User $user
  */
 class UserEmailReset extends Model
 {
     use HasFactory;
+
+    /**
+     * @var array
+     */
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

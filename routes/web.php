@@ -44,6 +44,13 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     ]);
 });
 
+//verify email
+Route::get('/account/email/verify/{token}', [
+    'uses' => 'Account\EmailResetController@verify',
+    'as' => 'account.email.verify',
+]);
+
+// get all cities of province
 Route::get('/cities', 'CityController@get')->name('cities');
 
 Route::group(['namespace' => 'Front'], function () {
