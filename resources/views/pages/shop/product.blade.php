@@ -1,6 +1,6 @@
 @extends('pages.front.layout.base')
 
-@section('title', 'فروشگاه | ' . $product->name)
+@section('title',  $product->name)
 
 @section('meta')
     <meta name="description" content="{{ $product->meta_description }}">
