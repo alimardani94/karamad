@@ -49,10 +49,6 @@
             background-color: #4285f4;
             border-radius: 50%;
         }
-
-        .slider-nav .slick-current {
-            border: 5px solid #4285f4;
-        }
     </style>
 @endsection
 
@@ -239,7 +235,8 @@
             dots: false,
             arrows: false,
             centerMode: true,
-            focusOnSelect: true
+            focusOnSelect: true,
+            infinite: false
         });
 
         $(function () {

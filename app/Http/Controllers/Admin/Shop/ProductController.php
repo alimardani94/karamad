@@ -146,9 +146,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = ProductCategory::where('parent_id', '<>', null)->get();
+        $owners = User::whereHas('school')->select(['id', 'name', 'surname'])->get();
 
         return view('pages.admin.product.edit', [
             'product' => $product,
+            'owners' => $owners,
             'tags' => Tag::all(),
             'categories' => $categories,
             'types' => ProductType::translatedAll(),

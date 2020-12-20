@@ -36,13 +36,29 @@
                         <div class="box-header"></div>
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">عنوان</label>
                                         <input type="text" class="form-control" id="name" placeholder="عنوان"
                                                value="{{ old('name', $product->name) }}" name="name">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="owner">دانش‌آموز</label>
+                                        <select type="text" class="form-control select2" id="owner" name="owner"
+                                                style="width: 100%;">
+                                            @foreach($owners as $owner)
+                                                <option value="{{ $owner->id }}"
+                                                    {{ $owner->id == $product->owner ? 'selected':''}}>
+                                                    {{ $owner->full_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="category">دسته</label>
