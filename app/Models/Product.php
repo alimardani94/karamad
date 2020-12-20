@@ -115,6 +115,14 @@ class Product extends Model
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    /**
      * @return MorphToMany
      */
     public function tags()

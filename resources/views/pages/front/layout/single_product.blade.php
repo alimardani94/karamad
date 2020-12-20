@@ -9,12 +9,21 @@
 
     <div class="card-body">
         <h5 class="card-title mb-1">
-            <strong><a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}"
-                       class="dark-grey-text">{{ $product->name }}</a></strong>
+            <strong>
+                <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}"
+                       class="dark-grey-text">
+                    {{ $product->name }}
+                </a>
+            </strong>
         </h5>
 
+        <div>
+            نام مدرسه:
+            {{ $product->owner->school->name }}
+        </div>
+
         @foreach($product->tags as $tag)
-            <span class="badge badge-primary mb-2">{{$tag->name}}</span>
+            <small><span class="badge badge-primary badger mb-2">{{ $tag->name }}</span></small>
         @endforeach
 
 {{--        <ul class="rating">--}}
@@ -25,19 +34,17 @@
 {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
 {{--        </ul>--}}
 
-        <div class="card-footer pb-0">
-            <div class="mb-0">
-                <div class="float-right">
-                    <strong>{{ number_format($product->price) }}</strong> تومان
-                </div>
+        <div class="card-footer px-0 pb-0 d-flex justify-content-around">
+            <div class="">
+                <strong>{{ number_format($product->price) }}</strong> تومان
+            </div>
 
-                <div class="float-left">
-                    <a href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}"
-                       data-toggle="tooltip" data-placement="top" title=""
-                       data-original-title="Add to Cart">
-                        <i class="fas fa-shopping-cart mr-3"></i>
-                    </a>
-                </div>
+            <div class="">
+                <a href="{{ route('shop.cart.add', ['product' => $product->id, 'count'=> '1']) }}"
+                   data-toggle="tooltip" data-placement="top" title=""
+                   data-original-title="Add to Cart">
+                    <i class="fad fa-shopping-basket mr-3"></i>
+                </a>
             </div>
         </div>
     </div>
