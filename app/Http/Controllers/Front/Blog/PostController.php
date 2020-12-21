@@ -24,7 +24,7 @@ class PostController extends Controller
         $popularPosts = Post::inRandomOrder()->limit(3)->get();
         $newestPosts = Post::orderByDesc('id')->limit(3)->get();
 
-        return view('pages.blog.index', [
+        return view('pages.front.blog.index', [
             'posts' => $posts,
             'tags' => $tags,
             'popularPosts' => $popularPosts,
@@ -43,7 +43,7 @@ class PostController extends Controller
         $post = Post::whereId($id)->with('comments')->withCount('comments')->first();
         $relatedPosts = Post::where('id', '<>', $id)->limit(6)->get();
 
-        return view('pages.blog.show', [
+        return view('pages.front.blog.show', [
             'post' => $post,
             'relatedPosts' => $relatedPosts,
         ]);
@@ -61,12 +61,11 @@ class PostController extends Controller
         $popularPosts = Post::inRandomOrder()->limit(3)->get();
         $newestPosts = Post::orderByDesc('id')->limit(3)->get();
 
-        return view('pages.blog.index', [
+        return view('pages.front.blog.index', [
             'posts' => $posts,
             'tags' => $tags,
             'popularPosts' => $popularPosts,
             'newestPosts' => $newestPosts,
         ]);
     }
-
 }

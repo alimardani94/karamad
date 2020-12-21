@@ -12,11 +12,20 @@ use App\Models\Order;
 use App\Models\Transaction;
 use App\Services\Payment\Gateway;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PaymentController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param string $gateway
+     * @param Invoice $invoice
+     * @return RedirectResponse
+     * @throws Throwable
+     */
     public function callback(Request $request, string $gateway, Invoice $invoice)
     {
         $transaction = new Transaction();

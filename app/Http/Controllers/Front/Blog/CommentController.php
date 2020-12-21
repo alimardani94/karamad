@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Comment;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -13,12 +14,12 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
-
-
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     * @param Post $post
+     * @return RedirectResponse
      */
     public function store(Request $request, Post $post)
     {
@@ -31,7 +32,6 @@ class CommentController extends Controller
         if ($validator->fails()) {
             return  Redirect::to(URL::previous() . "#leave-comment")->withErrors($validator)->withInput();
         }
-
 
         $comment = new Comment();
         $comment->ip = $request->ip();

@@ -84,6 +84,52 @@
     </style>
 @endsection
 @section('content')
+    @if($popularProducts->count())
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold mt-5 mb-3">محصولات جدید</h6>
+
+                        <div class="carousel-box courses-box">
+                            <div class="owl-carousel mt-4">
+                                @foreach($popularProducts as $product)
+                                    @include('pages.front.layout.single_product', ['product' => $product])
+                                @endforeach
+                            </div>
+                            <div class="owl-controls">
+                                <div class="custom-nav owl-nav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if($latestProducts->count())
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold mt-5 mb-3">محصولات جدید</h6>
+
+                        <div class="carousel-box courses-box">
+                            <div class="owl-carousel mt-4">
+                                @foreach($latestProducts as $product)
+                                    @include('pages.front.layout.single_product', ['product' => $product])
+                                @endforeach
+                            </div>
+                            <div class="owl-controls">
+                                <div class="custom-nav owl-nav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if($courses->count())
         <section>
             <div class="container">

@@ -55,7 +55,7 @@ class CourseController extends Controller
 
         $request->validate([
             'title' => 'required|unique:courses',
-            'category' => ['required', 'exists:categories,id'],
+            'category' => ['required', 'exists:course_categories,id'],
             'instructor' => ['required', 'exists:instructors,id'],
             'summary' => 'required',
             'description' => 'required',
@@ -116,7 +116,7 @@ class CourseController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'category' => ['required', 'exists:categories,id'],
+            'category' => ['required', 'exists:course_categories,id'],
             'instructor' => ['required', 'exists:instructors,id'],
             'summary' => 'required',
             'description' => 'required',
