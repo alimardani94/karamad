@@ -84,8 +84,9 @@
     </style>
 @endsection
 @section('content')
+    <br><br>
     @if($popularProducts->count())
-        <section>
+        <section class="mt-0">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -108,26 +109,31 @@
     @endif
 
     @if($latestProducts->count())
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h6 class="font-weight-bold mt-5 mb-3">محصولات جدید</h6>
+        <div class="streak streak-photo mt-5 pb-5"
+             style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Sport/8-col/img%20(1).jpg'); height: 500px">
+            <div class="rgba-teal-light mask py-3">
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h6 class="font-weight-bold mt-5 mb-3 text-default">محصولات جدید</h6>
 
-                        <div class="carousel-box courses-box">
-                            <div class="owl-carousel mt-4">
-                                @foreach($latestProducts as $product)
-                                    @include('pages.front.layout.single_product', ['product' => $product])
-                                @endforeach
-                            </div>
-                            <div class="owl-controls">
-                                <div class="custom-nav owl-nav"></div>
+                                <div class="carousel-box courses-box">
+                                    <div class="owl-carousel mt-4 pb-5">
+                                        @foreach($latestProducts as $product)
+                                            @include('pages.front.layout.single_product', ['product' => $product])
+                                        @endforeach
+                                    </div>
+                                    <div class="owl-controls">
+                                        <div class="custom-nav owl-nav"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
     @endif
 
     @if($courses->count())
