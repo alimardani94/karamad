@@ -256,3 +256,10 @@ header .avatar {
 .navbar {
     box-shadow: 0 5px 15px 0 rgba(0,0,0,.05)!important;
 }
+
+@media (min-width: 62em) {
+    .classic-tabs .nav li:first-child {
+         margin-left: 0;
+         margin-right: 56px;
+    }
+}
