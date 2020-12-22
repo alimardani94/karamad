@@ -65,6 +65,16 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class Product extends Model
 {
+    public $appends = ['final_price'];
+
+    /**
+     * @return int
+     */
+    public function getFinalPriceAttribute()
+    {
+        return round($this->price - ($this->price * $this->discount / 100), -2);
+    }
+
     /**
      * @return string
      */

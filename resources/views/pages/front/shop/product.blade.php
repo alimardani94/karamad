@@ -102,16 +102,10 @@
                                             <s>{{ number_format($product->price) }}</s>
                                         </small>
                                     </span>
-                                    <span class="red-text font-weight-bold">
-                                        <strong>
-                                            {{ number_format($product->price - ($product->price * $product->discount / 100)) }}
-                                        </strong>
-                                    </span>
-                                @else
-                                    <span class="red-text font-weight-bold">
-                                        <strong>{{ number_format($product->price) }}</strong>
-                                    </span>
                                 @endif
+                                <span class="red-text font-weight-bold">
+                                    <strong>{{ number_format($product->final_price) }}</strong>
+                                </span>
                                 تومان
                             </h3>
 
@@ -242,7 +236,7 @@
                 <div class="carousel-box courses-box">
                     <div class="owl-carousel mt-4">
                         @foreach($relatedProducts as $relatedProduct)
-                            @include('pages.front.layout.single_product', ['product' => $product])
+                            @include('pages.front.layout.single_product', ['product' => $relatedProduct])
                         @endforeach
                     </div>
                 </div>

@@ -118,11 +118,11 @@ class ProductController extends Controller
             }
             $product->file = $file ?? null;
         }
-        $product->price = $request->get('price');
+        $product->price = round($request->get('price'), -2);
         $product->discount = $request->get('discount');
         $product->features = json_encode($request->get('features') ?? []);
-        $product->summery = preventXSS($request->get('summery'));
-        $product->description = preventXSS($request->get('description'));
+        $product->summery = $request->get('summery');
+        $product->description = $request->get('description');
         $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');
@@ -233,11 +233,11 @@ class ProductController extends Controller
                 $attachPath = $request->file('file')->store('products/files');
             }
         }
-        $product->price = $request->get('price');
+        $product->price = round($request->get('price'), -2);
         $product->discount = $request->get('discount');
         $product->features = json_encode($request->get('features') ?? []);
-        $product->summery = preventXSS($request->get('summery'));
-        $product->description = preventXSS($request->get('description'));
+        $product->summery = $request->get('summery');
+        $product->description = $request->get('description');
         $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');

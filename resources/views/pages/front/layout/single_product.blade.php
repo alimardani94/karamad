@@ -39,13 +39,11 @@
                 @if($product->discount)
                     <span class="grey-text">
                         <small>
-                            <s>{{ number_format($product->price) }}</s>
+                            <s>{{ number_format(round($product->price, -2)) }}</s>
                         </small>
                     </span>
-                    <strong>{{ number_format($product->price - ($product->price * $product->discount / 100)) }}</strong>
-                @else
-                    <strong>{{ number_format($product->price) }}</strong>
                 @endif
+                <strong>{{ number_format($product->final_price) }}</strong>
                 تومان
             </div>
 
