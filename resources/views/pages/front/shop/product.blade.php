@@ -91,22 +91,32 @@
 
                             <div class="my-2">
                                 @foreach($product->tags as $tag)
-                                    <span class="badge badge-success product m-2">{{ $tag->name}}</span>
+                                    <span class="badge badge-success product m-1 mt-2">{{ $tag->name}}</span>
                                 @endforeach
                             </div>
 
                             <h3 class="h3-responsive text-center text-md-right my-4">
-                                <span class="red-text font-weight-bold">
-                                    <strong>{{ number_format($product->price) }}</strong>
-                                </span>
-                                <span class="grey-text">
-                                    <small><s> {{ number_format($product->price) }}</s></small>
-                                </span>
+                                @if($product->discount)
+                                    <span class="grey-text">
+                                        <small>
+                                            <s>{{ number_format($product->price) }}</s>
+                                        </small>
+                                    </span>
+                                    <span class="red-text font-weight-bold">
+                                        <strong>
+                                            {{ number_format($product->price - ($product->price * $product->discount / 100)) }}
+                                        </strong>
+                                    </span>
+                                @else
+                                    <span class="red-text font-weight-bold">
+                                        <strong>{{ number_format($product->price) }}</strong>
+                                    </span>
+                                @endif
                                 تومان
                             </h3>
 
                             <p class="mt-0">
-                                {!! $product->description !!}
+                                {!! $product->summery !!}
                             </p>
 
                             <div class="d-flex justify-content-end mt-3 mb-4 mx-4">

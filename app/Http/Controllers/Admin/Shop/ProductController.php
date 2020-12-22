@@ -61,6 +61,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge([
+            'price' => parseNumber($request->get('price') ?? '0'),
+            'discount' => parseNumber($request->get('discount') ?? '0'),
+            'quantity' => $request->get('quantity') ? parseNumber($request->get('quantity') ?? '0') : null,
+        ]);
+
         $request->validate([
             'name' => ['required'],
             'owner' => ['required', 'exists:users,id'],
@@ -94,7 +100,6 @@ class ProductController extends Controller
             $images[] = $newPath;
         }
 
-
         if ($request->file('attachment')) {
             $attachPath = $request->file('attachment')->store('products/attachments');
         }
@@ -114,7 +119,9 @@ class ProductController extends Controller
             $product->file = $file ?? null;
         }
         $product->price = $request->get('price');
+        $product->discount = $request->get('discount');
         $product->features = json_encode($request->get('features') ?? []);
+        $product->summery = preventXSS($request->get('summery'));
         $product->description = preventXSS($request->get('description'));
         $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
@@ -166,6 +173,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $request->merge([
+            'price' => parseNumber($request->get('price') ?? '0'),
+            'discount' => parseNumber($request->get('discount') ?? '0'),
+            'quantity' => $request->get('quantity') ? parseNumber($request->get('quantity') ?? '0') : null,
+        ]);
+
         $request->validate([
             'name' => ['required'],
             'owner' => ['required', 'exists:users,id'],
@@ -212,6 +225,7 @@ class ProductController extends Controller
         $product->name = $request->get('name');
         $product->category_id = $request->get('category');
         $product->type = $request->get('type');
+        $product->status = ProductStatus::CONFIRMED;
         if ($product->type == ProductType::Physical) {
             $product->quantity = $request->get('quantity');
         } else {
@@ -220,7 +234,9 @@ class ProductController extends Controller
             }
         }
         $product->price = $request->get('price');
+        $product->discount = $request->get('discount');
         $product->features = json_encode($request->get('features') ?? []);
+        $product->summery = preventXSS($request->get('summery'));
         $product->description = preventXSS($request->get('description'));
         $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;

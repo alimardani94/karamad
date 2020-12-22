@@ -181,7 +181,24 @@
 <script src="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.all.js') }}"></script>
+<script src="{{ asset('assets/vendor/input-mask/jquery.inputmask.min.js') }}"></script>
 <script>
+    Inputmask.extendDefinitions({
+        '9': {
+            validator: "[\u06F0-\u06F90-9\u0660-\u0669]",
+        },
+    });
+
+    $(".numeric-input").inputmask({
+        groupSeparator: ",",
+        alias: "numeric",
+        autoGroup: true
+    });
+
+    $(".percent-input").inputmask({
+        alias: 'percentage'
+    });
+
     let toastPosition = 'toast-bottom-left';
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         toastPosition = 'toast-top-center';

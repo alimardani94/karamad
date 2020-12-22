@@ -11,7 +11,7 @@
         <h5 class="card-title mb-1">
             <strong>
                 <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}"
-                       class="dark-grey-text">
+                   class="dark-grey-text">
                     {{ $product->name }}
                 </a>
             </strong>
@@ -26,17 +26,27 @@
             <small><span class="badge badge-primary badger mb-2">{{ $tag->name }}</span></small>
         @endforeach
 
-{{--        <ul class="rating">--}}
-{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
-{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
-{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
-{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
-{{--            <li><i class="fas fa-star blue-text"></i></li>--}}
-{{--        </ul>--}}
+        {{--        <ul class="rating">--}}
+        {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+        {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+        {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+        {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+        {{--            <li><i class="fas fa-star blue-text"></i></li>--}}
+        {{--        </ul>--}}
 
         <div class="card-footer px-0 pb-0 d-flex justify-content-around">
             <div class="">
-                <strong>{{ number_format($product->price) }}</strong> تومان
+                @if($product->discount)
+                    <span class="grey-text">
+                        <small>
+                            <s>{{ number_format($product->price) }}</s>
+                        </small>
+                    </span>
+                    <strong>{{ number_format($product->price - ($product->price * $product->discount / 100)) }}</strong>
+                @else
+                    <strong>{{ number_format($product->price) }}</strong>
+                @endif
+                تومان
             </div>
 
             <div class="">

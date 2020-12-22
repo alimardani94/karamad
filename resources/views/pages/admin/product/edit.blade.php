@@ -50,7 +50,7 @@
                                                 style="width: 100%;">
                                             @foreach($owners as $owner)
                                                 <option value="{{ $owner->id }}"
-                                                    {{ $owner->id == $product->owner ? 'selected':''}}>
+                                                    {{ $owner->id == $product->owner_id ? 'selected':''}}>
                                                     {{ $owner->full_name }}
                                                 </option>
                                             @endforeach
@@ -117,7 +117,7 @@
                                 <div class="col-md-6" id="product_type_physical" style="display: none">
                                     <div class="form-group">
                                         <label for="quantity">تعداد</label>
-                                        <input type="number" class="form-control" id="quantity" placeholder="تعداد"
+                                        <input type="text" class="form-control numeric-input" id="quantity" placeholder="تعداد"
                                                value="{{ old('quantity', $product->quantity) }}" name="quantity">
                                     </div>
                                 </div>
@@ -127,31 +127,32 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">قیمت</label>
-                                        <input type="number" class="form-control" id="price" placeholder="قیمت"
+                                        <input type="text" class="form-control numeric-input" id="price" placeholder="قیمت"
                                                value="{{ old('price', $product->price) }}" name="price">
                                     </div>
                                 </div>
-                                {{--                                <div class="col-md-6">--}}
-                                {{--                                    <div class="form-group">--}}
-                                {{--                                        <label for="discount">تخفیف</label>--}}
-                                {{--                                        <input type="number" class="form-control" id="discount" placeholder="تخفیف"--}}
-                                {{--                                               value="{{ old('discount') }}" name="discount">--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="discount">تخفیف</label>
+                                        <input type="text" class="form-control percent-input" id="discount" placeholder="تخفیف"
+                                               value="{{ old('discount',  $product->discount) }}" name="discount">
+                                    </div>
+                                </div>
                             </div>
 
-                            {{--                            <div class="row">--}}
-                            {{--                                <div class="col-md-6">--}}
-                            {{--                                    <div class="form-group">--}}
-                            {{--                                        <label for="attachment">فایل ضمیمه</label>--}}
-                            {{--                                        <label class="form-control">--}}
-                            {{--                                            <span> انتخاب کنید ... </span>--}}
-                            {{--                                            <input type="file" class="custom-file-input"--}}
-                            {{--                                                   id="attachment" name="attachment" hidden>--}}
-                            {{--                                        </label>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="attachment">فایل ضمیمه</label>
+                                        درصورتی که میخواهید فایل را تعییر دهید فایل جدید را آپلود کنید
+                                        <label class="form-control">
+                                            <span> انتخاب کنید ... </span>
+                                            <input type="file" class="custom-file-input"
+                                                   id="attachment" name="attachment" hidden>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -179,9 +180,17 @@
                                     </select>
                                 </div>
                             </div>
-                            <br>
 
-                            <div class="row">
+                            <div class="row mt-5">
+                                <div class="col-md-12">
+                                    <label for="summery">خلاصه</label>
+                                    <textarea id="summery" name="summery"
+                                              style="width: 100%; height: 210px; border: 1px solid #dddddd; padding: 10px;"
+                                              class="form-control">{!! old('summery', $product->summery) !!}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5">
                                 <div class="col-md-12">
                                     <label for="description">توضیحات</label>
                                     <textarea id="description" name="description"
@@ -237,6 +246,16 @@
         let images = @json($product->images())
     </script>
     <script>
+        tinymce.init({
+            selector: 'textarea#summery',
+            plugins: 'advlist autolink link lists preview table code pagebreak',
+            menubar: false,
+            language: 'fa',
+            height: 300,
+            relative_urls: false,
+            toolbar: 'undo redo | removeformat preview code | fontsizeselect bullist numlist | alignleft aligncenter alignright alignjustify | bold italic | pagebreak table link',
+        });
+
         tinymce.init({
             selector: 'textarea#description',
             plugins: 'advlist autolink link lists preview table code pagebreak',
