@@ -90,8 +90,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="font-weight-bold mt-5 mb-3">محصولات جدید</h6>
-
+                        <h6 class="font-weight-bold mt-5 mb-3 text-default">محصولات محبوب</h6>
+                        <hr class="blue title-hr">
                         <div class="carousel-box courses-box">
                             <div class="owl-carousel mt-4">
                                 @foreach($popularProducts as $product)
@@ -108,32 +108,132 @@
         </section>
     @endif
 
-    @if($latestProducts->count())
-        <div class="streak streak-photo mt-5 pb-5"
-             style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Sport/8-col/img%20(1).jpg'); height: 500px">
-            <div class="rgba-teal-light mask py-3">
-                <section>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h6 class="font-weight-bold mt-5 mb-3 text-default">محصولات جدید</h6>
+    <div class="streak streak-photo mt-5"
+         style="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Sport/8-col/img%20(1).jpg'); height: 500px">
+        <div class="rgba-teal-light mask">
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-bold mt-5 mb-3 text-default">استان‌ها</h6>
+                                <div class="pt-3 mt-3">
+                                    <a href="{{ route('shop.province.index') }}" class="btn btn-success btn-sm">همه استان‌ها</a>
+                                </div>
+                            </div>
+                            <div class="carousel-box courses-box">
+                                <div class="owl-carousel mt-4 pb-5">
+                                    <div class="card">
+                                        <a href="{{ route('shop.province.show', ['province' => 8]) }}">
+                                            <img src="{{ asset('assets/img/cities/tehran.jpg') }}"
+                                                 class="card-img-top" alt="tehran">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('shop.province.show', ['province' => 8]) }}"
+                                                   class="text-dark">
+                                                    تهران
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">اا محصول</li>
+                                            <li class="list-group-item">۱۸ مدرسه</li>
+                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                        </ul>
+                                    </div>
 
-                                <div class="carousel-box courses-box">
-                                    <div class="owl-carousel mt-4 pb-5">
-                                        @foreach($latestProducts as $product)
-                                            @include('pages.front.layout.single_product', ['product' => $product])
-                                        @endforeach
+
+                                    <div class="card">
+                                        <a href="{{ route('shop.province.show', ['province' => 11]) }}">
+                                            <img src="{{ asset('assets/img/cities/mashhad.jpg') }}"
+                                                 class="card-img-top" alt="mashhad">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('shop.province.show', ['province' => 11]) }}"
+                                                   class="text-dark">
+                                                    خراسان رضوی
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">اا محصول</li>
+                                            <li class="list-group-item">۱۸ مدرسه</li>
+                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                        </ul>
                                     </div>
-                                    <div class="owl-controls">
-                                        <div class="custom-nav owl-nav"></div>
+                                    <div class="card">
+                                        <a href="{{ route('shop.province.show', ['province' => 17]) }}">
+                                            <img src="{{ asset('assets/img/cities/shiraz.jpg') }}"
+                                                 class="card-img-top" alt="shiraz">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('shop.province.show', ['province' => 17]) }}"
+                                                   class="text-dark">
+                                                    فارس
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">اا محصول</li>
+                                            <li class="list-group-item">۱۸ مدرسه</li>
+                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                        </ul>
                                     </div>
+                                    <div class="card">
+                                        <a href="{{ route('shop.province.show', ['province' => 1]) }}">
+                                            <img src="{{ asset('assets/img/cities/tabriz.jpg') }}"
+                                                 class="card-img-top" alt="tabriz">
+                                        </a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('shop.province.show', ['province' => 1]) }}"
+                                                   class="text-dark">
+                                                    آذربایجان شرقی
+                                                </a>
+                                            </h5>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">اا محصول</li>
+                                            <li class="list-group-item">۱۸ مدرسه</li>
+                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="owl-controls">
+                                    <div class="custom-nav owl-nav"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
+    </div>
+
+    @if($latestProducts->count())
+        <section class="mt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="font-weight-bold mt-5 mb-3 text-default">محصولات جدید</h6>
+                        <hr class="green title-hr">
+                        <div class="carousel-box courses-box">
+                            <div class="owl-carousel mt-4 pb-5">
+                                @foreach($latestProducts as $product)
+                                    @include('pages.front.layout.single_product', ['product' => $product])
+                                @endforeach
+                            </div>
+                            <div class="owl-controls">
+                                <div class="custom-nav owl-nav"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     @endif
 
     @if($courses->count())
@@ -141,7 +241,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="font-weight-bold mt-5 mb-3">دوره های جدید</h6>
+                        <h6 class="font-weight-bold mt-1 mb-3 text-default">دوره های جدید</h6>
+                        <hr class="yellow title-hr">
 
                         <div class="carousel-box courses-box">
                             <div class="owl-carousel mt-4">
@@ -194,7 +295,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mb-5">
-                        <h6 class="font-weight-bold mt-5 mb-3">دوره های محبوب</h6>
+                        <h6 class="font-weight-bold mt-5 mb-3 text-default">دوره های محبوب</h6>
+                        <hr class="red title-hr">
 
                         <div class="carousel-box courses-box">
                             <div class="owl-carousel mt-4">

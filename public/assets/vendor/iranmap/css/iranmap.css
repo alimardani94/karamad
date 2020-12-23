@@ -1,0 +1,35 @@
+#IranMap .show-title {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    margin: 0 !important;
+    padding: 0 5px;
+    text-align: center;
+    line-height: 26px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    opacity: 0.8;
+}
+
+#IranMap .map .border path, #IranMap .map .island path {
+    fill: #fff;
+}
+
+#IranMap .map .province path {
+    fill: #999;
+}
+
+#IranMap .map .sea path, #IranMap .map .lake path {
+    fill: #6caed8;
+}
+
+#IranMap .map .province path:hover, #IranMap .map .island path:hover, #IranMap .map .province path.hover, #IranMap .map .island path.hover {
+    fill: #c33a2c !important;
+    cursor: pointer;
+}
+
+.list a {
+    color: #211d1d;
+}
