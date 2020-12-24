@@ -38,9 +38,12 @@ use Illuminate\Notifications\Notifiable;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
  * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  * @property-read \App\Models\Province|null $province
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  * @property-read int|null $roles_count
+ * @property-read \App\Models\School|null $school
  * @property-read \App\Models\UserEmailReset|null $userEmailReset
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -66,9 +69,6 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
- * @property-read \App\Models\School|null $school
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
- * @property-read int|null $products_count
  */
 class User extends Authenticatable
 {
@@ -141,18 +141,16 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's image.
-     *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
-    public function getImageAttribute($value)
+    public function getImageAttribute(string $value)
     {
-        if($value) {
+        if ($value) {
             return asset('media/' . $value);
         } elseif ($this->isAdmin()) {
             return asset('assets/img/avatars/avatar5.png');
-        }else {
+        } else {
             return asset('assets/img/avatars/avatar.png');
         }
     }

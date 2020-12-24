@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\School
@@ -28,10 +29,21 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|School whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $students
+ * @property-read int|null $students_count
  */
 class School extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    /**
+     * @return HasMany
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

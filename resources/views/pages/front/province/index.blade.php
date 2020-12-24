@@ -30,7 +30,7 @@
                             <p>از مدارس استان خود خرید کنید.</p>
                             <div class="map">
                                 <span class="show-title"></span>
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                <svg xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="20 0 970 960"
                                      enable-background="new 20 0 970 960" xml:space="preserve">
                                     <g class="border">
@@ -162,7 +162,7 @@
                             <div class="list-group shadow mt-4 province">
                                 @foreach($provinces as $province)
                                     <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ $province->slug }}"
-                                       href="{{ route('provinces.show', ['province' => $province->id]) }}">
+                                       href="{{ route('provinces.show', ['province' => $province->slug]) }}">
                                         {{ $province->name }}
                                         @if($province->schools_count)
                                             <span class="badge badge-danger badge-pill">
@@ -174,56 +174,56 @@
                             </div>
                             <div class="d-none island">
                                 <a class="abu-musa"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     ابو موسی
                                 </a>
                                 <a class="qeshm"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     قشم
                                 </a>
                                 <a class="faror-big"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     فرور بزرگ
                                 </a>
                                 <a class="faror-small"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     فرور کوچک
                                 </a>
-                                <a class="hendorabi" href="{{ route('provinces.show', ['province' => 29]) }}">
+                                <a class="hendorabi" href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     هندروابی
                                 </a>
-                                <a class="hengam" href="{{ route('provinces.show', ['province' => 29]) }}">
+                                <a class="hengam" href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     هنگام
                                 </a>
-                                <a class="hormoz" href="{{ route('provinces.show', ['province' => 29]) }}">
+                                <a class="hormoz" href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     هرمز
                                 </a>
                                 <a class="khark"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     خارک
                                 </a>
                                 <a class="kish"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     کیش
                                 </a>
                                 <a class="lark"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     لارک
                                 </a>
                                 <a class="lavan"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     لاوان
                                 </a>
                                 <a class="siri"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     سیری
                                 </a>
                                 <a class="tunb-big"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     تنب بزرگ
                                 </a>
                                 <a class="tunb-small"
-                                   href="{{ route('provinces.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 'hormozgan']) }}">
                                     تنب کوچک
                                 </a>
                             </div>
@@ -238,9 +238,6 @@
 
 @section('js')
     <script type="text/javascript" src="{{ asset('assets/vendor/iranmap/js/iranmap.js') }}"></script>
-    <script type="text/javascript">
-
-    </script>
 @endsection
 
 @section('footer')

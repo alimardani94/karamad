@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('province_id')->index()->nullable();
             $table->foreignId('city_id')->index()->nullable();
             $table->foreignId('school_id')->index()->nullable();
-            $table->string('grade')->nullable();
+            $table->unsignedTinyInteger('grade')->nullable();
             $table->string('image')->nullable();
             $table->timestamp('cell_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

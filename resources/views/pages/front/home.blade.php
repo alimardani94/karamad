@@ -124,13 +124,13 @@
                             <div class="carousel-box courses-box">
                                 <div class="owl-carousel mt-4 pb-5">
                                     <div class="card">
-                                        <a href="{{ route('provinces.show', ['province' => 8]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 'tehran']) }}">
                                             <img src="{{ asset('assets/img/cities/tehran.jpg') }}"
                                                  class="card-img-top" alt="tehran">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('provinces.show', ['province' => 8]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 'tehran']) }}"
                                                    class="text-dark">
                                                     تهران
                                                 </a>
@@ -150,13 +150,13 @@
 
 
                                     <div class="card">
-                                        <a href="{{ route('provinces.show', ['province' => 11]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 'khorasan-razavi']) }}">
                                             <img src="{{ asset('assets/img/cities/mashhad.jpg') }}"
                                                  class="card-img-top" alt="mashhad">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('provinces.show', ['province' => 11]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 'khorasan-razavi']) }}"
                                                    class="text-dark">
                                                     خراسان رضوی
                                                 </a>
@@ -174,13 +174,13 @@
                                         </ul>
                                     </div>
                                     <div class="card">
-                                        <a href="{{ route('provinces.show', ['province' => 17]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 'fars']) }}">
                                             <img src="{{ asset('assets/img/cities/shiraz.jpg') }}"
                                                  class="card-img-top" alt="shiraz">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('provinces.show', ['province' => 17]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 'fars']) }}"
                                                    class="text-dark">
                                                     فارس
                                                 </a>
@@ -198,13 +198,13 @@
                                         </ul>
                                     </div>
                                     <div class="card">
-                                        <a href="{{ route('provinces.show', ['province' => 1]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 'tabriz']) }}">
                                             <img src="{{ asset('assets/img/cities/tabriz.jpg') }}"
                                                  class="card-img-top" alt="tabriz">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('provinces.show', ['province' => 1]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 'tabriz']) }}"
                                                    class="text-dark">
                                                     آذربایجان شرقی
                                                 </a>

@@ -1,9 +1,9 @@
-FROM dockage/php:7.2.10-fpm-alpine3.8
+FROM dockage/php:7.3.4-fpm-alpine3.9
 
 ENV APP_INSTALL_DIR="/app"
 
 RUN apk --no-cache --update add \
-        composer \
+        curl \
         confd@testing \
         file \
         git \
@@ -36,6 +36,8 @@ RUN apk --no-cache --update add \
         php7-redis \
         php7-xdebug
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN mkdir -p /root/.ssh ${APP_INSTALL_DIR} \
     # Configure PHP
     && sed -i -e "s/;date.timezone =.*/date.timezone = UTC/g" \
@@ -43,7 +45,7 @@ RUN mkdir -p /root/.ssh ${APP_INSTALL_DIR} \
         -e "s/upload_max_filesize = .*/upload_max_filesize = 100M/g" \
         -e "s/post_max_size = .*/post_max_size = 128M/g" \
         -e "s/memory_limit = .*/memory_limit = 512M/g" \
-        /etc/php7/php.ini \
+        /etc/php/7.3/php.ini \
     # Configure SSH known_hosts
     && ssh-keyscan -H github.com gitlab.com >> /root/.ssh/known_hosts
 

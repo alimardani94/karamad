@@ -42,7 +42,7 @@ $(function () {
         if ($('#IranMap .show-title').html()) {
             var offset = $(this).offset();
             var x = (posx - offset.left + 25) + 'px';
-            var y = (posy - offset.top - 5) + 'px';
+            var y = (posy - offset.top + 70) + 'px';
 
             $('#IranMap .show-title').css({'left': x, 'top': y});
         }
