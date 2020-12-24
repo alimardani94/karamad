@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property int $id
  * @property string $name
+ * @property string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $cities
  * @property-read int|null $cities_count
  * @method static \Illuminate\Database\Eloquent\Builder|Province newModelQuery()
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Province query()
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Province whereSlug($value)
  * @mixin \Eloquent
  */
 class Province extends Model

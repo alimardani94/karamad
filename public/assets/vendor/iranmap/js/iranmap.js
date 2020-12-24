@@ -1,27 +1,27 @@
 $(function () {
-
     $('#IranMap svg g path').hover(function () {
         var className = $(this).attr('class');
         var parentClassName = $(this).parent('g').attr('class');
-        var itemName = $('#IranMap .list .' + parentClassName + ' .' + className + ' a').html();
+        var itemName = $('#IranMap .list .' + parentClassName + ' .' + className).html();
+
         if (itemName) {
             $('#IranMap .list .' + parentClassName + ' .' + className).addClass('active');
             $('#IranMap .show-title').html(itemName).css({'display': 'block'});
         }
     }, function () {
-        $('#IranMap .list li').removeClass('active');
+        $('#IranMap .list a').removeClass('active');
         $('#IranMap .show-title').html('').css({'display': 'none'});
     });
 
-    $('#IranMap .list ul li').hover(function () {
+    $('#IranMap .list a').hover(function () {
         var className = $(this).attr('class').split(' ').pop();
-        var parentClassName = $(this).parent('ul').attr('class').split(' ').pop();
+        var parentClassName = $(this).parent('div').attr('class').split(' ').pop();
         var object = '#IranMap svg g.' + parentClassName + ' path.' + className;
         var currentClass = $(object).attr('class');
         $(object).attr('class', currentClass + ' hover');
     }, function () {
         var className = $(this).attr('class').split(' ').pop();
-        var parentClassName = $(this).parent('ul').attr('class').split(' ').pop();
+        var parentClassName = $(this).parent('div').attr('class').split(' ').pop();
         var object = '#IranMap svg g.' + parentClassName + ' path.' + className;
         var currentClass = $(object).attr('class');
         $(object).attr('class', currentClass.replace(' hover', ''));
@@ -50,10 +50,9 @@ $(function () {
 
     $('#IranMap .map .province path').click(function () {
         var province = $(this).attr('class');
-        var provinceLink = $('#IranMap .list li.' + province + ' a').attr('href');
+        var provinceLink = $('#IranMap .list a.' + province).attr('href');
         if (provinceLink) {
             window.location.href = provinceLink;
         }
     });
-
 });

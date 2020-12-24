@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Shop\Province;
 
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -14,9 +15,10 @@ class ProvinceController extends Controller
      */
     public function index()
     {
+        $provinces = Province::all();
 
         return view('pages.front.shop.province.index', [
-
+            'provinces' => $provinces,
         ]);
     }
 

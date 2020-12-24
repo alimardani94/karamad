@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property int $discount
  * @property string|null $attachment
  * @property string|null $features
+ * @property string|null $summery
  * @property string|null $description
  * @property string $images
  * @property string|null $meta_keywords
@@ -34,7 +35,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read \App\Models\ProductCategory $category
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
  * @property-read int|null $comments_count
+ * @property-read int $final_price
  * @property-read string $slug
+ * @property-read \App\Models\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
@@ -57,11 +60,10 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereSummery($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string|null $summery
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereSummery($value)
  */
 class Product extends Model
 {

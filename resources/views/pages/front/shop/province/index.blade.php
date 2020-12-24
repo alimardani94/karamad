@@ -159,238 +159,70 @@
                             <h4 class="font-weight-bold"><strong>استان‌ها</strong></h4>
                             <hr class="red">
 
-                            <ul class="list-group z-depth-1 mt-4 province">
-                                <li class="list-group-item d-flex justify-content-between align-items-center azerbaijan-east">
-                                    <a href="{{ route('shop.province.show', ['province' => 8]) }}">
-                                        آذربایجان شرقی
+                            <div class="list-group shadow mt-4 province">
+                                @foreach($provinces as $province)
+                                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ $province->slug }}"
+                                       href="{{ route('shop.province.show', ['province' => $province->id]) }}">
+                                        {{ $province->name }}
+                                        <span class="badge badge-danger badge-pill">{{ $province->id }}</span>
                                     </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center azerbaijan-west">
-                                    <a href="#azerbaijan-west">
-                                        آذربایجان غربی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center ardabil">
-                                    <a href="#ardabil">
-                                        اردبیل
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center isfahan">
-                                    <a href="#isfahan">
-                                        اصفهان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center alborz">
-                                    <a href="#alborz">
-                                        البرز
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center ilam">
-                                    <a href="#ilam">
-                                        ایلام
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center bushehr">
-                                    <a href="#bushehr">
-                                        بوشهر
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center tehran">
-                                    <a href="{{ route('shop.province.show', ['province' => 8]) }}">
-                                        تهران
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center chahar-mahaal-bakhtiari">
-                                    <a href="#chahar-mahaal-bakhtiari">
-                                        چهارمحال
-                                        بختیاری
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center khorasan-south">
-                                    <a href="#khorasan-south">
-                                        خراسان جنوبی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center khorasan-razavi">
-                                    <a href="#khorasan-razavi">
-                                        خراسان رضوی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center khorasan-north">
-                                    <a href="#khorasan-north">
-                                        خراسان شمالی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center khuzestan">
-                                    <a href="#khuzestan">
-                                        خوزستان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center zanjan">
-                                    <a href="#zanjan">
-                                        زنجان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center semnan">
-                                    <a href="#semnan">
-                                        سمنان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center sistan-baluchestan">
-                                    <a href="#sistan-baluchestan">
-                                        سیستان و
-                                        بلوچستان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center fars">
-                                    <a href="#fars">
-                                        فارس
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center qazvin">
-                                    <a href="#qazvin">
-                                        قزوین
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center qom">
-                                    <a href="#qom">
-                                        قم
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center kurdistan">
-                                    <a href="#kurdistan">
-                                        کردستان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center kerman">
-                                    <a href="#kerman">
-                                        کرمان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center kermanshah">
-                                    <a href="#kermanshah">
-                                        کرمانشاه
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center kohgiluyeh-boyer-ahmad">
-                                    <a href="#kohgiluyeh-boyer-ahmad">
-                                        کهگیلویه و بویر احمد
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center golestan">
-                                    <a href="#golestan">
-                                        گلستان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center gilan">
-                                    <a href="#gilan">
-                                        گیلان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center lorestan">
-                                    <a href="#lorestan">
-                                        لرستان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center mazandaran">
-                                    <a href="#mazandaran">
-                                        مازندران
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center markazi">
-                                    <a href="#markazi">
-                                        مرکزی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center hormozgan">
-                                    <a href="#hormozgan">
-                                        هرمزگان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center hamadan">
-                                    <a href="#hamadan">
-                                        همدان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center yazd">
-                                    <a href="#yazd">
-                                        یزد
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="list-group z-depth-1 mt-4 d-none island">
-                                <li class="list-group-item d-flex justify-content-between align-items-center abu-musa">
-                                    <a href="#abu-musa">
-                                        ابو موسی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center qeshm">
-                                    <a href="#qeshm">
-                                        قشم
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center faror-big">
-                                    <a href="#faror-big">
-                                        فرور بزرگ
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center faror-small">
-                                    <a href="#faror-small">
-                                        فرور کوچک
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center hendorabi">
-                                    <a href="#hendorabi">
-                                        هندروابی
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center hengam">
-                                    <a href="#hengam">
-                                        هنگام
-                                    </a>
-                                    <span class="badge badge-danger badge-pill">4</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center hormoz">
-                                    <a href="#hormoz">
-                                        هرمز
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center khark">
-                                    <a href="#khark">
-                                        خارک
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center kish">
-                                    <a href="#kish">
-                                        کیش
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center lark">
-                                    <a href="#lark">
-                                        لارک
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center lavan">
-                                    <a href="#lavan">
-                                        لاوان
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center siri">
-                                    <a href="#siri">
-                                        سیری
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center tunb-big">
-                                    <a href="#tunb-big">
-                                        تنب بزرگ
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center tunb-small">
-                                    <a href="#tunb-small">
-                                        تنب کوچک
-                                    </a>
-                                </li>
-                            </ul>
+                                @endforeach
+                            </div>
+                            <div class="d-none island">
+                                <a class="abu-musa"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    ابو موسی
+                                </a>
+                                <a class="qeshm"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    قشم
+                                </a>
+                                <a class="faror-big"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    فرور بزرگ
+                                </a>
+                                <a class="faror-small"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    فرور کوچک
+                                </a>
+                                <a class="hendorabi" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    هندروابی
+                                </a>
+                                <a class="hengam" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    هنگام
+                                </a>
+                                <a class="hormoz" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    هرمز
+                                </a>
+                                <a class="khark"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    خارک
+                                </a>
+                                <a class="kish"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    کیش
+                                </a>
+                                <a class="lark"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    لارک
+                                </a>
+                                <a class="lavan"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    لاوان
+                                </a>
+                                <a class="siri"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    سیری
+                                </a>
+                                <a class="tunb-big"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    تنب بزرگ
+                                </a>
+                                <a class="tunb-small"
+                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                    تنب کوچک
+                                </a>
+                            </div>
                         </section>
                     </div>
                 </div>
