@@ -141,10 +141,10 @@ class User extends Authenticatable
     }
 
     /**
-     * @param string $value
+     * @param string|null $value
      * @return string
      */
-    public function getImageAttribute(string $value)
+    public function getImageAttribute(?string $value)
     {
         if ($value) {
             return asset('media/' . $value);

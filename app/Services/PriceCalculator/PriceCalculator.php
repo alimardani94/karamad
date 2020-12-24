@@ -1,14 +1,9 @@
 <?php
 
-
 namespace App\Services\PriceCalculator;
-
-
-use App\Models\Product;
 
 class PriceCalculator implements Calculator
 {
-
     /**
      * @param array $products
      * @return int
@@ -17,7 +12,8 @@ class PriceCalculator implements Calculator
     {
         $totalPrice = 0;
         foreach ($products as $product) {
-            $totalPrice += ($product['price'] * (int)$product['quantity']);
+            $productPrice = round($product['price'] - ($product['price'] * $product['discount'] / 100), -2);
+            $totalPrice += $productPrice * (int)$product['quantity'];
         }
 
         return $totalPrice;

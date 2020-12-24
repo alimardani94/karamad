@@ -40,36 +40,6 @@
 <script src="{{ asset('assets/vendor/toastr-2.1.1/toastr.min.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-<script>
-    let toastPosition = 'toast-bottom-left';
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        toastPosition = 'toast-top-center';
-    }
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "positionClass": toastPosition,
-        "onclick": null,
-        "showDuration": "1000",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-
-    let success = $('meta[name=success]').attr("content");
-    let error = $('meta[name=error]').attr("content");
-
-    if (success !== '') {
-        toastr.success(success);
-    }
-    if (error !== '') {
-        toastr.error(error);
-    }
-</script>
 @yield('js')
 
 </body>

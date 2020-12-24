@@ -14,6 +14,10 @@ $(document).ready(function () {
         }
     });
 
+    toastr.options = {
+        "positionClass": "toast-top-left",
+    }
+
     let successSession = $("meta[name=success]").attr("content");
     if (successSession !== undefined && successSession !== '') {
         toastr.success(successSession)

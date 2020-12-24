@@ -27,7 +27,7 @@ class OrderController extends Controller
         $ids_ordered = implode(',', array_column($items, 'id'));
 
         $products = Product::whereIn('id', array_column($items, 'id'))
-            ->select(['id', 'name', 'type', 'price', 'file', 'images'])
+            ->select(['id', 'name', 'type', 'price', 'discount', 'file', 'images'])
             ->orderByRaw("FIELD(id, $ids_ordered)")
             ->get()->toArray();
         $products = array_merge_recursive_distinct($items, $products);
