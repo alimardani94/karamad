@@ -27,7 +27,7 @@
                         <section class="section mb-5">
                             <h4 class="font-weight-bold"><strong>انتخاب از روی نقشه</strong></h4>
                             <hr class="red">
-
+                            <p>از مدارس استان خود خرید کنید.</p>
                             <div class="map">
                                 <span class="show-title"></span>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +150,7 @@
                         </section>
 
                         <section class="section mb-5">
-                            wsdefrfrf
+                            با انتخاب هر استان لیست مدارس آن و محصولات دانش‌آموزان آن را ببینید.
                         </section>
                     </div>
 
@@ -162,64 +162,68 @@
                             <div class="list-group shadow mt-4 province">
                                 @foreach($provinces as $province)
                                     <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {{ $province->slug }}"
-                                       href="{{ route('shop.province.show', ['province' => $province->id]) }}">
+                                       href="{{ route('provinces.show', ['province' => $province->id]) }}">
                                         {{ $province->name }}
-                                        <span class="badge badge-danger badge-pill">{{ $province->id }}</span>
+                                        @if($province->schools_count)
+                                            <span class="badge badge-danger badge-pill">
+                                                {{ $province->schools_count }}
+                                            </span>
+                                        @endif
                                     </a>
                                 @endforeach
                             </div>
                             <div class="d-none island">
                                 <a class="abu-musa"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     ابو موسی
                                 </a>
                                 <a class="qeshm"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     قشم
                                 </a>
                                 <a class="faror-big"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     فرور بزرگ
                                 </a>
                                 <a class="faror-small"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     فرور کوچک
                                 </a>
-                                <a class="hendorabi" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                <a class="hendorabi" href="{{ route('provinces.show', ['province' => 29]) }}">
                                     هندروابی
                                 </a>
-                                <a class="hengam" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                <a class="hengam" href="{{ route('provinces.show', ['province' => 29]) }}">
                                     هنگام
                                 </a>
-                                <a class="hormoz" href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                <a class="hormoz" href="{{ route('provinces.show', ['province' => 29]) }}">
                                     هرمز
                                 </a>
                                 <a class="khark"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     خارک
                                 </a>
                                 <a class="kish"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     کیش
                                 </a>
                                 <a class="lark"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     لارک
                                 </a>
                                 <a class="lavan"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     لاوان
                                 </a>
                                 <a class="siri"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     سیری
                                 </a>
                                 <a class="tunb-big"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     تنب بزرگ
                                 </a>
                                 <a class="tunb-small"
-                                   href="{{ route('shop.province.show', ['province' => 29]) }}">
+                                   href="{{ route('provinces.show', ['province' => 29]) }}">
                                     تنب کوچک
                                 </a>
                             </div>

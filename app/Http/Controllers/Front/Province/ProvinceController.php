@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front\Shop\Province;
+namespace App\Http\Controllers\Front\Province;
 
 use App\Http\Controllers\Controller;
 use App\Models\Province;
@@ -15,9 +15,9 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        $provinces = Province::all();
+        $provinces = Province::withCount('schools')->get();
 
-        return view('pages.front.shop.province.index', [
+        return view('pages.front.province.index', [
             'provinces' => $provinces,
         ]);
     }
@@ -28,7 +28,7 @@ class ProvinceController extends Controller
     public function show()
     {
 
-        return view('pages.front.shop.province.show', [
+        return view('pages.front.province.show', [
 
         ]);
     }

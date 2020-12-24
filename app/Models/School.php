@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $name
+ * @property int $province_id
  * @property int $city_id
  * @property string|null $phone
  * @property string|null $address
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|School whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|School whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|School whereUpdatedAt($value)
  * @mixin \Eloquent
  */

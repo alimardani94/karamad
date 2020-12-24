@@ -94,13 +94,14 @@ Route::group(['namespace' => 'Front'], function () {
         Route::get('/checkout', 'ShopController@checkout')->name('shop.checkout');
         Route::get('/checkout', 'ShopController@checkout')->name('shop.checkout');
 
-        Route::group(['prefix' => 'provinces', 'namespace' => 'Province'], function () {
-            Route::get('/', 'ProvinceController@index')->name('shop.province.index');
-            Route::get('/{province}', 'ProvinceController@show')->name('shop.province.show');
-        });
         Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
         Route::post('/orders', 'OrderController@store')->name('orders.store');
         Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+    });
+
+    Route::group(['prefix' => 'provinces', 'namespace' => 'Province'], function () {
+        Route::get('/', 'ProvinceController@index')->name('provinces.index');
+        Route::get('/{province}', 'ProvinceController@show')->name('provinces.show');
     });
 
     Route::get('/invoices/{invoice}', 'InvoiceController@show')->name('invoices.show');

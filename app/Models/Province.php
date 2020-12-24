@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $slug
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\City[] $cities
  * @property-read int|null $cities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\School[] $schools
+ * @property-read int|null $schools_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Province newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Province newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Province query()
@@ -30,6 +34,22 @@ class Province extends Model
      */
     public function cities(): HasMany
     {
-        return $this->hasMany(City::class, 'province_id');
+        return $this->hasMany(City::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function schools(): HasMany
+    {
+        return $this->hasMany(School::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 }

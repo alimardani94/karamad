@@ -67,6 +67,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
  * @property-read \App\Models\School|null $school
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class User extends Authenticatable
 {
@@ -120,6 +122,14 @@ class User extends Authenticatable
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'owner_id');
     }
 
     /**

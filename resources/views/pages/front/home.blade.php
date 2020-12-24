@@ -118,87 +118,107 @@
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-bold mt-5 mb-3 text-default">استان‌ها</h6>
                                 <div class="pt-3 mt-3">
-                                    <a href="{{ route('shop.province.index') }}" class="btn btn-success btn-sm">همه استان‌ها</a>
+                                    <a href="{{ route('provinces.index') }}" class="btn btn-success btn-sm">همه استان‌ها</a>
                                 </div>
                             </div>
                             <div class="carousel-box courses-box">
                                 <div class="owl-carousel mt-4 pb-5">
                                     <div class="card">
-                                        <a href="{{ route('shop.province.show', ['province' => 8]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 8]) }}">
                                             <img src="{{ asset('assets/img/cities/tehran.jpg') }}"
                                                  class="card-img-top" alt="tehran">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('shop.province.show', ['province' => 8]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 8]) }}"
                                                    class="text-dark">
                                                     تهران
                                                 </a>
                                             </h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">اا محصول</li>
-                                            <li class="list-group-item">۱۸ مدرسه</li>
-                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\School::whereProvinceId(8)->count() }}
+                                                مدرسه
+                                            </li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\User::whereProvinceId(8)->count() }}
+                                                دانش‌آموز
+                                            </li>
                                         </ul>
                                     </div>
 
 
                                     <div class="card">
-                                        <a href="{{ route('shop.province.show', ['province' => 11]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 11]) }}">
                                             <img src="{{ asset('assets/img/cities/mashhad.jpg') }}"
                                                  class="card-img-top" alt="mashhad">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('shop.province.show', ['province' => 11]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 11]) }}"
                                                    class="text-dark">
                                                     خراسان رضوی
                                                 </a>
                                             </h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">اا محصول</li>
-                                            <li class="list-group-item">۱۸ مدرسه</li>
-                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\School::whereProvinceId(11)->count() }}
+                                                مدرسه
+                                            </li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\User::whereProvinceId(11)->count() }}
+                                                دانش‌آموز
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="card">
-                                        <a href="{{ route('shop.province.show', ['province' => 17]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 17]) }}">
                                             <img src="{{ asset('assets/img/cities/shiraz.jpg') }}"
                                                  class="card-img-top" alt="shiraz">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('shop.province.show', ['province' => 17]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 17]) }}"
                                                    class="text-dark">
                                                     فارس
                                                 </a>
                                             </h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">اا محصول</li>
-                                            <li class="list-group-item">۱۸ مدرسه</li>
-                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\School::whereProvinceId(17)->count() }}
+                                                مدرسه
+                                            </li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\User::whereProvinceId(17)->count() }}
+                                                دانش‌آموز
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="card">
-                                        <a href="{{ route('shop.province.show', ['province' => 1]) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 1]) }}">
                                             <img src="{{ asset('assets/img/cities/tabriz.jpg') }}"
                                                  class="card-img-top" alt="tabriz">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('shop.province.show', ['province' => 1]) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 1]) }}"
                                                    class="text-dark">
                                                     آذربایجان شرقی
                                                 </a>
                                             </h5>
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">اا محصول</li>
-                                            <li class="list-group-item">۱۸ مدرسه</li>
-                                            <li class="list-group-item">۳ دانش‌آموز</li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\School::whereProvinceId(1)->count() }}
+                                                مدرسه
+                                            </li>
+                                            <li class="list-group-item">
+                                                {{ \App\Models\User::whereProvinceId(1)->count() }}
+                                                دانش‌آموز
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
