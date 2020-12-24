@@ -117,6 +117,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return bool
+     */
+    public function isStudent()
+    {
+        return $this->grade != null and $this->school_id != null;
+    }
+
+    /**
      * @return BelongsTo
      */
     public function school(): BelongsTo

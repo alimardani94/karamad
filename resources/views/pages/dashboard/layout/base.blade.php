@@ -44,34 +44,34 @@
                         <div class="card-text pt-2">
                             <div class="nav flex-column nav-pills" id="tab" role="tablist"
                                  aria-orientation="vertical">
-                                <a class="nav-link active" data-toggle="pill" id="home-tab"
+                                <a class="nav-link active" data-toggle="pill" id="home_tab"
                                    href="#home" role="tab"
                                    aria-controls="home" aria-selected="true">
                                     داشبورد
                                 </a>
-                                @if($authUser->isInstructor())
-                                    <a class="nav-link" id="add-course-tab" data-toggle="pill"
-                                       href="#add-course" role="tab"
-                                       aria-controls="add-course" aria-selected="false">
-                                        افزودن دوره
+                                @if($authUser->isStudent())
+                                    <a class="nav-link" id="create_product_tab" data-toggle="pill"
+                                       href="#create_product" role="tab"
+                                       aria-controls="create_product" aria-selected="false">
+                                        افزودن محصول
                                     </a>
                                 @endif
-                                <a class="nav-link" id="courses-tab" data-toggle="pill"
+                                <a class="nav-link" id="courses_tab" data-toggle="pill"
                                    href="#courses" role="tab"
                                    aria-controls="courses" aria-selected="false">
                                     دوره های من
                                 </a>
-                                <a class="nav-link" id="orders-tab" data-toggle="pill"
+                                <a class="nav-link" id="orders_tab" data-toggle="pill"
                                    href="#orders" role="tab"
                                    aria-controls="orders" aria-selected="false">
                                     سفارشات
                                 </a>
-                                <a class="nav-link" id="transactions-tab" data-toggle="pill"
+                                <a class="nav-link" id="transactions_tab" data-toggle="pill"
                                    href="#transactions" role="tab"
                                    aria-controls="transactions" aria-selected="false">
                                     مالی
                                 </a>
-                                <a class="nav-link" id="profile-tab" data-toggle="pill"
+                                <a class="nav-link" id="profile_tab" data-toggle="pill"
                                    href="#profile" role="tab"
                                    aria-controls="profile" aria-selected="false">
                                     پروفایل

@@ -43,7 +43,7 @@
     <div class="tab-content p-0" id="tabContent">
         {{--    first tab     --}}
         <div class="tab-pane fade show active h-100" id="home"
-             role="tabpanel" aria-labelledby="home-tab">
+             role="tabpanel" aria-labelledby="home_tab">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -97,9 +97,16 @@
             </div>
         </div>
 
+        {{--    create product tab     --}}
+        <div class="tab-pane fade show active h-100" id="create_product"
+             role="tabpanel" aria-labelledby="home_tab">
+            <div class="card">
+            </div>
+        </div>
+
         {{--    courses tab     --}}
         <div class="tab-pane fade" id="courses" role="tabpanel"
-             aria-labelledby="courses-tab">
+             aria-labelledby="courses_tab">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">دوره های من</div>
@@ -116,7 +123,7 @@
 
         {{--    orders tab     --}}
         <div class="tab-pane fade" id="orders" role="tabpanel"
-             aria-labelledby="orders-tab">
+             aria-labelledby="orders_tab">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">سفارشات</div>
@@ -190,7 +197,7 @@
 
         {{--    transactions tab     --}}
         <div class="tab-pane fade" id="transactions" role="tabpanel"
-             aria-labelledby="transactions-tab">
+             aria-labelledby="transactions_tab">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">مالی</div>
@@ -227,7 +234,7 @@
 
         {{--    profile tab     --}}
         <div class="tab-pane fade" id="profile" role="tabpanel"
-             aria-labelledby="profile-tab">
+             aria-labelledby="profile_tab">
             <div class="card testimonial-card">
 
                 <!-- Background color -->
@@ -376,6 +383,7 @@
 
             </div>
         </div>
+
     </div>
 
 @endsection
