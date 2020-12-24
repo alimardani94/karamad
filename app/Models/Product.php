@@ -74,7 +74,7 @@ class Product extends Model
      */
     public function getFinalPriceAttribute()
     {
-        return round($this->price - ($this->price * $this->discount / 100), -2);
+        return round($this->price - ($this->price * $this->discount / 100), -3);
     }
 
     /**

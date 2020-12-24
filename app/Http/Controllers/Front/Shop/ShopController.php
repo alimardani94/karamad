@@ -16,7 +16,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        $products = Product::with('owner.school')->paginate();
 
         return view('pages.front.shop.index', [
             'products' => $products,
@@ -30,8 +30,8 @@ class ShopController extends Controller
      */
     public function product(Request $request, $id)
     {
-        $product = Product::whereId($id)->with('comments')->withCount('comments')->first();
-        $relatedProducts = Product::where('id', '<>', $id)->limit(6)->get();
+        $product = Product::whereId($id)->with(['comments', 'owner.school'])->withCount('comments')->first();
+        $relatedProducts = Product::where('id', '<>', $id)->with('owner.school')->limit(6)->get();
 
         return view('pages.front.shop.product', [
             'product' => $product,

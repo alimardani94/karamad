@@ -97,6 +97,14 @@
                                 </div>
                             @endif
 
+                            <div class="my-3">
+                                <a href="{{ route('schools.show', ['school' => $product->owner->school->id]) }}"
+                                   class="my-3">
+                                    نام مدرسه:
+                                    {{ $product->owner->school->name }}
+                                </a>
+                            </div>
+
                             <h3 class="h3-responsive text-center text-md-right my-4">
                                 @if($product->discount)
                                     <span class="grey-text">

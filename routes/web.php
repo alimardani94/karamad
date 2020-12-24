@@ -101,6 +101,10 @@ Route::group(['namespace' => 'Front'], function () {
         Route::resource('products.comments', 'CommentController')->shallow();
     });
 
+    Route::group(['prefix' => 'schools', 'namespace' => 'School'], function () {
+        Route::get('/{school}', 'SchoolController@show')->name('schools.show');
+    });
+
     Route::group(['prefix' => 'provinces', 'namespace' => 'Province'], function () {
         Route::get('/', 'ProvinceController@index')->name('provinces.index');
         Route::get('/{province}', 'ProvinceController@show')->name('provinces.show');

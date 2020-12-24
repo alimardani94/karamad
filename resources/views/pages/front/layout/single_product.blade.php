@@ -18,8 +18,11 @@
         </h5>
 
         <div>
-            نام مدرسه:
-            {{ $product->owner->school->name }}
+            <a href="{{ route('schools.show', ['school' => $product->owner->school->id]) }}"
+               class="my-3">
+                نام مدرسه:
+                {{ $product->owner->school->name }}
+            </a>
         </div>
 
         @foreach($product->tags as $tag)

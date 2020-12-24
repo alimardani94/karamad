@@ -12,7 +12,7 @@ class PriceCalculator implements Calculator
     {
         $totalPrice = 0;
         foreach ($products as $product) {
-            $productPrice = round($product['price'] - ($product['price'] * $product['discount'] / 100), -2);
+            $productPrice = round($product['price'] - ($product['price'] * $product['discount'] / 100), -3);
             $totalPrice += $productPrice * (int)$product['quantity'];
         }
 
