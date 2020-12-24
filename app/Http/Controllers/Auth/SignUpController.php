@@ -54,6 +54,7 @@ class SignUpController extends Controller
         if ($request->has('school')) {
             $school = new School();
             $school->name = $request->get('school');
+            $school->province_id = $request->get('province');
             $school->city_id = $request->get('city');
             $school->save();
 
