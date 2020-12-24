@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 
 /**
  * App\Models\School
@@ -46,4 +48,11 @@ class School extends Model
         return $this->hasMany(User::class);
     }
 
+    /**
+     * @return Builder
+     */
+    public function products()
+    {
+        return Product::whereIn('owner_id', $this->students()->select('id')->pluck('id')->toArray());
+    }
 }
