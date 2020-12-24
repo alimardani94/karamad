@@ -60,9 +60,9 @@ Route::group(['namespace' => 'Front'], function () {
     Route::post('/contact-us', 'ContactUsController@request');
 
     Route::get('/search', 'SearchController@search')->name('search');
-    Route::get('/course/search', 'SearchController@courseSearch')->name('course.search');
-    Route::get('/post/search', 'SearchController@postSearch')->name('post.search');
-    Route::get('/product/search', 'SearchController@productSearch')->name('product.search');
+    Route::get('/courses/search', 'SearchController@courseSearch')->name('course.search');
+    Route::get('/posts/search', 'SearchController@postSearch')->name('post.search');
+    Route::get('/products/search', 'SearchController@productSearch')->name('product.search');
 
     Route::group(['prefix' => 'courses', 'namespace' => 'Course'], function () {
         Route::get('/', 'CourseController@index')->name('courses.index');
@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Front'], function () {
 
     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
         Route::get('/', 'ShopController@index')->name('shop.index');
-        Route::get('/product/{id}/{slug?}', 'ShopController@product')->name('shop.product');
+        Route::get('/products/{id}/{slug?}', 'ShopController@product')->name('shop.product');
         Route::get('/cart', 'CartController@show')->name('shop.cart.show');
         Route::get('/cart/{product}/{count}', 'CartController@add')->name('shop.cart.add');
         Route::get('/checkout', 'ShopController@checkout')->name('shop.checkout');
@@ -97,6 +97,8 @@ Route::group(['namespace' => 'Front'], function () {
         Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
         Route::post('/orders', 'OrderController@store')->name('orders.store');
         Route::delete('/orders/{order}', 'OrderController@destroy')->name('orders.destroy');
+
+        Route::resource('products.comments', 'CommentController')->shallow();
     });
 
     Route::group(['prefix' => 'provinces', 'namespace' => 'Province'], function () {

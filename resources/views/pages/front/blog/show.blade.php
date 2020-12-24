@@ -162,31 +162,34 @@
                                         <form action="{{ route('posts.comments.store', ['post' => $post->id ]) }}"
                                               method="post" id="comment_form">
                                             @csrf
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-12 mb-4">
-                                                    <div class="md-form">
-                                                        <i class="fal fa-user prefix"></i>
-                                                        <label for="name">نام</label>
-                                                        <input type="text" id="name" name="name"
-                                                               class="form-control @error('name') is-invalid @enderror">
-                                                        @error('name')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-lg-6 col-md-6 mb-4">
-                                                    <div class="md-form">
-                                                        <i class="fal fa-envelope prefix"></i>
-                                                        <label for="email">ایمیل</label>
-                                                        <input type="text" id="email" name="email"
-                                                               class="form-control @error('email') is-invalid @enderror">
-                                                        @error('email')
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                        @enderror
+                                            @guest
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-12 mb-4">
+                                                        <div class="md-form">
+                                                            <i class="fal fa-user prefix"></i>
+                                                            <label for="name">نام</label>
+                                                            <input type="text" id="name" name="name"
+                                                                   class="form-control @error('name') is-invalid @enderror">
+                                                            @error('name')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 mb-4">
+                                                        <div class="md-form">
+                                                            <i class="fal fa-phone prefix"></i>
+                                                            <label for="cell">شماره موبایل</label>
+                                                            <input type="text" id="cell" name="cell"
+                                                                   class="form-control @error('cell') is-invalid @enderror">
+                                                            @error('cell')
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endguest
 
                                             <div class="row">
                                                 <div class="col-12 mt-1">

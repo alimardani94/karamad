@@ -21,6 +21,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('parent_id')->index()->nullable();
             $table->unsignedBigInteger('user_id')->index()->nullable();
             $table->string('name')->nullable();
+            $table->string('cell')->nullable();
             $table->string('email')->nullable();
             $table->string('ip')->index()->nullable();
             $table->unsignedTinyInteger('status')->default(0);

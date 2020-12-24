@@ -89,11 +89,13 @@
                                 <strong> {{ $product->name }} </strong>
                             </h2>
 
-                            <div class="my-2">
-                                @foreach($product->tags as $tag)
-                                    <span class="badge badge-success product m-1 mt-2">{{ $tag->name}}</span>
-                                @endforeach
-                            </div>
+                            @if($product->tags->count())
+                                <div class="my-2">
+                                    @foreach($product->tags as $tag)
+                                        <span class="badge badge-success product m-1 mt-2">{{ $tag->name}}</span>
+                                    @endforeach
+                                </div>
+                            @endif
 
                             <h3 class="h3-responsive text-center text-md-right my-4">
                                 @if($product->discount)
@@ -173,19 +175,16 @@
 
                 <div class="tab-pane fade" id="comments" role="tabpanel">
                     @if($product->comments_count)
-                        <h4 class="h4-responsive dark-grey-text font-weight-bold my-5 text-center">
-                            <strong>دیدگاه‌ها</strong>
+                        <h4 class="h4-responsive dark-grey-text font-weight-bold mb-5 text-center">
+                            <strong>
+                                {{ $product->comments_count }}
+                                دیدگاه‌
+                            </strong>
                         </h4>
-
                         <hr class="mb-5">
-                        <div class="comments-list text-center text-md-left">
-                            <div class="text-center my-5">
-                                <h3 class="font-weight-bold">دیدگاه
-                                    <span class="badge indigo">{{ $product->comments_count }}</span>
-                                </h3>
-                            </div>
 
-                            @foreach ($product->comments as $comment)
+                        <div class="comments-list text-center text-md-left">
+                            @foreach($product->comments as $comment)
                                 <div class="row mb-5">
                                     <div class="col-sm-2 col-12 mb-3">
                                         <img src="{{ $comment->image }}"
@@ -212,9 +211,66 @@
                         </div>
                     @else
                         <p class="dark-grey mb-4">
-                            هنوز هیچ دیدگاهی ثبت نشده است.
+                            هنوز هیچ دیدگاهی ثبت نشده است، اولین نفری باشید که دیدگاه می‌گذارید.
                         </p>
                     @endif
+
+                    <section id="leave-comment" class="mt-3 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                        <h3 class="font-weight-bold text-center my-5">دیدگاه بگذارید</h3>
+                        <form action="{{ route('products.comments.store', ['product' => $product->id]) }}"
+                              method="post" id="comment_form">
+                            @csrf
+
+                            @guest
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 mb-4">
+                                        <div class="md-form">
+                                            <i class="fal fa-user prefix"></i>
+                                            <label for="name">نام</label>
+                                            <input type="text" id="name" name="name"
+                                                   class="form-control @error('name') is-invalid @enderror">
+                                            @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 mb-4">
+                                        <div class="md-form">
+                                            <i class="fal fa-phone prefix"></i>
+                                            <label for="cell">شماره موبایل</label>
+                                            <input type="text" id="cell" name="cell"
+                                                   class="form-control @error('cell') is-invalid @enderror">
+                                            @error('cell')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            @endguest
+
+                            <div class="row">
+                                <div class="col-12 mt-1">
+                                    <div class="md-form">
+                                        <i class="fal fa-pencil-alt prefix"></i>
+                                        <label for="body" class="">دیدگاه</label>
+                                        <textarea id="body"
+                                                  class="md-textarea form-control @error('body') is-invalid @enderror"
+                                                  rows="3" name="body"></textarea>
+                                        @error('body')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="text-right">
+                                        <button class="btn btn-grey btn-sm">ارسال</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </section>
                 </div>
 
             </div>
