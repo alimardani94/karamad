@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Enums\Shop\ProductStatus;
 use App\Models\Course;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,7 @@ class SearchController extends Controller
 
         $courses = Course::where('title', 'like', "%$q%")->limit(4)->get();
         $posts = Post::where('title', 'like', "%$q%")->limit(4)->get();
-        $products = Product::where('name', 'like', "%$q%")->limit(4)->get();
+        $products = Product::whereStatus(ProductStatus::CONFIRMED)->where('name', 'like', "%$q%")->limit(4)->get();
 
         return view('pages.front.search.search', [
             'courses' => $courses,
@@ -69,7 +70,7 @@ class SearchController extends Controller
     {
         $q = $request->get('q');
 
-        $products = Product::where('name', 'like', "%$q%")->paginate(12);
+        $products = Product::whereStatus(ProductStatus::CONFIRMED)->where('name', 'like', "%$q%")->paginate(12);
 
         return view('pages.front.search.product_search', [
             'products' => $products,

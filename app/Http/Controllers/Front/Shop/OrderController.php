@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front\Shop;
 
 use App\Enums\InvoiceableStatus;
+use App\Enums\Shop\ProductStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
@@ -26,7 +27,8 @@ class OrderController extends Controller
 
         $ids_ordered = implode(',', array_column($items, 'id'));
 
-        $products = Product::whereIn('id', array_column($items, 'id'))
+        $products = Product::whereStatus(ProductStatus::CONFIRMED)
+            ->whereIn('id', array_column($items, 'id'))
             ->select(['id', 'name', 'type', 'price', 'discount', 'file', 'images'])
             ->orderByRaw("FIELD(id, $ids_ordered)")
             ->get()->toArray();

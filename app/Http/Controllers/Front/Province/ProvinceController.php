@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Province;
 
+use App\Enums\Shop\ProductStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Province;
@@ -32,7 +33,7 @@ class ProvinceController extends Controller
     {
         $province = Province::whereSlug($slug)->firstOrFail();
 
-        $products = Product::whereHas('owner', function ($q) use ($province) {
+        $products = Product::whereStatus(ProductStatus::CONFIRMED)->whereHas('owner', function ($q) use ($province) {
             $q->where('province_id', $province->id);
         })->limit(6)->get();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Shop;
 
+use App\Enums\Shop\ProductStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,7 +17,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::with('owner.school')->paginate();
+        $products = Product::whereStatus(ProductStatus::CONFIRMED)->with('owner.school')->paginate();
 
         return view('pages.front.shop.index', [
             'products' => $products,
@@ -30,8 +31,8 @@ class ShopController extends Controller
      */
     public function product(Request $request, $id)
     {
-        $product = Product::whereId($id)->with(['comments', 'owner.school'])->withCount('comments')->first();
-        $relatedProducts = Product::where('id', '<>', $id)->with('owner.school')->limit(6)->get();
+        $product = Product::whereId($id)->whereStatus(ProductStatus::CONFIRMED)->with(['comments', 'owner.school'])->withCount('comments')->firstOrFail();
+        $relatedProducts = Product::whereStatus(ProductStatus::CONFIRMED)->where('id', '<>', $id)->with('owner.school')->limit(6)->get();
 
         return view('pages.front.shop.product', [
             'product' => $product,

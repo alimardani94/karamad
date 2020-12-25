@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Enums\Shop\ProductStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Product;
@@ -22,8 +23,8 @@ class HomeController extends Controller
             ->orderByRaw('COUNT(*) DESC')->limit(7)->pluck('entity_id')->toArray();
 
         $popularCourses = Course::whereIn('id', $ids)->limit(6)->get();
-        $popularProducts = Product::whereIn('id', [4, 3, 2, 1, 5, 6])->limit(6)->get();
-        $latestProducts = Product::latest()->limit(6)->get();
+        $popularProducts = Product::whereStatus(ProductStatus::CONFIRMED)->whereIn('id', [4, 3, 2, 1, 5, 6])->limit(6)->get();
+        $latestProducts = Product::whereStatus(ProductStatus::CONFIRMED)->latest()->limit(6)->get();
 
         return view('pages.front.home', [
             'courses' => $courses,

@@ -10,7 +10,6 @@ use App\Models\ProductCategory;
 use App\Models\Tag;
 use App\Models\User;
 use Exception;
-use File;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
