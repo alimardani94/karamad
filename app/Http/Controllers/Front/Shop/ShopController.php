@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ShopController extends Controller
@@ -31,7 +32,12 @@ class ShopController extends Controller
      */
     public function product(Request $request, $id)
     {
-        $product = Product::whereId($id)->whereStatus(ProductStatus::CONFIRMED)->with(['comments', 'owner.school'])->withCount('comments')->firstOrFail();
+        $product = Product::whereId($id)->with(['comments', 'owner.school'])->withCount('comments')->firstOrFail();
+
+        if ($product->status != ProductStatus::CONFIRMED and Auth::user()->isAdmin() == false) {
+            abort(404);
+        }
+
         $relatedProducts = Product::whereStatus(ProductStatus::CONFIRMED)->where('id', '<>', $id)->with('owner.school')->limit(6)->get();
 
         return view('pages.front.shop.product', [
