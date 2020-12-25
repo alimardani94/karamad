@@ -25,7 +25,7 @@ class HomeController extends Controller
 
         $productCategories = ProductCategory::where('parent_id', '<>', null)->get();
 
-        return view('pages.dashboard.home', [
+        return view('pages.dashboard.index', [
             'orders' => $orders,
             'courses' => $courses,
             'transactions' => $transactions,
