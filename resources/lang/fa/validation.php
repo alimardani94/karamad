@@ -165,6 +165,7 @@ return [
         'content' => 'محتوا',
         'body' => 'محتوا',
         'type' => 'نوع',
+        'quantity' => 'تعداد',
         'button' => 'دکمه',
         'image' => 'تصویر',
         'images' => 'تصاویر',

@@ -155,7 +155,7 @@
                                 <div class="col-md-12">
                                     <label>تصاویر</label>
                                     <div id="dropzone" class="needsclick dz-clickable"
-                                         data-action="{{ route('admin.upload.dropzone') }}">
+                                         data-action="{{ route('upload.dropzone') }}">
                                         <div class="dz-message">
                                             <div><i class="fas fa-plus"></i></div>
                                             <div>برای بارگذاری تصاویر اینجا کلیک کنید.</div>

@@ -9,6 +9,10 @@ Route::post('/profile/image/update', 'ProfileController@imageUpdate')->name('pro
 Route::post('/profile/password/update', 'ProfileController@changePassword')->name('profile.password.change');
 
 
+Route::group(['prefix' => 'products'], function () {
+    Route::post('/', 'ProductController@store')->name('products.store');
+});
+
 Route::group(['prefix' => 'orders'], function () {
     Route::delete('destroy/{order}', 'OrderController@destroy')->name('orders.destroy');
     Route::get('show/{order}', 'OrderController@show')->name('orders.show');

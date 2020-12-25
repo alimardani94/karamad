@@ -53,6 +53,8 @@ Route::get('/account/email/verify/{token}', [
 // get all cities of province
 Route::get('/cities', 'CityController@get')->name('cities');
 
+Route::post('/upload/image', 'uploadController@dropzone')->name('upload.dropzone');
+
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/', 'HomeController@home')->name('home');
 

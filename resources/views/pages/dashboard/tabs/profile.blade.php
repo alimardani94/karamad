@@ -1,5 +1,4 @@
 <div class="card testimonial-card">
-
     <!-- Background color -->
     <div class="card-up card-image"
          style="background-image: url({{ asset('assets/img/brain-2.jpg') }});">
