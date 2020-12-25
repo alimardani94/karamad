@@ -9,6 +9,7 @@ use App\Services\PriceCalculator\PriceCalculator;
 use App\Services\Reactions\Reactor;
 use App\Services\Reactions\SessionReactor;
 use App\Services\SMS\Candoo;
+use App\Services\Sms\PayamResan;
 use App\Services\SMS\SMS;
 use App\Services\Token\Jwt as TokenJwt;
 use App\Services\Token\Token;
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
             switch (config('sms.driver')) {
                 case 'candoo':
                     return new Candoo();
+                case 'payam_resan':
+                    return new PayamResan();
                 default:
                     throw new Exception();
             }
