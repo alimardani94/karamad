@@ -102,11 +102,19 @@
                             )
                             window.location.reload();
                         },
-                        error: function (e) {
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
-                            } else {
-                                toastr.error();
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
                             }
                         }
                     });

@@ -51,15 +51,20 @@
                             <tbody>
                             @foreach($syllabuses as $syllabus)
                                 <tr>
-                                    <td>{{ $syllabus->title}}</td>
-                                    <td>{{ $syllabus->course->title}}</td>
+                                    <td>
+                                        <a href="{{ route('syllabuses.show', ['syllabus' => $syllabus->id, 'slug' => $syllabus->slug]) }}"
+                                           class="black-text">
+                                            {{ $syllabus->title }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $syllabus->course->title }}</td>
                                     <td>{{ $syllabus->type() }}</td>
-                                    <td>{{jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>{{ jDate($syllabus->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.course.syllabuses.edit', ['syllabus' => $syllabus->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش جلسه
                                         </a>
-                                        <a onclick="removeSyllabus({{ $syllabus->id}})" type="button"
+                                        <a onclick="removeSyllabus({{ $syllabus->id }})" type="button"
                                            class="btn btn-block btn-danger btn-xs">حذف جلسه</a>
                                     </td>
                                 </tr>
@@ -96,18 +101,25 @@
                         url: url,
                         success: function (response) {
                             Swal.fire(
-                                'جلسه با موفقیت حذف شد',
+                                response['message'],
                                 '',
                                 'success'
                             )
                             window.location.reload();
                         },
-                        error: function (e) {
-                            console.log(e, e.responseJSON.message)
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
-                            } else {
-                                toastr.error();
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
                             }
                         }
                     });

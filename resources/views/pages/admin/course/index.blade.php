@@ -43,12 +43,16 @@
                             <tbody>
                             @foreach($courses as $course)
                                 <tr>
-                                    <td>{{ $course->title}}</td>
-                                    <td>{{ $course->instructor->name ?? ''}}</td>
-                                    <td>{{ $course->category->name ?? ''}}</td>
+                                    <td>
+                                        <a href="{{  route('courses.show', ['course' => $course->id, 'slug' => $course->slug]) }}">
+                                            {{ $course->title }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $course->instructor->name ?? '' }}</td>
+                                    <td>{{ $course->category->name ?? '' }}</td>
                                     <td>{{ $course->syllabuses()->count() }}</td>
-                                    <td>{{substr($course->summary,0,200) }}</td>
-                                    <td>{{jDate($course->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
+                                    <td>{{ substr($course->summary,0,200) }}</td>
+                                    <td>{{ jDate($course->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
                                         <a href="{{ route('admin.course.syllabuses.create', ['course' => $course->id]) }}"
                                            type="button" class="btn btn-block btn-default btn-xs">افزودن جلسه</a>
@@ -57,7 +61,7 @@
                                         <a href="{{  route('admin.course.courses.edit', ['course' => $course->id]) }}"
                                            type="button" class="btn btn-block btn-primary btn-xs">ویرایش دوره
                                         </a>
-                                        <a onclick="removeCourse({{ $course->id}})" type="button"
+                                        <a onclick="removeCourse( {{ $course->id}} )" type="button"
                                            class="btn btn-block btn-danger btn-xs">حذف دوره</a>
                                     </td>
                                 </tr>
@@ -94,18 +98,25 @@
                         url: url,
                         success: function (response) {
                             Swal.fire(
-                                'دوره با موفقیت حذف شد',
+                                response['message'],
                                 '',
                                 'success'
                             )
                             window.location.reload();
                         },
-                        error: function (e) {
-                            console.log(e, e.responseJSON.message)
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
-                            } else {
-                                toastr.error();
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
                             }
                         }
                     });

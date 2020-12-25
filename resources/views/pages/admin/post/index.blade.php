@@ -10,7 +10,7 @@
             مقاله ها <small>لیست</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ route('admin.home')}}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مقاله ها</a></li>
             <li class="active">لیست مقاله ها</li>
         </ol>
@@ -24,7 +24,7 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">لیست مقاله ها</h3>
-                        <a href="{{ route('admin.blog.posts.create')}}" class="btn btn-primary btn-flat pull-left">افزودن
+                        <a href="{{ route('admin.blog.posts.create') }}" class="btn btn-primary btn-flat pull-left">افزودن
                             مقاله جدید</a>
                     </div>
                     <div class="box-body">
@@ -41,19 +41,24 @@
                             <tbody>
                             @foreach($posts as $post)
                                 <tr>
-                                    <td>{{$post->title}}</td>
+                                    <td>
+                                        <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
+                                            {{ $post->title }}
+                                        </a>
+                                    </td>
                                     <td>
                                         @foreach($post->tagsArray() as $tag)
-                                            <li>{{$tag}}</li>
+                                            <li>{{ $tag }}</li>
                                         @endforeach
                                     </td>
                                     <td>{{ $post->author->full_name }}</td>
-                                    <td>{{jDate($post->created_at, 'dd MMMM yyyy - HH:mm')}}</td>
+                                    <td>{{ jDate($post->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.blog.posts.edit', ['post' => $post->id])}}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش مقاله
+                                        <a href="{{ route('admin.blog.posts.edit', ['post' => $post->id]) }}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">ویرایش مقاله
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
-                                           onclick="removePost({{$post->id}})">حذف مقاله</a>
+                                           onclick="removePost({{ $post->id }})">حذف مقاله</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,7 +77,7 @@
 @section('js')
     <script>
         function removePost(id) {
-            let url = "{{ route('admin.blog.posts.destroy', '')}}/" + id
+            let url = "{{ route('admin.blog.posts.destroy', '') }}/" + id
             Swal.fire({
                 title: 'آیا مقاله حذف شود؟',
                 text: "",
@@ -89,17 +94,25 @@
                         url: url,
                         success: function (response) {
                             Swal.fire(
-                                'مقاله با موفقیت حذف شد',
+                                response['message'],
                                 '',
                                 'success'
                             )
                             window.location.reload();
                         },
-                        error: function (e) {
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
-                            } else {
-                                toastr.error();
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
                             }
                         }
                     });
