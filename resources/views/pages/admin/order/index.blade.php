@@ -73,7 +73,7 @@
                                     </td>
                                     <td>{{ number_format($order->total_price) }}</td>
                                     <td>{{ jDate($order->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
-                                    <td>{{ $order->address->toString() }}</td>
+                                    <td>{{ $order->address ? $order->address->toString() : '' }}</td>
                                     <td>{{ $order->status() }}</td>
                                     <td>
                                         @if($order->status == \App\Enums\InvoiceableStatus::Payed)
@@ -118,6 +118,7 @@
                 if (result.value) {
                     $.ajax({
                         type: "POST",
+                        dataType: 'json',
                         url: url,
                         data: {
                             'status': statuses['Shipped'],
@@ -125,11 +126,19 @@
                         success: function (response) {
                             // window.location.reload();
                         },
-                        error: function (e) {
-                            if (e.responseJSON.message != undefined) {
-                                toastr.error(e.responseJSON.message);
-                            } else {
-                                toastr.error();
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
                             }
                         }
                     });

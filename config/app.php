@@ -228,6 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'ProductStatus' => App\Enums\Shop\ProductStatus::class,
+        'ProductType' => App\Enums\Shop\ProductType::class,
     ],
 
 ];

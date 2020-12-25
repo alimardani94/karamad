@@ -43,11 +43,13 @@ Route::group(['namespace' => 'Shop', 'prefix' => 'shop', 'as' => 'shop.'], funct
         'categories' => 'CategoryController',
     ]);
 
+    Route::post('/products/{product}/change-status', 'ProductController@changeStatus')->name('products.change-status');
+
     Route::get('/comments/', 'CommentController@index')->name('products.comments.index');
     Route::delete('/comments/{comment}', 'CommentController@destroy')->name('products.comments.destroy');
 
     Route::get('/orders/', 'OrderController@index')->name('orders.index');
-    Route::post('/orders/{order}/change-status', 'OrderController@ChangeStatus')->name('orders.change-status');
+    Route::post('/orders/{order}/change-status', 'OrderController@changeStatus')->name('orders.change-status');
 });
 
 Route::get('/transactions/', 'TransactionController@index')->name('transactions.index');

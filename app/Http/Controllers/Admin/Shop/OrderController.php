@@ -33,7 +33,7 @@ class OrderController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function ChangeStatus(Order $order, Request $request)
+    public function changeStatus(Order $order, Request $request)
     {
         $request->validate([
             'status' => ['required', Rule::in(InvoiceableStatus::all())],

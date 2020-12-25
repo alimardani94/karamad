@@ -551,3 +551,11 @@ label.form-control {
 .d-block {
     display: block;
 }
+
+.REJECTED {
+    color: red;
+}
+
+.CONFIRMED {
+    color: green;
+}

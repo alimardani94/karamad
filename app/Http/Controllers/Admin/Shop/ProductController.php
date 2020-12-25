@@ -262,6 +262,24 @@ class ProductController extends Controller
         $product->tags()->detach();
         $product->delete();
 
-        return new JsonResponse(['message' => trans('categories.deleted')]);
+        return new JsonResponse(['message' => trans('products.deleted')]);
+    }
+
+    /**
+     * @param Product $product
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function changeStatus(Product $product, Request $request)
+    {
+        $request->validate([
+            'status' => ['required', Rule::in(ProductStatus::all())],
+        ]);
+
+        $product->status = ProductStatus::valueOf(ProductStatus::keyOf($request->input('status')));
+
+        $product->save();
+
+        return new JsonResponse(['message' => trans('products.status_changed', ['status' => ProductStatus::translatedKeyOf($product->status)])]);
     }
 }

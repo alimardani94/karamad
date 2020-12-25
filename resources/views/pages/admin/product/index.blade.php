@@ -49,9 +49,24 @@
                                     <td>{{ $product->quantity }}</td>
 
                                     <td>{{jDate($product->created_at, 'dd MMMM yyyy - HH:mm') }}</td>
-                                    <td>{{ $product->status()}}</td>
+                                    <td class="{{ ProductStatus::keyOf($product->status) }}">{{ $product->status()}}</td>
                                     <td>
-                                        <a href="{{ route('admin.shop.products.edit', ['product' => $product->id]) }}" type="button" class="btn btn-block btn-primary btn-xs">ویرایش محصول
+                                        @if($product->status != ProductStatus::REJECTED)
+                                            <a type="button" class="reject-product-btn btn btn-block btn-warning btn-xs"
+                                               data-url="{{ route('admin.shop.products.change-status', ['product' => $product->id ])}}">
+                                                عدم‌تایید کردن
+                                            </a>
+                                        @endif
+                                        @if($product->status != ProductStatus::CONFIRMED)
+                                            <a type="button"
+                                               class="confirm-product-btn btn btn-block btn-success btn-xs"
+                                               data-url="{{ route('admin.shop.products.change-status', ['product' => $product->id ])}}">
+                                                تابید
+                                            </a>
+                                        @endif
+                                        <a href="{{ route('admin.shop.products.edit', ['product' => $product->id]) }}"
+                                           type="button" class="btn btn-block btn-primary btn-xs">
+                                            ویرایش محصول
                                         </a>
                                         <a type="button" class="btn btn-block btn-danger btn-xs"
                                            onclick="removeProduct({{ $product->id }})">حذف محصول</a>
@@ -71,6 +86,9 @@
 @endsection
 
 @section('js')
+    <script>
+        let statuses = @json(ProductStatus::all())
+    </script>
     <script>
         function removeProduct(id) {
             let url = "{{ route('admin.shop.products.destroy', '') }}/" + id
@@ -107,5 +125,103 @@
                 }
             })
         }
+
+        $('.reject-product-btn').on('click', function () {
+            let url = $(this).attr('data-url');
+
+            Swal.fire({
+                title: 'آیا محصول عدم‌تایید شود؟',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'json',
+                        data: {
+                            'status': statuses['REJECTED'],
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                response['message'],
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
+                            }
+                        }
+                    });
+                }
+            })
+        });
+
+        $('.confirm-product-btn').on('click', function () {
+            let url = $(this).attr('data-url');
+
+            Swal.fire({
+                title: 'آیا محصول ‌تایید شود؟',
+                text: "",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        dataType: 'json',
+                        data: {
+                            'status': statuses['CONFIRMED'],
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                response['message'],
+                                '',
+                                'success'
+                            )
+                            window.location.reload();
+                        },
+                        error: function (error) {
+                            switch (error.status) {
+                                case 422:
+                                    let errors = error['responseJSON']['errors'];
+
+                                    for (let i in errors) {
+                                        toastr.error(errors[i])
+                                    }
+                                    break;
+                                default:
+                                    // 500
+                                    toastr.error(error['responseJSON']['message'])
+                                    break;
+                            }
+                        }
+                    });
+                }
+            })
+        });
     </script>
 @endsection
