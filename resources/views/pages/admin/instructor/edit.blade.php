@@ -10,7 +10,7 @@
             ویرایش مدرس
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
+            <li><a href="{{ route('admin.home') }}"><i class="fa fa-dashboard"></i>خانه</a></li>
             <li><a href="#">مدرسان</a></li>
             <li class="active">ویرایش مدرس</li>
         </ol>

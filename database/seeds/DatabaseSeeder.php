@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CourseCategory;
 use App\Models\ProductCategory;
 use App\Models\Role;
 use App\Models\Tag;
@@ -67,7 +68,59 @@ class DatabaseSeeder extends Seeder
 
     private function createCourseCategories()
     {
+        $categories = [
+            [
+                'id' => 1,
+                'parent_id' => null,
+                'name' => 'آموزش تحصیلی',
+            ], [
+                'id' => 2,
+                'parent_id' => 1,
+                'name' => 'ریاضی',
+            ], [
+                'id' => 3,
+                'parent_id' => 1,
+                'name' => 'علوم',
+            ], [
+                'id' => 4,
+                'parent_id' => 1,
+                'name' => 'ادبیات',
+            ], [
+                'id' => 5,
+                'parent_id' => 1,
+                'name' => 'عربی',
+            ], [
+                'id' => 6,
+                'parent_id' => null,
+                'name' => 'مهارت',
+            ], [
+                'id' => 7,
+                'parent_id' => 6,
+                'name' => 'رسانه‌ای',
+            ], [
+                'id' => 8,
+                'parent_id' => 6,
+                'name' => 'کامپیوتر',
+            ], [
+                'id' => 9,
+                'parent_id' => 6,
+                'name' => 'کار با چوب',
+            ], [
+                'id' => 10,
+                'parent_id' => 6,
+                'name' => 'کار با قلم',
+            ], [
+                'id' => 11,
+                'parent_id' => 6,
+                'name' => 'تاسیسات',
+            ], [
+                'id' => 12,
+                'parent_id' => null,
+                'name' => 'کسب و کار',
+            ],
+        ];
 
+        CourseCategory::insertOrIgnore($categories);
     }
 
     private function createProductCategories()
