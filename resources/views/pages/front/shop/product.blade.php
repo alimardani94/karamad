@@ -73,7 +73,7 @@
                             <div class="slider slider-nav my-2">
                                 @foreach($product->images() as $image)
                                     <div class="view">
-                                        <img alt="{{  $product->name }}" src="{{ $image }}"
+                                        <img alt="{{ $product->name }}" src="{{ $image }}"
                                              class="img-fluid mx-auto">
                                         <a>
                                             <div class="mask rgba-white-slight"></div>

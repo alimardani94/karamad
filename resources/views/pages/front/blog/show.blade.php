@@ -8,7 +8,7 @@
 @endsection
 
 @section('header')
-    @include('pages.header.header1', ['headerBG' => asset( 'media/' . $post->image)])
+    @include('pages.header.header1', ['headerBG' => asset('storage/' . $post->image)])
 @stop
 
 @section('style')
@@ -226,7 +226,7 @@
                                                         <div class="card m-2 h-100">
                                                             <div class="view overlay">
                                                                 <img
-                                                                    src="{{ asset( 'media/' . $relatedPost->image) }}"
+                                                                    src="{{ asset('storage/' . $relatedPost->image) }}"
                                                                     class="card-img-top"
                                                                     alt="{{ $relatedPost->title }}">
                                                                 <a>

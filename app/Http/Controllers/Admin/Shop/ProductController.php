@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -93,10 +94,11 @@ class ProductController extends Controller
 
         $images = [];
         foreach ($request->get('images') as $tempPath) {
-            $newPath = str_replace('temp', 'products', $tempPath);
-            chmod('media/' . $tempPath, 0777);
+            $id = Product::latest('id')->first('id')->id ?? 0;
+            $newPath = 'products/' . ($id + 1) . substr($tempPath, 15);
 
-            File::move('media/' . $tempPath, 'media/' . $newPath);
+            Storage::move($tempPath, $newPath);
+
             $images[] = $newPath;
         }
 
@@ -205,15 +207,15 @@ class ProductController extends Controller
         $images = [];
         foreach ($request->get('images') as $img) {
 
-            $oldImagesPrefix = asset('media/') . '/';
+            $oldImagesPrefix = asset('storage/') . '/';
 
             if (strpos($img, $oldImagesPrefix) !== false) {
                 $images[] = str_replace($oldImagesPrefix, '', $img);
             } else {
-                $newPath = str_replace('temp', 'products', $img);
-                chmod('media/' . $img, 0777);
+                $newPath = 'products/' . $product->id . substr($img, 15);
 
-                File::move('media/' . $img, 'media/' . $newPath);
+                Storage::move($img, $newPath);
+
                 $images[] = $newPath;
             }
         }

@@ -9,7 +9,7 @@
 
 @section('header')
     @include('pages.header.header1', [
-    'headerBG' => asset('media/'.$course->image),
+    'headerBG' => asset('storage/'.$course->image),
     'headerTitle' => $course->title
     ])
 @stop

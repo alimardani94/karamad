@@ -57,7 +57,7 @@
                                             @if($product->type == \App\Enums\Shop\ProductType::Physical)
                                                 <span>{{ $invoice->status() }}</span>
                                             @else
-                                                <a href="{{ asset('media/' . $product->file) }}">دانلود</a>
+                                                <a href="{{ asset('storage/' . $product->file) }}">دانلود</a>
                                             @endif
                                         </td>
                                     @endif

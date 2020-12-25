@@ -24,7 +24,7 @@
                                         <div class="col-md-12">
                                             <div class="card">
                                                 <div class="view overlay">
-                                                    <img src="{{ asset('media/' . $post->image) }}"
+                                                    <img src="{{ asset('storage/' . $post->image) }}"
                                                          class="card-img-top"
                                                          alt="{{ $post->title }}">
                                                     <a>
@@ -75,7 +75,7 @@
                                                     <div class="col-5">
                                                         <!-- Image -->
                                                         <div class="view overlay">
-                                                            <img src="{{ asset( 'media/' . $post->image) }}"
+                                                            <img src="{{ asset('storage/' . $post->image) }}"
                                                                  class="img-fluid z-depth-1 rounded-0"
                                                                  alt="{{ $post->title }}">
                                                             <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
@@ -169,7 +169,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
-                                        <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
+                                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
                                              alt="{{ $post->title}}">
                                         <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                             <div class="mask rgba-white-slight"></div>
@@ -201,7 +201,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="view overlay z-depth-1 mb-3">
-                                        <img src="{{ asset( 'media/' . $post->image) }}" class="img-fluid"
+                                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid"
                                              alt="{{ $post->title}}">
                                         <a href="{{ route('posts.show', ['post' => $post->id, 'slug' => $post->slug]) }}">
                                             <div class="mask rgba-white-slight"></div>

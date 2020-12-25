@@ -110,7 +110,7 @@ class Product extends Model
         $images = [];
 
         foreach ($arr as $img) {
-            $images[] = asset('media/' . $img);
+            $images[] = asset('storage/' . $img);
         }
 
         return $images;

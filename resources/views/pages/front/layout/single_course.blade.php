@@ -1,6 +1,6 @@
 <div class="card h-100 m-1">
     <div class="view overlay">
-        <img src="{{ asset('media/' .$course->thumbnail) }}" class="card-img-top"
+        <img src="{{ asset('storage/' .$course->thumbnail) }}" class="card-img-top"
              alt="{{ $course->title }}" style="max-height: 120px">
         <a href="{{  route('courses.show', ['course' => $course->id, 'slug' => $course->slug]) }}">
             <div class="mask rgba-white-slight waves-effect waves-light"></div>

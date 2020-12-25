@@ -47,8 +47,8 @@ class ProductController extends Controller
 
         $images = [];
         foreach ($request->get('images') as $tempPath) {
-            $id = Product::latest('id')->first('id')->id ?? 1;
-            $newPath = 'products/' . $id . substr($tempPath, 15);
+            $id = Product::latest('id')->first('id')->id ?? 0;
+            $newPath = 'products/' . ($id + 1) . substr($tempPath, 15);
 
             Storage::move($tempPath, $newPath);
 

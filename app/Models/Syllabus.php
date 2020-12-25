@@ -96,7 +96,7 @@ class Syllabus extends Model
      */
     public function video()
     {
-        return ($this->file_disk == FileDisk::URL or !$this->video) ? $this->video : asset('media/' . $this->video);
+        return ($this->file_disk == FileDisk::URL or !$this->video) ? $this->video : asset('storage/' . $this->video);
     }
 
     /**
@@ -104,7 +104,7 @@ class Syllabus extends Model
      */
     public function audio()
     {
-        return ($this->file_disk == FileDisk::URL or !$this->audio) ? $this->audio : asset('media/' . $this->audio);
+        return ($this->file_disk == FileDisk::URL or !$this->audio) ? $this->audio : asset('storage/' . $this->audio);
     }
 
     /**
@@ -143,7 +143,7 @@ class Syllabus extends Model
 
         foreach ($rawAttachments as $index => $attachment) {
             $attachments[$index]['title'] = $attachment->title;
-            $attachments[$index]['path'] = asset('media/' . $attachment->path);
+            $attachments[$index]['path'] = asset('storage/' . $attachment->path);
             $extension = pathinfo($attachment->path, PATHINFO_EXTENSION);
             switch ($extension) {
                 case('png'):

@@ -34,7 +34,7 @@
                                 @if($headerPost)
                                     <a href="#!" class="view overlay z-depth-1 p-0 my-3">
                                         <img
-                                            src="{{ asset( 'media/' . $headerPost->image) }}"
+                                            src="{{ asset('storage/' . $headerPost->image) }}"
                                             class="img-fluid" alt="First sample image">
                                         <div class="mask rgba-white-slight"></div>
                                     </a>
@@ -57,7 +57,7 @@
                                                 <!--Image-->
                                                 <a href="#!" class="view overlay z-depth-1 p-0 my-3">
                                                     <img
-                                                        src="{{ asset('media/'.$course->image) }}"
+                                                        src="{{ asset('storage/'.$course->image) }}"
                                                         class="img-fluid" alt="First sample image">
                                                     <div class="mask rgba-white-slight"></div>
                                                 </a>
