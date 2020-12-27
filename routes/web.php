@@ -90,7 +90,8 @@ Route::group(['namespace' => 'Front'], function () {
 
     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
         Route::get('/', 'ShopController@index')->name('shop.index');
-        Route::get('/products/{id}/{slug?}', 'ShopController@product')->name('shop.product');
+        Route::post('/products/datatable', 'ShopController@datatable')->name('shop.products.datatable');
+        Route::get('/products/{id}/{slug?}', 'ShopController@product')->name('shop.products.show');
         Route::get('/cart', 'CartController@show')->name('shop.cart.show');
         Route::get('/cart/{product}/{count}', 'CartController@add')->name('shop.cart.add');
         Route::get('/checkout', 'ShopController@checkout')->name('shop.checkout');

@@ -2,7 +2,7 @@
     <div class="view overlay" style="max-height: 220px">
         <img src="{{ $product->image() }}"
              class="card-img-top" alt="{{ $product->name }}">
-        <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}">
+        <a href="{{ route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]) }}">
             <div class="mask rgba-white-slight waves-effect waves-light"></div>
         </a>
     </div>
@@ -10,7 +10,7 @@
     <div class="card-body">
         <h5 class="card-title mb-1">
             <strong>
-                <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}"
+                <a href="{{ route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]) }}"
                    class="dark-grey-text">
                     {{ $product->name }}
                 </a>

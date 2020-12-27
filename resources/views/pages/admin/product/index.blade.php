@@ -44,7 +44,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('shop.product', ['id' => $product->id, 'slug' => $product->slug]) }}">
+                                        <a href="{{ route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]) }}">
                                             {{ $product->name }}
                                         </a>
                                     </td>
