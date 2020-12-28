@@ -21,11 +21,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::whereStatus(ProductStatus::CONFIRMED)->with('owner.school')->paginate();
-
-        return view('pages.front.shop.index', [
-            'products' => $products,
-        ]);
+        return view('pages.front.shop.index');
     }
 
     /**
@@ -66,10 +62,12 @@ class ShopController extends Controller
             $obj = new stdClass();
             $obj->id = $product->id;
             $obj->name = $product->name;
+            $obj->image = $product->image();
             $obj->link = route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]);
             $obj->school = $product->owner->school->name;
             $obj->tags = $product->tags()->pluck('name')->toArray();
             $obj->price = number_format($product->price);
+            $obj->discount = $product->discount;
             $obj->final_price = number_format($product->final_price);
             $obj->updated_at = jDate($product->updated_at);
 
