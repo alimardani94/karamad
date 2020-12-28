@@ -1,8 +1,6 @@
 <div class="card">
     <div class="card-body px-3 py-4">
-        <div class="row text-center py-4">
-            <h2 class="font-weight-bold mx-auto">افزودن محصول</h2>
-        </div>
+        <div class="card-title">افزودن محصول</div>
         <form id="create_product_form" method="post" class="text-center"
               action="{{ route('dashboard.products.store') }}">
             @csrf

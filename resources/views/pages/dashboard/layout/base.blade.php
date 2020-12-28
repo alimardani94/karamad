@@ -53,6 +53,11 @@
                                     داشبورد
                                 </a>
                                 @if($authUser->isStudent())
+                                    <a class="nav-link" id="products_tab" data-toggle="pill"
+                                       href="#products" role="tab"
+                                       aria-controls="products" aria-selected="false">
+                                        محصولات من
+                                    </a>
                                     <a class="nav-link" id="create_product_tab" data-toggle="pill"
                                        href="#create_product" role="tab"
                                        aria-controls="create_product" aria-selected="false">

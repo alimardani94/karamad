@@ -44,6 +44,41 @@
             text-align: left;
             border-radius: 3px;
         }
+
+        #datatable_wrapper .dataTables_scrollHead {
+            display: none;
+        }
+
+        #datatable_wrapper .dataTables_scrollBody {
+            overflow: unset !important;
+        }
+
+        #datatable_wrapper table {
+            display: block;
+            width: 100% !important;
+        }
+
+        #datatable_wrapper #datatable tbody {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #datatable_wrapper #datatable tbody tr {
+            max-width: 220px !important;
+            margin: 10px;
+            text-align: center;
+            cursor: unset;
+        }
+
+        #datatable_wrapper #datatable tbody tr td {
+            display: block;
+            word-break: break-word;
+        }
+
+        table.dataTable.no-footer {
+            border: none;
+        }
     </style>
 @endsection
 
@@ -57,6 +92,11 @@
         {{--    create product tab     --}}
         <div class="tab-pane fade h-100" id="create_product" role="tabpanel" aria-labelledby="create_product_tab">
             @include('pages.dashboard.tabs.create_product')
+        </div>
+
+        {{--    products tab     --}}
+        <div class="tab-pane fade h-100" id="products" role="tabpanel" aria-labelledby="products_tab">
+            @include('pages.dashboard.tabs.products')
         </div>
 
         {{--    courses tab     --}}
@@ -88,7 +128,7 @@
     <script src="{{ asset('assets/admin/adminLTE/components/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript"
             src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
-
+    <script src="{{ asset('assets/vendor/datatables/datatables.min.js') }}"></script>
     <script>
         let deleteOrderUrl = '{{ route('dashboard.orders.destroy', ['order' => 'orderId']) }}';
     </script>
@@ -205,10 +245,118 @@
                     });
                 });
             }
+            let _getProducts = function () {
+                const Cols = [
+                    {
+                        name: "operation",
+                        title: "",
+                        render: function (data, type, row) {
+                            let discount = ' ';
+                            if (row['discount'] !== 0) {
+                                discount =
+                                    '<span class="grey-text">\n' +
+                                    '     <small>\n' +
+                                    '         <s>' + row['price'] + '</s>\n' +
+                                    '     </small>\n' +
+                                    '</span>\n';
+                            }
+
+                            return '' +
+                                '<div class="card card-ecommerce h-100 m-1">\n' +
+                                '    <div class="view overlay" style="max-height: 220px">\n' +
+                                '        <img src="' + row['image'] + '"\n' +
+                                '             class="card-img-top" alt="' + row['name'] + '">\n' +
+                                '        <a href="' + row['link'] + '">\n' +
+                                '            <div class="mask rgba-white-slight waves-effect waves-light"></div>\n' +
+                                '        </a>\n' +
+                                '    </div>\n' +
+                                '    <div class="card-body">\n' +
+                                '        <h5 class="card-title mb-1">\n' +
+                                '            <strong>\n' +
+                                '                <a href="' + row['link'] + '"\n' +
+                                '                   class="dark-grey-text">\n' +
+                                '                    ' + row['name'] + '\n' +
+                                '                </a>\n' +
+                                '            </strong>\n' +
+                                '        </h5>\n' +
+                                '        <div>\n' +
+                                '            <a href="' + row['link'] + '"\n' +
+                                '               class="my-3">\n' +
+                                '                نام مدرسه:   ' +
+                                '                ' + row['school'] + '\n' +
+                                '            </a>\n' +
+                                '        </div>\n' +
+                                '        <div class="card-footer px-0 pb-0 d-flex justify-content-around">\n' +
+                                '            <div class="">\n' +
+                                discount +
+                                '                <strong>' + row['final_price'] + '</strong>\n' +
+                                '   تومان   ' +
+                                '            </div>\n' +
+                                '            <div class="">\n' +
+                                '                <a href=""\n' +
+                                '  data-toggle="tooltip" data-placement="top" title="افزودن به سبد خرید"\n' +
+                                '                   data-original-title="افزودن به سبد خرید">\n' +
+                                '                    <i class="fad fa-shopping-basket mr-3"></i>\n' +
+                                '                </a>\n' +
+                                '            </div>\n' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '</div>\n';
+                        },
+                        orderable: false,
+                    }, {
+                        name: "id",
+                        render: function (data, type, row, meta) {
+                            return row['id'];
+                        },
+                        orderable: true,
+                        visible: false,
+                    }, {
+                        name: "price",
+                        render: function (data, type, row, meta) {
+                            return row['price'];
+                        },
+                        orderable: true,
+                        visible: false,
+                    }
+                ];
+
+                let tableElement = $("#products_datatable");
+                tableElement.DataTable({
+                    processing: true,
+                    serverSide: true,
+                    searching: true,
+                    paging: true,
+                    scrollX: true,
+                    buttons: [],
+                    dom: "<t><p>",
+                    pageLength: 25,
+                    order: [[1, "desc"]],
+                    language: {
+                        url: tableElement.data('lang')
+                    },
+                    columns: Cols,
+                    ajax: {
+                        type: 'POST',
+                        dataType: "json",
+                        url: tableElement.data('action'),
+                        headers: {
+                            'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')
+                        },
+                        dataSrc: function (response) {
+                            return response.data;
+                        }
+                    },
+                    rowCallback: function (row, data) {
+                        // $(row).addClass('zoom-in box');
+                    }
+                });
+            }
 
             return {
                 init: function () {
                     _createPage();
+                    _getProducts();
                 }
             }
         }();

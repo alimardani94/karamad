@@ -11,6 +11,7 @@ Route::post('/profile/password/update', 'ProfileController@changePassword')->nam
 
 Route::group(['prefix' => 'products'], function () {
     Route::post('/', 'ProductController@store')->name('products.store');
+    Route::post('/datatable', 'ProductController@datatable')->name('products.datatable');
 });
 
 Route::group(['prefix' => 'orders'], function () {

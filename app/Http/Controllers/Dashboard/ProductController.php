@@ -6,13 +6,16 @@ use App\Enums\Shop\ProductStatus;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class ProductController extends Controller
 {
@@ -76,4 +79,46 @@ class ProductController extends Controller
 
         return redirect()->route('admin.shop.products.index')->with('success', trans('products.created'));
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function datatable(Request $request): JsonResponse
+    {
+        $products = Product::whereOwnerId(Auth::id())->with('owner.school');
+
+        $total = $products->count();
+        $products = $products->offset($request->input('start'))->limit($request->input('length'))->get();
+
+        $data = new Collection();
+        foreach ($products as $product) {
+            /** @var Product $product */
+
+            $obj = new stdClass();
+            $obj->id = $product->id;
+            $obj->name = $product->name;
+            $obj->image = $product->image();
+            $obj->link = route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]);
+            $obj->school = $product->owner->school->name;
+            $obj->tags = $product->tags()->pluck('name')->toArray();
+            $obj->price = number_format($product->price);
+            $obj->discount = $product->discount;
+            $obj->final_price = number_format($product->final_price);
+            $obj->updated_at = jDate($product->updated_at);
+
+            $data->add($obj);
+            $obj = null;
+        }
+
+        $json_data = [
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($total),
+            "recordsFiltered" => intval($total),
+            "data" => $data,
+        ];
+
+        return new JsonResponse($json_data);
+    }
+
 }
