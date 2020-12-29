@@ -45,33 +45,33 @@
             border-radius: 3px;
         }
 
-        #datatable_wrapper .dataTables_scrollHead {
-            display: none;
+        .dataTables_wrapper .dataTables_scrollHead {
+            display: none !important;
         }
 
-        #datatable_wrapper .dataTables_scrollBody {
+        .dataTables_wrapper .dataTables_scrollBody {
             overflow: unset !important;
         }
 
-        #datatable_wrapper table {
+        .dataTables_wrapper table {
             display: block;
             width: 100% !important;
         }
 
-        #datatable_wrapper #datatable tbody {
+        .dataTables_wrapper .dataTable tbody {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        #datatable_wrapper #datatable tbody tr {
+        .dataTables_wrapper .dataTable tbody tr {
             max-width: 220px !important;
             margin: 10px;
             text-align: center;
             cursor: unset;
         }
 
-        #datatable_wrapper #datatable tbody tr td {
+        .dataTables_wrapper .dataTable tbody tr td {
             display: block;
             word-break: break-word;
         }
