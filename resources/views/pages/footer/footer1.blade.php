@@ -41,10 +41,10 @@
 
             <!--First column-->
             <div class="col-md-3 col-lg-4 col-xl-3 mb-4 dark-grey-text">
-                <h6 class="text-uppercase font-weight-bold"><strong>هوشکاپ</strong></h6>
+                <h6 class="text-uppercase font-weight-bold"><strong>کارامد</strong></h6>
                 <hr class="blue mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    با هوشکاپ به گنجینه ای عظیم از کلاس های آموزشی دست یابید، هوشکاپ پیشرو در خدمات آموزشی و برگزاری
+                    با کارامد به گنجینه ای عظیم از کلاس های آموزشی دست یابید، کارامد پیشرو در خدمات آموزشی و برگزاری
                     کلاس های آنلاین با پایین ترین هزینه و به صورت ۲۴ ساعته
                 </p>
             </div>

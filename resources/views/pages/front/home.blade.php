@@ -286,7 +286,7 @@
                 <div class="col-md-12 col-lg-7 text-center text-md-left margins">
                     <div class="black-text">
                         <h1 class="h2-responsive font-weight-bold wow fadeInRight" data-wow-delay="0.3s">
-                            هوشکاپ گنجینه ای از کلاس های آموزشی
+                            کارامد گنجینه ای از کلاس های آموزشی
                         </h1>
                         <hr class="hr-light wow fadeInRight" data-wow-delay="0.3s">
                         <h6 class="wow fadeInRight" data-wow-delay="0.3s">

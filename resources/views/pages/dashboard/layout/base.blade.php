@@ -11,7 +11,7 @@
     <meta name="errors" content="{{ json_encode($errors->all()) }}">
     <meta name="message" content="{{ session('message') }}">
     @yield('meta')
-    <title>@lang('general.hooshcup') | @yield('title')</title>
+    <title>@lang('general.app_name') | @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/MDB-Pro_4.11.0/css/mdb.min.css') }}" rel="stylesheet">

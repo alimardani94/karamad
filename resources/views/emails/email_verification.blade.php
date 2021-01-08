@@ -7,7 +7,7 @@
 
     <p style="margin:10px 0">
         برای تایید ایمیل خود در
-        {{ trans('general.hooshcup') }}
+        {{ trans('general.app_name') }}
         بر روی دکمه زیر کلیک کنید
     </p>
 

@@ -1,4 +1,4 @@
-# studio - backend
+# Karamad
 
 #### 1. Clone  
 `git clone https://gitlab.com/alimardani94/hooshcup.git` 

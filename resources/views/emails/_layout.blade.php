@@ -75,17 +75,17 @@
 <div class="top_nav" id="top_nav">
     <a href="{{ route('home') }}">
         <img src="{{ asset('assets/img/favicon.ico') }}"
-             alt="{{ trans('general.hooshcup') }}"
+             alt="{{ trans('general.app_name') }}"
              width="25px">
     </a>
     <a href="#">
-        {{ trans('general.hooshcup') }}
+        {{ trans('general.app_name') }}
     </a>
 </div>
 <div class="body-container">
     @yield('body')
 
     <hr style="margin: 20px 30px">
-    <a href="{{ asset('/') }}">{{ trans('general.hooshcup') }}</a>
+    <a href="{{ asset('/') }}">{{ trans('general.app_name') }}</a>
 </div>
 </body>

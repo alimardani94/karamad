@@ -1,7 +1,7 @@
 <header id="header1">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar white">
 
-        <a class="navbar-brand" href="{{ route('home') }}">هوش کاپ</a>
+        <a class="navbar-brand" href="{{ route('home') }}">کارامد</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +160,7 @@
                         <div class="text-center">
                             <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown"
                                 data-wow-delay="0.3s">
-                                <strong>{{ $headerTitle ?? trans('general.hooshcup') }}</strong>
+                                <strong>{{ $headerTitle ?? trans('general.app_name') }}</strong>
                             </h1>
                         </div>
                     </div>

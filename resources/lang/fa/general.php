@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'hooshcup' => 'هوش کاپ',
+    'app_name' => 'کارامد',
 ];

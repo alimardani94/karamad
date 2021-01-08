@@ -294,7 +294,7 @@
                 <hr class="mb-5">
 
                 <p class="text-center w-responsive mx-auto mb-5 dark-grey-text">
-                    بهترین و مناسبترین محصولات را از هوشکاپ تهیه کنید
+                    بهترین و مناسبترین محصولات را از کارامد تهیه کنید
                 </p>
 
                 <div class="carousel-box courses-box">
