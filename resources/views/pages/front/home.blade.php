@@ -198,13 +198,13 @@
                                         </ul>
                                     </div>
                                     <div class="card">
-                                        <a href="{{ route('provinces.show', ['province' => 'tabriz']) }}">
+                                        <a href="{{ route('provinces.show', ['province' => 'azerbaijan-east']) }}">
                                             <img src="{{ asset('assets/img/cities/tabriz.jpg') }}"
                                                  class="card-img-top" alt="tabriz">
                                         </a>
                                         <div class="card-body">
                                             <h5 class="card-title">
-                                                <a href="{{ route('provinces.show', ['province' => 'tabriz']) }}"
+                                                <a href="{{ route('provinces.show', ['province' => 'azerbaijan-east']) }}"
                                                    class="text-dark">
                                                     آذربایجان شرقی
                                                 </a>
