@@ -259,6 +259,9 @@
                 return false;
             }
 
+            let citySelect = $("#city");
+            citySelect.materialSelect({destroy: true});
+
             $.ajax({
                 url: getCitiesUrl,
                 type: 'GET',
@@ -267,11 +270,6 @@
                     province: province,
                 },
                 success: function (data) {
-                    let citySelect = $("#city");
-                    let provinceSelect = $("#province");
-                    citySelect.val('').attr('disabled', true);
-                    provinceSelect.attr('disabled', true);
-
                     citySelect.html($('<option>', {
                         value: '',
                         text: 'شهر',
@@ -291,10 +289,6 @@
                         }));
                     });
 
-                    citySelect.attr('disabled', false);
-                    provinceSelect.attr('disabled', false);
-
-                    citySelect.materialSelect({destroy: true});
                     citySelect.materialSelect();
                 },
                 error: function (data) {
