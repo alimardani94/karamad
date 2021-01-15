@@ -51,7 +51,7 @@
             <div class="form-row">
                 <div class="col">
                     <div class="md-form">
-                        <label for="price">قیمت</label>
+                        <label for="price">قیمت(تومان)</label>
                         <input type="text" class="form-control numeric-input" id="price"
                                value="{{ old('price') }}" name="price">
                     </div>

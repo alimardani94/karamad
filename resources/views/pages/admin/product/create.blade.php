@@ -124,7 +124,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="price">قیمت</label>
+                                        <label for="price">قیمت(تومان)</label>
                                         <input type="text" class="form-control numeric-input" id="price" placeholder="قیمت"
                                                value="{{ old('price') }}" name="price">
                                     </div>
