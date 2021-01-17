@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Enums\Shop\ProductStatus;
 use App\Enums\Shop\ProductType;
 use App\Http\Controllers\Controller;
+use App\Jobs\ResizeImage;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -12,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use stdClass;
@@ -48,16 +48,6 @@ class ProductController extends Controller
             return Redirect::to(URL::previous() . "#create_product")->withErrors($validator)->withInput();
         }
 
-        $images = [];
-        foreach ($request->get('images') as $tempPath) {
-            $id = Product::latest('id')->first('id')->id ?? 0;
-            $newPath = 'products/' . ($id + 1) . substr($tempPath, 15);
-
-            Storage::move($tempPath, $newPath);
-
-            $images[] = $newPath;
-        }
-
         $product = new Product();
         $product->name = $request->get('name');
         $product->owner_id = Auth::id();
@@ -70,12 +60,14 @@ class ProductController extends Controller
         $product->features = json_encode($request->get('features') ?? []);
         $product->summery = $request->get('summery');
         $product->description = $request->get('description');
-        $product->images = json_encode($images);
+        $product->images = json_encode([]);
         $product->meta_keywords = implode(',', $request->get('features'));
         $product->meta_description = substr($request->get('summery'), 0, 150);
         $product->save();
 
         $product->tags()->attach($request->get('tags'));
+
+        ResizeImage::dispatch($product, $request->get('images'));
 
         return redirect()->route('admin.shop.products.index')->with('success', trans('products.created'));
     }

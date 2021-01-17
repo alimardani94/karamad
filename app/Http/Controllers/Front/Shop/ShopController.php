@@ -94,7 +94,10 @@ class ShopController extends Controller
     {
         $product = Product::whereId($id)->with(['comments', 'owner.school'])->withCount('comments')->firstOrFail();
 
-        if ($product->status != ProductStatus::CONFIRMED and Auth::user()->isAdmin() == false) {
+        if ($product->status != ProductStatus::CONFIRMED and
+            Auth::user()->isAdmin() == false and
+            Auth::id() != $product->owner_id
+        ) {
             abort(404);
         }
 

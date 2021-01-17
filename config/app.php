@@ -177,6 +177,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         App\Providers\ValidationServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -230,6 +231,7 @@ return [
 
         'ProductStatus' => App\Enums\Shop\ProductStatus::class,
         'ProductType' => App\Enums\Shop\ProductType::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

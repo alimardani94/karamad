@@ -102,26 +102,31 @@ class Product extends Model
     }
 
     /**
+     * @param string $size
      * @return array
      */
-    public function images()
+    public function images($size = 'original')
     {
         $arr = json_decode($this->images, true);
+
         $images = [];
 
         foreach ($arr as $img) {
-            $images[] = asset('storage/' . $img);
+            if (isset($img[$size])) {
+                $images[] = asset('storage/' . $img[$size]);
+            }
         }
 
         return $images;
     }
 
     /**
+     * @param string $size
      * @return mixed|string
      */
-    public function image()
+    public function image($size = 'original')
     {
-        return $this->images()[0] ?? '';
+        return $this->images($size)[0] ?? '';
     }
 
     /**

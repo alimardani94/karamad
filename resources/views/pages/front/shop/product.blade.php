@@ -54,6 +54,15 @@
 
 @section('content')
     <div class="container mt-1">
+        @if($product->status != \App\Enums\Shop\ProductStatus::CONFIRMED)
+            <div class="alert alert-danger fade in alert-dismissible show mt-5">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" style="font-size:20px">×</span>
+                </button>
+                تا زمانی که محصول تایید نشود در سایت نمایش داده نمی‌شود.
+            </div>
+        @endif
+
         <section id="productDetails" class="pb-5">
             <div class="card mt-5 hoverable">
                 <div class="row">
