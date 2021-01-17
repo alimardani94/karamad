@@ -1,6 +1,6 @@
 <div class="card card-ecommerce h-100 m-1">
     <div class="view overlay" style="max-height: 220px">
-        <img src="{{ $product->image() }}"
+        <img src="{{ $product->image('small') }}"
              class="card-img-top" alt="{{ $product->name }}">
         <a href="{{ route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]) }}">
             <div class="mask rgba-white-slight waves-effect waves-light"></div>

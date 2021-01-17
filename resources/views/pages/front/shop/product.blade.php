@@ -80,7 +80,7 @@
                                 @endforeach
                             </div>
                             <div class="slider slider-nav my-2">
-                                @foreach($product->images() as $image)
+                                @foreach($product->images('small') as $image)
                                     <div class="view">
                                         <img alt="{{ $product->name }}" src="{{ $image }}"
                                              class="img-fluid mx-auto">

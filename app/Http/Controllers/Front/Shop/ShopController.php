@@ -62,7 +62,7 @@ class ShopController extends Controller
             $obj = new stdClass();
             $obj->id = $product->id;
             $obj->name = $product->name;
-            $obj->image = $product->image();
+            $obj->image = $product->image('small');
             $obj->link = route('shop.products.show', ['id' => $product->id, 'slug' => $product->slug]);
             $obj->school = $product->owner->school->name;
             $obj->tags = $product->tags()->pluck('name')->toArray();
