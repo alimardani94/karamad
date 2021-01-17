@@ -536,3 +536,7 @@
     padding: 5px;
     opacity: 0.9;
 }
+
+#dropzone .dz-image img {
+   width: inherit;
+}

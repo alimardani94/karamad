@@ -243,7 +243,7 @@
     <script type="text/javascript"
             src="{{ asset('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
     <script>
-        let images = @json($product->images())
+        let images = @json($product->images('small'))
     </script>
     <script>
         tinymce.init({

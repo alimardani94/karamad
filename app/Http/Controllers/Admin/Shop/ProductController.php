@@ -196,21 +196,7 @@ class ProductController extends Controller
             'meta_description' => 'nullable|string|min:135|max:160',
         ]);
 
-        $images = [];
-        foreach ($request->get('images') as $img) {
-
-            $oldImagesPrefix = asset('storage/') . '/';
-
-            if (strpos($img, $oldImagesPrefix) !== false) {
-                $images[] = str_replace($oldImagesPrefix, '', $img);
-            } else {
-                $newPath = 'products/' . $product->id . substr($img, 15);
-
-                Storage::move($img, $newPath);
-
-                $images[] = $newPath;
-            }
-        }
+        ResizeImage::dispatch($product, $request->get('images'));
 
         if ($request->file('attachment')) {
             $attachPath = $request->file('attachment')->store('products/attachments');
@@ -232,7 +218,6 @@ class ProductController extends Controller
         $product->features = json_encode($request->get('features') ?? []);
         $product->summery = $request->get('summery');
         $product->description = $request->get('description');
-        $product->images = json_encode($images);
         $product->attachment = $attachPath ?? null;
         $product->meta_keywords = $request->get('meta_keywords');
         $product->meta_description = $request->get('meta_description');

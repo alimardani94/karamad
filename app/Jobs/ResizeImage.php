@@ -45,31 +45,40 @@ class ResizeImage implements ShouldQueue
      */
     public function handle()
     {
+        $oldImages = json_decode($this->entity->images, true);
+
         $thumbs = [];
         $dir = $this->entity->getTable() . '/' . $this->entity->id;
 
         Storage::makeDirectory($dir);
 
         foreach ($this->images as $tempPath) {
-            $arr = [];
+            if (strpos($tempPath, asset('storage/')) !== false) {
+                $imgName = trim(str_replace(asset('storage/'), '', $tempPath), '/');
+                foreach ($oldImages as $i => $oldImage) {
+                    if (in_array($imgName, $oldImage)) {
+                        $thumbs[] = $oldImage;
+                    }
+                }
+            } else {
+                $imgName = substr($tempPath, 16);
 
-            $imgName = substr($tempPath, 16);
+                $arr = [
+                    'original' => $dir . '/' . $imgName
+                ];
 
-            $arr = [
-                'original' => $dir . '/' . $imgName
-            ];
+                foreach (config('image.thumbs.' . $this->entity->getTable()) as $key => $thumb) {
+                    $arr[$key] = $dir . '/' . $thumb['prefix'] . $imgName;
 
-            foreach (config('image.thumbs.' . $this->entity->getTable()) as $key => $thumb) {
-                $arr[$key] = $dir . '/' . $thumb['prefix'] . $imgName;
+                    $img = Image::make(storage_path('app/public/' . $tempPath));
+                    $img->resize($thumb['width'], $thumb['height']);
+                    $img->save(storage_path('app/public/' . $arr[$key]));
+                }
 
-                $img = Image::make(storage_path('app/public/' . $tempPath));
-                $img->resize($thumb['width'], $thumb['height']);
-                $img->save(storage_path('app/public/' . $arr[$key]));
+                Storage::move($tempPath, $arr['original']);
+
+                $thumbs[] = $arr;
             }
-
-            Storage::move($tempPath, $arr['original']);
-
-            $thumbs[] = $arr;
         }
 
         $this->entity->images = json_encode($thumbs);
